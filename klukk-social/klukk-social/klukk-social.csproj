@@ -160,11 +160,31 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\KlukkContext.cs" />
+    <Compile Include="DAL\KlukkInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505061743228_Test_one.cs" />
+    <Compile Include="Migrations\201505061743228_Test_one.Designer.cs">
+      <DependentUpon>201505061743228_Test_one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505061815531_test_two.cs" />
+    <Compile Include="Migrations\201505061815531_test_two.Designer.cs">
+      <DependentUpon>201505061815531_test_two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FriendRequest.cs" />
+    <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Likes.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -229,6 +249,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505061743228_Test_one.resx">
+      <DependentUpon>201505061743228_Test_one.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505061815531_test_two.resx">
+      <DependentUpon>201505061815531_test_two.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

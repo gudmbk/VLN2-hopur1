@@ -23,8 +23,29 @@ namespace klukk_social.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            test stuff;
+
+            
 
             return View();
+        }
+    }
+
+    /// <summary>
+    /// Class used to be a test class
+    /// for displaying test things in 
+    /// a test enviroment.
+    /// </summary>
+    public class test
+    {
+        /// <summary>
+        /// This function writes the parameters to the console
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="bla"></param>
+        public void DoStuff(int number, string bla)
+        {
+            Console.WriteLine(number + bla);
         }
     }
 }
