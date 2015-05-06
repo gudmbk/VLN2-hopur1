@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 namespace klukk_social.Models
 {
@@ -53,6 +54,18 @@ namespace klukk_social.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "First")]
+        public string First { get; set; }
+
+
+        [Display(Name = "Middle")]
+        public string Middle { get; set; }
+
+        [Required]
+        [Display(Name = "Last")]
+        public string Last { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
