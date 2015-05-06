@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201505062031148_bla.Designer.cs">
       <DependentUpon>201505062031148_bla.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505062253041_laga user.cs" />
+    <Compile Include="Migrations\201505062253041_laga user.Designer.cs">
+      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FriendRequest.cs" />
@@ -180,7 +184,6 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Settings.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\PostService.cs" />
@@ -255,6 +258,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505062031148_bla.resx">
       <DependentUpon>201505062031148_bla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505062253041_laga user.resx">
+      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
