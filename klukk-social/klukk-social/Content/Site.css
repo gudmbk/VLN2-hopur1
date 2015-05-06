@@ -15,3 +15,328 @@ select,
 textarea {
     max-width: 280px;
 }
+.footer{
+	position: absolute;
+	bottom: 20px;
+	color: white;
+}
+
+html, body{
+	height:100%;
+	text-align: justify;
+	background-image: url('/Content/Images/Tahoe-Day.png');
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+div{
+	display: block;
+}
+body{
+	margin: 0px;
+}
+.searchfield
+{
+	margin: 8px;
+	margin-right: 0px;
+	border-radius: 5px;
+	border:1px solid #CCCCCC;
+	height: 25px;
+	min-width: 180px;
+	font-size: 12pt;
+	color:#828282;
+}
+.searchbutton{
+	margin: 8px;
+	margin-left: 0px;
+	border-radius: 5px;
+	border:1px solid #CCCCCC;
+	height: 29px;
+	width: 30px;
+	font-size: 12pt;
+	color: white;
+	background-color: whitesmoke;
+	background-image: url(http://icongal.com/gallery/image/7440/find_search.png);
+	background-size: 29px;
+}
+.title{
+	font-family: 'Arial Black';
+	margin-left: 30px;
+	margin-right: 30px;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	font-size: 35px;
+	text-shadow: rgb(3, 3, 3) 2px 0px 6px;
+	text-decoration: none;
+	float: left;
+}
+.wrapper {
+	width: 800px;
+	height: 100%;
+	/*background-color: pink;*/
+	margin:0 auto;"
+	margin: 300px;
+}
+.topbar {
+	width: 100%;
+	clear: both;
+	height: 50px;
+	background-color: rgba(85, 147, 194, 1);
+	position: fixed;
+	top: 0px;
+	padding: 0px;
+	z-index: 1;
+}
+.topbar form{
+	 float: left;
+}
+.sidebar {
+	float:left;
+	width: 160px;
+	height: 100%;
+/*	background-color: rgba(85, 147, 194, 1);
+*/	background-color: rgba(255, 255, 255, 0);
+	position: fixed;
+	top:50px;
+	padding: 20px;
+	text-align: left;
+	color: black;
+	font-family: 'helvetica';
+	font-weight: bold;
+	font-size: 20px;
+}
+.sidebar img{
+	border-radius: 10px;
+	height: 152px;
+	width: 152px;
+	border-style: solid;
+	border-width: 4px;
+	border-color:rgb(255, 255, 255);
+}
+.sidebar p{
+
+}
+.sidebar a{
+	display: block;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding: 5px;
+	text-align: right;
+}
+.contentarea{
+	/*background-color: purple;*/
+	margin-left: 200px;
+	margin-top: 50px;
+	width: 600px;
+	height: 500px;
+}
+.writeonwall{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border-radius: 10px;
+	width: 580px;
+	float: left;
+	background-color: hotpink;
+}
+.writeonwall textarea{
+	margin: 20px 20px 0px 20px;
+	width: 535px;
+	max-width: 540px
+	content: e
+}
+.postbutton{
+	float: right;
+	margin: 8px;
+	margin-left: 0px;
+	border-radius: 5px;
+	border:1px solid #CCCCCC;
+	height: 29px;
+	width: 60px;
+	font-size: 12pt;
+	color: black;
+	background-color: whitesmoke;
+	background-size: 29px;
+}
+.post {
+	border-radius: 10px;
+	float:left;
+	width: 540px;
+/*	background: rgb(231, 239, 255);*/
+	min-height: 100px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 20px;
+	padding-bottom: 0px;
+	background-image: url(Seattle-Day-opague.png);
+	background-size: 600px;
+	background-repeat: no-repeat;
+/*	background-color: rgb(125, 135, 255);*/
+}
+.post div{
+	float: left;
+	background: rgba(255, 255, 255, 0.96);
+	border-radius: 10px;
+	padding: 15px;
+	position: inherit;
+	top: 100px;
+}
+.post p{
+	float: left;
+	margin: auto;
+}
+.post img{
+	border-radius: 10px;
+	max-width: 510px;
+	padding-top: 10px;
+}
+.post-img {
+	border-radius: 10px;
+	float:left;
+	height: 100px;
+	width: 100px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding: 0px;
+	padding-top: 0px !important;
+	border-style: solid;
+	border-width: 4px;
+	border-color:rgb(105, 175, 132);
+	float: left;
+}
+.profile {
+	border-radius: 10px;
+	float:left;
+	width: 540px;
+	min-height: 100px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 20px;
+	background-image: url(Austin-Day.png);
+	background-size: cover;
+	background-blend-mode: overlay;
+/*	background-color: rgb(125, 135, 255);*/
+}
+.profile div{
+	float: left;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+}
+.profile .name{
+	background: none;
+}
+.profile img{
+	border-radius: 10px;
+	float: left;
+	height: 250px;
+	width: 250px;
+	margin-right: 20px;
+	border-style: solid;
+	border-width: 4px;
+	border-color:rgb(255, 255, 255);
+}
+.likebar{
+	float: left;
+	border-radius: 10px;
+	padding-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 30px;
+	width: 570px;
+	background-image: url(Seattle-Day-Opague-bottom.png);
+	background-position:bottom;
+	overflow: visible;    
+}
+.comments{
+	margin-left: 20px;
+	margin-right: 20px;
+	border-radius: 10px;
+	float: left;
+	background-color: hotpink;
+	padding: 1px !important;
+
+}
+.comment{
+	border-radius: 10px;
+	background-color: white;
+	margin-bottom: 1px;
+	min-height: 10px;
+	float: left;
+	width: 570px;
+}
+.comment-img{
+	border-radius: 10px;
+	float: left;
+	border-color:hotpink;
+	height: 50px;
+	width: 50px;
+	margin-right: 5px;
+}
+.comment .name{
+	font-size: 20px;
+	background: none;
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
+	margin-top: 11px;
+	padding-right: 7px;
+}
+.comment-text{
+	display: block;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.name{
+	border-radius: 10px;
+	display: inline;
+	font-family: 'helvetica';
+	font-weight: bold;
+	font-size: 35px;
+	text-decoration: none;
+	float: left;
+/*	margin: auto;*/
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+}
+.friendpage {
+	float: left;
+	border-radius: 10px;
+	float:left;
+	width: 220px;
+	min-height: 100px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 20px;
+	background-image: url(Austin-Day.png);
+	background-size: cover;
+	background-blend-mode: overlay;
+/*	background-color: rgb(125, 135, 255);*/
+}
+.friendpage div{
+	float: left;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+}
+.friendpage .name{
+	background: none;
+}
+.friendpage img{
+	border-radius: 10px;
+	float: left;
+	height: 210px;
+	width: 210px;
+	margin-right: 20px;
+	border-style: solid;
+	border-width: 4px;
+	border-color:rgb(255, 255, 255);
+}
+

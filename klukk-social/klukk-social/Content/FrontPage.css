@@ -1,0 +1,27 @@
+﻿html, body{
+	height:100%;
+	text-align: justify;
+	background-image: url(Tahoe-Day-white.png);
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+div{
+	display: block;
+}
+body{
+	margin: 0px;
+	background-image: url(Tahoe-Day.png);
+}
+
+.title{
+	font-family: 'Arial Black';
+	margin-left: 150px;
+	margin-top: 150px;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	font-size: 70px;
+	text-shadow: rgb(3, 3, 3) 2px 0px 6px;
+	text-decoration: none;
+	float: left;
+}
