@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body class="pagebackground">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,10 +20,15 @@
                 @Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
             </div>
             <div class="navbar-collapse collapse">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Skilaboð", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Póstur", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
