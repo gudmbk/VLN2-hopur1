@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,23 +8,23 @@ namespace klukk_social.Models
 {
     public class Notification
     {
-        private int id { get; set; }
-        private int userId { get; set; }
-        private int postLikeId { get; set; }
-        private int postId { get; set; }
-        private int commentLikeId { get; set; }
-        private int commentId { get; set; }
-        private DateTime date { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int PostLikeId { get; set; }
+        public int PostId { get; set; }
+        public int CommentLikeId { get; set; }
+        public int CommentId { get; set; }
+        public DateTime Date { get; set; }
 
         public Notification()
         {
-            id = 0;
-            userId = 0;
-            postLikeId = 0;
-            postId = 0;
-            commentId = 0;
-            commentLikeId = 0;
-            date = DateTime.Now;
+            Id = 0;
+            UserId = 0;
+            PostLikeId = 0;
+            PostId = 0;
+            CommentId = 0;
+            CommentLikeId = 0;
+            Date = DateTime.Now;
         }
     }
 }

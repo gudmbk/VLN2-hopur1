@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,27 +8,27 @@ namespace klukk_social.Models
 {
     public class Post
     {
-        private int id { get; set; }
-        private int fromUserId { get; set; }
-        private int toUserId { get; set; }
-        private int groupId { get; set; }
-        private string photoUrl { get; set; }
-        private string videoUrl { get; set; }
-        private string text { get; set; }
-        private string htmlText { get; set; }
-        private DateTime date { get; set; }
+        public int Id { get; set; }
+        public int FromUserId { get; set; }
+        public int ToUserId { get; set; }
+        public int GroupId { get; set; }
+        public string PhotoUrl { get; set; }
+        public string VideoUrl { get; set; }
+        public string Text { get; set; }
+        public string HtmlText { get; set; }
+        public DateTime Date { get; set; }
 
         public Post()
         {
-            id = 0;
-            fromUserId = 0;
-            toUserId = 0;
-            groupId = 0;
-            photoUrl = System.String.Empty;
-            videoUrl = System.String.Empty;
-            text = System.String.Empty;
-            htmlText = System.String.Empty;
-            date = DateTime.Now;
+            Id = 0;
+            FromUserId = 0;
+            ToUserId = 0;
+            GroupId = 0;
+            PhotoUrl = System.String.Empty;
+            VideoUrl = System.String.Empty;
+            Text = System.String.Empty;
+            HtmlText = System.String.Empty;
+            Date = DateTime.Now;
 
         }
     }

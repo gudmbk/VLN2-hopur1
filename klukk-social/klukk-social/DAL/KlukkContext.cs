@@ -8,27 +8,9 @@ using klukk_social.Models;
 
 namespace klukk_social.DAL
 {
-    public class KlukkContext : DbContext
+    public class KlukkContext
     {
-        public KlukkContext()
-            : base("KlukkContext")
-        {
-            
-        }
-
-        public DbSet<User> user { get; set; }
-        public DbSet<Post> post { get; set; }
-        public DbSet<Settings> settings { get; set; }
-        public DbSet<Notification> notification { get; set; }
-        public DbSet<Likes> likes { get; set; }
-        public DbSet<Group> group { get; set; }
-        public DbSet<GroupUsers> groupUsers { get; set; }
-        public DbSet<Friendship> friendships { get; set; }
-        public DbSet<FriendRequest> friendRequests { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
+ 
     }
 
 

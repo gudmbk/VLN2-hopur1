@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,11 @@ namespace klukk_social.Models
 {
     public class Settings
     {
-        private int id { get; set; }
-        private int userId { get; set; }
-        private bool likes { get; set; }
-        private bool comments { get; set; }
-        private bool statuses { get; set; }
-        private bool friendRequests { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public bool Likes { get; set; }
+        public bool Comments { get; set; }
+        public bool Statuses { get; set; }
+        public bool FriendRequests { get; set; }
     }
 }
