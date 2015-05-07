@@ -96,15 +96,11 @@ namespace klukk_social.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User() { UserName = model.Email, Email = model.Email, FirstName = model.First, MiddleName = model.Middle,
-                    LastName = model.Last, CreationDate = DateTime.Now, BirthDate = DateTime.Now };
-
-				IdentityManager manager = new IdentityManager();
-				manager.AddUserToRole(user.UserId , "Parent");
+                    LastName = model.Last, CreationDate = DateTime.Now, BirthDate = DateTime.Now};
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-					
                     await SignInAsync(user, isPersistent: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

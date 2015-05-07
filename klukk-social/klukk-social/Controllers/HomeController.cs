@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using klukk_social.Services;
-using klukk_social.Models;
 
 namespace klukk_social.Controllers
 {
@@ -12,17 +11,6 @@ namespace klukk_social.Controllers
     {
         public ActionResult Index()
         {
-			IdentityManager manager = new IdentityManager();
-
-			if (!manager.RoleExists("Parent"))
-			{
-				manager.CreateRole("Parent");
-			}
-			if (!manager.RoleExists("Child"))
-			{
-				manager.CreateRole("Child");
-			}
-
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("ParentHome", "User");
