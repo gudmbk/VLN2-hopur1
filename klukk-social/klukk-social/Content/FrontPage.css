@@ -6,11 +6,8 @@
 	background-attachment: fixed;
 	background-position: center;
 }
-div{
-	display: block;
-}
+
 body{
-	margin: 0px;
 	background-image: url(Tahoe-Day.png);
 }
 
