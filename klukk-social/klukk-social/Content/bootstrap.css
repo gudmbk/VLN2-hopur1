@@ -1965,9 +1965,11 @@ textarea.input-lg {
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
 .form-horizontal .checkbox-inline {
-  padding-top: 7px;
-  margin-top: 0;
+  padding-top: 0px;
+  margin-top: 7px;
   margin-bottom: 0;
+  position: relative;
+  top: 50%;
 }
 
 .form-horizontal .form-group {
@@ -1979,6 +1981,7 @@ textarea.input-lg {
 .form-horizontal .form-group:after {
   display: table;
   content: " ";
+  background-color: white;
 }
 
 .form-horizontal .form-group:after {

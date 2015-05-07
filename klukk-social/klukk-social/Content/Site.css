@@ -97,3 +97,12 @@ body{
 	margin-left: 200px;
 	min-height: 500px;
 }
+
+.white-background{
+	padding-top: 10px;
+	padding-left: 60px;
+	background-color: white;
+	border-radius: 5px;
+	height: 100%;
+	width: 500px;
+}
