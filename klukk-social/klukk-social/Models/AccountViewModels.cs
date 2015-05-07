@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
 namespace klukk_social.Models
@@ -39,9 +40,8 @@ namespace klukk_social.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -81,7 +81,43 @@ namespace klukk_social.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
+
+		public DateTime BirthDay { get; set; }
+	}
+	public class CreateChildViewModel
+	{
+		[Required]
+		[Display(Name = "First")]
+		public string First { get; set; }
+
+
+		[Display(Name = "Middle")]
+		public string Middle { get; set; }
+
+		[Required]
+		[Display(Name = "Last")]
+		public string Last { get; set; }
+
+		[Required]
+		[Display(Name = "UserName")]
+		public string UserName { get; set; }
+
+		[Required]
+		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+		[DataType(DataType.Password)]
+		[Display(Name = "Password")]
+		public string Password { get; set; }
+
+		[DataType(DataType.Password)]
+		[Display(Name = "Confirm password")]
+		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		public string ConfirmPassword { get; set; }
+		
+		[Required]
+		[Display(Name = "BirthDay")]
+		public DateTime BirthDay { get; set; }
+
+	}
 
     public class ResetPasswordViewModel
     {

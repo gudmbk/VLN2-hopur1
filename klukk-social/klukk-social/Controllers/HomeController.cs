@@ -23,11 +23,15 @@ namespace klukk_social.Controllers
 				manager.CreateRole("Child");
 			}
 
-            if (User.Identity.IsAuthenticated)
+            if (User.IsInRole("Parent"))
             {
                 return RedirectToAction("ParentHome", "User");
             }
-            return View();
+			if (User.IsInRole("Child"))
+			{
+				return RedirectToAction("ChildHome", "User");
+			}
+			return View();
         }
 
         public ActionResult About()

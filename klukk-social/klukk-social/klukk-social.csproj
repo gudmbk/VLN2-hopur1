@@ -201,6 +201,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\MothernChild.jpg" />
     <Content Include="Content\Images\Smiling-teen-w_braces.jpg" />
     <Content Include="Content\Images\Tahoe-Day-white.png" />
     <Content Include="Content\Images\Tahoe-Day.png" />
@@ -259,6 +260,8 @@
     <Content Include="Views\User\PostStatusView.cshtml" />
     <Content Include="Views\User\ChildHome.cshtml" />
     <Content Include="Views\Shared\ParentSidebarPartial.cshtml" />
+    <Content Include="Views\Account\CreateChild.cshtml" />
+    <Content Include="Views\Shared\ChildSidebarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

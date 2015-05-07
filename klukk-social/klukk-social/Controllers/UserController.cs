@@ -15,12 +15,13 @@ namespace klukk_social.Controllers
     {
         private PostService ps = new PostService();
 
+		[Authorize(Roles = "Parent")]
         public ActionResult ParentHome()
         {
 
             return View();
         }
-
+		[Authorize(Roles = "Child")]
         public ActionResult ChildHome()
         {
             UserViewModel user = new UserViewModel();
@@ -29,9 +30,10 @@ namespace klukk_social.Controllers
             return View();
         }
 
+		[Authorize(Roles = "Parent")]
         public ActionResult CreateChild()
         {
-            return View();
+			return RedirectToAction("CreateChild", "Account");
         }
     }
 }

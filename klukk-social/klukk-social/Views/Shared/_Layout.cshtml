@@ -35,7 +35,15 @@
         </div>
     </div>
     <div class="container body-content">
-		@Html.Partial("ParentSidebarPartial")
+		@if (User.IsInRole("Parent") )
+		{
+			@Html.Partial("ParentSidebarPartial")
+		}
+		else
+		{
+			@Html.Partial("ChildSidebarPartial")
+		}
+		
 
 		<div class="contentarea">
 			@RenderBody()
