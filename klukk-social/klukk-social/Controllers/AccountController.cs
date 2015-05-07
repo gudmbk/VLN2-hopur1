@@ -57,7 +57,7 @@ namespace klukk_social.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
+                var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -95,11 +95,16 @@ namespace klukk_social.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { UserName = model.Email, Email = model.Email, FirstName = model.First, MiddleName = model.Middle,
-                    LastName = model.Last, CreationDate = DateTime.Now, BirthDate = DateTime.Now };
-
-				IdentityManager manager = new IdentityManager();
-				manager.AddUserToRole(user.UserId , "Parent");
+				var user = new User()
+				{
+					UserName = model.Email,
+					Email = model.Email,
+					FirstName = model.First,
+					MiddleName = model.Middle,
+					LastName = model.Last,
+					CreationDate = DateTime.Now,
+					BirthDate = DateTime.Now
+				};
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -112,7 +117,8 @@ namespace klukk_social.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+					IdentityManager manager = new IdentityManager();
+					manager.AddUserToRole(user.Id, "Parent");
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -124,6 +130,53 @@ namespace klukk_social.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+		[Authorize(Roles = "Parent")]
+		public ActionResult CreateChild()
+		{
+			return View();
+		}
+		[HttpPost]
+		[Authorize(Roles = "Parent")]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> CreateChild(CreateChildViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = new User()
+				{
+					UserName = model.UserName,
+					Email = User.Identity.GetUserName(),
+					FirstName = model.First,
+					MiddleName = model.Middle,
+					LastName = model.Last,
+					CreationDate = DateTime.Now,
+					BirthDate = model.BirthDay
+				};
+
+				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+				if (result.Succeeded)
+				{
+
+					await SignInAsync(user, isPersistent: false);
+
+					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+					// Send an email with this link
+					// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+					// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+					// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+					IdentityManager manager = new IdentityManager();
+					manager.AddUserToRole(user.Id, "Child");
+					return RedirectToAction("Index", "Home");
+				}
+				else
+				{
+					AddErrors(result);
+				}
+			}
+
+			// If we got this far, something failed, redisplay form
+			return View(model);
+		}
 
         //
         // GET: /Account/ConfirmEmail
@@ -480,6 +533,7 @@ namespace klukk_social.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+		private string userId; // hakk?
 
         private IAuthenticationManager AuthenticationManager
         {
