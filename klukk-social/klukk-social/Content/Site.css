@@ -49,3 +49,8 @@ body{
 .pagebackground{
 	background-image: url('/Content/Images/Tahoe-Day-white.png');
 }
+
+.topbar a{
+	color: white;
+	font-size: 100px;
+}
