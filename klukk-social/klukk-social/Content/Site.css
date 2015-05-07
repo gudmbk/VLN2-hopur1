@@ -106,3 +106,23 @@ body{
 	height: 100%;
 	width: 500px;
 }
+
+.footercontainer{
+   position:fixed;
+   left:20px;
+   bottom:30px;
+   height:30px;
+   width:100%;
+
+ 
+  
+}
+.footertext{
+
+  position:fixed;
+   left:20px;
+   bottom:10px;
+   height:30px;
+   width:100%;
+
+}
