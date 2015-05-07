@@ -53,7 +53,7 @@ namespace klukk_social.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,11 @@ namespace klukk_social.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    if (user.UserId == 0)
+                    {
+                        return RedirectToAction("ParentHome", "User");
+                    }
+                    return RedirectToAction("ChildHome", "User");
                 }
                 else
                 {
@@ -70,7 +74,7 @@ namespace klukk_social.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
         //

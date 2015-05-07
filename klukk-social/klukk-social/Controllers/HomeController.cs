@@ -11,6 +11,10 @@ namespace klukk_social.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("ParentHome", "User");
+            }
             return View();
         }
 
