@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using klukk_social.Services;
-using klukk_social.Models;
 
 namespace klukk_social.Controllers
 {
