@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using klukk_social.Models;
 
-namespace Vefforittun_20151_Project5_Solution.Models
+namespace klukk_social.Models
 {
 	public class IdentityManager
 	{
