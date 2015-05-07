@@ -1,0 +1,7 @@
+﻿@using klukk_social.Models
+@model Post
+@using (Html.BeginForm("PostStatus","Post",FormMethod.Post, new { @class = "post-status", role = "form" }))
+{
+    @Html.TextAreaFor(p => p.Text, new { @class = "form-control", placeholder = "Hvadda spá?" })
+    <input type="submit" value="Deila" class="btn btn-default" />
+}

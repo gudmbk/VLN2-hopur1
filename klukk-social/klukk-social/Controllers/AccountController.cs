@@ -63,14 +63,15 @@ namespace klukk_social.Controllers
                     await SignInAsync(user, model.RememberMe);
                     if (user.UserId == 0)
                     {
-                        return RedirectToAction("ParentHome", "User");
+                        return RedirectToAction("ChildHome", "User");
                     }
-                    return RedirectToAction("ChildHome", "User");
+                    return RedirectToAction("ParentHome", "User");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
