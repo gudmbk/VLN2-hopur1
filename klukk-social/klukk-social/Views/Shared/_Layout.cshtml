@@ -35,8 +35,11 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
+		@Html.Partial("ParentSidebarPartial")
+		<div class="contentarea">
+			@RenderBody()
+		</div>
+		<hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>

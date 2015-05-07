@@ -54,3 +54,46 @@ body{
 	color: white;
 	font-size: 100px;
 }
+
+
+.sidebar {
+	float:left;
+	width: 200px;
+	height: 100%;
+/*	background-color: rgba(85, 147, 194, 1);
+*/	background-color: rgba(255, 255, 255, 0);
+	position: fixed;
+	top:50px;
+	padding: 20px;
+	text-align: left;
+	color: black;
+	font-family: 'helvetica';
+	font-weight: bold;
+	font-size: 20px;
+}
+.sidebar img{
+	border-radius: 10px;
+	height: 160px;
+	width: 160px;
+	border-style: solid;
+	border-width: 4px;
+	border-color:rgb(255, 255, 255);
+	object-fit:cover;
+	object-position: center;
+}
+.sidebar p{
+
+}
+.sidebar a{
+	border-radius: 5px;
+	display: block;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding: 5px;
+	text-align: right;
+}
+.contentarea{
+	margin-left: 200px;
+	min-height: 500px;
+}
