@@ -33,7 +33,6 @@ namespace klukk_social.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        //public DbSet<User> users { get; set; }
         public DbSet<Post> posts { get; set; }
         public DbSet<Settings> settings { get; set; }
         public DbSet<Notification> notifications { get; set; }
