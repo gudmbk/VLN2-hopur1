@@ -28,5 +28,10 @@ namespace klukk_social.Controllers
             user.Feed = ps.GetAllPosts();
             return View();
         }
+
+        public ActionResult CreateChild()
+        {
+            return View();
+        }
     }
 }

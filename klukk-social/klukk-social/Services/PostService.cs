@@ -20,5 +20,14 @@ namespace klukk_social.Services
             }
             return listi;
         }
+
+        public void AddPost(Post post)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                dbContext.posts.Add(post);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }

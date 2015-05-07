@@ -2,6 +2,6 @@
 @model Post
 @using (Html.BeginForm("PostStatus","Post",FormMethod.Post, new { @class = "post-status", role = "form" }))
 {
-    @Html.TextAreaFor(p => p.Text, new { @class = "form-control", placeholder = "Hvadda spá?" })
+    <textarea class="form-control" rows="4" name="status"></textarea>
     <input type="submit" value="Deila" class="btn btn-default" />
 }
