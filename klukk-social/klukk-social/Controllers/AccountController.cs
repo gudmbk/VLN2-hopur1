@@ -61,11 +61,6 @@ namespace klukk_social.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    if (user.UserId == 0)
-                    {
-                        return RedirectToAction("ChildHome", "User");
-                    }
-                    return RedirectToAction("ParentHome", "User");
                 }
                 else
                 {
@@ -109,7 +104,7 @@ namespace klukk_social.Controllers
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    //await SignInAsync(user, isPersistent: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -155,8 +150,6 @@ namespace klukk_social.Controllers
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
-
-					await SignInAsync(user, isPersistent: false);
 
 					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
 					// Send an email with this link
