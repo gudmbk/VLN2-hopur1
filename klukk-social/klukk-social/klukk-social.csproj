@@ -249,6 +249,9 @@
     <Content Include="Views\Account\CreateChild.cshtml" />
     <Content Include="Views\Shared\ChildSidebarPartial.cshtml" />
     <Content Include="Views\User\PostPartial.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\WhySafe.cshtml" />
+    <Content Include="Views\Home\ForPar.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿@model klukk_social.Models.Post
 
 <div class="postdialog">
-	@Html.ActionLink(@Model.PosterName, "FriendHome")
+	@Html.ActionLink(@Model.PosterName, "FriendHome",new {userId = Model.FromUserId})
 	<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 	<p>@Model.Date.ToString()</p>
 </div>
@@ -9,7 +9,7 @@
 @foreach (var comment in Model.Comments)
 {
     <div class="commentdialog">
-        <p>@comment.PosterName</p>
+        @Html.ActionLink(@comment.PosterName, "FriendHome", new {userId = comment.UserId})
         <p>@comment.Body</p>
         <p>@comment.Date</p>
     </div>

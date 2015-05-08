@@ -51,11 +51,21 @@ namespace klukk_social.Controllers
 
             return View();
         }
-
-        public ActionResult Termo()
+       
+        public ActionResult Terms()
         {
-            ViewBag.Message = "blablabal";
             return View();
         }
+
+        public ActionResult WhySafe()
+        {
+            return View();
+        }
+
+        public ActionResult ForPar()
+        {
+            return View();
+        }
+
     }
 }
