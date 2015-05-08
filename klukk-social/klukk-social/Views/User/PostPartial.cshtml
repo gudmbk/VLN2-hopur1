@@ -1,6 +1,24 @@
 ﻿@model klukk_social.Models.Post
+
 <div class="postdialog">
-	@Html.ActionLink("Nafn þess sem postar", "FriendHome")
+	@Html.ActionLink("Nafn posters", "FriendHome")
 	<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 	<p>@Model.Date.ToString()</p>
 </div>
+
+@foreach (var comment in Model.Comments)
+{
+	<div>
+		<p>@comment.Body</p>
+		<p>@comment.Date</p>
+	</div>
+
+}
+@using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+{
+	<div>
+		<input name="comment" />
+		<input type="hidden" name="PostId" value="@Model.Id" />
+		<input type="submit" value="Deila" class="btn btn-default" />
+	</div>
+}

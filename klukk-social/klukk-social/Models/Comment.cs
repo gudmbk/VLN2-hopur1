@@ -10,6 +10,7 @@ namespace klukk_social.Models
         public int Id { get; set; }
         public int PostId { get; set; }
         public string UserId { get; set; }
+        public string Body { get; set; }
         public DateTime Date { get; set; }
 
         public Comment()
@@ -17,6 +18,7 @@ namespace klukk_social.Models
             Id = 0;
             PostId = 0;
             UserId = String.Empty;
+            Body = String.Empty;
             Date = DateTime.Now;
         }
     }

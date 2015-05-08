@@ -30,12 +30,34 @@ namespace klukk_social.Controllers
                 return RedirectToAction("ChildHome", "User");
             }
             post.Text = text;
-            post.Date = DateTime.Now;
             post.FromUserId = User.Identity.GetUserId();
             post.ToUserId = User.Identity.GetUserId();
             if (post.FromUserId != null)
             {
                 postService.AddPost(post);
+                return RedirectToAction("ChildHome", "User");
+            }
+            
+            return View("Error");
+        }
+
+        public ActionResult PostComment(FormCollection collection
+            )
+        {
+            Comment comment = new Comment();
+            string text = collection["comment"];
+            string id = collection["PostId"];
+            int PostId = Int32.Parse(id);
+            if (String.IsNullOrEmpty(text))
+            {
+                return RedirectToAction("ChildHome", "User");
+            }
+            comment.Body = text;
+            comment.UserId = User.Identity.GetUserId();
+            comment.PostId = PostId;
+            if (comment.UserId != null)
+            {
+                postService.AddComment(comment);
                 return RedirectToAction("ChildHome", "User");
             }
             
