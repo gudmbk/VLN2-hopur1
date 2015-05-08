@@ -46,12 +46,15 @@ namespace klukk_social.Controllers
         {
             Comment comment = new Comment();
             string text = collection["comment"];
+            string id = collection["PostId"];
+            int PostId = Int32.Parse(id);
             if (String.IsNullOrEmpty(text))
             {
                 return RedirectToAction("ChildHome", "User");
             }
             comment.Body = text;
             comment.UserId = User.Identity.GetUserId();
+            comment.PostId = PostId;
             if (comment.UserId != null)
             {
                 postService.AddComment(comment);
