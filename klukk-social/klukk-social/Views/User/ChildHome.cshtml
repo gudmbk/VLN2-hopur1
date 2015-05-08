@@ -7,7 +7,7 @@
 
 @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id))
 
-@foreach (Post p in Model.Feed)
+@foreach (var p in Model.Feed)
 {
     @Html.Partial("PostPartial", p)
 }

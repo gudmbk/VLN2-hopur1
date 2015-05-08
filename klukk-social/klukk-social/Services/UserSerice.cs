@@ -26,7 +26,7 @@ namespace klukk_social.Services
             using (var dbContext = new ApplicationDbContext())
             {
                 var user = (from u in dbContext.Users
-                            where u.FirstName.Contains(prefix)
+                            where u.FirstName.Contains(prefix) && u.ParentId != null
                             orderby u.FirstName
                             select u).ToList();
                 return user;
