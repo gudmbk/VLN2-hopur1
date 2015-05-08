@@ -23,7 +23,7 @@ namespace klukk_social.Services
                 {
                     item.Comments = (from comment in dbContext.Comments
                         where comment.PostId == item.Id
-                        orderby comment.Date descending
+                        orderby comment.Date ascending
                         select comment).ToList();
                 }
             }

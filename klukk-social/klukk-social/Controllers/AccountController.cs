@@ -144,7 +144,8 @@ namespace klukk_social.Controllers
 					MiddleName = model.Middle,
 					LastName = model.Last,
 					CreationDate = DateTime.Now,
-					BirthDate = model.BirthDay
+					BirthDate = model.BirthDay,
+					ParentId = User.Identity.GetUserId()
 				};
 
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
