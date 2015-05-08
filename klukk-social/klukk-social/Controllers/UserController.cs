@@ -17,11 +17,13 @@ namespace klukk_social.Controllers
         private UserSerice us = new UserSerice();
 
 		[Authorize(Roles = "Parent")]
-        public ActionResult ParentHome()
-        {
+		public ActionResult ParentHome()
+		{
 
-            return View();
-        }
+			return View();
+		}
+
+
 		[Authorize(Roles = "Child")]
         public ActionResult ChildHome()
 		{
