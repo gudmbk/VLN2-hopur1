@@ -9,7 +9,7 @@ namespace klukk_social.Services
 {
     public class UserSerice
     {
-        public User GetUserById(string userId)
+        public User FindById(string userId)
         {
             using (var dbContext = new ApplicationDbContext())
             {

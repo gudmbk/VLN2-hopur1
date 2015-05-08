@@ -20,7 +20,7 @@ namespace klukk_social.Models
         {
             Id = 0;
             PostId = 0;
-            Date = System.DateTime.Now;
+            Date = DateTime.Now;
         }
     }
 }

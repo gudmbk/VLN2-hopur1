@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using klukk_social.Models;
+using Microsoft.AspNet.Identity;
 
 namespace klukk_social.Models
 {
@@ -26,13 +27,13 @@ namespace klukk_social.Models
         public Post()
         {
             Id = 0;
-            FromUserId = System.String.Empty;
-            ToUserId = System.String.Empty;
+            FromUserId = String.Empty;
+            ToUserId = String.Empty;
             GroupId = 0;
-            PhotoUrl = System.String.Empty;
-            VideoUrl = System.String.Empty;
-            Text = System.String.Empty;
-            HtmlText = System.String.Empty;
+            PhotoUrl = String.Empty;
+            VideoUrl = String.Empty;
+            Text = String.Empty;
+            HtmlText = String.Empty;
             Date = DateTime.Now;
 
         }

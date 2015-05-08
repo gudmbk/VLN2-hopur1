@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Text;
 
 namespace klukk_social.Models
 {
@@ -24,6 +25,11 @@ namespace klukk_social.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public string GetFullName()
+        {
+            return FirstName + " " + MiddleName + " " + LastName;
         }
     }
 

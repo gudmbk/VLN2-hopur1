@@ -20,8 +20,8 @@ namespace klukk_social.Models
         public Group()
         {
             Id = 0;
-            Name = System.String.Empty;
-            Description = System.String.Empty;
+            Name = String.Empty;
+            Description = String.Empty;
             Date = DateTime.Now;
         }
     }

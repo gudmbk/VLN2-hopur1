@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -13,6 +14,7 @@ namespace klukk_social.Controllers
     public class PostController : Controller
     {
         PostService postService = new PostService();
+        UserSerice userService = new UserSerice();
         public ActionResult Index()
         {
             return View();

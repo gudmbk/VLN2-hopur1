@@ -27,10 +27,9 @@ namespace klukk_social.Controllers
 		{
 		    var userId = User.Identity.GetUserId();
 		    var listOfPosts = ps.GetAllPostsToUser(userId);
-		    var user = us.GetUserById(userId);
+		    var user = us.FindById(userId);
             UserViewModel profile = new UserViewModel();
             profile.Feed = new List<Post>();
-            profile.nett = new Post();
             profile.Feed.AddRange(listOfPosts);
 		    profile.Person = user;
             return View(profile);
@@ -42,9 +41,15 @@ namespace klukk_social.Controllers
 			return RedirectToAction("CreateChild", "Account");
         }
 
-        public ActionResult FriendHome(User user)
+        public ActionResult FriendHome()
         {
             throw new NotImplementedException();
+        }
+
+        public ActionResult Search(FormCollection form)
+        {
+
+            return View();
         }
     }
 }

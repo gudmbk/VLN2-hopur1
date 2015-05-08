@@ -12,6 +12,5 @@ namespace klukk_social.Models
     {
         public User Person { get; set; }
         public List<Post> Feed { get; set; }
-        public Post nett { get; set; }
     }
 }
