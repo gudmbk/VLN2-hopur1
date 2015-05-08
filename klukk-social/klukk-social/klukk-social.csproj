@@ -166,33 +166,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505062031148_bla.cs" />
-    <Compile Include="Migrations\201505062031148_bla.Designer.cs">
-      <DependentUpon>201505062031148_bla.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505062253041_laga user.cs" />
-    <Compile Include="Migrations\201505062253041_laga user.Designer.cs">
-      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071534289_test.cs" />
-    <Compile Include="Migrations\201505071534289_test.Designer.cs">
-      <DependentUpon>201505071534289_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071542486_test2.cs" />
-    <Compile Include="Migrations\201505071542486_test2.Designer.cs">
-      <DependentUpon>201505071542486_test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081144185_added comments.cs" />
-    <Compile Include="Migrations\201505081144185_added comments.Designer.cs">
-      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081147571_added comments2.cs" />
-    <Compile Include="Migrations\201505081147571_added comments2.Designer.cs">
-      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081322166_dd.cs" />
-    <Compile Include="Migrations\201505081322166_dd.Designer.cs">
-      <DependentUpon>201505081322166_dd.cs</DependentUpon>
+    <Compile Include="Migrations\201505081816408_init.cs" />
+    <Compile Include="Migrations\201505081816408_init.Designer.cs">
+      <DependentUpon>201505081816408_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -238,6 +214,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -280,6 +257,7 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\WhySafe.cshtml" />
     <Content Include="Views\Home\ForPar.cshtml" />
+    <Content Include="Views\User\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,26 +271,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505062031148_bla.resx">
-      <DependentUpon>201505062031148_bla.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505062253041_laga user.resx">
-      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071534289_test.resx">
-      <DependentUpon>201505071534289_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071542486_test2.resx">
-      <DependentUpon>201505071542486_test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081144185_added comments.resx">
-      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081147571_added comments2.resx">
-      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081322166_dd.resx">
-      <DependentUpon>201505081322166_dd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505081816408_init.resx">
+      <DependentUpon>201505081816408_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

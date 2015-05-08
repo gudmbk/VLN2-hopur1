@@ -5,9 +5,9 @@
 	//  get all users
 }
 
-@Html.Partial("PostStatusPartial", new Post())
+@Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
 
-@foreach (Post p in Model.Feed)
+@foreach (var p in Model.Feed)
 {
     @Html.Partial("PostPartial", p)
 }

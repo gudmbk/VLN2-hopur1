@@ -19,11 +19,11 @@ namespace klukk_social.Services
                     where p.ToUserId == userId
                     orderby p.Date descending
                     select p).ToList();
-                foreach (Post item in listi)
+                foreach (var item in listi)
                 {
                     item.Comments = (from comment in dbContext.Comments
                         where comment.PostId == item.Id
-                        orderby comment.Date descending
+                        orderby comment.Date ascending
                         select comment).ToList();
                 }
             }

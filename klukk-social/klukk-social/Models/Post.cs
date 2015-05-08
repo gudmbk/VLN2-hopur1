@@ -17,6 +17,7 @@ namespace klukk_social.Models
         public string ToUserId { get; set; }
         [ForeignKey("ToUserId")]
         public User ToUser { get; set; }
+        public string PosterName { get; set; }
         public int GroupId { get; set; }
         public string PhotoUrl { get; set; }
         public string VideoUrl { get; set; }
@@ -34,10 +35,23 @@ namespace klukk_social.Models
             GroupId = 0;
             PhotoUrl = String.Empty;
             VideoUrl = String.Empty;
+            PosterName = String.Empty;
             Text = String.Empty;
             HtmlText = String.Empty;
             Date = DateTime.Now;
-
+        }
+        public Post(string toUserId, string fullName)
+        {
+            Id = 0;
+            FromUserId = String.Empty;
+            ToUserId = toUserId;
+            GroupId = 0;
+            PhotoUrl = String.Empty;
+            VideoUrl = String.Empty;
+            PosterName = fullName;
+            Text = String.Empty;
+            HtmlText = String.Empty;
+            Date = DateTime.Now;
         }
     }
 }

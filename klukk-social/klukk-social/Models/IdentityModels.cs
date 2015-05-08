@@ -6,16 +6,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Text;
+using System.Collections.Generic;
+using klukk_social.Models;
+using System.Linq;
 
 namespace klukk_social.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get; set; }
         public string ProfilePic { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime CreationDate { get; set; }
@@ -53,5 +57,6 @@ namespace klukk_social.Models
         {
             return new ApplicationDbContext();
         }
+		
     }
 }

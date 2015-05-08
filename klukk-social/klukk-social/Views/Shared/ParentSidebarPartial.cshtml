@@ -1,6 +1,14 @@
-﻿<div class="sidebar">
+﻿@using Microsoft.AspNet.Identity
+
+
+<div class="sidebar">
 	<img src="/Content/Images/MothernChild.jpg" alt="Alternate Text" />
-	<a href="#">Input Name</a>
-    <input type="submit" value="Child 1" class="btn btn-default btn-lg btn-block"/>
-    @Html.ActionLink("Add Child", "CreateChild", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+	<a href="#">Heiðar Berg Hallgríms</a>
+	
+	@*@foreach (var child in Model.ge)
+	{
+		@Html.ActionLink(child.Name, "GoToChild", "User" )
+		<input type="submit" value="Child 1" class="btn btn-default btn-lg btn-block"/>
+	}*@
+    @Html.ActionLink("Add Child", "CreateChild", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default btn-lg btn-block" })
 </div>
