@@ -198,6 +198,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\PostService.cs" />
+    <Compile Include="Services\UserSerice.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,11 +258,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Splash.cshtml" />
     <Content Include="Views\User\ParentHome.cshtml" />
-    <Content Include="Views\User\PostStatusView.cshtml" />
+    <Content Include="Views\User\PostStatusPartial.cshtml" />
     <Content Include="Views\User\ChildHome.cshtml" />
     <Content Include="Views\Shared\ParentSidebarPartial.cshtml" />
     <Content Include="Views\Account\CreateChild.cshtml" />
     <Content Include="Views\Shared\ChildSidebarPartial.cshtml" />
+    <Content Include="Views\User\PostPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

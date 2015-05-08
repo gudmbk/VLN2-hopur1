@@ -25,7 +25,7 @@ namespace klukk_social.Controllers
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
             {
-                RedirectToAction("ChildHome", "User");
+                return RedirectToAction("ChildHome", "User");
             }
             post.Text = text;
             post.Date = DateTime.Now;

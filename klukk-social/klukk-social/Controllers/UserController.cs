@@ -14,6 +14,7 @@ namespace klukk_social.Controllers
     public class UserController : Controller
     {
         private PostService ps = new PostService();
+        private UserSerice us = new UserSerice();
 
 		[Authorize(Roles = "Parent")]
         public ActionResult ParentHome()
@@ -23,17 +24,27 @@ namespace klukk_social.Controllers
         }
 		[Authorize(Roles = "Child")]
         public ActionResult ChildHome()
-        {
-            UserViewModel user = new UserViewModel();
-            //user.Person = us.GetUserById(User.Identity.GetUserId();
-            user.Feed = ps.GetAllPosts();
-            return View();
+		{
+		    var userId = User.Identity.GetUserId();
+		    var listOfPosts = ps.GetAllPostsToUser(userId);
+		    var user = us.GetUserById(userId);
+            UserViewModel profile = new UserViewModel();
+            profile.Feed = new List<Post>();
+            profile.nett = new Post();
+            profile.Feed.AddRange(listOfPosts);
+		    profile.Person = user;
+            return View(profile);
         }
 
 		[Authorize(Roles = "Parent")]
         public ActionResult CreateChild()
         {
 			return RedirectToAction("CreateChild", "Account");
+        }
+
+        public ActionResult FriendHome(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

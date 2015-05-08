@@ -1,5 +1,10 @@
-﻿@model klukk_social.Models.UserViewModel
+﻿@using klukk_social.Models
+@model klukk_social.Models.UserViewModel
 
 
-    @Html.Partial("PostStatusView")
+@Html.Partial("PostStatusPartial", new Post())
 
+@foreach (Post p in Model.Feed)
+{
+    @Html.Partial("PostPartial", p)
+}
