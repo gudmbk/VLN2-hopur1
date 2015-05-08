@@ -3,7 +3,7 @@
 <div class="postdialog">
 	@Html.ActionLink(@Model.PosterName, "FriendHome",new {userId = Model.FromUserId})
 	<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
-	<p>@Model.Date.ToString()</p>
+	<time datetime="@Model.Date.ToString()" is="relative-time" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 </div>
 
 @foreach (var comment in Model.Comments)
@@ -11,7 +11,7 @@
     <div class="commentdialog">
         @Html.ActionLink(@comment.PosterName, "FriendHome", new {userId = comment.UserId})
         <p>@comment.Body</p>
-        <p>@comment.Date</p>
+        <time datetime="@comment.Date.ToString()" is="relative-time" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
     </div>
 
 }

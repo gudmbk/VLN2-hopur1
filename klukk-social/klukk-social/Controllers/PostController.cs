@@ -25,7 +25,6 @@ namespace klukk_social.Controllers
         {
             Post post = new Post();
             string text = collection["status"];
-            string posterName = collection["PosterName"];
             if (String.IsNullOrEmpty(text))
             {
                 return RedirectToAction("ChildHome", "User");
@@ -33,7 +32,7 @@ namespace klukk_social.Controllers
             post.Text = text;
             post.FromUserId = User.Identity.GetUserId();
             post.ToUserId = collection["toUserId"];
-            post.PosterName = posterName;
+            post.PosterName = userService.GetFullNameById(User.Identity.GetUserId());
             if (post.FromUserId != null)
             {
                 postService.AddPost(post);
