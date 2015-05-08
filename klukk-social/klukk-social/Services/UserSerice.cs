@@ -20,7 +20,6 @@ namespace klukk_social.Services
             }
         }
 
-
         public List<User> Search(string prefix)
         {
             using (var dbContext = new ApplicationDbContext())
@@ -42,5 +41,15 @@ namespace klukk_social.Services
 					select p).ToList();
 		}
 
+	    public string GetFullNameById(string getUserId)
+	    {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var name = (from u in dbContext.Users
+                    where u.Id == getUserId 
+                    select u.FullName).FirstOrDefault();
+                return name;
+            }
+	    }
     }
 }

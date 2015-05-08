@@ -97,6 +97,7 @@ namespace klukk_social.Controllers
 					FirstName = model.First,
 					MiddleName = model.Middle,
 					LastName = model.Last,
+                    FullName = MakeFullName(model.First, model.Middle, model.Last),
 					CreationDate = DateTime.Now,
 					BirthDate = DateTime.Now
 				};
@@ -143,6 +144,7 @@ namespace klukk_social.Controllers
 					FirstName = model.First,
 					MiddleName = model.Middle,
 					LastName = model.Last,
+                    FullName = MakeFullName(model.First, model.Middle, model.Last),
 					CreationDate = DateTime.Now,
 					BirthDate = model.BirthDay,
 					ParentId = User.Identity.GetUserId()
@@ -527,6 +529,16 @@ namespace klukk_social.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 		private string userId; // hakk?
+
+        private string MakeFullName(string first, string middle, string last)
+        {
+            string fullname;
+            if (String.IsNullOrEmpty(middle))
+            {
+                return fullname = first + " " + last;
+            }
+            return first + " " + middle + " " + last;
+        }
 
         private IAuthenticationManager AuthenticationManager
         {
