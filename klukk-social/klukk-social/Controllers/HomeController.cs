@@ -23,10 +23,10 @@ namespace klukk_social.Controllers
 				manager.CreateRole("Child");
 			}
 
-            if (User.IsInRole("Parent"))
-            {
-                return RedirectToAction("ParentHome", "User");
-            }
+			if (User.IsInRole("Parent"))
+			{
+				return RedirectToAction("ParentHome", "User");
+			}
 			if (User.IsInRole("Child"))
 			{
 				return RedirectToAction("ChildHome", "User");
@@ -45,6 +45,12 @@ namespace klukk_social.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Termo()
+        {
+            ViewBag.Message = "blablabal";
             return View();
         }
     }

@@ -166,35 +166,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505062031148_bla.cs" />
-    <Compile Include="Migrations\201505062031148_bla.Designer.cs">
-      <DependentUpon>201505062031148_bla.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505062253041_laga user.cs" />
-    <Compile Include="Migrations\201505062253041_laga user.Designer.cs">
-      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071534289_test.cs" />
-    <Compile Include="Migrations\201505071534289_test.Designer.cs">
-      <DependentUpon>201505071534289_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071542486_test2.cs" />
-    <Compile Include="Migrations\201505071542486_test2.Designer.cs">
-      <DependentUpon>201505071542486_test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081144185_added comments.cs" />
-    <Compile Include="Migrations\201505081144185_added comments.Designer.cs">
-      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081147571_added comments2.cs" />
-    <Compile Include="Migrations\201505081147571_added comments2.Designer.cs">
-      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081322166_dd.cs" />
-    <Compile Include="Migrations\201505081322166_dd.Designer.cs">
-      <DependentUpon>201505081322166_dd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityManager.cs" />
@@ -238,6 +209,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -281,6 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Group\" />
   </ItemGroup>
   <ItemGroup>
@@ -289,29 +262,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505062031148_bla.resx">
-      <DependentUpon>201505062031148_bla.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505062253041_laga user.resx">
-      <DependentUpon>201505062253041_laga user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071534289_test.resx">
-      <DependentUpon>201505071534289_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071542486_test2.resx">
-      <DependentUpon>201505071542486_test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081144185_added comments.resx">
-      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081147571_added comments2.resx">
-      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081322166_dd.resx">
-      <DependentUpon>201505081322166_dd.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
