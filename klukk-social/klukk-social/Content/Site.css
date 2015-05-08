@@ -94,7 +94,10 @@ body{
 	text-align: right;
 }
 .contentarea{
+	margin-top: 20px;
+	margin-right: 20px;
 	margin-left: 200px;
+	padding-bottom: 50px;
 	min-height: 500px;
 }
 
@@ -108,21 +111,23 @@ body{
 }
 
 .footercontainer{
-   position:fixed;
-   left:20px;
-   bottom:30px;
-   height:30px;
-   width:100%;
-
- 
-  
+	position:fixed;
+	left:20px;
+	bottom:30px;
+	height:30px;
+	width:100%;
 }
 .footertext{
+	position:fixed;
+	left:20px;
+	bottom:10px;
+	height:30px;
+	width:100%;
+}
 
-  position:fixed;
-   left:20px;
-   bottom:10px;
-   height:30px;
-   width:100%;
-
+.postdialog{
+	border-radius: 5px;
+	padding: 20px;
+	margin: 5px;
+	background-color: #FFFFFF;
 }

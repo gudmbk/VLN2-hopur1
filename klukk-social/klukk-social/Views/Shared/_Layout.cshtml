@@ -2,41 +2,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLUKK - fyrir klukkaða krakka</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>KLUKK - fyrir klukkaða krakka</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body class="pagebackground">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
-            </div>
-            <div class="navbar-collapse collapse">
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
+			</div>
+			<div class="navbar-collapse collapse">
 				<form class="navbar-form navbar-left" role="search">
-				    <div class="form-group">
-                        <input type="text" name="user-input" class="form-control" placeholder="Leita">
-				    </div>
-                    @Html.ActionLink("Leita", "Search", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+					<div class="form-group">
+						<input type="text" name="user-input" class="form-control" placeholder="Leita">
+					</div>
+					@Html.ActionLink("Leita", "Search", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
 				</form>
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Skilaboð", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Póstur", "About", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial", new LoginViewModel())
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-		@if (User.IsInRole("Parent") )
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Skil", "Index", "Home")</li>
+					<li>@Html.ActionLink("Póst", "About", "Home")</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					@Html.Partial("_LoginPartial", new LoginViewModel())
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container body-content">
+		@if (User.IsInRole("Parent"))
 		{
 			@Html.Partial("ParentSidebarPartial")
 		}
@@ -44,19 +48,15 @@
 		{
 			@Html.Partial("ChildSidebarPartial")
 		}
-		
+
 
 		<div class="contentarea">
 			@RenderBody()
 		</div>
-		<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+	</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 </body>
 </html>

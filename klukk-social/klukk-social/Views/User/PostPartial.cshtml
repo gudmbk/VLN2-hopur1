@@ -1,5 +1,6 @@
 ﻿@model klukk_social.Models.Post
-
-@Html.ActionLink("Nafn þess sem postar", "FriendHome")
-<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
-<p>@Model.Date.ToString()</p>
+<div class="postdialog">
+	@Html.ActionLink("Nafn þess sem postar", "FriendHome")
+	<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+	<p>@Model.Date.ToString()</p>
+</div>
