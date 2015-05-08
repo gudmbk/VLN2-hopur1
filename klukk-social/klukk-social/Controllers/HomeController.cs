@@ -47,5 +47,11 @@ namespace klukk_social.Controllers
 
             return View();
         }
+
+        public ActionResult Termo()
+        {
+            ViewBag.Message = "blablabal";
+            return View();
+        }
     }
 }
