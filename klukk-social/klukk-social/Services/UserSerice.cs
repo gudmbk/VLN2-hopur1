@@ -19,7 +19,20 @@ namespace klukk_social.Services
                 return user;
             }
         }
-		public List<User> GetAllChildren(string ParentId)
+
+        public List<User> Search(string prefix)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var user = (from u in dbContext.Users
+                            where u.FirstName.Contains(prefix) && u.ParentId != null
+                            orderby u.FirstName
+                            select u).ToList();
+                return user;
+            }
+        }
+
+		public List<User> GetChildren(User Parent)
 		{
 			using (var dbContext = new ApplicationDbContext())
 			return (from p in dbContext.Users
@@ -27,5 +40,16 @@ namespace klukk_social.Services
 					orderby p.FirstName descending
 					select p).ToList();
 		}
+
+	    public string GetFullNameById(string getUserId)
+	    {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var name = (from u in dbContext.Users
+                    where u.Id == getUserId 
+                    select u.FullName).FirstOrDefault();
+                return name;
+            }
+	    }
     }
 }

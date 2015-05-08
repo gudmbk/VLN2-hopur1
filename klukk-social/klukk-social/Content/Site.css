@@ -50,7 +50,7 @@ body{
 	background-image: url('/Content/Images/Tahoe-Day-white.png');
 }
 
-.topbar a{
+.topbar a {
 	color: white;
 	font-size: 100px;
 }
@@ -71,7 +71,7 @@ body{
 	font-weight: bold;
 	font-size: 20px;
 }
-.sidebar img{
+.sidebar img {
 	border-radius: 10px;
 	height: 160px;
 	width: 160px;
@@ -81,10 +81,10 @@ body{
 	object-fit:cover;
 	object-position: center;
 }
-.sidebar p{
+.sidebar p {
 
 }
-.sidebar a{
+.sidebar a {
 	border-radius: 5px;
 	display: block;
 	text-decoration: none;
@@ -93,7 +93,7 @@ body{
 	padding: 5px;
 	text-align: right;
 }
-.contentarea{
+.contentarea {
 	margin-top: 20px;
 	margin-right: 20px;
 	margin-left: 200px;
@@ -101,7 +101,7 @@ body{
 	min-height: 500px;
 }
 
-.white-background{
+.white-background {
 	padding-top: 10px;
 	padding-left: 60px;
 	background-color: white;
@@ -110,14 +110,14 @@ body{
 	width: 500px;
 }
 
-.footercontainer{
+.footercontainer {
 	position:fixed;
 	left:20px;
 	bottom:30px;
 	height:30px;
 	width:100%;
 }
-.footertext{
+.footertext {
 	position:fixed;
 	left:20px;
 	bottom:10px;
@@ -125,16 +125,24 @@ body{
 	width:100%;
 }
 
-.postdialog{
+.postdialog {
 	border-radius: 5px;
 	padding: 20px;
 	margin: 5px;
 	background-color: #e7f3ff;
 }
 
-.commentdialog{
+.commentdialog {
 	border-radius: 5px;
 	padding: 5px 20px 5px 20px;
 	margin: 5px;
 	background-color: lightblue;
+}
+
+.add-friend {
+    background: url('/Content/Images/Add-Friend.png') no-repeat; /*Please find me a bette icon Mr. Cosmos*/
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    border: none;
 }

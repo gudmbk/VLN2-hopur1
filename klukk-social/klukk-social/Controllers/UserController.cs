@@ -43,14 +43,27 @@ namespace klukk_social.Controllers
 			return RedirectToAction("CreateChild", "Account");
         }
 
-        public ActionResult FriendHome()
+        public ActionResult FriendHome(string userId)
         {
-            throw new NotImplementedException();
+            var listOfPosts = ps.GetAllPostsToUser(userId);
+            var user = us.FindById(userId);
+            UserViewModel profile = new UserViewModel();
+            profile.Feed = new List<Post>();
+            profile.Feed.AddRange(listOfPosts);
+            profile.Person = user;
+            return View("ChildHome", profile);
         }
 
-        public ActionResult Search(FormCollection form)
+        public ActionResult Search(FormCollection searchBar)
         {
+            string prefix = searchBar["user-input"];
+            List<User> users = us.Search(prefix);
+            return View(users);
+        }
 
+        public ActionResult SendFriendRequest()
+        {
+            string myId = User.Identity.GetUserId();
             return View();
         }
     }

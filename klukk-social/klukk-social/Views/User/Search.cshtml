@@ -1,0 +1,14 @@
+﻿@model List<klukk_social.Models.User>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+@foreach (var user in Model)
+{
+    @Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id}, null)
+    <button type="button" value="@user.Id"class="add-friend"></button>
+}

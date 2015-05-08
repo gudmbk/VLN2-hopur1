@@ -25,13 +25,15 @@ namespace klukk_social.Controllers
         {
             Post post = new Post();
             string text = collection["status"];
+            string posterName = collection["PosterName"];
             if (String.IsNullOrEmpty(text))
             {
                 return RedirectToAction("ChildHome", "User");
             }
             post.Text = text;
             post.FromUserId = User.Identity.GetUserId();
-            post.ToUserId = User.Identity.GetUserId();
+            post.ToUserId = collection["toUserId"];
+            post.PosterName = posterName;
             if (post.FromUserId != null)
             {
                 postService.AddPost(post);
@@ -47,6 +49,7 @@ namespace klukk_social.Controllers
             Comment comment = new Comment();
             string text = collection["comment"];
             string id = collection["PostId"];
+
             int PostId = Int32.Parse(id);
             if (String.IsNullOrEmpty(text))
             {
@@ -55,6 +58,7 @@ namespace klukk_social.Controllers
             comment.Body = text;
             comment.UserId = User.Identity.GetUserId();
             comment.PostId = PostId;
+            comment.PosterName = userService.GetFullNameById(User.Identity.GetUserId());
             if (comment.UserId != null)
             {
                 postService.AddComment(comment);
