@@ -146,3 +146,10 @@ body{
     height: 200px;
     border: none;
 }
+.fixtextinfootercontent {
+    text-align: justify;
+    width:40 %;
+    position:absolute;
+    right: 70%;
+    left:9%;
+}
