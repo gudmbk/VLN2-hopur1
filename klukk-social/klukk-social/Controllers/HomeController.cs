@@ -10,10 +10,9 @@ namespace klukk_social.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
+		public ActionResult ResetServer()
+		{
 			IdentityManager manager = new IdentityManager();
-
 			if (!manager.RoleExists("Parent"))
 			{
 				manager.CreateRole("Parent");
@@ -22,11 +21,17 @@ namespace klukk_social.Controllers
 			{
 				manager.CreateRole("Child");
 			}
-            if (User.IsInRole("Parent"))
+
+			return View();
+		}
+        
+        public ActionResult Index()
+        {
+			if (User.IsInRole("Parent"))
 			{
 				return RedirectToAction("ParentHome", "User");
 			}
-            if (User.IsInRole("Child"))
+			if (User.IsInRole("Child"))
 			{
 				return RedirectToAction("ChildHome", "User");
 			}

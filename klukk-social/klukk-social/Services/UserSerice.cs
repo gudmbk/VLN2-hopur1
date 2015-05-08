@@ -32,7 +32,7 @@ namespace klukk_social.Services
             }
         }
 
-		public List<User> GetChildren(User Parent)
+		public List<User> GetChildren(String ParentId)
 		{
 			using (var dbContext = new ApplicationDbContext())
 			return (from p in dbContext.Users
