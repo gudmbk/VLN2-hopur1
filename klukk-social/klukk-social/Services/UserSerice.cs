@@ -32,11 +32,11 @@ namespace klukk_social.Services
             }
         }
 
-		public List<User> GetChildren(User Parent)
+		public List<User> GetAllChildren(string parentId)
 		{
 			using (var dbContext = new ApplicationDbContext())
 			return (from p in dbContext.Users
-					where p.ParentId == Parent.Id
+					where p.ParentId == parentId
 					orderby p.FirstName descending
 					select p).ToList();
 		}

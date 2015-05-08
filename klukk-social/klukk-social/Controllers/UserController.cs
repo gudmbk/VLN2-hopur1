@@ -17,11 +17,13 @@ namespace klukk_social.Controllers
         private UserSerice us = new UserSerice();
 
 		[Authorize(Roles = "Parent")]
-        public ActionResult ParentHome()
-        {
+		public ActionResult ParentHome()
+		{
 
-            return View();
-        }
+			return View();
+		}
+
+
 		[Authorize(Roles = "Child")]
         public ActionResult ChildHome()
 		{
@@ -57,6 +59,12 @@ namespace klukk_social.Controllers
             string prefix = searchBar["user-input"];
             List<User> users = us.Search(prefix);
             return View(users);
+        }
+
+        public ActionResult SendFriendRequest()
+        {
+            string myId = User.Identity.GetUserId();
+            return View();
         }
     }
 }
