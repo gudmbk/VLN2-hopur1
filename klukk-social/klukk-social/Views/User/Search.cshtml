@@ -10,4 +10,5 @@
 @foreach (var user in Model)
 {
     @Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id}, null)
+    <button type="button" value="@user.Id"class="add-friend"></button>
 }

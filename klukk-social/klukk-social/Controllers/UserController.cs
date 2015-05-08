@@ -58,5 +58,11 @@ namespace klukk_social.Controllers
             List<User> users = us.Search(prefix);
             return View(users);
         }
+
+        public ActionResult SendFriendRequest()
+        {
+            string myId = User.Identity.GetUserId();
+            return View();
+        }
     }
 }
