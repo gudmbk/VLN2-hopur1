@@ -182,8 +182,17 @@
     <Compile Include="Migrations\201505071542486_test2.Designer.cs">
       <DependentUpon>201505071542486_test2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505081144185_added comments.cs" />
+    <Compile Include="Migrations\201505081144185_added comments.Designer.cs">
+      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505081147571_added comments2.cs" />
+    <Compile Include="Migrations\201505081147571_added comments2.Designer.cs">
+      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityManager.cs" />
     <Compile Include="Models\FriendRequest.cs" />
     <Compile Include="Models\Friendship.cs" />
@@ -288,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505071542486_test2.resx">
       <DependentUpon>201505071542486_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505081144185_added comments.resx">
+      <DependentUpon>201505081144185_added comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505081147571_added comments2.resx">
+      <DependentUpon>201505081147571_added comments2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,7 +12,7 @@ namespace klukk_social.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        public int UserId { get; set; }
+        public int ParentId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -39,14 +39,15 @@ namespace klukk_social.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Settings> settings { get; set; }
-        public DbSet<Notification> notifications { get; set; }
-        public DbSet<Likes> likes { get; set; }
-        public DbSet<Group> groups { get; set; }
-        public DbSet<GroupUsers> groupUsers { get; set; }
-        public DbSet<Friendship> friendships { get; set; }
-        public DbSet<FriendRequest> friendRequests { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Settings> Settings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Likes> Likes { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupUsers> GroupUsers { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<FriendRequest> FriendRequests { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public static ApplicationDbContext Create()
         {

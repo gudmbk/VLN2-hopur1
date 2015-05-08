@@ -15,7 +15,7 @@ namespace klukk_social.Services
             using (var dbContext = new ApplicationDbContext())
             {
                 listi =
-                    (from p in dbContext.posts
+                    (from p in dbContext.Posts
                         where p.ToUserId == userId
                         orderby p.Date descending 
                         select p).ToList();
@@ -28,7 +28,7 @@ namespace klukk_social.Services
         {
             using (var dbContext = new ApplicationDbContext())
             {
-                dbContext.posts.Add(post);
+                dbContext.Posts.Add(post);
                 dbContext.SaveChanges();
             }
         }
