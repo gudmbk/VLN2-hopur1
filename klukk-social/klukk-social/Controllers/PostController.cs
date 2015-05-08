@@ -31,7 +31,7 @@ namespace klukk_social.Controllers
             }
             post.Text = text;
             post.FromUserId = User.Identity.GetUserId();
-            post.ToUserId = User.Identity.GetUserId();
+            post.ToUserId = collection["toUserId"];
             if (post.FromUserId != null)
             {
                 postService.AddPost(post);

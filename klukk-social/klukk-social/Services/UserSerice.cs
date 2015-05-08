@@ -19,5 +19,17 @@ namespace klukk_social.Services
                 return user;
             }
         }
+
+        public List<User> Search(string prefix)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var user = (from u in dbContext.Users
+                            where u.FirstName.Contains(prefix)
+                            orderby u.FirstName
+                            select u).ToList();
+                return user;
+            }
+        }
     }
 }

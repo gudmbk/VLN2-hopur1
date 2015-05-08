@@ -37,7 +37,18 @@ namespace klukk_social.Models
             Text = String.Empty;
             HtmlText = String.Empty;
             Date = DateTime.Now;
-
+        }
+        public Post(string toUserId)
+        {
+            Id = 0;
+            FromUserId = String.Empty;
+            ToUserId = toUserId;
+            GroupId = 0;
+            PhotoUrl = String.Empty;
+            VideoUrl = String.Empty;
+            Text = String.Empty;
+            HtmlText = String.Empty;
+            Date = DateTime.Now;
         }
     }
 }
