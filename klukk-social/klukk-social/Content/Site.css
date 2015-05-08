@@ -131,3 +131,10 @@ body{
 	margin: 5px;
 	background-color: #FFFFFF;
 }
+
+.commentdialog{
+	border-radius: 5px;
+	padding: 5px 20px 5px 20px;
+	margin: 5px;
+	background-color: lightblue;
+}
