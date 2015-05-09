@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.UI;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
-using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace klukk_social.Controllers
@@ -15,15 +10,15 @@ namespace klukk_social.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private PostService postService = new PostService();
-        private UserSerice userSerice = new UserSerice();
+        private PostService _postService = new PostService();
+        private UserSerice _userSerice = new UserSerice();
 
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentHome()
 		{
 			var userId = User.Identity.GetUserId();
-			var listOfPosts = postService.GetAllChildrenPosts(userId);
-			var user = userSerice.FindById(userId);
+			var listOfPosts = _postService.GetAllChildrenPosts(userId);
+			var user = _userSerice.FindById(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
@@ -36,8 +31,8 @@ namespace klukk_social.Controllers
         public ActionResult ChildHome()
 		{
 		    var userId = User.Identity.GetUserId();
-		    var listOfPosts = postService.GetAllPostsToUser(userId);
-		    var user = userSerice.FindById(userId);
+		    var listOfPosts = _postService.GetAllPostsToUser(userId);
+		    var user = _userSerice.FindById(userId);
             UserViewModel profile = new UserViewModel();
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
@@ -53,8 +48,8 @@ namespace klukk_social.Controllers
         [Authorize(Roles = "Child")]
         public ActionResult FriendHome(string userId)
         {
-            var listOfPosts = postService.GetAllPostsToUser(userId);
-            var user = userSerice.FindById(userId);
+            var listOfPosts = _postService.GetAllPostsToUser(userId);
+            var user = _userSerice.FindById(userId);
             UserViewModel profile = new UserViewModel();
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
@@ -65,7 +60,7 @@ namespace klukk_social.Controllers
         public ActionResult Search(FormCollection searchBar)
         {
             string prefix = searchBar["user-input"];
-            List<User> users = userSerice.Search(prefix);
+            List<User> users = _userSerice.Search(prefix);
             return View(users);
         }
         /// <summary>
@@ -79,7 +74,7 @@ namespace klukk_social.Controllers
             FriendRequest friendRequest = new FriendRequest();
             friendRequest.FromUserId = User.Identity.GetUserId();
             friendRequest.ToUserId = json.ToUserId;
-            userSerice.SendFriendRequest(friendRequest);
+            _userSerice.SendFriendRequest(friendRequest);
             return null;
         }
 
@@ -94,10 +89,10 @@ namespace klukk_social.Controllers
 		public ActionResult ChildSettings(FormCollection form)
 		{
 
-			var NewProfilePicURL = form["picURL"];
+			var newProfilePicUrl = form["picURL"];
 			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
 			var currentUser = manager.FindById(User.Identity.GetUserId());
-			currentUser.ProfilePic = NewProfilePicURL;
+			currentUser.ProfilePic = newProfilePicUrl;
 			manager.Update(currentUser);
 			return View();
 		}
@@ -112,14 +107,14 @@ namespace klukk_social.Controllers
 		public ActionResult ParentSettings(FormCollection form)
 		{
 
-			var NewProfilePicURL = form["picURL"];
+			var newProfilePicUrl = form["picURL"];
 			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
 			var currentUser = manager.FindById(User.Identity.GetUserId());
-			currentUser.ProfilePic = NewProfilePicURL;
+			currentUser.ProfilePic = newProfilePicUrl;
 			manager.Update(currentUser);
 			return View();
 		}
-
+        /*
 		public ActionResult AddEmptyProfilePic() //óþarfi
 		{
 			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
@@ -128,6 +123,6 @@ namespace klukk_social.Controllers
 			currentUser.ProfilePic = "/Content/Images/EmptyProfilePicture.gif";
 			manager.Update(currentUser);
 			return RedirectToAction("Index");
-		}
+		}*/
     }
 }

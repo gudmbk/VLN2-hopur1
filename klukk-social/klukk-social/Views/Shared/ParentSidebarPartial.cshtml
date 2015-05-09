@@ -5,10 +5,10 @@
 @{
 	UserSerice us = new UserSerice();
 	var children = us.GetAllChildren(User.Identity.GetUserId());
-	var ProfilePic = us.GetProfileURL(User.Identity.GetUserId());
+	var profilePic = us.GetProfileUrl(User.Identity.GetUserId());
 }
 <div class="sidebar">
-	<img src="@ProfilePic" alt="Alternate Text" />
+	<img src="@profilePic" alt="Alternate Text" />
 	<a href="#">Heiðar Berg Hallgríms</a>
 	@Html.ActionLink("Settings", "ParentSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
 

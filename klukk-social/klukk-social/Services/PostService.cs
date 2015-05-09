@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI.WebControls.Expressions;
 using klukk_social.Models;
 
 namespace klukk_social.Services
 {
     public class PostService
     {
-		UserSerice us = new UserSerice();
 
         public List<Post> GetAllPostsToUser(string userId)
         {
-            List<Post> listi = new List<Post>();
             using (var dbContext = new ApplicationDbContext())
             {
-                listi = (from p in dbContext.Posts
+                var listi = (from p in dbContext.Posts
                     where p.ToUserId == userId
                     orderby p.Date descending
                     select p).ToList();
+
                 foreach (var item in listi)
                 {
                     item.Comments = (from comment in dbContext.Comments
@@ -28,8 +23,8 @@ namespace klukk_social.Services
                         orderby comment.Date ascending
                         select comment).ToList();
                 }
+                return listi;
             }
-            return listi;
         }
  
         public void AddPost(Post post)
@@ -51,9 +46,6 @@ namespace klukk_social.Services
         }
 		public List<Post> GetAllChildrenPosts(string parentId)
 		{
-			
-			List<Post> allPostsAndComments = new List<Post>();
-
 			using (var dbContext = new ApplicationDbContext())
 			{
 				// Load all posts my children have made
@@ -69,7 +61,7 @@ namespace klukk_social.Services
 									 where commentAuthor.ParentId == parentId
 									 select post;
 
-				allPostsAndComments = (from post in authoredPosts.Union(commentedPosts)
+				var allPostsAndComments = (from post in authoredPosts.Union(commentedPosts)
 									orderby post.Date descending
 									select post).ToList();
 
@@ -83,8 +75,8 @@ namespace klukk_social.Services
 									 orderby comment.Date ascending
 									 select comment).ToList();
 				}
+                return allPostsAndComments;
 			}
-			return allPostsAndComments;
 		}
     }
 }

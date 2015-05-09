@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -13,12 +9,8 @@ namespace klukk_social.Controllers
     [Authorize]
     public class PostController : Controller
     {
-        PostService postService = new PostService();
-        UserSerice userService = new UserSerice();
-        public ActionResult Index()
-        {
-            return View();
-        }
+        PostService _postService = new PostService();
+        UserSerice _userService = new UserSerice();
 
         [HttpPost]
         public ActionResult PostStatus(FormCollection collection)
@@ -32,35 +24,34 @@ namespace klukk_social.Controllers
             post.Text = text;
             post.FromUserId = User.Identity.GetUserId();
             post.ToUserId = collection["toUserId"];
-            post.PosterName = userService.GetFullNameById(User.Identity.GetUserId());
+            post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
             if (post.FromUserId != null)
             {
-                postService.AddPost(post);
+                _postService.AddPost(post);
                 return RedirectToAction("ChildHome", "User");
             }
             
             return View("Error");
         }
 
-        public ActionResult PostComment(FormCollection collection
-            )
+        public ActionResult PostComment(FormCollection collection)
         {
             Comment comment = new Comment();
             string text = collection["comment"];
             string id = collection["PostId"];
 
-            int PostId = Int32.Parse(id);
+            int postId = Int32.Parse(id);
             if (String.IsNullOrEmpty(text))
             {
                 return RedirectToAction("ChildHome", "User");
             }
             comment.Body = text;
             comment.UserId = User.Identity.GetUserId();
-            comment.PostId = PostId;
-            comment.PosterName = userService.GetFullNameById(User.Identity.GetUserId());
+            comment.PostId = postId;
+            comment.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
             if (comment.UserId != null)
             {
-                postService.AddComment(comment);
+                _postService.AddComment(comment);
                 return RedirectToAction("ChildHome", "User");
             }
             

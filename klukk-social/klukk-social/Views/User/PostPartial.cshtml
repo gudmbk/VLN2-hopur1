@@ -16,7 +16,7 @@
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
-					<img src='@us.GetProfileURL(Model.ToUserId)' class="search imagesmall" />
+					<img src='@us.GetProfileUrl(Model.ToUserId)' class="search imagesmall" />
 					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "FriendHome", new { userId = Model.ToUserId })
 				</div>
 			}
@@ -40,7 +40,7 @@
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
 		{
 			<div class="postdialog">
-				<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
+				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
 				<input name="comment" />
 				<input type="hidden" name="PostId" value="@Model.Id" />
 				<input type="submit" value="Deila" class="btn btn-default" />

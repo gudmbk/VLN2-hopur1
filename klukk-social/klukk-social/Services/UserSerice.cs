@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using klukk_social.Models;
-using Microsoft.AspNet.Identity;
 
 namespace klukk_social.Services
 {
@@ -53,7 +50,7 @@ namespace klukk_social.Services
             }
 	    }
 
-		public string GetProfileURL(string userId)
+		public string GetProfileUrl(string userId)
 		{
 			using (var dbContext = new ApplicationDbContext())
 			return (from p in dbContext.Users

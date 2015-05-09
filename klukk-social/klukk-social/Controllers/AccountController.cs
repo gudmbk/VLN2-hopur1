@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using klukk_social.Models;
 
 namespace klukk_social.Controllers
@@ -291,7 +286,7 @@ namespace klukk_social.Controllers
         {
             return View();
         }
-
+        /*
         //
         // POST: /Account/Disassociate
         [HttpPost]
@@ -312,7 +307,7 @@ namespace klukk_social.Controllers
             }
             return RedirectToAction("Manage", new { Message = message });
         }
-
+        */
         //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
@@ -514,7 +509,7 @@ namespace klukk_social.Controllers
         {
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
-            return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
+            return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
         protected override void Dispose(bool disposing)
@@ -530,14 +525,12 @@ namespace klukk_social.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-		private string userId; // hakk?
 
         private string MakeFullName(string first, string middle, string last)
         {
-            string fullname;
             if (String.IsNullOrEmpty(middle))
             {
-                return fullname = first + " " + last;
+                return first + " " + last;
             }
             return first + " " + middle + " " + last;
         }
@@ -573,11 +566,11 @@ namespace klukk_social.Controllers
             }
             return false;
         }
-
+        /*
         private void SendEmail(string email, string callbackUrl, string subject, string message)
         {
             // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        }
+        }*/
 
         public enum ManageMessageId
         {
