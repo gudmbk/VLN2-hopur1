@@ -5,6 +5,9 @@ using System.Web;
 
 namespace klukk_social.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Comment
     {
         public int Id { get; set; }
