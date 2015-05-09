@@ -10,7 +10,7 @@
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
 				<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
-				@Html.ActionLink(@Model.PosterName, "FriendHome", new { userId = Model.FromUserId })
+				@Html.ActionLink(@us.GetFullNameById(Model.FromUserId), "FriendHome", new { userId = Model.FromUserId })
 			</div>
 			@if (User.IsInRole("Parent"))
 			{
@@ -28,7 +28,7 @@
 	@foreach (var comment in Model.Comments)
 	{
 		<div class="commentdialog">
-			<img src='@us.GetProfileURL(comment.UserId)' />
+			<img src='@us.GetProfileURL(comment.UserId)' class="search imagesmall" />
 			@Html.ActionLink(@comment.PosterName, "FriendHome", new { userId = comment.UserId })
 			<p>@comment.Body</p>
 			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
