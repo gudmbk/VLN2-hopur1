@@ -9,7 +9,7 @@
 
 @foreach (var user in Model)
 {
-	<div class="card searchcard">
+	<div class="card searchcard searchpadd">
 		@*<input type="button" value="@user.Id" class="add-friend" />*@
 
 		<a href='@Url.Action("FriendHome", "User", new { userId = user.Id }, null)'>

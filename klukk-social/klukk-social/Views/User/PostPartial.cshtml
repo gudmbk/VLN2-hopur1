@@ -5,35 +5,36 @@
 @{
 	UserSerice us = new UserSerice();
 }
+<div class="card postpadd">
+	<div class="postdialog">
+		<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
+		@Html.ActionLink(@Model.PosterName, "FriendHome", new { userId = Model.FromUserId })
+		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+	</div>
 
-<div class="postdialog">
-	<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
-	@Html.ActionLink(@Model.PosterName, "FriendHome",new {userId = Model.FromUserId})
-	<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
-	<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
-</div>
-
-@foreach (var comment in Model.Comments)
-{
-    <div class="commentdialog">
-		<img src='@us.GetProfileURL(comment.UserId)'/>
-        @Html.ActionLink(@comment.PosterName, "FriendHome", new {userId = comment.UserId})
-        <p>@comment.Body</p>
-        <time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
-    </div>
-
-}
-@if (User.IsInRole("Child"))
-{ 
-	using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+	@foreach (var comment in Model.Comments)
 	{
-	
-	
-		<div class="postdialog">
-			<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
-			<input name="comment" />
-			<input type="hidden" name="PostId" value="@Model.Id" />
-			<input type="submit" value="Deila" class="btn btn-default" />
+		<div class="commentdialog">
+			<img src='@us.GetProfileURL(comment.UserId)' />
+			@Html.ActionLink(@comment.PosterName, "FriendHome", new { userId = comment.UserId })
+			<p>@comment.Body</p>
+			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		</div>
+
 	}
-}
+	@if (User.IsInRole("Child"))
+	{
+		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+		{
+
+
+			<div class="postdialog">
+				<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
+				<input name="comment" />
+				<input type="hidden" name="PostId" value="@Model.Id" />
+				<input type="submit" value="Deila" class="btn btn-default" />
+			</div>
+		}
+	}
+</div>

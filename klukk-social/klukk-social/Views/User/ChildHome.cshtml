@@ -1,7 +1,8 @@
 ﻿@using klukk_social.Models
 @model klukk_social.Models.UserViewModel
-
-@Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
+<div class="card postpadd">
+	@Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
+</div>
 
 @foreach (var p in Model.Feed)
 {
