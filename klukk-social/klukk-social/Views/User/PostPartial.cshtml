@@ -7,14 +7,20 @@
 }
 <div class="card postpadd">
 	<div class="postdialog">
-		<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
-		@Html.ActionLink(@Model.PosterName, "FriendHome", new { userId = Model.FromUserId })
-		@if (User.IsInRole("Parent"))
-		{
-			<span>Skrifaði á vegg --></span>
-			<img src='@us.GetProfileURL(Model.ToUserId)' class="search imagesmall" />
-			@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "FriendHome", new { userId = Model.ToUserId })
-		}
+		<div class="floatleft takeallwidth">
+			<div class="floatleft">
+				<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
+				@Html.ActionLink(@Model.PosterName, "FriendHome", new { userId = Model.FromUserId })
+			</div>
+			@if (User.IsInRole("Parent"))
+			{
+				<div class="floatleft leftpaddten">
+					<span>Skrifaði á vegg --></span>
+					<img src='@us.GetProfileURL(Model.ToUserId)' class="search imagesmall" />
+					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "FriendHome", new { userId = Model.ToUserId })
+				</div>
+			}
+		</div>
 		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 	</div>

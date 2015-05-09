@@ -139,8 +139,19 @@ body{
 	border-radius: 5px;
 }
 
+.takeallwidth{
+	width:100%;
+}
+
+.floatleft{
+	float: left;
+}
 .postpadd{
 	padding: 10px 0px 10px 0px;
+}
+
+.leftpaddten{
+	padding-left:10px;
 }
 
 .searchpadd{

@@ -51,13 +51,25 @@ namespace klukk_social.Services
         }
 		public List<Post> GetAllChildrenPosts(string parentId)
 		{
-			using (var dbContext = new ApplicationDbContext())
 			
-			return (from post in dbContext.Posts
-				join user in dbContext.Users on post.FromUserId equals user.Id
-				where user.ParentId == parentId
-				orderby post.Date descending
-				select post).ToList();
+			List<Post> allPostsAndComments = new List<Post>();
+
+			using (var dbContext = new ApplicationDbContext())
+			{
+				allPostsAndComments = (from post in dbContext.Posts
+									   join user in dbContext.Users on post.FromUserId equals user.Id
+									   where user.ParentId == parentId
+									   orderby post.Date descending
+									   select post).ToList();
+				foreach (var item in allPostsAndComments)
+				{
+					item.Comments = (from comment in dbContext.Comments
+									 where comment.PostId == item.Id
+									 orderby comment.Date ascending
+									 select comment).ToList();
+				}
+			}
+			return allPostsAndComments;
 		}
     }
 }
