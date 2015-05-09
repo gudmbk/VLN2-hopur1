@@ -35,7 +35,11 @@ namespace klukk_social.Models
         {
             return FirstName + " " + MiddleName + " " + LastName;
         }
-    }
+		public void SetProfilePic(string NewProfileURL)
+		{
+			ProfilePic = NewProfileURL;
+		}
+	}
 
     public class ApplicationDbContext : IdentityDbContext<User>
     {

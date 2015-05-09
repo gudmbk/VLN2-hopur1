@@ -22,7 +22,7 @@ namespace klukk_social.Controllers
 				manager.CreateRole("Child");
 			}
 
-			return View();
+			return RedirectToAction("Index");
 		}
         
         public ActionResult Index()

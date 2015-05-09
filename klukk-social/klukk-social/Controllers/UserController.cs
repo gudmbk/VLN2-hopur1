@@ -7,6 +7,8 @@ using System.Web.UI;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
+using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace klukk_social.Controllers
 {
@@ -66,5 +68,34 @@ namespace klukk_social.Controllers
             string myId = User.Identity.GetUserId();
             return View();
         }
+
+		[Authorize(Roles = "Child")]
+		public ActionResult ChildSettings()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Child")]
+		public ActionResult ChildSettings(FormCollection form)
+		{
+
+			var NewProfilePicURL = form["picURL"];
+			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
+			var currentUser = manager.FindById(User.Identity.GetUserId());
+			currentUser.ProfilePic = NewProfilePicURL;
+			manager.Update(currentUser);
+			return View();
+		}
+
+		public ActionResult AddEmptyProfilePic() //óþarfi
+		{
+			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
+			var currentUser = manager.FindById(User.Identity.GetUserId());
+
+			currentUser.ProfilePic = "/Content/Images/EmptyProfilePicture.gif";
+			manager.Update(currentUser);
+			return RedirectToAction("Index");
+		}
     }
 }

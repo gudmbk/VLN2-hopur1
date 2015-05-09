@@ -9,6 +9,7 @@ namespace klukk_social.Services
 {
 	public class UserSerice
     {
+		
         public User FindById(string userId)
         {
             using (var dbContext = new ApplicationDbContext())
@@ -32,7 +33,6 @@ namespace klukk_social.Services
             }
         }
 
-
 		public List<User> GetAllChildren(string parentId)
 		{
 			using (var dbContext = new ApplicationDbContext())
@@ -52,5 +52,14 @@ namespace klukk_social.Services
                 return name;
             }
 	    }
+
+		public string GetProfileURL(string userId)
+		{
+			using (var dbContext = new ApplicationDbContext())
+			return (from p in dbContext.Users
+					where p.Id == userId
+					orderby p.FirstName descending
+					select p.ProfilePic).FirstOrDefault();
+		}
     }
 }
