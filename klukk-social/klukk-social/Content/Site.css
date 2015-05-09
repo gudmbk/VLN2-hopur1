@@ -93,6 +93,11 @@ body{
 	padding: 5px;
 	text-align: right;
 }
+
+.topheight {
+	max-height: 50px;
+}
+
 .contentarea {
 	margin-top: 20px;
 	margin-right: 20px;
@@ -133,7 +138,14 @@ body{
 	border-radius: 5px;
 	padding: 10px;
 }
-
+.imagesmall{
+	border-radius: 5px;
+	height: 50px;
+	width: 50px;
+	object-fit:cover;
+	object-position: center;
+	margin: 5px;
+}
 .span {
 	width: 100%;
 }
