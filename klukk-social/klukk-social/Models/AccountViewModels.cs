@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 
 namespace klukk_social.Models
 {

@@ -9,14 +9,14 @@
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
-				<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
+				<img src='@us.GetProfileUrl(Model.FromUserId)' class="search imagesmall" />
 				@Html.ActionLink(@Model.PosterName, "FriendHome", new { userId = Model.FromUserId })
 			</div>
 			@if (User.IsInRole("Parent"))
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
-					<img src='@us.GetProfileURL(Model.ToUserId)' class="search imagesmall" />
+					<img src='@us.GetProfileUrl(Model.ToUserId)' class="search imagesmall" />
 					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "FriendHome", new { userId = Model.ToUserId })
 				</div>
 			}
@@ -28,7 +28,7 @@
 	@foreach (var comment in Model.Comments)
 	{
 		<div class="commentdialog">
-			<img src='@us.GetProfileURL(comment.UserId)' />
+			<img src='@us.GetProfileUrl(comment.UserId)' />
 			@Html.ActionLink(@comment.PosterName, "FriendHome", new { userId = comment.UserId })
 			<p>@comment.Body</p>
 			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
@@ -40,7 +40,7 @@
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
 		{
 			<div class="postdialog">
-				<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
+				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
 				<input name="comment" />
 				<input type="hidden" name="PostId" value="@Model.Id" />
 				<input type="submit" value="Deila" class="btn btn-default" />

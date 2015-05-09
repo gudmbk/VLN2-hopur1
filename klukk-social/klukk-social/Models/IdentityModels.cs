@@ -4,11 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Text;
-using System.Collections.Generic;
-using klukk_social.Models;
-using System.Linq;
 
 namespace klukk_social.Models
 {
@@ -35,9 +30,9 @@ namespace klukk_social.Models
         {
             return FirstName + " " + MiddleName + " " + LastName;
         }
-		public void SetProfilePic(string NewProfileURL)
+		public void SetProfilePic(string newProfileUrl)
 		{
-			ProfilePic = NewProfileURL;
+			ProfilePic = newProfileUrl;
 		}
 	}
 
