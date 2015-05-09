@@ -5,10 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Search</h2>
+<h2 class="card">Search</h2>
 
 @foreach (var user in Model)
 {
-    @Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id}, null)
-    <input type="button" value="@user.Id"class="add-friend"/>
+	<div class="card">
+		@*<input type="button" value="@user.Id" class="add-friend" />*@
+
+		<a href='@Url.Action("AddFriend", "User")'>
+			<img src='@user.ProfilePic' class="search"/>
+		</a>
+
+		@Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id }, null)
+	</div>
 }

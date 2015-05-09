@@ -110,6 +110,26 @@ body{
 	width: 500px;
 }
 
+.search {
+	border-radius: 5px;
+	height: 200px;
+	width: 200px;
+	object-fit:cover;
+	object-position: center;
+	margin: 10px;
+}
+
+.card {
+	margin: 10px 0px 10px 0px;
+	background-color: pink;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.span {
+	width: 100%;
+}
+
 .footercontainer {
 	position:fixed;
 	left:20px;
