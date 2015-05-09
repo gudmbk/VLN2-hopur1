@@ -52,5 +52,14 @@ namespace klukk_social.Services
                 return name;
             }
 	    }
+
+	    public void SendFriendRequest(FriendRequest friendRequest)
+	    {
+	        using (var dbContext = new ApplicationDbContext())
+	        {
+	            dbContext.FriendRequests.Add(friendRequest);
+	            dbContext.SaveChanges();
+	        }
+	    }
     }
 }

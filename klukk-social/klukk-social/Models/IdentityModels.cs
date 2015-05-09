@@ -30,11 +30,6 @@ namespace klukk_social.Models
             // Add custom user claims here
             return userIdentity;
         }
-
-        public string GetFullName()
-        {
-            return FirstName + " " + MiddleName + " " + LastName;
-        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<User>
