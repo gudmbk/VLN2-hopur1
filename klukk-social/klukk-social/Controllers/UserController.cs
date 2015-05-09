@@ -21,8 +21,14 @@ namespace klukk_social.Controllers
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentHome()
 		{
-
-			return View();
+			var userId = User.Identity.GetUserId();
+			var listOfPosts = postService.GetAllChildrenPosts(userId);
+			var user = userSerice.FindById(userId);
+			UserViewModel profile = new UserViewModel();
+			profile.Feed = new List<Post>();
+			profile.Feed.AddRange(listOfPosts);
+			profile.Person = user;
+			return View(profile);
 		}
 
 

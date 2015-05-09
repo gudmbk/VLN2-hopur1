@@ -10,6 +10,7 @@ namespace klukk_social.Services
 {
     public class PostService
     {
+		UserSerice us = new UserSerice();
 
         public List<Post> GetAllPostsToUser(string userId)
         {
@@ -48,5 +49,15 @@ namespace klukk_social.Services
                 dbContext.SaveChanges();
             }
         }
+		public List<Post> GetAllChildrenPosts(string parentId)
+		{
+			using (var dbContext = new ApplicationDbContext())
+			
+			return (from post in dbContext.Posts
+				join user in dbContext.Users on post.FromUserId equals user.Id
+				where user.ParentId == parentId
+				orderby post.Date descending
+				select post).ToList();
+		}
     }
 }

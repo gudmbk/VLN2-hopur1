@@ -23,14 +23,17 @@
     </div>
 
 }
-@using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
-{
+@if (User.IsInRole("Child"))
+{ 
+	using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+	{
 	
 	
-	<div class="postdialog">
-		<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
-		<input name="comment" />
-	    <input type="hidden" name="PostId" value="@Model.Id" />
-		<input type="submit" value="Deila" class="btn btn-default" />
-	</div>
+		<div class="postdialog">
+			<img src='@us.GetProfileURL(User.Identity.GetUserId())' class="search imagesmall" />
+			<input name="comment" />
+			<input type="hidden" name="PostId" value="@Model.Id" />
+			<input type="submit" value="Deila" class="btn btn-default" />
+		</div>
+	}
 }

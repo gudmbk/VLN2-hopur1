@@ -1,10 +1,15 @@
-﻿
+﻿@using klukk_social.Models
+@model klukk_social.Models.UserViewModel
+
 @{
     ViewBag.Title = "ParentHome";
 }
 
-<h2>ParentHome</h2>
+<h2 class="card">Children Feed</h2>
 
-<p>This is where you spy on your children</p>
+<p class="card">This is where you spy on your children</p>
 
-
+@foreach (var p in Model.Feed)
+{
+	@Html.Partial("PostPartial", p)
+}
