@@ -2,7 +2,6 @@
 @using klukk_social.Services
 @{
 	UserSerice us = new UserSerice();
-
 	var ProfilePic = us.GetProfileURL(User.Identity.GetUserId());
 }
 <div class="sidebar">

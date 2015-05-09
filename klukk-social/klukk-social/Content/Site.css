@@ -112,15 +112,23 @@ body{
 
 .search {
 	border-radius: 5px;
-	height: 200px;
-	width: 200px;
+	height: 185px;
+	width: 185px;
 	object-fit:cover;
 	object-position: center;
-	margin: 10px;
+	margin: 5px;
+}
+
+.searchcard{
+	display: inline-block;
+	width: 215px;
+	margin-right:10px;
+	min-height: 120px;
 }
 
 .card {
-	margin: 10px 0px 10px 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	background-color: #dbe2ff;
 	border-radius: 5px;
 	padding: 10px;

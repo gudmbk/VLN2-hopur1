@@ -9,13 +9,17 @@
 
 @foreach (var user in Model)
 {
-	<div class="card">
+	<div class="card searchcard">
 		@*<input type="button" value="@user.Id" class="add-friend" />*@
 
 		<a href='@Url.Action("FriendHome", "User", new { userId = user.Id }, null)'>
-			<img src='@user.ProfilePic' class="search"/>
+			<img src='@user.ProfilePic' class="search" />
 		</a>
 
 		@Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id }, new { @class = "btn btn-default" })
 	</div>
 }
+<div class="searchcard"></div> @*Hakk, Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
+<div class="searchcard"></div>
+<div class="searchcard"></div>
+<div class="searchcard"></div>
