@@ -61,5 +61,14 @@ namespace klukk_social.Services
 					orderby p.FirstName descending
 					select p.ProfilePic).FirstOrDefault();
 		}
+
+	    public void SendFriendRequest(FriendRequest friendRequest)
+	    {
+	        using (var dbContext = new ApplicationDbContext())
+	        {
+	            dbContext.FriendRequests.Add(friendRequest);
+	            dbContext.SaveChanges();
+	        }
+	    }
     }
 }

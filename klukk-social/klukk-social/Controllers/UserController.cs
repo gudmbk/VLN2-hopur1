@@ -44,7 +44,7 @@ namespace klukk_social.Controllers
         {
 			return RedirectToAction("CreateChild", "Account");
         }
-
+        [Authorize(Roles = "Child")]
         public ActionResult FriendHome(string userId)
         {
             var listOfPosts = ps.GetAllPostsToUser(userId);
@@ -62,11 +62,14 @@ namespace klukk_social.Controllers
             List<User> users = us.Search(prefix);
             return View(users);
         }
-
-        public ActionResult SendFriendRequest()
+        [HttpPost]
+        public ActionResult SendFriendRequest(string userToAdd)
         {
-            string myId = User.Identity.GetUserId();
-            return View();
+            FriendRequest friendRequest = new FriendRequest();
+            friendRequest.FromUserId = User.Identity.GetUserId();
+            friendRequest.ToUserId = userToAdd;
+            us.SendFriendRequest(friendRequest);
+            return null;
         }
 
 		[Authorize(Roles = "Child")]
