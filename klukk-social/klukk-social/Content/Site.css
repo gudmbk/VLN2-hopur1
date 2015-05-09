@@ -121,7 +121,7 @@ body{
 
 .card {
 	margin: 10px 0px 10px 0px;
-	background-color: pink;
+	background-color: #dbe2ff;
 	border-radius: 5px;
 	padding: 10px;
 }
@@ -157,6 +157,14 @@ body{
 	padding: 5px 20px 5px 20px;
 	margin: 5px;
 	background-color: lightblue;
+}
+.commentdialog img{
+	border-radius: 5px;
+	height: 50px;
+	width: 50px;
+	object-fit:cover;
+	object-position: center;
+	margin: 10px;
 }
 
 .add-friend {

@@ -12,10 +12,10 @@
 	<div class="card">
 		@*<input type="button" value="@user.Id" class="add-friend" />*@
 
-		<a href='@Url.Action("AddFriend", "User")'>
+		<a href='@Url.Action("FriendHome", "User", new { userId = user.Id }, null)'>
 			<img src='@user.ProfilePic' class="search"/>
 		</a>
 
-		@Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id }, null)
+		@Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id }, new { @class = "btn btn-default" })
 	</div>
 }
