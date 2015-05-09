@@ -1,0 +1,15 @@
+﻿@model klukk_social.Models.User
+
+@{
+    ViewBag.Title = "Child Settings";
+}
+
+<h2>Child Settings</h2>
+<p>Change Picture - give the URL of the new picture</p>
+@using (Html.BeginForm("ChildSettings", "User", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+{
+	<div class="postdialog">
+		<input type="text" name="picURL" placeholder="Picture URL" />
+		<input type="submit" value="Deila" class="btn btn-default" />
+	</div>
+}

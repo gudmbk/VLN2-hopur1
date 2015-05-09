@@ -99,7 +99,8 @@ namespace klukk_social.Controllers
 					LastName = model.Last,
                     FullName = MakeFullName(model.First, model.Middle, model.Last),
 					CreationDate = DateTime.Now,
-					BirthDate = DateTime.Now
+					BirthDate = DateTime.Now,
+					ProfilePic = "/Content/Images/EmptyProfilePicture.gif"
 				};
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
@@ -147,7 +148,8 @@ namespace klukk_social.Controllers
                     FullName = MakeFullName(model.First, model.Middle, model.Last),
 					CreationDate = DateTime.Now,
 					BirthDate = model.BirthDay,
-					ParentId = User.Identity.GetUserId()
+					ParentId = User.Identity.GetUserId(),
+					ProfilePic = "/Content/Images/EmptyProfilePicture.gif"
 				};
 
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
