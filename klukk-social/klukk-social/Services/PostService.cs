@@ -56,15 +56,30 @@ namespace klukk_social.Services
 
 			using (var dbContext = new ApplicationDbContext())
 			{
-				allPostsAndComments = (from post in dbContext.Posts
-									   join user in dbContext.Users on post.FromUserId equals user.Id
-									   where user.ParentId == parentId
-									   orderby post.Date descending
-									   select post).ToList();
-				foreach (var item in allPostsAndComments)
+				// Load all posts my children have made
+				var authoredPosts = from post in dbContext.Posts
+									join postAuthor in dbContext.Users on post.FromUserId equals postAuthor.Id
+									where postAuthor.ParentId == parentId
+									select post;
+
+				// Load all posts my children have commented on
+				var commentedPosts = from post in dbContext.Posts
+									 join comment in dbContext.Comments on post.Id equals comment.PostId
+									 join commentAuthor in dbContext.Users on comment.UserId equals commentAuthor.Id
+									 where commentAuthor.ParentId == parentId
+									 select post;
+
+				allPostsAndComments = (from post in authoredPosts.Union(commentedPosts)
+									orderby post.Date descending
+									select post).ToList();
+
+
+									  
+
+				foreach (var post in allPostsAndComments)
 				{
-					item.Comments = (from comment in dbContext.Comments
-									 where comment.PostId == item.Id
+					post.Comments = (from comment in dbContext.Comments
+									 where comment.PostId == post.Id
 									 orderby comment.Date ascending
 									 select comment).ToList();
 				}

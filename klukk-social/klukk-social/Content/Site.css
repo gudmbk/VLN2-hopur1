@@ -187,7 +187,7 @@ body{
 
 .postdialog {
 	border-radius: 5px;
-	padding: 20px;
+	padding: 5px;
 	margin: 5px;
 	background-color: #e7f3ff;
 	color: black;
@@ -195,7 +195,7 @@ body{
 
 .commentdialog {
 	border-radius: 5px;
-	padding: 5px 20px 5px 20px;
+	padding: 0px 5px 5px 20px;
 	margin: 5px;
 	background-color: lightblue;
 	color: black;
