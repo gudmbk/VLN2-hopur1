@@ -95,6 +95,24 @@ namespace klukk_social.Controllers
 			manager.Update(currentUser);
 			return View();
 		}
+		[Authorize(Roles = "Parent")]
+		public ActionResult ParentSettings()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Parent")]
+		public ActionResult ParentSettings(FormCollection form)
+		{
+
+			var NewProfilePicURL = form["picURL"];
+			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
+			var currentUser = manager.FindById(User.Identity.GetUserId());
+			currentUser.ProfilePic = NewProfilePicURL;
+			manager.Update(currentUser);
+			return View();
+		}
 
 		public ActionResult AddEmptyProfilePic() //óþarfi
 		{

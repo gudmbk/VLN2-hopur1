@@ -50,6 +50,9 @@ body{
 	background-image: url('/Content/Images/Tahoe-Day-white.png');
 }
 
+.rockymountainsatdaytime{
+	background-image: url('/Content/Images/Rocky-Mountains -at-Daytime.jpg');
+}
 .topbar a {
 	color: white;
 	font-size: 100px;
@@ -85,6 +88,7 @@ body{
 
 }
 .sidebar a {
+	margin: 5px 0px 5px 0px;
 	border-radius: 5px;
 	display: block;
 	text-decoration: none;

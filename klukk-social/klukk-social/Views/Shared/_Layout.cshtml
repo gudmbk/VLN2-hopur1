@@ -9,7 +9,7 @@
 	@Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body class="pagebackground">
+<body class="rockymountainsatdaytime">
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -21,23 +21,23 @@
 				</button>
 				@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
 			</div>
-		    <div class="navbar-collapse collapse">
-		        @using (Html.BeginForm("Search", "User", FormMethod.Post, new { @class = "navbar-form navbar-left", role = "search" }))
-                {
-                    <div class="form-group">
-                        <input type="text" name="user-input" class="form-control" placeholder="Leita">
-                    </div>
-                    <input type="submit" value="Leita" class="btn btn-default" />
-                }
-		        <ul class="nav navbar-nav">
-		            <li>@Html.ActionLink("Skil", "Index", "Home")</li>
-		            <li>@Html.ActionLink("Póst", "About", "Home")</li>
-		        </ul>
-		        
+			<div class="navbar-collapse collapse">
+				@using (Html.BeginForm("Search", "User", FormMethod.Post, new { @class = "navbar-form navbar-left", role = "search" }))
+				{
+					<div class="form-group">
+						<input type="text" name="user-input" class="form-control" placeholder="Leita">
+					</div>
+					<input type="submit" value="Leita" class="btn btn-default" />
+				}
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Skil", "Index", "Home")</li>
+					<li>@Html.ActionLink("Póst", "About", "Home")</li>
+				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					@Html.Partial("_LoginPartial", new LoginViewModel())
-		        </ul>
-		    </div>
+				</ul>
+			</div>
 		</div>
 	</div>
 
@@ -62,4 +62,5 @@
 	@Scripts.Render("~/Scripts/scripts.js");
 	@RenderSection("scripts", required: false)
 </body>
+
 </html>

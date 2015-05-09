@@ -197,7 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\EmptyProfilePicture.gif" />
+    <Content Include="Content\Images\Great-Planes-night.jpg" />
     <Content Include="Content\Images\MothernChild.jpg" />
+    <Content Include="Content\Images\Rocky-Mountains -at-Daytime.jpg" />
     <Content Include="Content\Images\Smiling-teen-w_braces.jpg" />
     <Content Include="Content\Images\Tahoe-Day-white.png" />
     <Content Include="Content\Images\Tahoe-Day.png" />
@@ -269,6 +271,7 @@
     <Content Include="Views\Home\ForPar.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\ChildSettings.cshtml" />
+    <Content Include="Views\User\ParentSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
