@@ -94,10 +94,6 @@ body{
 	text-align: right;
 }
 
-.topheight {
-	max-height: 50px;
-}
-
 .contentarea {
 	margin-top: 20px;
 	margin-right: 20px;
@@ -127,14 +123,15 @@ body{
 .searchcard{
 	display: inline-block;
 	width: 215px;
-	margin-right:10px;
+	margin-right:0px;
 	min-height: 120px;
 }
 
 .card {
+	color: white;
 	margin-top: 5px;
-	margin-bottom: 5px;
-	background-color: #dbe2ff;
+	margin-bottom: 10px;
+	background-color: #5593C2;
 	border-radius: 5px;
 	padding: 10px;
 }
