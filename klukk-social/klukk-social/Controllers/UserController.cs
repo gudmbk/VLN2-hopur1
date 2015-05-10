@@ -11,7 +11,7 @@ namespace klukk_social.Controllers
     public class UserController : Controller
     {
         private PostService _postService = new PostService();
-        private UserSerice _userSerice = new UserSerice();
+        private UserService _userSerice = new UserService();
 
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentHome()
@@ -28,25 +28,26 @@ namespace klukk_social.Controllers
 
 
 		[Authorize(Roles = "Child")]
-        public ActionResult ChildHome()
+		public ActionResult ChildHome()
 		{
-		    var userId = User.Identity.GetUserId();
-		    var listOfPosts = _postService.GetAllPostsToUser(userId);
-		    var user = _userSerice.FindById(userId);
-            UserViewModel profile = new UserViewModel();
-            profile.Feed = new List<Post>();
-            profile.Feed.AddRange(listOfPosts);
-		    profile.Person = user;
-            return View(profile);
-        }
+			var userId = User.Identity.GetUserId();
+			var listOfPosts = _postService.GetAllPostsToUser(userId);
+			var user = _userSerice.FindById(userId);
+			UserViewModel profile = new UserViewModel();
+			profile.Feed = new List<Post>();
+			profile.Feed.AddRange(listOfPosts);
+			profile.Person = user;
+			return View(profile);
+		}
 
 		[Authorize(Roles = "Parent")]
         public ActionResult CreateChild()
         {
 			return RedirectToAction("CreateChild", "Account");
         }
+
         [Authorize(Roles = "Child")]
-        public ActionResult FriendHome(string userId)
+        public ActionResult Profile(string userId)
         {
             var listOfPosts = _postService.GetAllPostsToUser(userId);
             var user = _userSerice.FindById(userId);
@@ -54,7 +55,7 @@ namespace klukk_social.Controllers
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
-            return View("ChildHome", profile);
+            return View(profile);
         }
 
         public ActionResult Search(FormCollection searchBar)

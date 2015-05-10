@@ -12,11 +12,11 @@
 	<div class="card searchcard searchpadd">
 		@*<input type="button" value="@user.Id" class="add-friend" />*@
 
-		<a href='@Url.Action("FriendHome", "User", new { userId = user.Id }, null)'>
+		<a href='@Url.Action("Profile", "User", new { userId = user.Id }, null)'>
 			<img src='@user.ProfilePic' class="search" />
 		</a>
-
-		@Html.ActionLink(user.FirstName, "FriendHome", new { userId = user.Id }, new { @class = "btn btn-success" })
+		@Html.ActionLink(user.FirstName, "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block" })
+		@Html.ActionLink("Senda vinabeiðni", "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block" })
 	</div>
 }
 <div class="searchcard"></div> @*Hakk, Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@

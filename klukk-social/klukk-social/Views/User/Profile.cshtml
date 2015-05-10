@@ -1,0 +1,18 @@
+﻿@using klukk_social.Models
+@model klukk_social.Models.UserViewModel
+
+<div class="card postpadd">
+	<img src="@Model.Person.ProfilePic" alt="Profile Picture" class="profile floatleft img-responsive" />
+	<h1 class="leftpaddten floatleft">@Model.Person.FullName</h1>
+	<div class="clearfix"></div>
+</div>
+
+
+@Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
+
+
+@foreach (var p in Model.Feed)
+{
+	@Html.Partial("PostPartial", p)
+}
+@*  *@

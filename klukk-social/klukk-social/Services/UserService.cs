@@ -4,9 +4,8 @@ using klukk_social.Models;
 
 namespace klukk_social.Services
 {
-	public class UserSerice
+	public class UserService
     {
-		
         public User FindById(string userId)
         {
             using (var dbContext = new ApplicationDbContext())
@@ -67,5 +66,12 @@ namespace klukk_social.Services
 	            dbContext.SaveChanges();
 	        }
 	    }
+
+		public bool FriendChecker(string userId, string friendId)
+		{
+		
+	        
+			return true;
+		}
     }
 }

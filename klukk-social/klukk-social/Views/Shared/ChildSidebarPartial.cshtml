@@ -1,9 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
 @using klukk_social.Services
 @{
-	UserSerice us = new UserSerice();
+	UserService us = new UserService();
 	var profilePic = us.GetProfileUrl(User.Identity.GetUserId());
 }
+
 <div class="sidebar">
 	<img src="@profilePic" alt="Alternate Text" />
 	<a href="#">@us.GetFullNameById(User.Identity.GetUserId())</a>
@@ -11,4 +12,11 @@
 	<input type="submit" value="Grúbbur" class="btn btn-default btn-lg btn-block" />
 	<input type="submit" value="Eitthvað annað?" class="btn btn-default btn-lg btn-block" />
 	@Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
+
+	<button type="button" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
+	</button>
+	<button type="button" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings
+	</button>
 </div>

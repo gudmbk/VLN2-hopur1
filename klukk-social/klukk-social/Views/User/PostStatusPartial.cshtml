@@ -1,9 +1,11 @@
 ﻿@using klukk_social.Models
 @model Post
-@using (Html.BeginForm("PostStatus", "Post", FormMethod.Post, new { @class = "post-status postdialog", role = "form" }))
-{
-    <textarea class="form-control" rows="4" name="status"></textarea>
-    <input type="hidden" name="toUserId"value="@Model.ToUserId"/>
-    <input type="hidden" name="PosterName" value="@Model.PosterName" />
-    <input type="submit" value="Deila" class="btn btn-default"/>
-}
+<div class="card postpadd">
+	@using (Html.BeginForm("PostStatus", "Post", FormMethod.Post, new { @class = "post-status postdialog", role = "form" }))
+	{
+		<textarea class="form-control" rows="4" name="status"></textarea>
+		<input type="hidden" name="toUserId" value="@Model.ToUserId" />
+		<input type="hidden" name="PosterName" value="@Model.PosterName" />
+		<input type="submit" value="Deila" class="btn btn-default" />
+	}
+</div>

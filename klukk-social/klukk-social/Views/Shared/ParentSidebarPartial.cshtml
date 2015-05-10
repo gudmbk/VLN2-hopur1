@@ -3,7 +3,7 @@
 @using klukk_social.Services
 
 @{
-	UserSerice us = new UserSerice();
+	UserService us = new UserService();
 	var children = us.GetAllChildren(User.Identity.GetUserId());
 	var profilePic = us.GetProfileUrl(User.Identity.GetUserId());
 }

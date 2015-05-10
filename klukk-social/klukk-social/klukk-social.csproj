@@ -192,7 +192,7 @@
     </Compile>
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\PostService.cs" />
-    <Compile Include="Services\UserSerice.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +272,7 @@
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\ChildSettings.cshtml" />
     <Content Include="Views\User\ParentSettings.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,7 +308,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5080</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5080/</IISUrl>
+          <IISUrl>http://localhost:80</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -147,7 +147,7 @@ body{
 	float: left;
 }
 .postpadd{
-	padding:1px 0px 10px 0px;
+	padding:5px;
 }
 
 .leftpaddten{
@@ -169,6 +169,12 @@ body{
 .span {
 	width: 100%;
 }
+.inline{
+	display: inline;
+}
+.white{
+	color:white !important;
+}
 
 .footercontainer {
 	position:fixed;
@@ -186,11 +192,19 @@ body{
 }
 
 .postdialog {
-	border-radius: 5px;
 	padding: 5px;
-	margin: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
 	background-color: #e7f3ff;
 	color: black;
+}
+
+.profile{
+	border-radius: 5px;
+	height: 300px;
+	width: 300px;
+	object-fit:cover;
+	object-position: center;
 }
 
 .commentdialog {
@@ -210,7 +224,7 @@ body{
 }
 .fixtextinfootercontent {
     text-align: justify;
-    width:40 %;
+    width: 40%;
     position:absolute;
     right: 70%;
     left:9%;

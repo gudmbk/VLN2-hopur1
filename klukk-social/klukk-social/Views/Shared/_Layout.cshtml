@@ -30,11 +30,12 @@
 					<input type="submit" value="Leita" class="btn btn-default" />
 				}
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Skil", "Index", "Home")</li>
-					<li>@Html.ActionLink("Póst", "About", "Home")</li>
+					@*<li>@Html.ActionLink("Skil", "Index", "Home")</li>
+					<li>@Html.ActionLink("Póst", "About", "Home")</li>*@
 				</ul>
-
 				<ul class="nav navbar-nav navbar-right">
+					<div class="navbar-brand navbar-brand-centered white"><span class="glyphicon glyphicon-envelope" id="logIcon"></span></div>
+					<div class="navbar-brand navbar-brand-centered white"><span class="glyphicon glyphicon-envelope" id="logIcon"></span></div>
 					@Html.Partial("_LoginPartial", new LoginViewModel())
 				</ul>
 			</div>

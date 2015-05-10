@@ -65,9 +65,6 @@ namespace klukk_social.Services
 									orderby post.Date descending
 									select post).ToList();
 
-
-									  
-
 				foreach (var post in allPostsAndComments)
 				{
 					post.Comments = (from comment in dbContext.Comments

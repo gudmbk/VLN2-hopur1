@@ -3,41 +3,45 @@
 @model klukk_social.Models.Post
 
 @{
-	UserSerice us = new UserSerice();
+	UserService us = new UserService();
 }
 <div class="card postpadd">
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
-				<img src='@us.GetProfileURL(Model.FromUserId)' class="search imagesmall" />
-				@Html.ActionLink(@us.GetFullNameById(Model.FromUserId), "FriendHome", new { userId = Model.FromUserId })
+				<img src='@us.GetProfileUrl(Model.FromUserId)' class="search imagesmall" />
+				@Html.ActionLink(@us.GetFullNameById(Model.FromUserId), "Profile", new { userId = Model.FromUserId })
 			</div>
 			@if (User.IsInRole("Parent"))
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
 					<img src='@us.GetProfileUrl(Model.ToUserId)' class="search imagesmall" />
-					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "FriendHome", new { userId = Model.ToUserId })
+					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "Profile", new { userId = Model.ToUserId })
 				</div>
 			}
 		</div>
 		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Report</button>
 	</div>
 
 	@foreach (var comment in Model.Comments)
 	{
 		<div class="commentdialog">
-			<img src='@us.GetProfileURL(comment.UserId)' class="search imagesmall" />
-			@Html.ActionLink(@comment.PosterName, "FriendHome", new { userId = comment.UserId })
+			<img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
+			@Html.ActionLink(@comment.PosterName, "Profile", new { userId = comment.UserId })
 			<p>@comment.Body</p>
 			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+			<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+			<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Report</button>
 		</div>
 
 	}
 	@if (User.IsInRole("Child"))
 	{
-		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "comment-form", role = "form" }))
+		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { role = "form" }))
 		{
 			<div class="postdialog">
 				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
