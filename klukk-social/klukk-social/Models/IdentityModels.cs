@@ -18,6 +18,12 @@ namespace klukk_social.Models
         public string ProfilePic { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public User()
+        {
+            ProfilePic = "\\Content\\Images\\EmptyProfilePicture.gif";
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
