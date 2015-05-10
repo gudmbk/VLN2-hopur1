@@ -1,0 +1,34 @@
+﻿@model klukk_social.Models.FriendsViewModel
+@{
+    ViewBag.Title = "FriendsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vinabeiðnir</h2>
+
+@foreach (var fr in Model.friendRequests)
+{
+        <div class="card searchcard searchpadd">
+            <a href='@Url.Action("Profile", "User", new {userId = fr.Id}, null)'>
+                <img src='@fr.ProfilePic' class="search"/>
+            </a>
+            @Html.ActionLink(fr.FirstName, "Profile", new { userId = fr.Id }, new { @class = "btn btn-success btn-block" })
+            <button type="button" value="@fr.Id" class="btn btn-success btn-block accept-friend">Samþykkja</button>
+        </div>
+}
+
+<h2>Vinir</h2>
+
+@foreach (var user in Model.friends)
+{
+    <div class="card searchcard searchpadd">
+        <a href='@Url.Action("Profile", "User", new {userId = user.Id}, null)'>
+            <img src='@user.ProfilePic' class="search" />
+        </a>
+        @Html.ActionLink(user.FirstName, "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block" })
+    </div>
+}
+<div class="searchcard"></div> @*Hakk, Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
+<div class="searchcard"></div>
+<div class="searchcard"></div>
+<div class="searchcard"></div>

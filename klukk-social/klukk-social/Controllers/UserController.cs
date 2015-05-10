@@ -19,8 +19,7 @@ namespace klukk_social.Controllers
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllChildrenPosts(userId);
 			var user = _userSerice.FindById(userId);
-			UserViewModel profile = new UserViewModel();
-			profile.Feed = new List<Post>();
+			UserViewModel profile = new UserViewModel(true);
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
 			return View(profile);
@@ -33,8 +32,7 @@ namespace klukk_social.Controllers
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllPostsToUser(userId);
 			var user = _userSerice.FindById(userId);
-			UserViewModel profile = new UserViewModel();
-			profile.Feed = new List<Post>();
+			UserViewModel profile = new UserViewModel(true);
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
 			return View(profile);
@@ -51,8 +49,7 @@ namespace klukk_social.Controllers
         {
             var listOfPosts = _postService.GetAllPostsToUser(userId);
             var user = _userSerice.FindById(userId);
-            UserViewModel profile = new UserViewModel();
-            profile.Feed = new List<Post>();
+            UserViewModel profile = new UserViewModel(_userSerice.FriendChecker(User.Identity.GetUserId(), user.Id));
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
             return View(profile);
@@ -64,11 +61,7 @@ namespace klukk_social.Controllers
             List<User> users = _userSerice.Search(prefix);
             return View(users);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="json"></param>
-        /// <returns></returns>
+ 
         [HttpPost]
         public ActionResult SendFriendRequest(FriendRequest json)
         {
@@ -76,6 +69,21 @@ namespace klukk_social.Controllers
             friendRequest.FromUserId = User.Identity.GetUserId();
             friendRequest.ToUserId = json.ToUserId;
             _userSerice.SendFriendRequest(friendRequest);
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult AcceptFriendRequest(FriendRequest accept)
+        {
+            Friendship friends = new Friendship
+            {
+                FromUserId = accept.FromUserId,
+                ToUserId = User.Identity.GetUserId(),
+            };
+            accept.ToUserId = User.Identity.GetUserId();
+            _userSerice.MakeFriends(friends);
+            _userSerice.DeleteFriendRequest(accept);
+
             return null;
         }
 
@@ -111,7 +119,7 @@ namespace klukk_social.Controllers
 			var newProfilePicUrl = form["picURL"];
 			if (newProfilePicUrl != "")
 			{
-				var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
+			    var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext())); 
 				var currentUser = manager.FindById(User.Identity.GetUserId());
 				currentUser.ProfilePic = newProfilePicUrl;
 				manager.Update(currentUser);
@@ -120,15 +128,15 @@ namespace klukk_social.Controllers
 			return View();
 		}
 
-        /*
-		public ActionResult AddEmptyProfilePic() //óþarfi
+		public ActionResult FriendsList()
 		{
-			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
-			var currentUser = manager.FindById(User.Identity.GetUserId());
-
-			currentUser.ProfilePic = "/Content/Images/EmptyProfilePicture.gif";
-			manager.Update(currentUser);
-			return RedirectToAction("Index");
-		}*/
+		    var userId = User.Identity.GetUserId();
+		    var friendRequests = _userSerice.getFriendRequest(userId);
+		    var friends = _userSerice.getFriends(userId);
+            FriendsViewModel list = new FriendsViewModel();
+            list.friends.AddRange(friends);
+            list.friendRequests.AddRange(friendRequests);
+		    return View(list);
+		}
     }
 }

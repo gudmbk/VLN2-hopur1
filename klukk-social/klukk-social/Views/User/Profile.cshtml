@@ -1,4 +1,5 @@
-﻿@using klukk_social.Models
+﻿@using System.Activities.Statements
+@using klukk_social.Models
 @model klukk_social.Models.UserViewModel
 
 <div class="card postpadd">
@@ -7,12 +8,17 @@
 	<div class="clearfix"></div>
 </div>
 
-
-@Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
-
-
-@foreach (var p in Model.Feed)
+@if(Model.friends)
 {
-	@Html.Partial("PostPartial", p)
+    @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
+
+    foreach (var p in Model.Feed)
+    {
+	    @Html.Partial("PostPartial", p)
+    }
+}
+else
+{
+    <button type="button" value="@Model.Person.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>
 }
 @*  *@

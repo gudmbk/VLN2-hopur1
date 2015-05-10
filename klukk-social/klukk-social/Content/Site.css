@@ -215,17 +215,17 @@ body{
 	color: black;
 }
 
-.add-friend {
-    background: url('/Content/Images/Add-Friend.png') no-repeat; /*Please find me a bette icon Mr. Cosmos*/
-    cursor: pointer;
-    width: 200px;
-    height: 200px;
-    border: none;
-}
 .fixtextinfootercontent {
     text-align: justify;
     width: 40%;
     position:absolute;
     right: 70%;
     left:9%;
+}
+
+.friend-req {
+    
+}
+accept-friend {
+    
 }

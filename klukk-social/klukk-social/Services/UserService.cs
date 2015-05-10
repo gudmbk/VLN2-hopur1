@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Web.DynamicData;
 using klukk_social.Models;
 
 namespace klukk_social.Services
@@ -69,9 +71,61 @@ namespace klukk_social.Services
 
 		public bool FriendChecker(string userId, string friendId)
 		{
-		
-	        
-			return true;
-		}
+		    using (var dbContext = new ApplicationDbContext())
+		    {
+                var friends = (from fs in dbContext.Friendships
+                               where (fs.FromUserId == friendId && fs.ToUserId == userId) || (fs.FromUserId == userId && fs.ToUserId == friendId)
+                               select fs).FirstOrDefault();
+		        return friends != null;
+		    }
+        }
+
+	    public List<User> getFriendRequest(string userId)
+	    {
+	        using (var dbContext = new ApplicationDbContext())
+	        {
+	            var requests = (from u in dbContext.Users
+                                join fr in dbContext.FriendRequests
+                                on u.Id equals fr.FromUserId
+	                where fr.ToUserId == userId
+	                select u).ToList();
+	            return requests;
+	        }
+        }
+
+	    public List<User> getFriends(string userId)
+	    {
+	        using (var dbContext = new ApplicationDbContext())
+	        {
+	            var friends = (from u in dbContext.Users
+	                join f in dbContext.Friendships
+                    on u.Id equals f.FromUserId
+                    where f.FromUserId == userId || f.ToUserId == userId
+	                select u).ToList();
+	            return friends;
+	        }
+	    }
+
+	    public void DeleteFriendRequest(FriendRequest friendRequest)
+	    {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var toDelete = (from fr in dbContext.FriendRequests
+                    where fr.FromUserId == friendRequest.FromUserId && fr.ToUserId == friendRequest.ToUserId
+                    select fr).FirstOrDefault();
+
+                dbContext.FriendRequests.Remove(toDelete);
+                dbContext.SaveChanges();
+            }
+	    }
+
+	    public void MakeFriends(Friendship friends)
+	    {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                dbContext.Friendships.Add(friends);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }
