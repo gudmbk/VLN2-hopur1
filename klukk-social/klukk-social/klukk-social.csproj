@@ -273,6 +273,7 @@
     <Content Include="Views\User\ChildSettings.cshtml" />
     <Content Include="Views\User\ParentSettings.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\StarReportEditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

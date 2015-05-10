@@ -1,0 +1,13 @@
+﻿@model klukk_social.Models.Post
+
+@*if Is childs post OR if is childs friend post*@
+<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+
+@*if Is childs post OR Parent owns this child*@
+<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+
+@*if Is childs friend post OR if is friend post of a child we own*@
+<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
+
+@*if Is childs post OR Parent owns this child*@
+<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>

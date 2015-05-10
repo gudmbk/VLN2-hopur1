@@ -1,15 +1,28 @@
 ﻿@model klukk_social.Models.User
-
+@using Microsoft.AspNet.Identity
+@using klukk_social.Models
+@using klukk_social.Services
 @{
     ViewBag.Title = "Parent Settings";
+	UserService us = new UserService();
+	var children = us.GetAllChildren(User.Identity.GetUserId());
 }
 
-<h2>Parent Settings</h2>
-<p>Change Picture - give the URL of the new picture</p>
+<h2 class="card postpadd">Stillingar</h2>
+<p class="card postpadd">Skipta út prófílmynd</p>
 @using (Html.BeginForm("ParentSettings", "User", FormMethod.Post, new { @class = "comment-form", role = "form" }))
 {
 	<div class="postdialog">
-		<input type="text" name="picURL" placeholder="Picture URL" />
+		<input type="text" name="picURL" placeholder="Url á nýja prófíl mynd" />
 		<input type="submit" value="Deila" class="btn btn-default" />
 	</div>
 }
+<p class="card postpadd">Breyta lykilorði barns</p>
+
+@foreach (var child in children)
+{
+	<div class="postdialog">
+		<input type="text" name="@child.Id" placeholder="Nýtt lykilorð" />
+		@Html.ActionLink(child.FirstName, "GoToChild", "User", new { @class = "btn btn-default" } )
+	</div>
+	}

@@ -23,8 +23,7 @@
 		</div>
 		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
-		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
-		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Report</button>
+		@Html.Partial("StarReportEditPartial")
 	</div>
 
 	@foreach (var comment in Model.Comments)
@@ -34,12 +33,11 @@
 			@Html.ActionLink(@comment.PosterName, "Profile", new { userId = comment.UserId })
 			<p>@comment.Body</p>
 			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
-			<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
-			<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Report</button>
+			@Html.Partial("StarReportEditPartial")
 		</div>
 
 	}
-	@if (User.IsInRole("Child"))
+	@if (!User.IsInRole("Parent"))
 	{
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { role = "form" }))
 		{
