@@ -109,12 +109,17 @@ namespace klukk_social.Controllers
 		{
 
 			var newProfilePicUrl = form["picURL"];
-			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
-			var currentUser = manager.FindById(User.Identity.GetUserId());
-			currentUser.ProfilePic = newProfilePicUrl;
-			manager.Update(currentUser);
+			if (newProfilePicUrl != "")
+			{
+				var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
+				var currentUser = manager.FindById(User.Identity.GetUserId());
+				currentUser.ProfilePic = newProfilePicUrl;
+				manager.Update(currentUser);
+			}
+			
 			return View();
 		}
+
         /*
 		public ActionResult AddEmptyProfilePic() //óþarfi
 		{
