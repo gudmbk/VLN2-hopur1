@@ -7,7 +7,7 @@ namespace klukk_social.Models
 {
 	public class FriendsViewModel
 	{
-		public List<User> friendRequests = new List<User>();
-		public List<User> friends = new List<User>(); 
+		public List<User> FriendRequests = new List<User>();
+		public List<User> Friends = new List<User>(); 
 	}
 }

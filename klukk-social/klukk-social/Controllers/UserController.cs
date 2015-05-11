@@ -52,7 +52,8 @@ namespace klukk_social.Controllers
         {
             var listOfPosts = _postService.GetAllPostsToUser(userId);
             var user = _userService.FindById(userId);
-            UserViewModel profile = new UserViewModel();
+            UserViewModel profile = new UserViewModel(_userService.FriendChecker(User.Identity.GetUserId(), userId));
+            profile.Request = _userService.GetFriendRequest(User.Identity.GetUserId(), userId);
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
@@ -135,11 +136,11 @@ namespace klukk_social.Controllers
 		public ActionResult FriendsList()
 		{
 		    var userId = User.Identity.GetUserId();
-		    var friendRequests = _userService.getFriendRequest(userId);
-		    var friends = _userService.getFriends(userId);
+		    var friendRequests = _userService.GetFriendRequest(userId);
+		    var friends = _userService.GetFriends(userId);
             FriendsViewModel list = new FriendsViewModel();
-            list.friends.AddRange(friends);
-            list.friendRequests.AddRange(friendRequests);
+            list.Friends.AddRange(friends);
+            list.FriendRequests.AddRange(friendRequests);
 		    return View(list);
 		}
     }

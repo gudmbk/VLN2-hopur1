@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Web.DynamicData;
 using klukk_social.Models;
-using klukk_social.Services;
 
 namespace klukk_social.Services
 {
@@ -94,7 +91,7 @@ namespace klukk_social.Services
 			}
 		}
 
-	    public List<User> getFriendRequest(string userId)
+	    public List<User> GetFriendRequest(string userId)
 	    {
 	        using (var dbContext = new ApplicationDbContext())
 	        {
@@ -107,7 +104,18 @@ namespace klukk_social.Services
 	        }
         }
 
-	    public List<User> getFriends(string userId)
+        public FriendRequest GetFriendRequest(string userId, string friendId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var request = (from fr in dbContext.FriendRequests
+                               where (fr.FromUserId == friendId && fr.ToUserId == userId) || (fr.FromUserId == userId && fr.ToUserId == friendId)
+                                select fr).FirstOrDefault();
+                return request;
+            }
+        }
+
+	    public List<User> GetFriends(string userId)
 	    {
 	        using (var dbContext = new ApplicationDbContext())
 	        {

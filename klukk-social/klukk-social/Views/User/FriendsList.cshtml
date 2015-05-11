@@ -6,7 +6,7 @@
 
 <h2>Vinabeiðnir</h2>
 
-@foreach (var fr in Model.friendRequests)
+@foreach (var fr in Model.FriendRequests)
 {
         <div class="card searchcard searchpadd">
             <a href='@Url.Action("Profile", "User", new {userId = fr.Id}, null)'>
@@ -19,7 +19,7 @@
 
 <h2>Vinir</h2>
 
-@foreach (var user in Model.friends)
+@foreach (var user in Model.Friends)
 {
     <div class="card searchcard searchpadd">
         <a href='@Url.Action("Profile", "User", new {userId = user.Id}, null)'>
