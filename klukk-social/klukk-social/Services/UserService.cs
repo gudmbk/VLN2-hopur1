@@ -149,5 +149,18 @@ namespace klukk_social.Services
                 dbContext.SaveChanges();
             }
         }
+
+		public void DeleteKid(string userId) //NOT READY
+		{
+			using (var dbContext = new ApplicationDbContext())
+			{
+				var toDelete = (from user in dbContext.Users
+								where user.Id == userId
+								select user).FirstOrDefault();
+
+				dbContext.Users.Remove(toDelete);
+				dbContext.SaveChanges();
+			}
+		}
     }
 }

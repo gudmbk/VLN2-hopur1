@@ -8,6 +8,7 @@ namespace klukk_social.Models
     {
         
 		public User Person { get; set; }
+		public User CurrentUserId { get; set; }
 
         public List<Post> Feed { get; set; }
 		public readonly bool Friends;
@@ -17,6 +18,7 @@ namespace klukk_social.Models
         
 		public UserViewModel()
 		{
+			CurrentUserId = new User();
 			Person = new User();
 			Feed = new List<Post>();
 			Friends = false;
