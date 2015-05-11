@@ -12,7 +12,7 @@ namespace klukk_social.Controllers
     {
         private PostService _postService = new PostService();
         private UserService _userService = new UserService();
-		
+
 
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentHome()
@@ -85,8 +85,8 @@ namespace klukk_social.Controllers
                 ToUserId = User.Identity.GetUserId(),
             };
             accept.ToUserId = User.Identity.GetUserId();
-            _userSerice.MakeFriends(friends);
-            _userSerice.DeleteFriendRequest(accept);
+            _userService.MakeFriends(friends);
+            _userService.DeleteFriendRequest(accept);
 
             return null;
         }
@@ -135,8 +135,8 @@ namespace klukk_social.Controllers
 		public ActionResult FriendsList()
 		{
 		    var userId = User.Identity.GetUserId();
-		    var friendRequests = _userSerice.getFriendRequest(userId);
-		    var friends = _userSerice.getFriends(userId);
+		    var friendRequests = _userService.getFriendRequest(userId);
+		    var friends = _userService.getFriends(userId);
             FriendsViewModel list = new FriendsViewModel();
             list.friends.AddRange(friends);
             list.friendRequests.AddRange(friendRequests);
