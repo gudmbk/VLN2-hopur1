@@ -6,21 +6,17 @@ namespace klukk_social.Models
     [NotMapped]
     public class InteractionBarViewModel
     {
-		public string PostOwner { get; set; }
+		public User Person { get; set; }
+		public List<Post> Feed { get; set; }
+		public Comment Comment { get; set; }
 		public bool IsPost { get; set; }
-        public int ItemId { get; set; }
 
 		public InteractionBarViewModel()
 		{
-			PostOwner = "";
+			Person = new User();
 			IsPost = false;
-			ItemId = -1;
-		}
-		public InteractionBarViewModel(string postOwner, bool isPost, int itemId)
-		{
-			PostOwner = postOwner;
-			IsPost = isPost;
-			ItemId = itemId;
+			Feed = new List<Post>();
+			Comment = new Comment();
 		}
     }
 }

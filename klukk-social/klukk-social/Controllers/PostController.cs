@@ -61,11 +61,11 @@ namespace klukk_social.Controllers
         public ActionResult AddStar(InteractionBarViewModel likeModel)
         {
 
-            Likes like = new Likes();
-            like.Date = DateTime.Now;
-            like.PostId = likeModel.ItemId;
-            like.UserId = likeModel.PostOwner;
-            _postService.AddLike(like);
+			//Likes like = new Likes();
+			//like.Date = DateTime.Now;
+			//like.PostId = likeModel.;
+			//like.UserId = likeModel.PostOwner;
+			//_postService.AddLike(like);
             return null;
         }
 
