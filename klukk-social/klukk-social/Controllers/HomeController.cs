@@ -1,25 +1,9 @@
 ﻿using System.Web.Mvc;
-using klukk_social.Models;
 
 namespace klukk_social.Controllers
 {
     public class HomeController : Controller
     {
-		public ActionResult ResetServer()
-		{
-			IdentityManager manager = new IdentityManager();
-			if (!manager.RoleExists("Parent"))
-			{
-				manager.CreateRole("Parent");
-			}
-			if (!manager.RoleExists("Child"))
-			{
-				manager.CreateRole("Child");
-			}
-
-			return RedirectToAction("Index");
-		}
-        
         public ActionResult Index()
         {
 			if (User.IsInRole("Parent"))
