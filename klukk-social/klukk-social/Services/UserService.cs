@@ -85,7 +85,7 @@ namespace klukk_social.Services
 			using (var dbContext = new ApplicationDbContext())
 			{
 				var friends = (from fs in dbContext.Friendships
-							   where (fs.FromUserId == friendId && fs.ToUserId == userId) || (fs.FromUserId == userId && fs.ToUserId == friendId)
+							   where fs.FromUserId == friendId && fs.ToUserId == userId
 							   select fs).FirstOrDefault();
 				return friends != null;
 			}
@@ -109,7 +109,7 @@ namespace klukk_social.Services
             using (var dbContext = new ApplicationDbContext())
             {
                 var request = (from fr in dbContext.FriendRequests
-                               where (fr.FromUserId == friendId && fr.ToUserId == userId) || (fr.FromUserId == userId && fr.ToUserId == friendId)
+                               where fr.FromUserId == friendId && fr.ToUserId == userId
                                 select fr).FirstOrDefault();
                 return request;
             }
@@ -121,7 +121,7 @@ namespace klukk_social.Services
 	        {
 	            var friends = (from u in dbContext.Users
 	                join f in dbContext.Friendships
-                    on u.Id equals f.FromUserId
+                    on u.Id equals f.ToUserId
                     where f.FromUserId == userId || f.ToUserId == userId
 	                select u).ToList();
 	            return friends;
@@ -146,9 +146,11 @@ namespace klukk_social.Services
             using (var dbContext = new ApplicationDbContext())
             {
                 dbContext.Friendships.Add(friends);
+                dbContext.Friendships.Add(Switcheroo(friends));
                 dbContext.SaveChanges();
             }
         }
+
 
 		public void DeleteKid(string userId) //NOT READY
 		{
@@ -162,5 +164,15 @@ namespace klukk_social.Services
 				dbContext.SaveChanges();
 			}
 		}
+
+        // Helper functions
+	    private Friendship Switcheroo(Friendship friends)
+	    {
+	        Friendship switched = new Friendship();
+	        switched.Date = friends.Date;
+	        switched.FromUserId = friends.ToUserId;
+	        switched.ToUserId = friends.FromUserId;
+            return switched;
+	    }
     }
 }
