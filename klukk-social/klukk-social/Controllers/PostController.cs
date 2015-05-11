@@ -58,7 +58,7 @@ namespace klukk_social.Controllers
             return View("Error");
         }
 
-        public ActionResult AddLike(InteractionBarViewModel likeModel)
+        public ActionResult AddStar(InteractionBarViewModel likeModel)
         {
 
             Likes like = new Likes();
