@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -10,8 +11,8 @@ namespace klukk_social.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private PostService _postService = new PostService();
-        private UserService _userService = new UserService();
+        private readonly PostService _postService = new PostService();
+        private readonly UserService _userService = new UserService();
 
 
 		[Authorize(Roles = "Parent")]
@@ -141,7 +142,14 @@ namespace klukk_social.Controllers
             FriendsViewModel list = new FriendsViewModel();
             list.Friends.AddRange(friends);
             list.FriendRequests.AddRange(friendRequests);
+            
 		    return View(list);
 		}
+        [ChildActionOnly]
+        public ActionResult ChildSidebarPartial()
+        {
+            var user = _userService.FindById(User.Identity.GetUserId());
+            return PartialView(user);
+        }
     }
 }
