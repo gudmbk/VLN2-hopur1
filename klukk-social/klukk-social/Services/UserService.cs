@@ -109,7 +109,7 @@ namespace klukk_social.Services
             using (var dbContext = new ApplicationDbContext())
             {
                 var request = (from fr in dbContext.FriendRequests
-                               where fr.FromUserId == friendId && fr.ToUserId == userId
+                               where fr.FromUserId == friendId && fr.ToUserId == userId || fr.FromUserId == userId && fr.ToUserId == friendId
                                 select fr).FirstOrDefault();
                 return request;
             }
