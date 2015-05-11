@@ -8,11 +8,8 @@
 @*if Is childs post OR if is childs friend post*@
 @if (!User.IsInRole("Parent"))
 {
-    @Html.BeginForm("AddStar", "Post", FormMethod.Post)
-    {
-        <input type="hidden"/>
-        <button type="submit" class="btn btn-default btn-xs " id="add-star"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
-    }
+
+    <button type="submit" class="btn btn-default btn-xs " id="add-star"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
 	<button type="button" class="btn btn-default btn-xs btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Un Star</button>
 }
 
