@@ -31,7 +31,6 @@
 
     $("#add-star").click(function () {
         var itemToStar = $(this).val();
-        alert("test");
         $.ajax({
             type: "POST",
             url: "/Post/AddLike",

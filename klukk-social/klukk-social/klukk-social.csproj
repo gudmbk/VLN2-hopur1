@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201505111145312_added to notification.Designer.cs">
       <DependentUpon>201505111145312_added to notification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505112301250_openGrp.cs" />
+    <Compile Include="Migrations\201505112301250_openGrp.Designer.cs">
+      <DependentUpon>201505112301250_openGrp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -290,10 +294,10 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\StarReportEditPartial.cshtml" />
     <Content Include="Views\User\FriendsList.cshtml" />
+    <Content Include="Views\Group\CreateGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Group\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505111145312_added to notification.resx">
       <DependentUpon>201505111145312_added to notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505112301250_openGrp.resx">
+      <DependentUpon>201505112301250_openGrp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

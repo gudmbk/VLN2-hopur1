@@ -1,0 +1,13 @@
+﻿
+
+<h2>Stofna hóp</h2>
+@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, null))
+{
+    <label for="name">Nafn grúppu: </label>
+    <input type="text" name="name" id="name"/>
+    <label for="description">Lýsing: </label>
+    <textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..."></textarea>
+    <label for="opengroup">Opinn hópur </label>
+    <input type="checkbox" name="opengroup" id="opengroup" value="true"/>
+    <input type="submit" value="Stofna"/ >
+}
