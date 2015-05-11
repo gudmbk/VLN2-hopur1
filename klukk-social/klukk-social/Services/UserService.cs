@@ -122,7 +122,7 @@ namespace klukk_social.Services
 	            var friends = (from u in dbContext.Users
 	                join f in dbContext.Friendships
                     on u.Id equals f.ToUserId
-                    where f.FromUserId == userId || f.ToUserId == userId
+                    where f.FromUserId == userId
 	                select u).ToList();
 	            return friends;
 	        }

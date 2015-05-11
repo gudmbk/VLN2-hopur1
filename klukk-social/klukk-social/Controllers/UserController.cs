@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Security;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
