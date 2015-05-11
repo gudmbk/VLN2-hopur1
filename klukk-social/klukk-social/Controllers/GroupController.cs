@@ -12,6 +12,7 @@ namespace klukk_social.Controllers
         [HttpPost]
         public ActionResult CreateGroup(FormCollection collection)
         {
+
             return null;
         }
     }
