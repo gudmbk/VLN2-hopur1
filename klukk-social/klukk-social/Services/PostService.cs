@@ -82,7 +82,7 @@ namespace klukk_social.Services
             {
                 var list = (from post in dbContext.Posts
                     join friend in dbContext.Friendships on post.FromUserId equals friend.FromUserId
-                    where friend.ToUserId == userId || post.ToUserId == userId
+                    where friend.ToUserId == userId
                     orderby post.Date descending 
                     select post).ToList();
 
