@@ -68,5 +68,12 @@ namespace klukk_social.Controllers
             _postService.AddLike(like);
             return null;
         }
+
+
+        public ActionResult RemoveStar(InteractionBarViewModel likeModel)
+        {
+            return null;
+        }
+
     }
 }

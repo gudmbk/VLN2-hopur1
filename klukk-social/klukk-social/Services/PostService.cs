@@ -106,5 +106,16 @@ namespace klukk_social.Services
                 dbContext.SaveChanges();
             }
         }
+
+     internal void RemoveStar(Likes like)
+        {
+
+
+
+        }
+       
+
+
+
     }
 }
