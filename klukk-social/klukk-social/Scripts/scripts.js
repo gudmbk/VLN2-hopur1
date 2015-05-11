@@ -38,7 +38,7 @@
             traditional: true,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(itemToStar),
-            success: function () {  },
+            success: function () { alert("SirLikesAlot") },
             error: function (data) { console.log(data) }
         });
     });
