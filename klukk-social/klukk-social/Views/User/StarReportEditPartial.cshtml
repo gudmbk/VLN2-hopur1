@@ -1,19 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
-@model klukk_social.Models.UserViewModel
+@model klukk_social.Models.InteractionBarViewModel
 @{
-	
-	var currUser = Model.CurrentUserId.Id;
 	bool thisChildsPost;
 	bool parentOwnsThisChild; 
-	if (Model.Comment.Body == "")
+	if (Model.IsPost)
 	{
-		thisChildsPost = Model.Feed[0].FromUserId == currUser;
+		thisChildsPost = Model.PostOwner == User.Identity.GetUserId();
 		parentOwnsThisChild = false; //FIX this 
 	}
 	else
 	{
-		thisChildsPost = Model.Comment.UserId == currUser;
-		parentOwnsThisChild = false; //FIX this! old -> = us.IsParentsChild(currUser, Model.Comment.UserId);
+		thisChildsPost = Model.PostOwner == User.Identity.GetUserId();
+		parentOwnsThisChild = false; //FIX this! old -> = us.IsParentsChild(User.Identity.GetUserId(), Model.Comment.UserId);
 	}
 	
 }

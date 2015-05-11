@@ -12,7 +12,10 @@
 {
     @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
 
-    @Html.Partial("PostPartial", Model)
+        foreach (var post in Model.Feed)
+		{
+			@Html.Partial("PostPartial", post)
+		}
 }
 else
 {

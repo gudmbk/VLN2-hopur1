@@ -58,7 +58,6 @@ namespace klukk_social.Controllers
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
-			profile.CurrentUserId = _userService.FindById(User.Identity.GetUserId());
             return View(profile);
         }
 

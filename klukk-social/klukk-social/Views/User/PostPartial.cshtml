@@ -1,45 +1,43 @@
 ﻿@using klukk_social.Services
 @using Microsoft.AspNet.Identity
 @using klukk_social.Models
-@model klukk_social.Models.UserViewModel
+@model klukk_social.Models.Post
 
 
 @{
 	UserService us = new UserService();
-	UserViewModel postCommentForward = new UserViewModel();
-	postCommentForward.Feed = Model.Feed;
-	postCommentForward.CurrentUserId = Model.CurrentUserId;
-	postCommentForward.Person = Model.Person;
+	InteractionBarViewModel postCommentForward = new InteractionBarViewModel(Model.FromUserId, true, Model.Id);
+
 }
 <div class="card postpadd">
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
-				<img src='@us.GetProfileUrl(Model.Feed[0].FromUserId)' class="search imagesmall" />
-				@Html.ActionLink(@us.GetFullNameById(Model.Feed[0].FromUserId), "Profile", new { userId = Model.Feed[0].FromUserId })
+				<img src='@us.GetProfileUrl(Model.FromUserId)' class="search imagesmall" />
+				@Html.ActionLink(@us.GetFullNameById(Model.FromUserId), "Profile", new { userId = Model.FromUserId })
 			</div>
 			@if (User.IsInRole("Parent"))
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
-					<img src='@us.GetProfileUrl(Model.Feed[0].ToUserId)' class="search imagesmall" />
-					@Html.ActionLink(@us.GetFullNameById(Model.Feed[0].ToUserId), "Profile", new { userId = Model.Feed[0].ToUserId })
+					<img src='@us.GetProfileUrl(Model.ToUserId)' class="search imagesmall" />
+					@Html.ActionLink(@us.GetFullNameById(Model.ToUserId), "Profile", new { userId = Model.ToUserId })
 				</div>
 			}
 		</div>
-		<p>@Model.Feed[0].Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
-		<time datetime="@Model.Feed[0].Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		@Html.Partial("StarReportEditPartial", postCommentForward)
 	</div>
 
-	@foreach (var comment in Model.Feed[0].Comments)
+	@foreach (var comment in Model.Comments)
 	{
-		postCommentForward.Comment = comment;
+		postCommentForward.IsPost = false;
 		<div class="commentdialog">
 			<img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
 			@Html.ActionLink(@comment.PosterName, "Profile", new { userId = comment.UserId })
 			<p>@comment.Body</p>
-			<time datetime="@comment.Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+			<time datetime="@comment.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 			@Html.Partial("StarReportEditPartial", postCommentForward)
 		</div>
 
@@ -51,7 +49,7 @@
 			<div class="postdialog">
 				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
 				<input name="comment" />
-				<input type="hidden" name="PostId" value="@Model.Feed[0].Id" />
+				<input type="hidden" name="PostId" value="@Model.Id" />
 				<input type="submit" value="Deila" class="btn btn-default" />
 			</div>
 		}
