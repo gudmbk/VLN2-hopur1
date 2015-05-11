@@ -75,5 +75,26 @@ namespace klukk_social.Services
                 return allPostsAndComments;
 			}
 		}
+
+        public List<Post> GetAllPostForUserFeed(string userId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var list = (from post in dbContext.Posts
+                    join friend in dbContext.Friendships on post.FromUserId equals friend.FromUserId
+                    where friend.ToUserId == userId
+                    orderby post.Date descending 
+                    select post).ToList();
+
+                foreach (var post in list)
+                {
+                    post.Comments = (from comment in dbContext.Comments
+                        where comment.PostId == post.Id
+                        orderby comment.Date ascending
+                        select comment).ToList();
+                }
+                return list;
+            }
+        }
     }
 }
