@@ -19,7 +19,7 @@ namespace klukk_social.Models
 		{
 			Person = new User();
 			Feed = new List<Post>();
-			friends = false;
+			Friends = false;
 			AllChildren = new List<User>();
 			Comment = new Comment();
 		}
