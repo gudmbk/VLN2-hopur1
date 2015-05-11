@@ -1,19 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @model klukk_social.Models.InteractionBarViewModel
 @{
-	bool thisChildsPost;
-	bool parentOwnsThisChild; 
-	if (Model.IsPost)
-	{
-		thisChildsPost = Model.PostOwner == User.Identity.GetUserId();
-		parentOwnsThisChild = false; //FIX this 
-	}
-	else
-	{
-		thisChildsPost = Model.PostOwner == User.Identity.GetUserId();
-		parentOwnsThisChild = false; //FIX this! old -> = us.IsParentsChild(User.Identity.GetUserId(), Model.Comment.UserId);
-	}
-	
+	bool thisChildsPost = Model.PostOwner == User.Identity.GetUserId(); ;
+	bool parentOwnsThisChild = false; 
 }
 
 @*if Is childs post OR if is childs friend post*@

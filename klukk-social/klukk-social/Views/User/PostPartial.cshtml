@@ -33,6 +33,7 @@
 	@foreach (var comment in Model.Comments)
 	{
 		postCommentForward.IsPost = false;
+		postCommentForward.PostOwner = comment.UserId;
 		<div class="commentdialog">
 			<img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
 			@Html.ActionLink(@comment.PosterName, "Profile", new { userId = comment.UserId })
