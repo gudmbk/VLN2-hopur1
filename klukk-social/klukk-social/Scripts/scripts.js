@@ -29,24 +29,17 @@
         });
     });
 
-    $(".add-star").click(function () {
+    $("#add-star").click(function () {
         var itemToStar = $(this).val();
-        var toHide = $(this);
+        alert("test");
         $.ajax({
             type: "POST",
             url: "/Post/AddLike",
             traditional: true,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(itemToStar),
-            success: function () { alert("SirLikesAlot") },
+            success: function () { },
             error: function (data) { console.log(data) }
         });
     });
-
-
-
-
-
-
-
 });

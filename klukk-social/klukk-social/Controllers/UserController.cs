@@ -155,7 +155,19 @@ namespace klukk_social.Controllers
         public ActionResult ChildSidebarPartial()
         {
             var user = _userService.FindById(User.Identity.GetUserId());
-            return PartialView(user);
+            return PartialView("ChildSidebarPartial", user);
+        }
+        [ChildActionOnly]
+        public ActionResult ParentSidebarPartial()
+        {
+            var user = _userService.FindById(User.Identity.GetUserId());
+            ViewBag.Children = _userService.GetAllChildren(user.Id);
+            return PartialView("ParentSidebarPartial", user);
+        }
+
+        public ActionResult GoToChild()
+        {
+            return View();
         }
     }
 }

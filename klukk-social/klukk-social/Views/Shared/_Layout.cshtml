@@ -45,23 +45,23 @@
 	<div class="container body-content">
 		@if (User.IsInRole("Parent"))
 		{
-			@Html.Partial("ParentSidebarPartial")
+			@Html.Action("ParentSidebarPartial", "User")
 		}
 		else
 		{
-			@Html.Partial("ChildSidebarPartial")
-		}
+            @Html.Action("ChildSidebarPartial", "User")
+        }
 
 
-		<div class="contentarea">
-			@RenderBody()
-		</div>
-	</div>
+            <div class="contentarea">
+                @RenderBody()
+            </div>
+        </div>
 
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
-	@Scripts.Render("~/Scripts/scripts.js");
-	@RenderSection("scripts", required: false)
-</body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/Scripts/scripts.js");
+        @RenderSection("scripts", required: false)
+    </body>
 
-</html>
+    </html>

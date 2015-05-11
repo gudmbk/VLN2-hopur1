@@ -1,21 +1,14 @@
-﻿@using Microsoft.AspNet.Identity
-@using klukk_social.Models
-@using klukk_social.Services
+﻿@model klukk_social.Models.User
 
-@{
-	UserService us = new UserService();
-	var children = us.GetAllChildren(User.Identity.GetUserId());
-	var profilePic = us.GetProfileUrl(User.Identity.GetUserId());
-    var fullName = us.GetFullNameById(User.Identity.GetUserId());
-}
 <div class="sidebar">
-	<img src="@profilePic" alt="Alternate Text" />
-	<a href="#">@fullName</a>
+	<img src="@Model.ProfilePic" alt="Alternate Text" />
+	<a href="#">@Model.FullName</a>
 	@Html.ActionLink("Settings", "ParentSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
 
-	@foreach (var child in children)
-	{
-		@Html.ActionLink(child.FirstName, "GoToChild", "User", new { @class = "btn btn-default btn-lg btn-block" } )
-	}
+	@foreach (var child in @ViewBag.Children)
+    {
+        @*@Html.ActionLink(child.FirstName, "GoToChild", "User", new { @class = "btn btn-default btn-lg btn-block" })*@
+
+    }
     @Html.ActionLink("Add Child", "CreateChild", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default btn-lg btn-block" })
 </div>
