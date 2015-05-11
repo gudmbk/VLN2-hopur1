@@ -109,6 +109,14 @@ namespace klukk_social.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 					IdentityManager manager = new IdentityManager();
+                    if (!manager.RoleExists("Parent"))
+                    {
+                        manager.CreateRole("Parent");
+                    }
+                    if (!manager.RoleExists("Child"))
+                    {
+                        manager.CreateRole("Child");
+                    }
 					manager.AddUserToRole(user.Id, "Parent");
                     return RedirectToAction("Index", "Home");
                 }
