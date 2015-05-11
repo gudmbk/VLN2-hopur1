@@ -4,6 +4,7 @@ using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Security;
 
 namespace klukk_social.Controllers
 {
@@ -57,6 +58,7 @@ namespace klukk_social.Controllers
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
+			profile.CurrentUserId = _userService.FindById(User.Identity.GetUserId());
             return View(profile);
         }
 
@@ -102,7 +104,6 @@ namespace klukk_social.Controllers
 		[Authorize(Roles = "Child")]
 		public ActionResult ChildSettings(FormCollection form)
 		{
-
 			var newProfilePicUrl = form["picURL"];
 			var manager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
 			var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -144,6 +145,13 @@ namespace klukk_social.Controllers
             
 		    return View(list);
 		}
+
+		public ActionResult DeleteCurrentUser() // WARNING
+		{
+			//skrifa?
+			return View();
+		}
+		
         [ChildActionOnly]
         public ActionResult ChildSidebarPartial()
         {

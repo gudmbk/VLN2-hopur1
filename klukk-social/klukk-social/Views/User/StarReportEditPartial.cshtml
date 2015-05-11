@@ -2,10 +2,10 @@
 @model klukk_social.Models.UserViewModel
 @{
 	
-	var currUser = Model.Person.Id;
+	var currUser = Model.CurrentUserId.Id;
 	bool thisChildsPost;
 	bool parentOwnsThisChild; 
-	if (Model.Comment == null)
+	if (Model.Comment.Body == "")
 	{
 		thisChildsPost = Model.Feed[0].FromUserId == currUser;
 		parentOwnsThisChild = false; //FIX this 
