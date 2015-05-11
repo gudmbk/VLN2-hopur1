@@ -33,7 +33,7 @@ namespace klukk_social.Controllers
 		public ActionResult ChildHome()
 		{
 			var userId = User.Identity.GetUserId();
-			var listOfPosts = _postService.GetAllPostsToUser(userId);
+			var listOfPosts = _postService.GetAllPostForUserFeed(userId);
 			var user = _userService.FindById(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
