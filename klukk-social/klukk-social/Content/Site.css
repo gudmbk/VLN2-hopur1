@@ -225,6 +225,7 @@ body{
 .clearright{
 	clear:right;
 }
+
 .fixtextinfootercontent {
     text-align: justify;
     width: 40%;
@@ -232,3 +233,11 @@ body{
     right: 70%;
     left:9%;
 }
+
+.friend-req {
+    
+}
+accept-friend {
+    
+}
+

@@ -211,6 +211,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Compile Include="Models\FriendsViewModel.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -274,6 +275,7 @@
     <Content Include="Views\User\ParentSettings.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\StarReportEditPartial.cshtml" />
+    <Content Include="Views\User\FriendsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
