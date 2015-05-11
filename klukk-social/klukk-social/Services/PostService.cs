@@ -96,5 +96,15 @@ namespace klukk_social.Services
                 return list;
             }
         }
+
+        internal void AddLike(Likes like)
+        {
+
+            using (var dbContext = new ApplicationDbContext())
+            {
+                dbContext.Likes.Add(like);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }
