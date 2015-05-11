@@ -6,7 +6,8 @@ namespace klukk_social.Models
     [NotMapped]
     public class UserViewModel
     {
-        public User Person { get; set; }
+        
+		public User Person { get; set; }
 
         public List<Post> Feed { get; set; }
 		public readonly bool Friends;
@@ -16,7 +17,11 @@ namespace klukk_social.Models
         
 		public UserViewModel()
 		{
-
+			Person = new User();
+			Feed = new List<Post>();
+			friends = false;
+			AllChildren = new List<User>();
+			Comment = new Comment();
 		}
         public UserViewModel(bool friend)
         {

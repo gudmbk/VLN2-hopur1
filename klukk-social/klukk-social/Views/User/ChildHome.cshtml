@@ -5,5 +5,8 @@
 
 @foreach (var post in Model.Feed)
 {
-    @Html.Partial("PostPartial", post)
+	UserViewModel commentPartial = new UserViewModel();
+	commentPartial.Person = Model.Person;
+	commentPartial.Feed.Add(post);
+    @Html.Partial("PostPartial", commentPartial)
 }

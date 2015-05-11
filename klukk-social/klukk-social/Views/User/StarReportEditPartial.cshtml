@@ -1,20 +1,19 @@
-﻿@using klukk_social.Services
-@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity
 @model klukk_social.Models.UserViewModel
 @{
-	UserService us = new UserService();
-	var currUser = User.Identity.GetUserId();
+	
+	var currUser = Model.Person.Id;
 	bool thisChildsPost;
-	bool parentOwnsThisChild;
+	bool parentOwnsThisChild; 
 	if (Model.Comment == null)
 	{
 		thisChildsPost = Model.Feed[0].FromUserId == currUser;
-		parentOwnsThisChild = us.IsParentsChild(currUser, Model.Feed[0].FromUserId);
+		parentOwnsThisChild = false; //FIX this 
 	}
 	else
 	{
 		thisChildsPost = Model.Comment.UserId == currUser;
-		parentOwnsThisChild = us.IsParentsChild(currUser, Model.Comment.UserId);
+		parentOwnsThisChild = false; //FIX this! old -> = us.IsParentsChild(currUser, Model.Comment.UserId);
 	}
 	
 }
