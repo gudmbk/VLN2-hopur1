@@ -57,5 +57,13 @@ namespace klukk_social.Controllers
             
             return View("Error");
         }
+
+        public ActionResult AddLike()
+        {
+
+
+
+            return null;
+        }
     }
 }

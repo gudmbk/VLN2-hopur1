@@ -19,7 +19,7 @@
 @*if Is childs post OR if is childs friend post*@
 @if (!User.IsInRole("Parent"))
 {
-	<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    <button type="button" value="@Model"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star add-star" aria-hidden="true"></span> Star</button>
 	<button type="button" class="btn btn-default btn-xs btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Un Star</button>
 }
 
