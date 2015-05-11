@@ -1,13 +1,45 @@
-﻿
+﻿@using klukk_social.Services
+@using Microsoft.AspNet.Identity
+@model klukk_social.Models.UserViewModel
+@{
+	UserService us = new UserService();
+	var currUser = User.Identity.GetUserId();
+	bool thisChildsPost;
+	bool parentOwnsThisChild;
+	if (Model.Comment == null)
+	{
+		thisChildsPost = Model.Feed[0].FromUserId == currUser;
+		parentOwnsThisChild = us.IsParentsChild(currUser, Model.Feed[0].FromUserId);
+	}
+	else
+	{
+		thisChildsPost = Model.Comment.UserId == currUser;
+		parentOwnsThisChild = us.IsParentsChild(currUser, Model.Comment.UserId);
+	}
+	
+}
 
 @*if Is childs post OR if is childs friend post*@
-<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+@if (!User.IsInRole("Parent"))
+{
+	<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+	<button type="button" class="btn btn-default btn-xs btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Un Star</button>
+}
 
 @*if Is childs post OR Parent owns this child*@
-<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+@if (thisChildsPost || parentOwnsThisChild)
+{
+	<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+}
 
 @*if Is childs friend post OR if is friend post of a child we own*@
-<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
+@if (false)
+{
+	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
+}
 
 @*if Is childs post OR Parent owns this child*@
-<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+@if (thisChildsPost || parentOwnsThisChild)
+{
+	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+}

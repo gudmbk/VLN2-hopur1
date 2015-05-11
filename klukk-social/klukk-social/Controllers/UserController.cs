@@ -11,14 +11,15 @@ namespace klukk_social.Controllers
     public class UserController : Controller
     {
         private PostService _postService = new PostService();
-        private UserService _userSerice = new UserService();
+        private UserService _userService = new UserService();
+		
 
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentHome()
 		{
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllChildrenPosts(userId);
-			var user = _userSerice.FindById(userId);
+			var user = _userService.FindById(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
@@ -32,7 +33,7 @@ namespace klukk_social.Controllers
 		{
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllPostsToUser(userId);
-			var user = _userSerice.FindById(userId);
+			var user = _userService.FindById(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
@@ -50,7 +51,7 @@ namespace klukk_social.Controllers
         public ActionResult Profile(string userId)
         {
             var listOfPosts = _postService.GetAllPostsToUser(userId);
-            var user = _userSerice.FindById(userId);
+            var user = _userService.FindById(userId);
             UserViewModel profile = new UserViewModel();
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
@@ -61,7 +62,7 @@ namespace klukk_social.Controllers
         public ActionResult Search(FormCollection searchBar)
         {
             string prefix = searchBar["user-input"];
-            List<User> users = _userSerice.Search(prefix);
+            List<User> users = _userService.Search(prefix);
             return View(users);
         }
         /// <summary>
@@ -75,7 +76,7 @@ namespace klukk_social.Controllers
             FriendRequest friendRequest = new FriendRequest();
             friendRequest.FromUserId = User.Identity.GetUserId();
             friendRequest.ToUserId = json.ToUserId;
-            _userSerice.SendFriendRequest(friendRequest);
+            _userService.SendFriendRequest(friendRequest);
             return null;
         }
 

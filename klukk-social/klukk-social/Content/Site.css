@@ -117,11 +117,11 @@ body{
 
 .search {
 	border-radius: 5px;
-	height: 185px;
-	width: 185px;
+	height: 205px;
+	width: 205px;
 	object-fit:cover;
 	object-position: center;
-	margin: 5px;
+	margin-bottom: 5px;
 }
 
 .searchcard{
@@ -155,7 +155,7 @@ body{
 }
 
 .searchpadd{
-	padding: 10px;
+	padding: 5px;
 }
 
 .imagesmall{
@@ -221,6 +221,9 @@ body{
     width: 200px;
     height: 200px;
     border: none;
+}
+.clearright{
+	clear:right;
 }
 .fixtextinfootercontent {
     text-align: justify;
