@@ -6,19 +6,32 @@
 	bool parentOwnsThisChild = false;
     int count = 0;
     int id = 0;
-}
-@if (Model.IsPost)
-{
-	thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
-	parentOwnsThisChild = Model.Person.ParentId == User.Identity.GetUserId();
-	count = Model.Feed[0].Likes.Count;
-	id = Model.Feed[0].Id;
-}
-else
-{
-	thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
-	parentOwnsThisChild = Model.Comment.UserId == User.Identity.GetUserId();
-	id = Model.Comment.Id;
+	string childsParent = "";
+	foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
+	{
+		if (Model.IsPost && child.Id == Model.Feed[0].FromUserId)
+		{
+			childsParent = child.ParentId;
+		}
+		else if(!Model.IsPost && child.Id == Model.Comment.UserId)
+		{
+			childsParent = child.ParentId;
+		}
+	}
+	if (Model.IsPost)
+	{
+		
+		thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
+		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
+		count = Model.Feed[0].Likes.Count;
+		id = Model.Feed[0].Id;
+	}
+	else
+	{
+		thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
+		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
+		id = Model.Comment.Id;
+	}
 }
 
 @*if Is childs post OR if is childs friend post*@
@@ -38,11 +51,6 @@ else
 @if (thisChildsPost || parentOwnsThisChild)
 {
 	<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
-}
-
-@*if Is childs post OR Parent owns this child*@
-@if (thisChildsPost || parentOwnsThisChild)
-{
 	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
 }
 else
