@@ -17,12 +17,9 @@
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Breita Mynd
 	</button>
 
-	<button type="button" class="btn btn-default btn-lg btn-block">
-		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings
+	<button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
 	</button>
-	
-
-
 
 	@*
 	@Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
