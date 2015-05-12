@@ -217,6 +217,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Services\Helpers.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />

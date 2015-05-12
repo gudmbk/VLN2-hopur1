@@ -27,7 +27,7 @@
 				</div>
 			}
 		</div>
-		<p>@Model.Feed[0].Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+		<p>@Html.Raw(Model.Feed[0].HtmlText)</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Feed[0].Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		@Html.Partial("StarReportEditPartial", postCommentForward)
 

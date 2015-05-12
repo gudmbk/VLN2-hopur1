@@ -30,7 +30,6 @@
     });
 
     $(".delete-post").click(function () {
-        alert("ete");
         var postId = $(this).attr("data-id");
         var jsonPostId = { Id: 0, postId: postId }
         var toHide = $(this);
