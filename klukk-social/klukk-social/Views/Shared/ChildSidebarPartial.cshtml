@@ -1,17 +1,34 @@
 ﻿@model klukk_social.Models.User
 
 <div class="sidebar">
+	<img src="@Model.ProfilePic" alt="Alternate Text" />
    
-        <img src="@Model.ProfilePic" alt="Alternate Text" />
-        @Html.ActionLink(@Model.FullName, "Profile", "User", new { userId = Model.Id }, new { @class = "btn btn-default btn-lg btn-block whitepace" })
-        @Html.ActionLink(" Vinir", "FriendsList", "User", new { @class = "btn btn-default btn-lg btn-block" })
-        <input type="submit" value="Grúbbur" class="btn btn-default btn-lg btn-block" />
-        <input type="submit" value="Eitthvað annað?" class="btn btn-default btn-lg btn-block" />
-        @Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
-	<button type="button" class="btn btn-default btn-lg btn-block">
+	@Html.ActionLink(@Model.FullName, "Profile", "User", new { userId = Model.Id }, new { @class = "btn btn-default btn-lg btn-block whitepace" })
+
+	<button onclick="location.href='@Url.Action("FriendsList", "User")'" class="btn btn-default btn-lg btn-block">
 		<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
 	</button>
+
+	<button onclick="location.href='@Url.Action("Index", "Group")'" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-record" aria-hidden="true"></span> Grúbbur
+	</button>
+	
+	<button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Breita Mynd
+	</button>
+
 	<button type="button" class="btn btn-default btn-lg btn-block">
 		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings
 	</button>
+	
+
+
+
+	@*
+	@Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
+	@Html.ActionLink(" Vinir", "FriendsList", "User", new { @class = "btn btn-default btn-lg btn-block" })
+	<button onclick="location.href='@Url.Action("FriendsList", "User")'" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
+	</button>*@
+
 </div>
