@@ -29,10 +29,7 @@
 					</div>
 					<input type="submit" value="Leita" class="btn btn-default" />
 				}
-				<ul class="nav navbar-nav">
-					@*<li>@Html.ActionLink("Skil", "Index", "Home")</li>
-					<li>@Html.ActionLink("Póst", "About", "Home")</li>*@
-				</ul>
+
 				<div class="nav navbar-nav navbar-right">
 					<span class="navbar-brand navbar-brand-centered white"><span class="glyphicon glyphicon-comment" id="logIcon"></span></span>
 					<span class="navbar-brand navbar-brand-centered white"><span class="glyphicon glyphicon-warning-sign" id="logIcon"></span></span>
@@ -60,8 +57,12 @@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
+<script src="/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
         @Scripts.Render("~/Scripts/scripts.js");
         @RenderSection("scripts", required: false)
+
     </body>
 
     </html>

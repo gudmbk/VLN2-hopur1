@@ -22,6 +22,7 @@ namespace klukk_social.Models
         public DateTime Date { get; set; }
         [NotMapped]
         public List<Comment> Comments = new List<Comment>();
+        public List<Likes> Likes = new List<Likes>();
 
         public Post()
         {

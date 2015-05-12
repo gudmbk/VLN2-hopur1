@@ -107,15 +107,18 @@ namespace klukk_social.Services
             }
         }
 
-     internal void RemoveStar(Likes like)
+        public Post GetPostById(int postId)
         {
-
-
-
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var item = (from p in dbContext.Posts
+                    where p.Id == postId
+                    select p).FirstOrDefault();
+                item.Likes = (from l in dbContext.Likes
+                    where l.PostId == item.Id
+                    select l).ToList();
+                return item;
+            }
         }
-       
-
-
-
     }
 }

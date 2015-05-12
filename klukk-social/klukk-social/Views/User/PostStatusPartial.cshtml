@@ -1,7 +1,7 @@
 ﻿@using klukk_social.Models
 @model Post
 <div class="card postpadd">
-	@using (Html.BeginForm("PostStatus", "Post", FormMethod.Post, new { @class = "post-status postdialog", role = "form" }))
+	@using (Html.BeginForm("PostStatus", "Post", FormMethod.Post, new { @class = "postdialog", role = "form" }))
 	{
 		<textarea class="form-control" rows="4" name="status"></textarea>
 		<input type="hidden" name="toUserId" value="@Model.ToUserId" />

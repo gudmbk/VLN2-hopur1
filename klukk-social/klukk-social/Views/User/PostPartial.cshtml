@@ -28,6 +28,12 @@
 		<p>@Model.Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Date.ToString()" title="@Model.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		@Html.Partial("StarReportEditPartial", postCommentForward)
+
+        <button data-id="@Model.Id" data-user="@User.Identity.GetUserId()" type="button" class="like-button" title="Click to like this post!">
+            <i class="fa fa-thumbs-up"></i> Like
+            |
+            <span class="like-count">0</span>
+        </button>
 	</div>
 
 	@foreach (var comment in Model.Comments)
