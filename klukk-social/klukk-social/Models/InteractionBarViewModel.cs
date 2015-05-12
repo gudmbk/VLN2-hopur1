@@ -10,6 +10,7 @@ namespace klukk_social.Models
 		public List<Post> Feed { get; set; }
 		public Comment Comment { get; set; }
 		public bool IsPost { get; set; }
+		public List<User> AllChildren { get; set; }
 
 		public InteractionBarViewModel()
 		{
@@ -17,6 +18,7 @@ namespace klukk_social.Models
 			IsPost = false;
 			Feed = new List<Post>();
 			Comment = new Comment();
+			AllChildren = new List<User>();
 		}
     }
 }

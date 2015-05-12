@@ -21,10 +21,12 @@ namespace klukk_social.Controllers
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllChildrenPosts(userId);
 			var user = _userService.FindById(userId);
+			var ListOfParentsChildren = _userService.GetAllChildren(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
+			profile.AllChildren = ListOfParentsChildren;
 			return View(profile);
 		}
 

@@ -15,5 +15,6 @@
 	InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
 	UserPostInfo.Feed.Add(post);
 	UserPostInfo.IsPost = true;
+	UserPostInfo.AllChildren = Model.AllChildren;
 	@Html.Partial("PostPartial", UserPostInfo)
 }

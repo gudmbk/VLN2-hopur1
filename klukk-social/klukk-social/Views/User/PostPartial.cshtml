@@ -7,7 +7,7 @@
 @{
 	UserService us = new UserService();
 	InteractionBarViewModel postCommentForward = new InteractionBarViewModel();
-	postCommentForward.Person = Model.Person;
+	postCommentForward.AllChildren = Model.AllChildren;
 	postCommentForward.IsPost = true;
 	postCommentForward.Feed = Model.Feed;
 }
@@ -37,7 +37,7 @@
 	@foreach (var comment in Model.Feed[0].Comments)
 	{
 		InteractionBarViewModel commentForwards = new InteractionBarViewModel();
-		commentForwards.Person = Model.Person;
+		commentForwards.AllChildren = Model.AllChildren;
 		commentForwards.Comment = comment;
 		<div class="commentdialog">
 			<img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
