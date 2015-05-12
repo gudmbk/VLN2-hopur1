@@ -4,28 +4,20 @@ namespace klukk_social.Services
 {
     public static class Helpers
     {
-        public static string FormatUrls(string input)
+        public static string ParseText(string input)
         {
             string output = input;
-            Regex regx = new Regex(@"(https?:)?//?[^'""<>]+?\.(jpg|jpeg|gif|png)", RegexOptions.IgnoreCase);
+            Regex youTube = new Regex(@"(https?:)?//?www.?youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
+            Regex imgRegx = new Regex(@"(https?:)?//?[^\'<>]+?\.(jpg|jpeg|gif|png)", RegexOptions.IgnoreCase);
 
-            MatchCollection mactches = regx.Matches(output);
+            MatchCollection mactches = youTube.Matches(output);
+            MatchCollection imgMactches = imgRegx.Matches(output);
 
             foreach (Match match in mactches)
             {
-                output = output.Replace(match.Value, "<a href='" + match.Value + "' target='blank'>" + match.Value + "</a>");
+                output = output.Replace(match.Value, "<iframe width='480' height='390' src='" + match.Value + "'  frameborder='0' allowfullscreen></iframe>");
             }
-            return output;
-        }
-
-        public static string FormatImages(string input)
-        {
-            string output = input;
-            Regex regx = new Regex(@"(https?:)?//?[^\'<>]+?\.(jpg|jpeg|gif|png)", RegexOptions.IgnoreCase);
-
-            MatchCollection mactches = regx.Matches(output);
-
-            foreach (Match match in mactches)
+            foreach (Match match in imgMactches)
             {
                 output = output.Replace(match.Value, "<img src='" + match.Value + "' alt='No image to display' />");
             }

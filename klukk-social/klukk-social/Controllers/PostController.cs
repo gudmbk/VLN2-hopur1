@@ -22,7 +22,7 @@ namespace klukk_social.Controllers
                 return RedirectToAction("ChildHome", "User");
             }
             post.Text = text;
-            post.HtmlText = Helpers.FormatImages(text);
+            post.HtmlText = Helpers.ParseText(text);
             post.FromUserId = User.Identity.GetUserId();
             post.ToUserId = collection["toUserId"];
             post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
