@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201505112330027_revert.Designer.cs">
       <DependentUpon>201505112330027_revert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505121333480_tester.cs" />
+    <Compile Include="Migrations\201505121333480_tester.Designer.cs">
+      <DependentUpon>201505121333480_tester.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -323,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505112330027_revert.resx">
       <DependentUpon>201505112330027_revert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505121333480_tester.resx">
+      <DependentUpon>201505121333480_tester.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

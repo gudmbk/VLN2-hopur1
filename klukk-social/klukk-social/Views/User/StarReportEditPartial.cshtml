@@ -11,7 +11,10 @@
 {
 	thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
 	parentOwnsThisChild = Model.Person.ParentId == User.Identity.GetUserId();
-	count = Model.Feed[0].Likes.Count;
+    if (Model.Feed[0].Likes != null)
+    {
+        count = Model.Feed[0].Likes.Count;
+    }
 	id = Model.Feed[0].Id;
 }
 else

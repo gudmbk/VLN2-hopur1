@@ -25,7 +25,6 @@ namespace klukk_social.Hubs
         private string Savelike(int postId, string user)
         {
             var postService = new PostService();
-            var baseContext = this.Context.Request.GetHttpContext();
             var item = postService.GetPostById(postId);
             var liked = new Likes
             {

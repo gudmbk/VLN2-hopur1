@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
 
@@ -14,7 +15,7 @@ namespace klukk_social.Services
                 var listi = (from p in dbContext.Posts
                     where p.ToUserId == userId
                     orderby p.Date descending
-                    select p).ToList();
+                             select p).Include("Likes").ToList();
 
                 foreach (var item in listi)
                 {
@@ -63,7 +64,7 @@ namespace klukk_social.Services
 
 				var allPostsAndComments = (from post in authoredPosts.Union(commentedPosts)
 									orderby post.Date descending
-									select post).ToList();
+                                           select post).Include("Likes").ToList();
 
 				foreach (var post in allPostsAndComments)
 				{
@@ -83,8 +84,8 @@ namespace klukk_social.Services
                 var list = (from post in dbContext.Posts
                     join friend in dbContext.Friendships on post.FromUserId equals friend.FromUserId
                     where friend.ToUserId == userId
-                    orderby post.Date descending 
-                    select post).ToList();
+                    orderby post.Date descending
+                    select post).Include("Likes").ToList();
 
                 foreach (var post in list)
                 {
@@ -92,12 +93,6 @@ namespace klukk_social.Services
                         where comment.PostId == post.Id
                         orderby comment.Date ascending
                         select comment).ToList();
-                }
-                foreach (var post in list)
-                {
-                    post.Likes = (from like in dbContext.Likes
-                                     where like.PostId == post.Id
-                                     select like).ToList();
                 }
 
                 return list;
@@ -109,7 +104,12 @@ namespace klukk_social.Services
 
             using (var dbContext = new ApplicationDbContext())
             {
-                dbContext.Likes.Add(like);
+                var post = dbContext.Posts.Single(p => p.Id == like.PostId);
+                if (post.Likes == null)
+                {
+                    post.Likes = new List<Likes>();
+                }
+                post.Likes.Add(like);
                 dbContext.SaveChanges();
             }
         }
@@ -120,11 +120,7 @@ namespace klukk_social.Services
             {
                 var item = (from p in dbContext.Posts
                     where p.Id == postId
-                    select p).FirstOrDefault();
-
-                item.Likes = (from l in dbContext.Likes
-                    where l.PostId == item.Id
-                    select l).ToList();
+                    select p).Include("Likes").FirstOrDefault();
                 return item;
             }
         }

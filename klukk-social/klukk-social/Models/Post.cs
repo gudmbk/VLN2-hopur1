@@ -22,7 +22,7 @@ namespace klukk_social.Models
         public DateTime Date { get; set; }
         [NotMapped]
         public List<Comment> Comments = new List<Comment>();
-        public List<Likes> Likes = new List<Likes>();
+        public virtual ICollection<Likes> Likes { get; set; }
 
         public Post()
         {
@@ -36,7 +36,6 @@ namespace klukk_social.Models
             Text = String.Empty;
             HtmlText = String.Empty;
             Date = DateTime.Now;
-            Likes = new List<Likes>();
         }
         public Post(string toUserId, string fullName)
         {
