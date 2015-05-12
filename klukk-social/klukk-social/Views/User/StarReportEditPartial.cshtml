@@ -18,6 +18,7 @@ else
 {
 	thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
 	parentOwnsThisChild = Model.Comment.UserId == User.Identity.GetUserId();
+    id = Model.Comment.Id;
 }
 
 @*if Is childs post OR if is childs friend post*@
