@@ -197,6 +197,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\IdentityManager.cs" />
     <Compile Include="Models\FriendRequest.cs" />
     <Compile Include="Models\Friendship.cs" />
@@ -304,6 +305,7 @@
     <Content Include="Views\User\StarReportEditPartial.cshtml" />
     <Content Include="Views\User\FriendsList.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
