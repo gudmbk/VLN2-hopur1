@@ -31,17 +31,31 @@
 
     $(".delete-post").click(function () {
         var postId = $(this).attr("data-id");
-        var jsonPostId = { Id: 0, postId: postId }
+        var isPost = $(this).attr("data-type");
+        var jsonPostId = { postId: postId }
         var toHide = $(this);
-        $.ajax({
-            type: "POST",
-            url: "/Post/RemovePost",
-            traditional: true,
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(jsonPostId),
-            success: function () { toHide.parent().parent().hide() },
-            error: function (data) { console.log(data) }
-        });
+        if(isPost == true) {
+            $.ajax({
+                type: "POST",
+                url: "/Post/RemovePost",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function() { toHide.parent().parent().hide() },
+                error: function(data) { console.log(data) }
+            });
+        } else {
+            alert("BLABLA");
+            $.ajax({
+                type: "POST",
+                url: "/Post/RemoveComment",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function () { toHide.parent().hide() },
+                error: function (data) { console.log(data) }
+            });
+        }
     });
     
     $('.like-button').hover(
@@ -58,7 +72,7 @@
 $(function () {
     var likeClient = $.connection.likeHub;
     likeClient.client.updateLikeCount = function (like) {
-        var counter = $(e.target);
+        var counter = $(".like-button");
         $(counter).fadeOut(function () {
             $(this).text(like);
             $(this).fadeIn();

@@ -143,5 +143,15 @@ namespace klukk_social.Services
                 dbContext.SaveChanges();
             }
         }
+
+        public void RemoveComment(int commentId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var itemToDelete = dbContext.Comments.Single(c => c.Id == commentId);
+                dbContext.Comments.Remove(itemToDelete);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }

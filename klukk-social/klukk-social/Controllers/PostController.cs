@@ -64,5 +64,10 @@ namespace klukk_social.Controllers
             _postService.RemovePost(postId);
             return null;
         }
+        public ActionResult RemoveComment(int commentId)
+        {
+            _postService.RemoveComment(commentId);
+            return null;
+        }
     }
 }
