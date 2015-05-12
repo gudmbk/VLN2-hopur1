@@ -250,7 +250,7 @@ accept-friend {
     
 
 }
-. add-star {
+.add-star {
     
 }
 
@@ -258,4 +258,11 @@ accept-friend {
 	color: #ffffff;
 	background-color: #f0ad4e;
 	border-color: #eea236;
+}
+
+.topblue{
+	margin-bottom: 5px;
+	padding-left: 5px;
+	background-color: #ABE1E4;
+	border-radius: 4px;
 }

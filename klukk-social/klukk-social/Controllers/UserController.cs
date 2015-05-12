@@ -115,7 +115,9 @@ namespace klukk_social.Controllers
 		[Authorize(Roles = "Parent")]
 		public ActionResult ParentSettings()
 		{
-			return View();
+			UserViewModel viewBag = new UserViewModel();
+			viewBag.AllChildren = _userService.GetAllChildren(User.Identity.GetUserId());
+			return View(viewBag);
 		}
 
 		[HttpPost]

@@ -7,6 +7,11 @@ namespace klukk_social.Models
 {
 	public class GroupViewModel
 	{
-		List<Group> GroupList { get; set; }
+		public List<Group> GroupList { get; set; }
+
+		public GroupViewModel()
+		{
+			GroupList = new List<Group>();
+		}
 	}
 }
