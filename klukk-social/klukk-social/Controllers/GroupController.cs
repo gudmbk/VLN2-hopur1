@@ -1,5 +1,7 @@
 ﻿using klukk_social.Models;
+using klukk_social.Services;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace klukk_social.Controllers
 {
@@ -16,9 +18,16 @@ namespace klukk_social.Controllers
 
             return null;
         }
+		
 		public ActionResult Index()
 		{
-			GroupViewModel Bag = new GroupViewModel();
+			GroupService _groupService = new GroupService();
+			GroupViewModel bag = new GroupViewModel();
+			bag.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
+			return View(bag);
+		}
+		public ActionResult OwnedGroups()
+		{
 			return View();
 		}
     }

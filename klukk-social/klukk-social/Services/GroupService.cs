@@ -1,4 +1,6 @@
 ﻿using klukk_social.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace klukk_social.Services
 {
@@ -12,5 +14,18 @@ namespace klukk_social.Services
                 dbContext.SaveChanges();
             }
         }
+
+		public List<Group> GetAllGroups(string userID)
+		{
+			using (var dbContext = new ApplicationDbContext())
+			{
+				var groups = (from g in dbContext.Groups
+							  join gl in dbContext.GroupUsers
+							  on g.Id equals gl.GroupId
+							  where gl.UserId == userID
+							  select g).ToList();
+				return groups;
+			}
+		}
     }
 }
