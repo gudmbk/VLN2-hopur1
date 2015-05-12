@@ -13,6 +13,7 @@ namespace klukk_social.Controllers
     {
         private readonly PostService _postService = new PostService();
         private readonly UserService _userService = new UserService();
+		private readonly GroupService _groupService = new GroupService();
 
 
 		[Authorize(Roles = "Parent")]
@@ -67,7 +68,8 @@ namespace klukk_social.Controllers
         {
             string prefix = searchBar["user-input"];
             List<User> users = _userService.Search(prefix);
-            return View(users);
+			List<Group> groups = _groupService.Search(prefix);
+			return View(new SearchViewModel(groups, users));
         }
  
         [HttpPost]

@@ -139,6 +139,14 @@ body{
 	border-radius: 5px;
 }
 
+.cardgroup {
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	background-color: #9C4B9E;
+	border-radius: 5px;
+}
+
 .takeallwidth{
 	width:100%;
 }
