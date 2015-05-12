@@ -56,6 +56,7 @@ namespace klukk_social.Controllers
 				var listOfPosts = _groupService.GetAllGroupPostsToGroup(groupId);
 				var group = _groupService.FindById(groupId);
 				GroupViewModel groupWall = new GroupViewModel();
+	
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;

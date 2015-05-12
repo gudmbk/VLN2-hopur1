@@ -11,8 +11,8 @@ namespace klukk_social.Services
 
         public List<Post> GetAllPostsToUser(string userId)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
+			var dbContext = new ApplicationDbContext();
+            
                 var listi = (from p in dbContext.Posts
                     where p.ToUserId == userId
                     orderby p.Date descending
@@ -26,30 +26,27 @@ namespace klukk_social.Services
                         select comment).ToList();
                 }
                 return listi;
-            }
+            
         }
  
         public void AddPost(Post post)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                dbContext.Posts.Add(post);
-                dbContext.SaveChanges();
-            }
+			var dbContext = new ApplicationDbContext();
+			dbContext.Posts.Add(post);
+			dbContext.SaveChanges();
         }
 
         public void AddComment(Comment comment)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
+			var dbContext = new ApplicationDbContext();
                 dbContext.Comments.Add(comment);
                 dbContext.SaveChanges();
-            }
+
         }
 		public List<Post> GetAllChildrenPosts(string parentId)
 		{
-			using (var dbContext = new ApplicationDbContext())
-			{
+			var dbContext = new ApplicationDbContext();
+			
 				// Load all posts my children have made
 				var authoredPosts = from post in dbContext.Posts
 									join postAuthor in dbContext.Users on post.FromUserId equals postAuthor.Id
@@ -75,13 +72,13 @@ namespace klukk_social.Services
 									 select comment).ToList();
 				}
                 return allPostsAndComments;
-			}
+			
 		}
 
         public List<Post> GetAllPostForUserFeed(string userId)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
+			var dbContext = new ApplicationDbContext();
+            
                 var list = (from post in dbContext.Posts
                     join friend in dbContext.Friendships on post.FromUserId equals friend.FromUserId
                     where friend.ToUserId == userId
@@ -97,51 +94,50 @@ namespace klukk_social.Services
                 }
 
                 return list;
-            }
+            
         }
 
         public void AddLike(Likes like)
         {
 
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var post = dbContext.Posts.Single(p => p.Id == like.PostId);
-                if (post.Likes == null)
-                {
-                    post.Likes = new List<Likes>();
-                }
-                post.Likes.Add(like);
-                dbContext.SaveChanges();
-            }
+			var dbContext = new ApplicationDbContext();
+            
+			var post = dbContext.Posts.Single(p => p.Id == like.PostId);
+			if (post.Likes == null)
+			{
+			    post.Likes = new List<Likes>();
+			}
+			post.Likes.Add(like);
+			dbContext.SaveChanges();
+            
         }
 
         public Post GetPostById(int postId)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var item = (from p in dbContext.Posts
-                    where p.Id == postId
-                    select p).Include("Likes").FirstOrDefault();
-                return item;
-            }
+			var dbContext = new ApplicationDbContext();
+
+			var item = (from p in dbContext.Posts
+				where p.Id == postId
+				select p).Include("Likes").FirstOrDefault();
+				return item;
+
         }
 
         public void RemovePost(int postToDelete)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var itemToDelete = dbContext.Posts.Single(p => p.Id == postToDelete);
-
-                var commentList = (from cmnt in dbContext.Comments
-                    where cmnt.PostId == postToDelete
-                    select cmnt).ToList();
-                foreach (var item in commentList)
-                {
-                    dbContext.Comments.Remove(item);
-                }
-                dbContext.Posts.Remove(itemToDelete);
-                dbContext.SaveChanges();
-            }
+			var dbContext = new ApplicationDbContext();
+            
+			var itemToDelete = dbContext.Posts.Single(p => p.Id == postToDelete);
+			
+			var commentList = (from cmnt in dbContext.Comments
+			    where cmnt.PostId == postToDelete
+			    select cmnt).ToList();
+			foreach (var item in commentList)
+			{
+			    dbContext.Comments.Remove(item);
+			}
+			dbContext.Posts.Remove(itemToDelete);
+			dbContext.SaveChanges();
         }
 
         public void RemoveComment(int commentId)
