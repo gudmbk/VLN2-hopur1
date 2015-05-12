@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "ParentHome";
+	
 }
 
 <h2 class="card postpadd">Children Feed</h2>
@@ -11,8 +12,8 @@
 
 @foreach (var post in Model.Feed)
 {
-	UserViewModel feedPartial = new UserViewModel();
-	feedPartial.Person = Model.Person;
-	feedPartial.Feed.Add(post);
-	@Html.Partial("PostPartial", feedPartial)
+	InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
+	UserPostInfo.Feed.Add(post);
+	UserPostInfo.IsPost = true;
+	@Html.Partial("PostPartial", UserPostInfo)
 }

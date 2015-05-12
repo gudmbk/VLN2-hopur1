@@ -36,6 +36,7 @@ namespace klukk_social.Models
             Text = String.Empty;
             HtmlText = String.Empty;
             Date = DateTime.Now;
+            Likes = new List<Likes>();
         }
         public Post(string toUserId, string fullName)
         {

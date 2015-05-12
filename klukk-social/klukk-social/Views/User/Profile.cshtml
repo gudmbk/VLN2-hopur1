@@ -2,6 +2,7 @@
 @using Microsoft.AspNet.Identity
 @model UserViewModel
 
+
 <div class="card postpadd">
 	<img src="@Model.Person.ProfilePic" alt="Profile Picture" class="profile floatleft img-responsive" />
 	<h1 class="leftpaddten floatleft">@Model.Person.FullName</h1>
@@ -12,10 +13,13 @@
 {
     @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
 
-        foreach (var post in Model.Feed)
-		{
-			@Html.Partial("PostPartial", post)
-		}
+    foreach (var post in Model.Feed)
+	{
+		InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
+		UserPostInfo.Feed.Add(post);
+		UserPostInfo.IsPost = true;
+		@Html.Partial("PostPartial", UserPostInfo)
+	}
 }
 else
 {

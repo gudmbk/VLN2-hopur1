@@ -1,15 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @model klukk_social.Models.InteractionBarViewModel
+
 @{
-	bool thisChildsPost = Model.PostOwner == User.Identity.GetUserId(); ;
-	bool parentOwnsThisChild = false; 
+	bool thisChildsPost = false;
+	bool parentOwnsThisChild = false;
+    int count = 0;
+    int id = 0;
+}
+@if (Model.IsPost)
+{
+	thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
+	parentOwnsThisChild = Model.Person.ParentId == User.Identity.GetUserId();
+    count = Model.Feed[0].Likes.Count;
+    id = Model.Feed[0].Id;
+}
+else
+{
+	thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
+	parentOwnsThisChild = Model.Comment.UserId == User.Identity.GetUserId();
 }
 
 @*if Is childs post OR if is childs friend post*@
 @if (!User.IsInRole("Parent"))
 {
-
-    <button type="submit" class="btn btn-default btn-xs " id="add-star"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    <button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span>@count Stars</button>
 	<button type="button" class="btn btn-default btn-xs btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Un Star</button>
 }
 
@@ -19,14 +33,12 @@
 	<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
 }
 
-@*if Is childs friend post OR if is friend post of a child we own*@
-@if (false)
-{
-	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
-}
-
 @*if Is childs post OR Parent owns this child*@
 @if (thisChildsPost || parentOwnsThisChild)
 {
 	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+}
+else
+{@*if Is childs friend post OR if is friend post of a child we own*@
+	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
 }

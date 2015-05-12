@@ -5,5 +5,8 @@
 
 @foreach (var post in Model.Feed)
 {
-	@Html.Partial("PostPartial", post)
+	InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
+	UserPostInfo.Feed.Add(post);
+	UserPostInfo.IsPost = true;
+	@Html.Partial("PostPartial", UserPostInfo)
 }

@@ -93,11 +93,18 @@ namespace klukk_social.Services
                         orderby comment.Date ascending
                         select comment).ToList();
                 }
+                foreach (var post in list)
+                {
+                    post.Likes = (from like in dbContext.Likes
+                                     where like.PostId == post.Id
+                                     select like).ToList();
+                }
+
                 return list;
             }
         }
 
-        internal void AddLike(Likes like)
+        public void AddLike(Likes like)
         {
 
             using (var dbContext = new ApplicationDbContext())
@@ -114,6 +121,7 @@ namespace klukk_social.Services
                 var item = (from p in dbContext.Posts
                     where p.Id == postId
                     select p).FirstOrDefault();
+
                 item.Likes = (from l in dbContext.Likes
                     where l.PostId == item.Id
                     select l).ToList();

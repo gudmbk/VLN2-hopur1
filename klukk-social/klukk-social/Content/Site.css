@@ -172,6 +172,10 @@ body{
 .inline{
 	display: inline;
 }
+.whitepace{
+	white-space: normal;
+}
+
 .white{
 	color:white !important;
 }
