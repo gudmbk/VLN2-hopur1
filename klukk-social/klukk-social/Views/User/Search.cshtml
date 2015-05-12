@@ -1,4 +1,6 @@
-﻿@model List<klukk_social.Models.User>
+﻿@using klukk_social.Models
+@using Microsoft.AspNet.Identity
+@model SearchViewModel
 
 @{
     ViewBag.Title = "Search";
@@ -7,7 +9,7 @@
 
 <h2 class="card searchpadd">Search</h2>
 
-@foreach (var user in Model)
+@foreach (var user in Model.Users)
 {
     <div class="card searchcard searchpadd">
         <a href='@Url.Action("Profile", "User", new {userId = user.Id}, null)'>
@@ -18,7 +20,18 @@
         @*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
     </div>
 }
-<div class="searchcard"></div> @*Hakk, Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
+@foreach (var group in Model.Groups)
+{
+	<div class="cardgroup searchcard searchpadd">
+		<a href='@Url.Action("Profile", "Group", new { groupId = group.Id }, null)'>
+			<img src="/Content/Images/EmptyProfilePicture.gif" class="search" />
+		</a>
+		@Html.ActionLink(group.Name, "Profile", new { groupId = group.Id }, new { @class = "btn btn-success btn-block" })
+		@*@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new {userId = user.Id}, new {@class = "btn btn-success btn-block friend-req"})*@
+		@*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
+	</div>
+}
+<div class="searchcard"></div> @*Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
 <div class="searchcard"></div>
 <div class="searchcard"></div>
 <div class="searchcard"></div>
