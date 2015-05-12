@@ -33,28 +33,22 @@
 		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
 		id = Model.Comment.Id;
 	}
-}
-
-@*if Is childs post OR if is childs friend post*@
-@if (!User.IsInRole("Parent"))
-{
-	if(count > 0)
+	if (!User.IsInRole("Parent"))
 	{
-		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button btn-warning-on" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span> @count</button>
+		string warningOn = "";
+		if(count > 0) 
+		{
+			warningOn = "btn-warning-on";
+		}
+		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button @warningOn" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span> @count</button>
+	}
+	if (thisChildsPost || parentOwnsThisChild)
+	{
+		<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
 	}
 	else
 	{
-		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span> @count</button>
+		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
 	}
-}
-
-@*if Is childs post OR Parent owns this child*@
-@if (thisChildsPost || parentOwnsThisChild)
-{
-	<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
-	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
-}
-else
-{@*if Is childs friend post OR if is friend post of a child we own*@
-	<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
 }

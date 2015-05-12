@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using klukk_social.Models;
+using System.Web.Mvc;
 
 namespace klukk_social.Controllers
 {
@@ -15,5 +16,10 @@ namespace klukk_social.Controllers
 
             return null;
         }
+		public ActionResult Index()
+		{
+			GroupViewModel Bag = new GroupViewModel();
+			return View();
+		}
     }
 }

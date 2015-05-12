@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vinabeiðnir</h2>
+<h2 class="card postpadd">Vinabeiðnir</h2>
 
 @foreach (var fr in Model.FriendRequests)
 {
@@ -17,7 +17,7 @@
         </div>
 }
 
-<h2>Vinir</h2>
+<h2 class="card postpadd">Vinir</h2>
 
 @foreach (var user in Model.Friends)
 {
