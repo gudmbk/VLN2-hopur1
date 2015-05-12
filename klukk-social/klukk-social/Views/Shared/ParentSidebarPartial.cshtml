@@ -3,7 +3,7 @@
 <div class="sidebar">
 	<img src="@Model.ProfilePic" alt="Alternate Text" />
 	<a href="#">@Model.FullName</a>
-	@Html.ActionLink("Settings", "ParentSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
+	@Html.ActionLink("Settings", "ParentSettings", "User", new { @class = "btn btn-default btn-lg btn-block whitespace" })
 
 	@foreach (var child in @ViewBag.Children)
     {
