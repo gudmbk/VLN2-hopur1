@@ -11,14 +11,14 @@
 {
 	thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
 	parentOwnsThisChild = Model.Person.ParentId == User.Identity.GetUserId();
-    count = Model.Feed[0].Likes.Count;
-    id = Model.Feed[0].Id;
+	count = Model.Feed[0].Likes.Count;
+	id = Model.Feed[0].Id;
 }
 else
 {
 	thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
 	parentOwnsThisChild = Model.Comment.UserId == User.Identity.GetUserId();
-    id = Model.Comment.Id;
+	id = Model.Comment.Id;
 }
 
 @*if Is childs post OR if is childs friend post*@
@@ -26,11 +26,11 @@ else
 {
 	if(count > 0)
 	{
-		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button btn-warning-on" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span>@count Stars</button>
+		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button btn-warning-on" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span> @count</button>
 	}
 	else
 	{
-		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span>@count Stars</button>
+		<button type="button" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true"></span> @count</button>
 	}
 }
 
