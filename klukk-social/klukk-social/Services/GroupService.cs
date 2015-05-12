@@ -1,4 +1,6 @@
 ﻿using klukk_social.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace klukk_social.Services
 {
