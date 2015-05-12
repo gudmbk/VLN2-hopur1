@@ -2,10 +2,10 @@
 @model klukk_social.Models.InteractionBarViewModel
 
 @{
-	bool thisChildsPost = false;
-	bool parentOwnsThisChild = false;
+	bool thisChildsPost;
+	bool parentOwnsThisChild;
     int count = 0;
-    int id = 0;
+    int id;
 
 	string childsParent = "";
 	foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
@@ -44,11 +44,11 @@
 	}
 	if (thisChildsPost || parentOwnsThisChild)
 	{
-		<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
-		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
-	}
-	else
-	{
+		<button type="button" class="btn btn-default btn-xs btn-info" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+    <button type="button" class="btn btn-default btn-xs btn-danger delete-post" data-id="@id"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+    }
+    else
+    {
 		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
 	}
 }

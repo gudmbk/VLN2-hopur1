@@ -15,10 +15,10 @@
 
     foreach (var post in Model.Feed)
 	{
-		InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
-		UserPostInfo.Feed.Add(post);
-		UserPostInfo.IsPost = true;
-		@Html.Partial("PostPartial", UserPostInfo)
+		InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
+		userPostInfo.Feed.Add(post);
+		userPostInfo.IsPost = true;
+		@Html.Partial("PostPartial", userPostInfo)
 	}
 }
 else

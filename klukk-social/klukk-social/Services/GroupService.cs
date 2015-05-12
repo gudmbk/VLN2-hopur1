@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using klukk_social.Models;
+﻿using klukk_social.Models;
 
 namespace klukk_social.Services
 {

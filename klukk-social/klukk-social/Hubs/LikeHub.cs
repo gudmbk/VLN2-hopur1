@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using ExtensionMethods;
@@ -37,21 +36,21 @@ namespace klukk_social.Hubs
             var count = post.Likes.Count();
             
 
-            return JSONHelper.ToJSON(count);   
+            return JsonHelper.ToJson(count);   
         }
     }
 }
 namespace ExtensionMethods
 {
-    public static class JSONHelper
+    public static class JsonHelper
     {
-        public static string ToJSON(this object obj)
+        public static string ToJson(this object obj)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(obj);
         }
 
-        public static string ToJSON(this object obj, int recursionDepth)
+        public static string ToJson(this object obj, int recursionDepth)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             serializer.RecursionLimit = recursionDepth;

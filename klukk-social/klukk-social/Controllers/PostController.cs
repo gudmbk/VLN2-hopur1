@@ -58,22 +58,10 @@ namespace klukk_social.Controllers
             return View("Error");
         }
 
-        public ActionResult AddStar(InteractionBarViewModel likeModel)
+        public ActionResult RemovePost(int postId)
         {
-
-			//Likes like = new Likes();
-			//like.Date = DateTime.Now;
-			//like.PostId = likeModel.;
-			//like.UserId = likeModel.PostOwner;
-			//_postService.AddLike(like);
+            _postService.RemovePost(postId);
             return null;
         }
-
-
-        public ActionResult RemoveStar(InteractionBarViewModel likeModel)
-        {
-            return null;
-        }
-
     }
 }

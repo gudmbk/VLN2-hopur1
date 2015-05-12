@@ -1,12 +1,12 @@
 ﻿@using klukk_social.Models
-@model klukk_social.Models.UserViewModel
+@model UserViewModel
 
 @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
 
 @foreach (var post in Model.Feed)
 {
-	InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
-	UserPostInfo.Feed.Add(post);
-	UserPostInfo.IsPost = true;
-	@Html.Partial("PostPartial", UserPostInfo)
+	InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
+	userPostInfo.Feed.Add(post);
+	userPostInfo.IsPost = true;
+	@Html.Partial("PostPartial", userPostInfo)
 }
