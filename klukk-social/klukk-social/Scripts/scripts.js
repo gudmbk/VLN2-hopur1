@@ -27,7 +27,23 @@
             success: function() { toHide.parent().hide()},
             error: function (data) { console.log(data) }
         });
-    });   
+    });
+
+    $(".delete-post").click(function () {
+        alert("ete");
+        var postId = $(this).attr("data-id");
+        var jsonPostId = { Id: 0, postId: postId }
+        var toHide = $(this);
+        $.ajax({
+            type: "POST",
+            url: "/Post/RemovePost",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(jsonPostId),
+            success: function () { toHide.parent().parent().hide() },
+            error: function (data) { console.log(data) }
+        });
+    });
     
     $('.like-button').hover(
 	// Handles the mouseover

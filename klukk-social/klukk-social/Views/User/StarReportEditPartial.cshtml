@@ -44,11 +44,11 @@
 	}
 	if (thisChildsPost || parentOwnsThisChild)
 	{
-		<button type="button" class="btn btn-default btn-xs btn-info"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
-		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
-	}
-	else
-	{
+		<button type="button" class="btn btn-default btn-xs btn-info" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Edit</button>
+    <button type="button" class="btn btn-default btn-xs btn-danger delete-post" data-id="@id"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+    }
+    else
+    {
 		<button type="button" class="btn btn-default btn-xs btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
 	}
 }

@@ -57,5 +57,11 @@ namespace klukk_social.Controllers
             
             return View("Error");
         }
+
+        public ActionResult RemovePost(int postId)
+        {
+            _postService.RemovePost(postId);
+            return null;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
@@ -122,6 +123,24 @@ namespace klukk_social.Services
                     where p.Id == postId
                     select p).Include("Likes").FirstOrDefault();
                 return item;
+            }
+        }
+
+        public void RemovePost(int postToDelete)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var itemToDelete = dbContext.Posts.Single(p => p.Id == postToDelete);
+
+                var commentList = (from cmnt in dbContext.Comments
+                    where cmnt.PostId == postToDelete
+                    select cmnt).ToList();
+                foreach (var item in commentList)
+                {
+                    dbContext.Comments.Remove(item);
+                }
+                dbContext.Posts.Remove(itemToDelete);
+                dbContext.SaveChanges();
             }
         }
     }
