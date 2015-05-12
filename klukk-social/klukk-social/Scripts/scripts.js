@@ -40,7 +40,17 @@
             success: function () { },
             error: function (data) { console.log(data) }
         });
-    });
+    });    
+    
+    $('.like-button').hover(
+	// Handles the mouseover
+	function () {
+		$(this).andSelf().addClass('btn-warning');
+	},
+	// Handles the mouseout
+	function () {
+		$(this).andSelf().removeClass('btn-warning');
+	});
 });
 
 $(function () {

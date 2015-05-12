@@ -253,3 +253,9 @@ accept-friend {
 . add-star {
     
 }
+
+.btn-warning-on {
+	color: #ffffff;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+}
