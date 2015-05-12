@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@using klukk_social.Models
+﻿@using klukk_social.Models
 @model LoginViewModel
 @if (Request.IsAuthenticated)
 {
@@ -24,11 +23,11 @@ else
 				
 				@*@Html.LabelFor(m => m.Email, new { @class = "text-white" })*@
 				@Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter email / Username" })
-				@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "btn btn-defaul" })
+				@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "btn btn-default" })
 
 				@*@Html.LabelFor(m => m.Password, new { @class = "text-white" })*@
 				@Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
-				@Html.ValidationMessageFor(m => m.Password, "", new { @class = "btn btn-defaul" })
+				@Html.ValidationMessageFor(m => m.Password, "", new { @class = "btn btn-default" })
 
 				<input type="submit" value="Log in" class="btn btn-default" />
 	

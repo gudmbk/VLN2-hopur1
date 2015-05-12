@@ -57,23 +57,5 @@ namespace klukk_social.Controllers
             
             return View("Error");
         }
-
-        public ActionResult AddStar(InteractionBarViewModel likeModel)
-        {
-
-			//Likes like = new Likes();
-			//like.Date = DateTime.Now;
-			//like.PostId = likeModel.;
-			//like.UserId = likeModel.PostOwner;
-			//_postService.AddLike(like);
-            return null;
-        }
-
-
-        public ActionResult RemoveStar(InteractionBarViewModel likeModel)
-        {
-            return null;
-        }
-
     }
 }

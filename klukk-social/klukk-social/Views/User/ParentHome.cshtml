@@ -1,5 +1,5 @@
 ﻿@using klukk_social.Models
-@model klukk_social.Models.UserViewModel
+@model UserViewModel
 
 @{
     ViewBag.Title = "ParentHome";
@@ -12,9 +12,9 @@
 
 @foreach (var post in Model.Feed)
 {
-	InteractionBarViewModel UserPostInfo = new InteractionBarViewModel();
-	UserPostInfo.Feed.Add(post);
-	UserPostInfo.IsPost = true;
-	UserPostInfo.AllChildren = Model.AllChildren;
-	@Html.Partial("PostPartial", UserPostInfo)
+	InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
+	userPostInfo.Feed.Add(post);
+	userPostInfo.IsPost = true;
+	userPostInfo.AllChildren = Model.AllChildren;
+	@Html.Partial("PostPartial", userPostInfo)
 }

@@ -2,10 +2,10 @@
 @model klukk_social.Models.InteractionBarViewModel
 
 @{
-	bool thisChildsPost = false;
-	bool parentOwnsThisChild = false;
+	bool thisChildsPost;
+	bool parentOwnsThisChild;
     int count = 0;
-    int id = 0;
+    int id;
 
 	string childsParent = "";
 	foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
