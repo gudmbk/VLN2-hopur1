@@ -58,7 +58,7 @@
 $(function () {
     var likeClient = $.connection.likeHub;
     likeClient.client.updateLikeCount = function (like) {
-        var counter = $(".like-count");
+        var counter = $(e.target);
         $(counter).fadeOut(function () {
             $(this).text(like);
             $(this).fadeIn();

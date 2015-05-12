@@ -15,8 +15,8 @@ namespace klukk_social.Services
 
             foreach (Match match in mactches)
             {
-                output = output.Replace(match.Value, "<iframe width='480' height='390' src='" + match.Value + "'  frameborder='0' allowfullscreen></iframe>");
-            }
+                var youTubeId = Regex.Match(input, @"(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&amp;]v=)|youtu\.be\/)([^""&amp;?\/ ]{11})").Groups[1].Value;
+                output = output.Replace(match.Value, "<iframe width='480' height='390' src='http://www.youtube.com/embed/" + youTubeId + "'  frameborder='0' allowfullscreen></iframe>");            }
             foreach (Match match in imgMactches)
             {
                 output = output.Replace(match.Value, "<img src='" + match.Value + "' alt='No image to display' />");
