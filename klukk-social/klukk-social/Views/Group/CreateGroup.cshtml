@@ -1,13 +1,16 @@
 ﻿
 
-<h2>Stofna hóp</h2>
-@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, null))
+<h2 class="card postpadd">Stofna hóp</h2>
+@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @class="card postpadd"}))
 {
     <label for="name">Nafn grúppu: </label>
-    <input type="text" name="name" id="name"/>
+	<br/>
+	<input type="text" name="name" id="name" class="" />
+	<br/>
     <label for="description">Lýsing: </label>
+	<br/>
     <textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..."></textarea>
     <label for="opengroup">Opinn hópur </label>
     <input type="checkbox" name="opengroup" id="opengroup" value="true"/>
-    <input type="submit" value="Stofna"/ >
+	<input type="submit" value="Stofna" class="btn btn-default" />
 }
