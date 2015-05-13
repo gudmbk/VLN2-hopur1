@@ -69,7 +69,7 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonPostId),
-                success: function () { alert("POSTVIRKAR")},
+                success: function () { alert("POSTVIRKAR") },
                 error: function (data) { console.log(data) }
             });
         } else {
@@ -79,10 +79,11 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonPostId),
-                success: function () { alert("CommentVirkar")},
+                success: function () { alert("CommentVirkar") },
                 error: function (data) { console.log(data) }
             });
         }
+    });
     $(".report-status").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
