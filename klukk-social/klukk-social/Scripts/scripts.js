@@ -34,7 +34,7 @@
         var isPost = $(this).attr("data-type");
         var jsonPostId = { postId: postId }
         var toHide = $(this);
-        if(isPost) {
+        if(isPost === "true") {
             $.ajax({
                 type: "POST",
                 url: "/Post/RemovePost",
@@ -45,6 +45,7 @@
                 error: function(data) { console.log(data) }
             });
         } else {
+            alert("testing");
             $.ajax({
                 type: "POST",
                 url: "/Post/RemoveComment",
@@ -87,3 +88,5 @@ $(function () {
     $.connection.hub.start();
 
 });
+
+
