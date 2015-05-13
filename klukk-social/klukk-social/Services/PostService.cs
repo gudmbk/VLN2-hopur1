@@ -188,17 +188,17 @@ namespace klukk_social.Services
         {
             var dbContext = new ApplicationDbContext();
             Post postReported = dbContext.Posts.Single(p => p.Id == itemId);
-            User parent = dbContext.Users.Single(u => u.Id == postReported.FromUserId);
+            User poster = dbContext.Users.Single(u => u.Id == postReported.FromUserId);
             ReportItem report = new ReportItem();
             report.Id = 0;
             report.IsPost = true;
             report.ReportedById = reporterId;
-            report.ParentId = parent.ParentId;
+            report.ParentId = poster.ParentId;
             report.PostItem = postReported;
             report.CommentItem = null;
             report.Date = DateTime.Now;
 
-            parent.Reports.Add(report);
+            poster.Reports.Add(report);
             dbContext.SaveChanges();
         }
 
@@ -206,17 +206,17 @@ namespace klukk_social.Services
         {
             var dbContext = new ApplicationDbContext();
             Comment commentReported = dbContext.Comments.Single(c => c.Id == itemId);
-            User parent = dbContext.Users.Single(u => u.Id == commentReported.UserId);
+            User poster = dbContext.Users.Single(u => u.Id == commentReported.UserId);
             ReportItem report = new ReportItem();
             report.Id = 0;
             report.IsPost = false;
             report.ReportedById = reporterId;
-            report.ParentId = parent.ParentId;
+            report.ParentId = poster.ParentId;
             report.PostItem = null;
             report.CommentItem = commentReported;
             report.Date = DateTime.Now;
 
-            parent.Reports.Add(report);
+            poster.Reports.Add(report);
             dbContext.SaveChanges();
         }
     }
