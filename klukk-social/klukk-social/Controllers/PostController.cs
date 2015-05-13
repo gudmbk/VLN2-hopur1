@@ -29,7 +29,7 @@ namespace klukk_social.Controllers
             if (post.FromUserId != null)
             {
                 _postService.AddPost(post);
-                return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "User", new { userId = post.ToUserId });
             }
             
             return View("Error");
@@ -53,9 +53,8 @@ namespace klukk_social.Controllers
             if (comment.UserId != null)
             {
                 _postService.AddComment(comment);
-                return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "User", new { userId = _postService.GetToUserIdPostId(postId)});
             }
-            
             return View("Error");
         }
 

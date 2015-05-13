@@ -107,16 +107,26 @@ namespace klukk_social.Services
 			dbContext.SaveChanges();
         }
 
-        public Post GetPostById(int postId)
-        {
+		public Post GetPostById(int postId)
+		{
 			var dbContext = new ApplicationDbContext();
 
 			var item = (from p in dbContext.Posts
-				where p.Id == postId
-				select p).Include("Likes").FirstOrDefault();
-				return item;
+						where p.Id == postId
+						select p).Include("Likes").FirstOrDefault();
+			return item;
 
-        }
+		}
+		public string GetToUserIdPostId(int postId)
+		{
+			var dbContext = new ApplicationDbContext();
+
+			var item = (from u in dbContext.Posts
+						where u.Id == postId
+						select u.ToUserId).FirstOrDefault();
+			return item;
+
+		}
 
         public void RemovePost(int postToDelete)
         {
