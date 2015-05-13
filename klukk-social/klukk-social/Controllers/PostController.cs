@@ -58,14 +58,27 @@ namespace klukk_social.Controllers
             return View("Error");
         }
 
-        public ActionResult RemovePost(int postId)
+        public ActionResult RemovePost(int itemId)
         {
-            _postService.RemovePost(postId);
+            _postService.RemovePost(itemId);
             return null;
         }
-        public ActionResult RemoveComment(int postId)
+        public ActionResult RemoveComment(int itemId)
         {
-            _postService.RemoveComment(postId);
+            _postService.RemoveComment(itemId);
+            return null;
+        }
+        public ActionResult ReportItem(int itemId, bool isPost)
+        {
+            string reporterId = User.Identity.GetUserId();
+            if (isPost)
+            {
+                _postService.AddReportPost(itemId, reporterId);
+            }
+            else
+            {
+                _postService.AddReportComment(itemId, reporterId);
+            }
             return null;
         }
 

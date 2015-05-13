@@ -28,11 +28,11 @@
             error: function (data) { console.log(data) }
         });
     });
-
+    
     $(".delete-post").click(function () {
-        var postId = $(this).attr("data-id");
+        var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var jsonPostId = { postId: postId }
+        var jsonObject = { itemId: itemId }
         var toHide = $(this);
         if(isPost === "true") {
             $.ajax({
@@ -40,7 +40,7 @@
                 url: "/Post/RemovePost",
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(jsonPostId),
+                data: JSON.stringify(jsonObject),
                 success: function() { toHide.parent().parent().hide() },
                 error: function(data) { console.log(data) }
             });
@@ -50,7 +50,7 @@
                 url: "/Post/RemoveComment",
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(jsonPostId),
+                data: JSON.stringify(jsonObject),
                 success: function () { toHide.parent().hide() },
                 error: function (data) { console.log(data) }
             });
@@ -83,6 +83,19 @@
                 error: function (data) { console.log(data) }
             });
         }
+    $(".report-status").click(function () {
+        var itemId = $(this).attr("data-id");
+        var isPost = $(this).attr("data-type");
+        var jsonObject = { itemId: itemId, isPost: isPost }
+            $.ajax({
+                type: "POST",
+                url: "/Post/ReportItem",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonObject),
+                success: function () { alert("virkarPost") },
+                error: function (data) { console.log(data) }
+            });
     });
     
     $('.like-button').hover(
@@ -103,6 +116,10 @@ $(function () {
         $(counter).fadeOut(function() {
             $(counter).text(like.count);
             $(this).fadeIn();
+            $(this).parent().blur(); //remove focus af takka
+            if (like.count < 2) {
+                $(this).parent().addClass("btn-warning-on"); //gerir 
+            }
         });
     };
     $(".like-button").on("click", function () {

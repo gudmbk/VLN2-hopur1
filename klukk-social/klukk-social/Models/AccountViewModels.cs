@@ -25,14 +25,14 @@ namespace klukk_social.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} að lengd", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Nýtt lykilorð passar ekki við staðfesingarlykilorðið")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -47,22 +47,22 @@ namespace klukk_social.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Remember")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "First")]
+        [Display(Name = "Aðalnafn")]
         public string First { get; set; }
 
 
-        [Display(Name = "Middle")]
+        [Display(Name = "Millinafn")]
         public string Middle { get; set; }
 
         [Required]
-        [Display(Name = "Last")]
+        [Display(Name = "Eftirnafn")]
         public string Last { get; set; }
 
         [Required]
@@ -71,14 +71,14 @@ namespace klukk_social.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} stafir að lengd", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lykilorð")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Staðfesta lykilorð")]
+        [Compare("Password", ErrorMessage = "Nýtt lykilorð passar ekki við staðfesingarlykilorðið")]
         public string ConfirmPassword { get; set; }
 
 		public DateTime BirthDay { get; set; }
@@ -86,34 +86,34 @@ namespace klukk_social.Models
 	public class CreateChildViewModel
 	{
 		[Required]
-		[Display(Name = "First")]
+		[Display(Name = "Aðalnafn")]
 		public string First { get; set; }
 
 
-		[Display(Name = "Middle")]
+		[Display(Name = "Millinafn")]
 		public string Middle { get; set; }
 
 		[Required]
-		[Display(Name = "Last")]
+		[Display(Name = "Eftirnafn")]
 		public string Last { get; set; }
 
 		[Required]
-		[Display(Name = "UserName")]
+		[Display(Name = "Notendanafn")]
 		public string UserName { get; set; }
 
 		[Required]
-		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} stafir að lengd", MinimumLength = 6)]
 		[DataType(DataType.Password)]
-		[Display(Name = "Password")]
+		[Display(Name = "Lykilorð")]
 		public string Password { get; set; }
 
 		[DataType(DataType.Password)]
-		[Display(Name = "Confirm password")]
-		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[Display(Name = "Staðfesta lykilorð")]
+        [Compare("Password", ErrorMessage = "Nýtt lykilorð passar ekki við staðfesingarlykilorðið")]
 		public string ConfirmPassword { get; set; }
 		
 		[Required]
-		[Display(Name = "BirthDay")]
+		[Display(Name = "Afmælisdagur")]
 		public DateTime BirthDay { get; set; }
 
 	}
@@ -126,14 +126,14 @@ namespace klukk_social.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} stafir að lengd", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Nýtt lykilorð passar ekki við staðfesingarlykilorðið")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

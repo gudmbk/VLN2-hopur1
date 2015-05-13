@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
@@ -182,6 +183,40 @@ namespace klukk_social.Services
             var dbContext = new ApplicationDbContext();
             var itemToDelete = dbContext.Comments.Single(c => c.Id == changedItem.Id);
             itemToDelete.Body = changedItem.Body;
+        }
+        public void AddReportPost(int itemId, string reporterId)
+        {
+            var dbContext = new ApplicationDbContext();
+            Post postReported = dbContext.Posts.Single(p => p.Id == itemId);
+            User parent = dbContext.Users.Single(u => u.Id == postReported.FromUserId);
+            ReportItem report = new ReportItem();
+            report.Id = 0;
+            report.IsPost = true;
+            report.ReportedById = reporterId;
+            report.ParentId = parent.ParentId;
+            report.PostItem = postReported;
+            report.CommentItem = null;
+            report.Date = DateTime.Now;
+
+            parent.Reports.Add(report);
+            dbContext.SaveChanges();
+        }
+
+        public void AddReportComment(int itemId, string reporterId)
+        {
+            var dbContext = new ApplicationDbContext();
+            Comment commentReported = dbContext.Comments.Single(c => c.Id == itemId);
+            User parent = dbContext.Users.Single(u => u.Id == commentReported.UserId);
+            ReportItem report = new ReportItem();
+            report.Id = 0;
+            report.IsPost = false;
+            report.ReportedById = reporterId;
+            report.ParentId = parent.ParentId;
+            report.PostItem = null;
+            report.CommentItem = commentReported;
+            report.Date = DateTime.Now;
+
+            parent.Reports.Add(report);
             dbContext.SaveChanges();
         }
     }
