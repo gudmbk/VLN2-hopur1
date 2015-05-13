@@ -14,7 +14,9 @@ namespace klukk_social.Models
         [ForeignKey("ToUserId")]
         public User ToUser { get; set; }
 		public string PosterName { get; set; }
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
+		[ForeignKey("GroupId")]
+		public virtual Group Group { get; set; }
         public string PhotoUrl { get; set; }
         public string VideoUrl { get; set; }
         public string Text { get; set; }
@@ -29,7 +31,7 @@ namespace klukk_social.Models
             Id = 0;
             FromUserId = String.Empty;
             ToUserId = String.Empty;
-            GroupId = 0;
+            GroupId = null;
             PhotoUrl = String.Empty;
             VideoUrl = String.Empty;
             PosterName = String.Empty;
