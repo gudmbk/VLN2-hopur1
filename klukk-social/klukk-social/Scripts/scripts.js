@@ -60,7 +60,7 @@
     $(".edit-post").click(function () {
         var postId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var jsonPostId = { postId: postId }
+        var jsonPostId = { postId: postId, isPost: isPost }
         var toHide = $(this);
         if (isPost === "true") {
             $.ajax({

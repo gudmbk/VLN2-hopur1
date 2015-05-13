@@ -82,15 +82,16 @@ namespace klukk_social.Controllers
             return null;
         }
 
-        public ActionResult EditPost(Comment changedItem)
+        public ActionResult EditPost(int itemId, bool isPost)
         {
-            /*_postService.EditComment(changedItem);
-             */
+            //_postService.EditPost(changedItem);
+
             return null;
         }
-        public ActionResult EditComment(Comment changedItem)
+        public ActionResult EditComment(int itemId, bool isPost)
         {
             //_postService.EditComment(changedItem);
+
             return null;
         }
     }

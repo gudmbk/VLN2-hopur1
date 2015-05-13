@@ -178,27 +178,34 @@ namespace klukk_social.Services
             dbContext.SaveChanges();
         }
 
-        internal void EditComment(Comment changedItem)
+        public void EditComment(Comment changedItem)
         {
             var dbContext = new ApplicationDbContext();
-            var itemToDelete = dbContext.Comments.Single(c => c.Id == changedItem.Id);
-            itemToDelete.Body = changedItem.Body;
+            var itemToChange = dbContext.Comments.Single(c => c.Id == changedItem.Id);
         }
+
+        public void EditPost(Post changedItem)
+        {
+            var dbContext = new ApplicationDbContext();
+            var itemToChange = dbContext.Posts.Single(p => p.Id == changedItem.Id);
+        }
+
         public void AddReportPost(int itemId, string reporterId)
         {
             var dbContext = new ApplicationDbContext();
             Post postReported = dbContext.Posts.Single(p => p.Id == itemId);
             User poster = dbContext.Users.Single(u => u.Id == postReported.FromUserId);
+            User parent = dbContext.Users.Single(u => u.Id == poster.ParentId);
             ReportItem report = new ReportItem();
             report.Id = 0;
             report.IsPost = true;
             report.ReportedById = reporterId;
-            report.ParentId = poster.ParentId;
+            report.ParentId = parent.Id;
             report.PostItem = postReported;
             report.CommentItem = null;
             report.Date = DateTime.Now;
 
-            poster.Reports.Add(report);
+            parent.Reports.Add(report);
             dbContext.SaveChanges();
         }
 
@@ -207,16 +214,18 @@ namespace klukk_social.Services
             var dbContext = new ApplicationDbContext();
             Comment commentReported = dbContext.Comments.Single(c => c.Id == itemId);
             User poster = dbContext.Users.Single(u => u.Id == commentReported.UserId);
+            User parent = dbContext.Users.Single(u => u.Id == poster.ParentId);
+
             ReportItem report = new ReportItem();
             report.Id = 0;
             report.IsPost = false;
             report.ReportedById = reporterId;
-            report.ParentId = poster.ParentId;
+            report.ParentId = parent.Id;
             report.PostItem = null;
             report.CommentItem = commentReported;
             report.Date = DateTime.Now;
 
-            poster.Reports.Add(report);
+            parent.Reports.Add(report);
             dbContext.SaveChanges();
         }
     }

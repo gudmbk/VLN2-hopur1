@@ -7,13 +7,13 @@ namespace klukk_social.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class _new : IMigrationMetadata
+    public sealed partial class solo : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_new));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(solo));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505130151418_new"; }
+            get { return "201505132014567_solo"; }
         }
         
         string IMigrationMetadata.Source
