@@ -13,7 +13,7 @@
     @foreach (var child in @ViewBag.Children)
     {
         <button onclick="location.href = '@Url.Action("Login", "Account")'" class="btn btn-default btn-lg btn-block">
-            <span class="icon icon-girl" aria-hidden="true"></span> @child.FirstName
+            <span class="glyphicon glyphicon-girl" aria-hidden="true"></span> @child.FirstName
         </button>
     }
 	<button onclick="location.href='@Url.Action("CreateChild", "User")'" class="btn btn-default btn-lg btn-block">
