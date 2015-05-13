@@ -36,7 +36,6 @@ namespace klukk_social.Services
 						 where g.Id == groupId
 						 select g).FirstOrDefault();
 			return group;
-			
 		}
 		
 		public List<Post> GetAllGroupPostsToGroup(int? groupId)
@@ -104,6 +103,39 @@ namespace klukk_social.Services
 		{
 			var dbContext = new ApplicationDbContext();
 			dbContext.GroupUsers.Add(groupUsers);
+			dbContext.SaveChanges();
+		}
+
+		public bool IsUserMember(string userId)
+		{
+			var dbContext = new ApplicationDbContext();
+			var request = (from user in dbContext.GroupUsers
+						   where user.UserId == userId
+						   select user).FirstOrDefault();
+			return request != null;
+		}
+
+		public GroupUsers FindGroupUserById(string userId, int? groupId)
+		{
+			if (groupId.HasValue)
+			{
+				var dbContext = new ApplicationDbContext();
+				var request = (from user in dbContext.GroupUsers
+							   where user.UserId == userId
+							   select user).FirstOrDefault();
+				return request;
+			}
+			return null;
+		}
+
+		public void LeaveGroup(string userId, int groupId)
+		{
+			var dbContext = new ApplicationDbContext();
+			var request = (from user in dbContext.GroupUsers
+						   where user.UserId == userId
+						   select user).FirstOrDefault();
+
+			dbContext.GroupUsers.Remove(request);
 			dbContext.SaveChanges();
 		}
 	}

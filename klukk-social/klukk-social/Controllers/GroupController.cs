@@ -69,6 +69,7 @@ namespace klukk_social.Controllers
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
+				groupWall.MemberOfGroup = _groupService.IsUserMember(User.Identity.GetUserId());
 				return View(groupWall);
 			}
 
@@ -108,6 +109,31 @@ namespace klukk_social.Controllers
 			groupRequest.GroupId = json.GroupId;
 			_groupService.SendGroupRequest(groupRequest);
 			return null;
+		}
+
+		public ActionResult JoinOpenGroup(int? groupId)
+		{
+			if (groupId.HasValue)
+			{
+				GroupUsers newUser = new GroupUsers();
+				newUser.GroupId = groupId.Value;
+				newUser.UserId = User.Identity.GetUserId();
+				_groupService.AcceptGroupRequest(newUser);
+				return RedirectToAction("Profile", "Group", new { groupId = groupId });
+			}
+
+			return RedirectToAction("index", "Group");
+		}
+
+		public ActionResult LeaveOpenGroup(int? groupId)
+		{
+			if (groupId.HasValue)
+			{
+				_groupService.LeaveGroup(User.Identity.GetUserId(), groupId.Value);
+				return RedirectToAction("Profile", "Group", new { groupId = groupId });
+			}
+
+			return RedirectToAction("index", "Group");
 		}
     }
 }
