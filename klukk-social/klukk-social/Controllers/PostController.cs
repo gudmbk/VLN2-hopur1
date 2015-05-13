@@ -68,16 +68,17 @@ namespace klukk_social.Controllers
             _postService.RemoveComment(itemId);
             return null;
         }
-        public ActionResult ReportPost(int itemId)
+        public ActionResult ReportItem(int itemId, bool isPost)
         {
             string reporterId = User.Identity.GetUserId();
-            _postService.AddReport(itemId, reporterId, true);
-            return null;
-        }
-        public ActionResult ReportComment(int itemId)
-        {
-            string reporterId = User.Identity.GetUserId();
-            _postService.AddReport(itemId, reporterId, false);
+            if (isPost)
+            {
+                _postService.AddReportPost(itemId, reporterId);
+            }
+            else
+            {
+                _postService.AddReportComment(itemId, reporterId);
+            }
             return null;
         }
     }

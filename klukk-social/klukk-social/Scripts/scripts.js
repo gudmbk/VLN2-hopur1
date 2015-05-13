@@ -60,28 +60,16 @@
     $(".report-status").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var jsonObject = { itemId: itemId }
-        if (isPost === "true") {
+        var jsonObject = { itemId: itemId, isPost: isPost }
             $.ajax({
                 type: "POST",
-                url: "/Post/ReportPost",
+                url: "/Post/ReportItem",
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonObject),
                 success: function () { alert("virkarPost") },
                 error: function (data) { console.log(data) }
             });
-        } else {
-            $.ajax({
-                type: "POST",
-                url: "/Post/ReportComment",
-                traditional: true,
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(jsonObject),
-                success: function () { alert("virkarComment") },
-                error: function (data) { console.log(data) }
-            });
-        }
     });
     
     $('.like-button').hover(
