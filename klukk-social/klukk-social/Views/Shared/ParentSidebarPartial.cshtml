@@ -1,14 +1,20 @@
 ﻿@model klukk_social.Models.User
 
 <div class="sidebar">
-	<img src="@Model.ProfilePic" alt="Alternate Text" />
-	<a href="#">@Model.FullName</a>
-	@Html.ActionLink("Settings", "ParentSettings", "User", null, new { @class = "btn btn-default btn-lg btn-block" })
+    <img src="@Model.ProfilePic" alt="Alternate Text"/>
+    @Html.ActionLink(@Model.FullName, "ParentHome", "User", new { userId = Model.Id }, new { @class = "btn btn-default btn-lg btn-block whitepace" })
 
-	@foreach (var child in @ViewBag.Children)
+    <button onclick="location.href = '@Url.Action("ParentSettings", "User")'" class="btn btn-default btn-lg btn-block">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
+    </button>
+    
+
+    @foreach (var child in @ViewBag.Children)
     {
         @*@Html.ActionLink(child.FirstName, "GoToChild", "User", new { @class = "btn btn-default btn-lg btn-block" })*@
-
+        <button onclick="location.href = '@Url.Action("Login", "Account")'" class="btn btn-default btn-lg btn-block">
+            <span class="icon icon-girl" aria-hidden="true"></span> @child.FirstName
+        </button>
     }
-    @Html.ActionLink("Add Child", "CreateChild", "User", routeValues: null, htmlAttributes: new { @class = "btn btn-default btn-lg btn-block" })
+    @Html.ActionLink("Skrá barn", "CreateChild", "User", routeValues: null, htmlAttributes: new {@class = "btn btn-default btn-lg btn-block"})
 </div>
