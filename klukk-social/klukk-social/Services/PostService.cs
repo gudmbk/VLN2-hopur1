@@ -176,5 +176,13 @@ namespace klukk_social.Services
             comment.Likes.Add(liked);
             dbContext.SaveChanges();
         }
+
+        internal void EditComment(Comment changedItem)
+        {
+            var dbContext = new ApplicationDbContext();
+            var itemToDelete = dbContext.Comments.Single(c => c.Id == changedItem.Id);
+            itemToDelete.Body = changedItem.Body;
+            dbContext.SaveChanges();
+        }
     }
 }
