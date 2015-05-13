@@ -24,7 +24,7 @@
 {
 	<div class="cardgroup searchcard searchpadd">
 		<a href='@Url.Action("Profile", "Group", new { groupId = group.Id }, null)'>
-			<img src="/Content/Images/EmptyProfilePicture.gif" class="search" />
+			<img src="/Content/Images/ChatBubbles.png" class="search" />
 		</a>
 		@Html.ActionLink(group.Name, "Profile", new { groupId = group.Id }, new { @class = "btn btn-success btn-block" })
 		@*@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new {userId = user.Id}, new {@class = "btn btn-success btn-block friend-req"})*@

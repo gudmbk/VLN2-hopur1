@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201505130151418_new.Designer.cs">
       <DependentUpon>201505130151418_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505131239213_groups.cs" />
+    <Compile Include="Migrations\201505131239213_groups.Designer.cs">
+      <DependentUpon>201505131239213_groups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -208,6 +212,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\ChatBubbles.png" />
     <Content Include="Content\Images\EmptyProfilePicture.gif" />
     <Content Include="Content\Images\Great-Planes-night.jpg" />
     <Content Include="Content\Images\MothernChild.jpg" />
@@ -309,6 +314,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505130151418_new.resx">
       <DependentUpon>201505130151418_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131239213_groups.resx">
+      <DependentUpon>201505131239213_groups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

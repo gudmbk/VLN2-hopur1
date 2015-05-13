@@ -135,8 +135,10 @@ namespace klukk_social.Controllers
 				currentUser.ProfilePic = newProfilePicUrl;
 				manager.Update(currentUser);
 			}
-			
-			return View();
+
+			UserViewModel viewBag = new UserViewModel();
+			viewBag.AllChildren = _userService.GetAllChildren(User.Identity.GetUserId());
+			return View(viewBag);
 		}
 
 		public ActionResult FriendsList()

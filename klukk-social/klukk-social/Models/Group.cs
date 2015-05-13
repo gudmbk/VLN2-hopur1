@@ -10,9 +10,10 @@ namespace klukk_social.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
         public string Name { get; set; }
-        //public bool OpenGroup { get; set; }
+        public bool OpenGroup { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+		public string ProfilePic { get; set; }
 
         public Group()
         {
@@ -20,6 +21,7 @@ namespace klukk_social.Models
             Name = String.Empty;
             Description = String.Empty;
             Date = DateTime.Now;
+			ProfilePic = "\\Content\\Images\\ChatBubbles.png";
         }
     }
 }
