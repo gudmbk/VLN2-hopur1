@@ -198,9 +198,17 @@
     <Compile Include="Migrations\201505131610427_dbTest.Designer.cs">
       <DependentUpon>201505131610427_dbTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505131737396_report3.cs" />
-    <Compile Include="Migrations\201505131737396_report3.Designer.cs">
-      <DependentUpon>201505131737396_report3.cs</DependentUpon>
+    <Compile Include="Migrations\201505131744043_reptor3.cs" />
+    <Compile Include="Migrations\201505131744043_reptor3.Designer.cs">
+      <DependentUpon>201505131744043_reptor3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131748086_repp5.cs" />
+    <Compile Include="Migrations\201505131748086_repp5.Designer.cs">
+      <DependentUpon>201505131748086_repp5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131751315_repp99.cs" />
+    <Compile Include="Migrations\201505131751315_repp99.Designer.cs">
+      <DependentUpon>201505131751315_repp99.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -352,8 +360,14 @@
     <EmbeddedResource Include="Migrations\201505131610427_dbTest.resx">
       <DependentUpon>201505131610427_dbTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505131737396_report3.resx">
-      <DependentUpon>201505131737396_report3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505131744043_reptor3.resx">
+      <DependentUpon>201505131744043_reptor3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131748086_repp5.resx">
+      <DependentUpon>201505131748086_repp5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131751315_repp99.resx">
+      <DependentUpon>201505131751315_repp99.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

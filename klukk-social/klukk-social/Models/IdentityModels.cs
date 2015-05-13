@@ -62,7 +62,7 @@ namespace klukk_social.Models
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CommentLikes> CommentLikes { get; set; }
-        public DbSet<ReportItem> ReportItems { get; set; }
+        public DbSet<ReportItem> ReportItem { get; set; }
 
         public static ApplicationDbContext Create()
         {

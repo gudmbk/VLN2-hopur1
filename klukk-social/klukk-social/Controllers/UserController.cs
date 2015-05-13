@@ -28,7 +28,7 @@ namespace klukk_social.Controllers
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
 			profile.AllChildren = ListOfParentsChildren;
-            var a = user.Reports.Count;
+            //var a = user.Reports.Count;
 			return View(profile);
 		}
 
