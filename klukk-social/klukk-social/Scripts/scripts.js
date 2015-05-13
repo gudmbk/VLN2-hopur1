@@ -45,7 +45,6 @@
                 error: function(data) { console.log(data) }
             });
         } else {
-            alert("testing");
             $.ajax({
                 type: "POST",
                 url: "/Post/RemoveComment",
