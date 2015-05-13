@@ -57,6 +57,33 @@
         }
     });
 
+    $(".edit-post").click(function () {
+        var postId = $(this).attr("data-id");
+        var isPost = $(this).attr("data-type");
+        var jsonPostId = { postId: postId }
+        var toHide = $(this);
+        if (isPost === "true") {
+            $.ajax({
+                type: "POST",
+                url: "/Post/EditPost",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function () { alert("POSTVIRKAR") },
+                error: function (data) { console.log(data) }
+            });
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Post/EditComment",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function () { alert("CommentVirkar") },
+                error: function (data) { console.log(data) }
+            });
+        }
+    });
     $(".report-status").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");

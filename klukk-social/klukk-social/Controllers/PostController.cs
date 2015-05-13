@@ -81,5 +81,17 @@ namespace klukk_social.Controllers
             }
             return null;
         }
+
+        public ActionResult EditPost(Comment changedItem)
+        {
+            /*_postService.EditComment(changedItem);
+             */
+            return null;
+        }
+        public ActionResult EditComment(Comment changedItem)
+        {
+            //_postService.EditComment(changedItem);
+            return null;
+        }
     }
 }

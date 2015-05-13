@@ -178,6 +178,12 @@ namespace klukk_social.Services
             dbContext.SaveChanges();
         }
 
+        internal void EditComment(Comment changedItem)
+        {
+            var dbContext = new ApplicationDbContext();
+            var itemToDelete = dbContext.Comments.Single(c => c.Id == changedItem.Id);
+            itemToDelete.Body = changedItem.Body;
+        }
         public void AddReportPost(int itemId, string reporterId)
         {
             var dbContext = new ApplicationDbContext();
