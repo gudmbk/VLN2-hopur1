@@ -57,6 +57,7 @@ namespace klukk_social.Models
         public DbSet<Likes> Likes { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupUsers> GroupUsers { get; set; }
+		public DbSet<GroupRequest> GroupRequests { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Comment> Comments { get; set; }

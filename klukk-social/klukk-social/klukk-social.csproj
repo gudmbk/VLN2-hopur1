@@ -190,9 +190,18 @@
     <Compile Include="Migrations\201505131525416_report2.Designer.cs">
       <DependentUpon>201505131525416_report2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505131546401_groups1.cs" />
+    <Compile Include="Migrations\201505131546401_groups1.Designer.cs">
+      <DependentUpon>201505131546401_groups1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131610427_dbTest.cs" />
+    <Compile Include="Migrations\201505131610427_dbTest.Designer.cs">
+      <DependentUpon>201505131610427_dbTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\GroupRequest.cs" />
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\IdentityManager.cs" />
     <Compile Include="Models\FriendRequest.cs" />
@@ -332,6 +341,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505131525416_report2.resx">
       <DependentUpon>201505131525416_report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131546401_groups1.resx">
+      <DependentUpon>201505131546401_groups1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131610427_dbTest.resx">
+      <DependentUpon>201505131610427_dbTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

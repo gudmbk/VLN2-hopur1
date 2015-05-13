@@ -21,6 +21,7 @@ namespace klukk_social.Models
             Name = String.Empty;
             Description = String.Empty;
             Date = DateTime.Now;
+			OpenGroup = false;
 			ProfilePic = "\\Content\\Images\\ChatBubbles.png";
         }
     }

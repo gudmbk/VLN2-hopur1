@@ -12,7 +12,8 @@ namespace klukk_social.Models
 		public List<Post> Feed { get; set; }
 		public Comment Comment { get; set; }
 		public List<User> AllChildren { get; set; }
-		public FriendRequest Request;
+		public GroupRequest Request { get; set; }
+		public bool MemberOfGroup { get; set; }
 
 		public GroupViewModel()
 		{
@@ -20,7 +21,8 @@ namespace klukk_social.Models
 			Feed = new List<Post>();
 			Comment = new Comment();
 			AllChildren = new List<User>();
-			Request = new FriendRequest();
+			Request = new GroupRequest();
+			MemberOfGroup = false;
 		}
 	}
 }
