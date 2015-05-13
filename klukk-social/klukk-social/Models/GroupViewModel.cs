@@ -7,6 +7,22 @@ namespace klukk_social.Models
 {
 	public class GroupViewModel
 	{
-		List<Group> GroupList { get; set; }
+		public List<Group> GroupList { get; set; }
+		public Group Group { get; set; }
+		public List<Post> Feed { get; set; }
+		public Comment Comment { get; set; }
+		public List<User> AllChildren { get; set; }
+		public FriendRequest Request;
+		public User Person;
+		
+		public GroupViewModel()
+		{
+			GroupList = new List<Group>();
+			Feed = new List<Post>();
+			Comment = new Comment();
+			AllChildren = new List<User>();
+			Request = new FriendRequest();
+			Person = new User();
+		}
 	}
 }

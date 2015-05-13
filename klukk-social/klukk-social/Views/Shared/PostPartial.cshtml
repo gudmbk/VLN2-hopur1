@@ -10,8 +10,10 @@
 	postCommentForward.AllChildren = Model.AllChildren;
 	postCommentForward.IsPost = true;
 	postCommentForward.Feed = Model.Feed;
+	string color = "card";
+	if(Model.Feed[0].GroupId > 0){ color = "cardgroup"; }
 }
-<div class="card postpadd">
+<div class="@color postpadd">
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
@@ -27,7 +29,7 @@
 				</div>
 			}
 		</div>
-		<p>@Model.Feed[0].Text</p> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+		<div>@Html.Raw(Model.Feed[0].HtmlText)</div> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
 		<time datetime="@Model.Feed[0].Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		@Html.Partial("StarReportEditPartial", postCommentForward)
 

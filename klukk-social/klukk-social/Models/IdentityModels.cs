@@ -47,7 +47,7 @@ namespace klukk_social.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = true;
         }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Settings> Settings { get; set; }

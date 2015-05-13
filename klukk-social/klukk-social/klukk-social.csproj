@@ -207,6 +207,7 @@
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\InteractionBarViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -217,6 +218,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Services\Helpers.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
@@ -294,7 +296,7 @@
     <Content Include="Views\Shared\ParentSidebarPartial.cshtml" />
     <Content Include="Views\Account\CreateChild.cshtml" />
     <Content Include="Views\Shared\ChildSidebarPartial.cshtml" />
-    <Content Include="Views\User\PostPartial.cshtml" />
+    <Content Include="Views\Shared\PostPartial.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\WhySafe.cshtml" />
     <Content Include="Views\Home\ForPar.cshtml" />
@@ -302,10 +304,13 @@
     <Content Include="Views\User\ChildSettings.cshtml" />
     <Content Include="Views\User\ParentSettings.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
-    <Content Include="Views\User\StarReportEditPartial.cshtml" />
+    <Content Include="Views\Shared\StarReportEditPartial.cshtml" />
     <Content Include="Views\User\FriendsList.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Group\OwnedGroups.cshtml" />
+    <Content Include="Views\Group\Profile.cshtml" />
+    <Content Include="Views\Group\PostGroupPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

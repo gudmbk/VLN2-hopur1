@@ -18,6 +18,7 @@
 	</button>
 
 
+<<<<<<< HEAD
 
         @*
                 <button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
@@ -29,4 +30,12 @@
             <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
         </button>*@
 
+=======
+	@*
+	@Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
+	@Html.ActionLink(" Vinir", "FriendsList", "User", new { @class = "btn btn-default btn-lg btn-block" })
+	<button onclick="location.href='@Url.Action("FriendsList", "User")'" class="btn btn-default btn-lg btn-block">
+		<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
+	</button>*@
+>>>>>>> b771ca2c91e8b0794dd37bb726aa81e074f224bb
 </div>

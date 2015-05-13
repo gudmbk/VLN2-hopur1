@@ -27,7 +27,36 @@
             success: function() { toHide.parent().hide()},
             error: function (data) { console.log(data) }
         });
-    });   
+    });
+
+    $(".delete-post").click(function () {
+        var postId = $(this).attr("data-id");
+        var isPost = $(this).attr("data-type");
+        var jsonPostId = { postId: postId }
+        var toHide = $(this);
+        if(isPost == true) {
+            $.ajax({
+                type: "POST",
+                url: "/Post/RemovePost",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function() { toHide.parent().parent().hide() },
+                error: function(data) { console.log(data) }
+            });
+        } else {
+            alert("BLABLA");
+            $.ajax({
+                type: "POST",
+                url: "/Post/RemoveComment",
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(jsonPostId),
+                success: function () { toHide.parent().hide() },
+                error: function (data) { console.log(data) }
+            });
+        }
+    });
     
     $('.like-button').hover(
 	// Handles the mouseover
@@ -43,7 +72,7 @@
 $(function () {
     var likeClient = $.connection.likeHub;
     likeClient.client.updateLikeCount = function (like) {
-        var counter = $(".like-count");
+        var counter = $(".like-button");
         $(counter).fadeOut(function () {
             $(this).text(like);
             $(this).fadeIn();

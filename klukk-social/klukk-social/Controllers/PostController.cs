@@ -22,6 +22,7 @@ namespace klukk_social.Controllers
                 return RedirectToAction("ChildHome", "User");
             }
             post.Text = text;
+            post.HtmlText = Helpers.ParseText(text);
             post.FromUserId = User.Identity.GetUserId();
             post.ToUserId = collection["toUserId"];
             post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
@@ -56,6 +57,17 @@ namespace klukk_social.Controllers
             }
             
             return View("Error");
+        }
+
+        public ActionResult RemovePost(int postId)
+        {
+            _postService.RemovePost(postId);
+            return null;
+        }
+        public ActionResult RemoveComment(int commentId)
+        {
+            _postService.RemoveComment(commentId);
+            return null;
         }
     }
 }
