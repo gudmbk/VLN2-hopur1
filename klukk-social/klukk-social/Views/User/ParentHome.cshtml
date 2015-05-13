@@ -6,14 +6,14 @@
 	
 }
 
-<h2 class="card postpadd">Children Feed</h2>
+<h2 class="card postpadd">Færslur barns</h2>
 
-<p class="card postpadd">This is where you spy on your children</p>
+<p class="card postpadd">Hér eru síðustu færslur barns</p>
 
 @foreach (var post in Model.Feed)
 {
 	InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
-	userPostInfo.Feed.Add(post);
+	userPostInfo.Post = post;
 	userPostInfo.IsPost = true;
 	userPostInfo.AllChildren = Model.AllChildren;
 	@Html.Partial("PostPartial", userPostInfo)

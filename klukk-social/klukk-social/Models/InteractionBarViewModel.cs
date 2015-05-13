@@ -8,6 +8,7 @@ namespace klukk_social.Models
     {
 		public User Person { get; set; }
 		public List<Post> Feed { get; set; }
+		public Post Post { get; set; }
 		public Comment Comment { get; set; }
 		public bool IsPost { get; set; }
 		public List<User> AllChildren { get; set; }
@@ -17,6 +18,7 @@ namespace klukk_social.Models
 			Person = new User();
 			IsPost = false;
 			Feed = new List<Post>();
+			Post = new Post();
 			Comment = new Comment();
 			AllChildren = new List<User>();
 		}

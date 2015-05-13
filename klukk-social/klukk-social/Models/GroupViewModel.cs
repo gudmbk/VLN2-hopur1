@@ -13,7 +13,7 @@ namespace klukk_social.Models
 		public Comment Comment { get; set; }
 		public List<User> AllChildren { get; set; }
 		public FriendRequest Request;
-		
+
 		public GroupViewModel()
 		{
 			GroupList = new List<Group>();

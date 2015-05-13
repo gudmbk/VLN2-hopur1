@@ -1,16 +1,20 @@
 ﻿@model klukk_social.Models.User
 
 <div class="sidebar">
-	<img src="@Model.ProfilePic" alt="Alternate Text" />
-	<a href="#">@Model.FullName</a>
+    <img src="@Model.ProfilePic" alt="Alternate Text"/>
+    @*Ætti að vera hnappur too late too sleepy to finish kv Gauj p.s ætti að fara á feed eins og gerir hér*@
+    @Html.ActionLink(@Model.FullName, "ParentHome", "User", new { userId = Model.Id }, new { @class = "btn btn-default btn-lg btn-block whitepace" })
 
-	<button onclick="location.href='@Url.Action("ParentSettings", "User")'" class="btn btn-default btn-lg btn-block">
-		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
-	</button>
+    <button onclick="location.href = '@Url.Action("ParentSettings", "User")'" class="btn btn-default btn-lg btn-block">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
+    </button>
+    
 
-	@foreach (var child in @ViewBag.Children)
+    @foreach (var child in @ViewBag.Children)
     {
-        @*@Html.ActionLink(child.FirstName, "GoToChild", "User", new { @class = "btn btn-default btn-lg btn-block" })*@
+        <button onclick="location.href = '@Url.Action("Login", "Account")'" class="btn btn-default btn-lg btn-block">
+            <span class="icon icon-girl" aria-hidden="true"></span> @child.FirstName
+        </button>
     }
 	<button onclick="location.href='@Url.Action("CreateChild", "User")'" class="btn btn-default btn-lg btn-block">
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Nýtt barn

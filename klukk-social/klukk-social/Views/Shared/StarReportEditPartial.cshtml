@@ -10,7 +10,7 @@
 	string childsParent = "";
 	foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
 	{
-		if (Model.IsPost && child.Id == Model.Feed[0].FromUserId)
+		if (Model.IsPost && child.Id == Model.Post.FromUserId)
 		{
 			childsParent = child.ParentId;
 		}
@@ -21,11 +21,10 @@
 	}
 	if (Model.IsPost)
 	{
-		
-		thisChildsPost = Model.Feed[0].FromUserId == User.Identity.GetUserId();
+		thisChildsPost = Model.Post.FromUserId == User.Identity.GetUserId();
 		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
-		count = Model.Feed[0].Likes.Count;
-		id = Model.Feed[0].Id;
+		count = Model.Post.Likes.Count;
+		id = Model.Post.Id;
 	}
 	else
 	{

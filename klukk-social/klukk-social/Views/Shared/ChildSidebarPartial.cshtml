@@ -10,21 +10,32 @@
 	</button>
 
 	<button onclick="location.href='@Url.Action("Index", "Group")'" class="btn btn-default btn-lg btn-block">
-		<span class="glyphicon glyphicon-record" aria-hidden="true"></span> Grúbbur
+		<span class="glyphicon glyphicon-record" aria-hidden="true"></span> Hópar
 	</button>
 	
 	<button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
-		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Breita Mynd
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Breyta Mynd
 	</button>
 
-	<button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
-		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
-	</button>
 
+<<<<<<< HEAD
+
+        @*
+                <button onclick="location.href='@Url.Action("ChildSettings", "User")'" class="btn btn-default btn-lg btn-block">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Stillingar
+        </button>
+        @Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
+        @Html.ActionLink(" Vinir", "FriendsList", "User", new { @class = "btn btn-default btn-lg btn-block" })
+        <button onclick="location.href='@Url.Action("FriendsList", "User")'" class="btn btn-default btn-lg btn-block">
+            <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
+        </button>*@
+
+=======
 	@*
 	@Html.ActionLink("Breita Mynd", "ChildSettings", "User", new { @class = "btn btn-default btn-lg btn-block" })
 	@Html.ActionLink(" Vinir", "FriendsList", "User", new { @class = "btn btn-default btn-lg btn-block" })
 	<button onclick="location.href='@Url.Action("FriendsList", "User")'" class="btn btn-default btn-lg btn-block">
 		<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Vinir
 	</button>*@
+>>>>>>> b771ca2c91e8b0794dd37bb726aa81e074f224bb
 </div>
