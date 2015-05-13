@@ -19,7 +19,7 @@ namespace klukk_social.Controllers
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
             {
-                return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "User", new { userId = post.ToUserId });
             }
             post.Text = text;
             post.HtmlText = Helpers.ParseText(text);

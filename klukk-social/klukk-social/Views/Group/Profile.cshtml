@@ -16,7 +16,6 @@
 	foreach (var post in Model.Feed)
 	{
 		InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
-		//<div> mamma mía @post.HtmlText</div>
 		userPostInfo.Feed.Add(post);
 		userPostInfo.IsPost = true;
 		@Html.Partial("PostPartial", userPostInfo)

@@ -86,6 +86,7 @@ namespace klukk_social.Controllers
 				return RedirectToAction("Profile", "Groups", new { groupId = post.GroupId });
 			}
 			post.Text = text;
+			post.HtmlText = Helpers.ParseText(text);
 			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
