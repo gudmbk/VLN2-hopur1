@@ -6,8 +6,8 @@ namespace klukk_social.Models
     {
         public int Id { get; set; }
         public bool IsPost { get; set; }
-        public string ReportedById { get; set; }
         public virtual string ParentId { get; set; }
+        public string ReportedById { get; set; }
         public virtual Post PostItem { get; set; }
         public virtual Comment CommentItem { get; set; }
         public DateTime Date { get; set; }
