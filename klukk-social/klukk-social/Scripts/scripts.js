@@ -102,6 +102,10 @@ $(function () {
         $(counter).fadeOut(function() {
             $(counter).text(like.count);
             $(this).fadeIn();
+            $(this).parent().blur(); //remove focus af takka
+            if (like.count < 2) {
+                $(this).parent().addClass("btn-warning-on"); //gerir 
+            }
         });
     };
     $(".like-button").on("click", function () {

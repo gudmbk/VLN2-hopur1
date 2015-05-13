@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201505131239213_groups.Designer.cs">
       <DependentUpon>201505131239213_groups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505131426441_report.cs" />
+    <Compile Include="Migrations\201505131426441_report.Designer.cs">
+      <DependentUpon>201505131426441_report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505131239213_groups.resx">
       <DependentUpon>201505131239213_groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131426441_report.resx">
+      <DependentUpon>201505131426441_report.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
