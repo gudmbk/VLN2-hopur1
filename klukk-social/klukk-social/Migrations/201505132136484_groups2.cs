@@ -9,6 +9,7 @@ namespace klukk_social.Migrations
         {
             AlterColumn("dbo.Posts", "GroupId", c => c.Int());
             CreateIndex("dbo.Posts", "GroupId");
+			Sql("update dbo.Posts SET GroupId = null WHERE GroupId = 0");
             AddForeignKey("dbo.Posts", "GroupId", "dbo.Groups", "Id");
         }
         
