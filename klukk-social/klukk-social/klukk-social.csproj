@@ -195,6 +195,7 @@
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\ReportItem.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\InteractionBarViewModel.cs" />
