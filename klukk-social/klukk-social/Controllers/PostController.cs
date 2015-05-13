@@ -29,7 +29,7 @@ namespace klukk_social.Controllers
             if (post.FromUserId != null)
             {
                 _postService.AddPost(post);
-                return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "User", new { userId = post.ToUserId });
             }
             
             return View("Error");
@@ -53,20 +53,44 @@ namespace klukk_social.Controllers
             if (comment.UserId != null)
             {
                 _postService.AddComment(comment);
-                return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "User", new { userId = _postService.GetToUserIdPostId(postId)});
             }
-            
             return View("Error");
         }
 
-        public ActionResult RemovePost(int postId)
+        public ActionResult RemovePost(int itemId)
         {
-            _postService.RemovePost(postId);
+            _postService.RemovePost(itemId);
             return null;
         }
-        public ActionResult RemoveComment(int commentId)
+        public ActionResult RemoveComment(int itemId)
         {
-            _postService.RemoveComment(commentId);
+            _postService.RemoveComment(itemId);
+            return null;
+        }
+        public ActionResult ReportItem(int itemId, bool isPost)
+        {
+            string reporterId = User.Identity.GetUserId();
+            if (isPost)
+            {
+                _postService.AddReportPost(itemId, reporterId);
+            }
+            else
+            {
+                _postService.AddReportComment(itemId, reporterId);
+            }
+            return null;
+        }
+
+        public ActionResult EditPost(Comment changedItem)
+        {
+            /*_postService.EditComment(changedItem);
+             */
+            return null;
+        }
+        public ActionResult EditComment(Comment changedItem)
+        {
+            //_postService.EditComment(changedItem);
             return null;
         }
     }

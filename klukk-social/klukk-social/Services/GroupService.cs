@@ -68,5 +68,24 @@ namespace klukk_social.Services
 						select g).ToList();
 			return group;
 		}
+
+		public void SendGroupRequest(GroupRequest groupRequest)
+		{
+			var dbContext = new ApplicationDbContext();
+
+			dbContext.GroupRequests.Add(groupRequest);
+			dbContext.SaveChanges();
+
+		}
+
+		//public GroupRequest getGroupRequest(string userId, int? groupId)
+		//{
+		//	var dbContext = new ApplicationDbContext();
+
+		//	var request = (from gr in dbContext.Group
+		//				   where gr.FromUserId == friendId && gr.ToUserId == userId || gr.FromUserId == userId && gr.ToUserId == friendId
+		//				   select gr).FirstOrDefault();
+		//	return request;
+		//}
 	}
 }

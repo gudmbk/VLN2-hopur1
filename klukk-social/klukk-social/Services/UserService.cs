@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
 
@@ -12,7 +13,7 @@ namespace klukk_social.Services
 
 			var user = (from u in dbContext.Users
 						where u.Id == userId
-						select u).FirstOrDefault();
+                        select u).Include("Reports").FirstOrDefault();
 			return user;
 
 		}

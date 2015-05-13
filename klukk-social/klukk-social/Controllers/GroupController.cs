@@ -29,10 +29,17 @@ namespace klukk_social.Controllers
 			}
 			Group newGroup = new Group();
 			newGroup.Date = DateTime.Now;
-			newGroup.Description = collection["Description"];
-			newGroup.Name = collection["Name"];
+			newGroup.Description = collection["description"];
+			newGroup.Name = collection["name"];
 			newGroup.UserId = User.Identity.GetUserId();
-
+			if (!String.IsNullOrEmpty(collection["opengroup"]))
+			{
+				newGroup.OpenGroup = true;
+			}
+			if (!String.IsNullOrEmpty(collection["profilepicurl"]))
+			{
+				newGroup.ProfilePic = collection["profilepicurl"];
+			}
 			_groupService.CreateGroup(newGroup);
             return View();
         }
@@ -56,13 +63,14 @@ namespace klukk_social.Controllers
 				var listOfPosts = _groupService.GetAllGroupPostsToGroup(groupId);
 				var group = _groupService.FindById(groupId);
 				GroupViewModel groupWall = new GroupViewModel();
+				//groupWall.Request = _groupService.getGroupRequest(User.Identity.GetUserId(), groupId);
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
 				return View(groupWall);
 			}
 
-			return RedirectToAction("ChildHome", "User");
+			return RedirectToAction("Index", "Group");
 			
 		}
 
@@ -73,17 +81,17 @@ namespace klukk_social.Controllers
 			string text = collection["status"];
 			if (String.IsNullOrEmpty(text))
 			{
-				return RedirectToAction("Index", "Groups");
+				return RedirectToAction("Profile", "Groups", new { groupId = post.GroupId });
 			}
 			post.Text = text;
-			post.FromUserId = User.Identity.GetUserId();
+			post.FromUserId = ""; // User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
 			post.ToUserId = User.Identity.GetUserId();
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);
-				return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "Group", new { groupId = post.GroupId  });
 			}
 
 			return View("Error");

@@ -7,15 +7,12 @@ namespace klukk_social.Models
     public class Post
     {
         public int Id { get; set; }
-        
 		public string FromUserId { get; set; }
 		[ForeignKey("FromUserId")]
         public virtual User FromUser { get; set; }
-        
 		public string ToUserId { get; set; }
         [ForeignKey("ToUserId")]
         public User ToUser { get; set; }
-        
 		public string PosterName { get; set; }
         public int GroupId { get; set; }
         public string PhotoUrl { get; set; }

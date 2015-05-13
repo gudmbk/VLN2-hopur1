@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,6 +19,7 @@ namespace klukk_social.Models
         public string ProfilePic { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime CreationDate { get; set; }
+        public virtual ICollection<ReportItem> Reports { get; set; }
 
         public User()
         {
@@ -55,10 +57,12 @@ namespace klukk_social.Models
         public DbSet<Likes> Likes { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupUsers> GroupUsers { get; set; }
+		public DbSet<GroupRequest> GroupRequests { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CommentLikes> CommentLikes { get; set; }
+        public DbSet<ReportItem> ReportItems { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -15,7 +15,7 @@
         <a href='@Url.Action("Profile", "User", new {userId = user.Id}, null)'>
             <img src='@user.ProfilePic' class="search"/>
         </a>
-        @Html.ActionLink(user.FirstName, "Profile", new {userId = user.Id}, new {@class = "btn btn-success btn-block"})
+        @Html.ActionLink(user.FirstName, "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block whitepace" })
         @*@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new {userId = user.Id}, new {@class = "btn btn-success btn-block friend-req"})*@
         @*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
     </div>
@@ -24,10 +24,17 @@
 {
 	<div class="cardgroup searchcard searchpadd">
 		<a href='@Url.Action("Profile", "Group", new { groupId = group.Id }, null)'>
-			<img src="/Content/Images/ChatBubbles.png" class="search" />
+			<img src='@group.ProfilePic' class="search" />
 		</a>
-		@Html.ActionLink(group.Name, "Profile", new { groupId = group.Id }, new { @class = "btn btn-success btn-block" })
-		@*@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new {userId = user.Id}, new {@class = "btn btn-success btn-block friend-req"})*@
+		@Html.ActionLink(group.Name, "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		@if (!group.OpenGroup)
+		{
+			@Html.ActionLink("Læst Grúbba", "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+		}
+		else
+		{
+			@Html.ActionLink("Opin Grúbba", "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		}
 		@*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
 	</div>
 }
