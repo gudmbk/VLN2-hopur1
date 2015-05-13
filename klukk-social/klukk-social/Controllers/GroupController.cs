@@ -51,10 +51,12 @@ namespace klukk_social.Controllers
 			bag.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
 			return View(bag);
 		}
+
 		public ActionResult OwnedGroups()
 		{
 			return View();
 		}
+
 		[Authorize(Roles = "Child")]
 		public ActionResult Profile(int? groupId)
 		{
@@ -63,7 +65,7 @@ namespace klukk_social.Controllers
 				var listOfPosts = _groupService.GetAllGroupPostsToGroup(groupId);
 				var group = _groupService.FindById(groupId);
 				GroupViewModel groupWall = new GroupViewModel();
-				//groupWall.Request = _groupService.getGroupRequest(User.Identity.GetUserId(), groupId);
+				groupWall.Request = _groupService.getGroupRequest(User.Identity.GetUserId(), groupId);
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
@@ -84,10 +86,10 @@ namespace klukk_social.Controllers
 				return RedirectToAction("Profile", "Groups", new { groupId = post.GroupId });
 			}
 			post.Text = text;
-			post.FromUserId = ""; // User.Identity.GetUserId();
+			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-			post.ToUserId = User.Identity.GetUserId();
+			post.ToUserId = User.Identity.GetUserId(); // Get ekki tekið út
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);
@@ -95,6 +97,16 @@ namespace klukk_social.Controllers
 			}
 
 			return View("Error");
+		}
+
+		[HttpPost]
+		public ActionResult SendGroupRequest(GroupRequest json)
+		{
+			GroupRequest groupRequest = new GroupRequest();
+			groupRequest.FromUserId = User.Identity.GetUserId();
+			groupRequest.GroupId = json.GroupId;
+			_groupService.SendGroupRequest(groupRequest);
+			return null;
 		}
     }
 }

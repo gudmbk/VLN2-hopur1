@@ -78,14 +78,33 @@ namespace klukk_social.Services
 
 		}
 
-		//public GroupRequest getGroupRequest(string userId, int? groupId)
-		//{
-		//	var dbContext = new ApplicationDbContext();
+		public GroupRequest getGroupRequest(string userId, int? groupId)
+		{
+			var dbContext = new ApplicationDbContext();
 
-		//	var request = (from gr in dbContext.Group
-		//				   where gr.FromUserId == friendId && gr.ToUserId == userId || gr.FromUserId == userId && gr.ToUserId == friendId
-		//				   select gr).FirstOrDefault();
-		//	return request;
-		//}
+			var request = (from gr in dbContext.GroupRequests
+						   where gr.FromUserId == userId || gr.GroupId == groupId
+						   select gr).FirstOrDefault();
+			return request;
+		}
+
+		public void DeleteGroupRequest(GroupRequest groupRequest)
+		{
+			var dbContext = new ApplicationDbContext();
+
+			var toDelete = (from gr in dbContext.GroupRequests
+							where gr.GroupId == groupRequest.GroupId || gr.FromUserId == groupRequest.FromUserId
+							select gr).FirstOrDefault();
+
+			dbContext.GroupRequests.Remove(toDelete);
+			dbContext.SaveChanges();
+		}
+
+		public void AcceptGroupRequest(GroupUsers groupUsers)
+		{
+			var dbContext = new ApplicationDbContext();
+			dbContext.GroupUsers.Add(groupUsers);
+			dbContext.SaveChanges();
+		}
 	}
 }
