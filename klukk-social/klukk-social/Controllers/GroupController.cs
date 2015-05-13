@@ -62,7 +62,7 @@ namespace klukk_social.Controllers
 				return View(groupWall);
 			}
 
-			return RedirectToAction("ChildHome", "User");
+			return RedirectToAction("Index", "Group");
 			
 		}
 
@@ -73,7 +73,7 @@ namespace klukk_social.Controllers
 			string text = collection["status"];
 			if (String.IsNullOrEmpty(text))
 			{
-				return RedirectToAction("Index", "Groups");
+				return RedirectToAction("Profile", "Groups", new { groupId = post.GroupId });
 			}
 			post.Text = text;
 			post.FromUserId = User.Identity.GetUserId();
@@ -83,7 +83,7 @@ namespace klukk_social.Controllers
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);
-				return RedirectToAction("ChildHome", "User");
+				return RedirectToAction("Profile", "Group", new { groupId = post.GroupId  });
 			}
 
 			return View("Error");
