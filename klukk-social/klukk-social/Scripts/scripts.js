@@ -72,9 +72,9 @@
 $(function () {
     var likeClient = $.connection.likeHub;
     likeClient.client.updateLikeCount = function (like) {
-        var counter = $("[data-id='" + like.id + "'][data-type='" + like.count + "']");
+        var counter = $("[data-id='" + like.id + "'][data-type='" + like.type + "'] span");
         $(counter).fadeOut(function () {
-            $(this).text(like.count);
+            $(counter).text(like.count);
             $(this).fadeIn();
         });
     };

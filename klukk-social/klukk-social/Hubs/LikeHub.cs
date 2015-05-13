@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using ExtensionMethods;
 using klukk_social.Models;
@@ -30,7 +33,7 @@ namespace klukk_social.Hubs
 
         }
 
-        private string SaveCommentLike(int commentId, string user)
+        private Object SaveCommentLike(int commentId, string user)
         {
             var postService = new PostService();
             var item = postService.GetCommentById(commentId);
@@ -42,13 +45,18 @@ namespace klukk_social.Hubs
             };
             postService.AddCommentLike(liked);
             var comment = postService.GetCommentById(commentId);
-            var anom = new { id = comment.Id, count = comment.Likes.Count(), type = false };
-            
-            return JsonHelper.ToJson(anom);
+            var anom = new
+            {
+                id = comment.Id,
+                count = comment.Likes.Count(),
+                type = false
+            };
+
+            return anom;
 
         }
 
-        private string Savelike(int postId, string user)
+        private Object Savelike(int postId, string user)
         {
             var postService = new PostService();
             var item = postService.GetPostById(postId);
@@ -60,8 +68,13 @@ namespace klukk_social.Hubs
             };
             postService.AddLike(liked);
             var post = postService.GetPostById(postId);
-            var anom = new {id = post.Id, count = post.Likes.Count(), type = true};
-            return JsonHelper.ToJson(anom);   
+            var anom = new
+            {
+                id = post.Id,
+                count = post.Likes.Count(),
+                type = true
+            };
+            return anom;
         }
     }
 }
