@@ -173,9 +173,13 @@ body{
 	object-fit:cover;
 	object-position: center;
 	margin: 0px;
+	margin-bottom: 5px;
 }
 .span {
-	width: 100%;
+	width: 100% !important;
+}
+.formwidth{
+	max-width:900px;
 }
 .inline{
 	display: inline;
@@ -269,9 +273,23 @@ accept-friend {
 	border-color: #eea236;
 }
 
-.topblue{
+.topblue {
 	margin-bottom: 5px;
 	padding-left: 5px;
 	background-color: #ABE1E4;
 	border-radius: 4px;
+}
+
+.post img{
+	vertical-align: middle;
+	border-radius: 10px;
+	width: 100%;
+	display: block;
+	margin: 10px 0px 10px 0px;
+}
+.post iframe{
+	vertical-align: middle;
+	width: 100%;
+	display: block;
+	margin: 10px 0px 10px 0px;
 }

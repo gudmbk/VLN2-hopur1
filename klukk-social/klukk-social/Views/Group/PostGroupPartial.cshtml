@@ -3,7 +3,7 @@
 <div class="cardgroup postpadd">
 	@using (Html.BeginForm("PostOnGroup", "Group", FormMethod.Post, new { @class = "postdialog", role = "form" }))
 	{
-		<textarea class="form-control" rows="4" name="status"></textarea>
+		<textarea class="form-control span formwidth" rows="4" name="status"></textarea>
 		<input type="hidden" name="GroupId" value="@Model.GroupId" />
 		<input type="submit" value="Deila" class="btn btn-default" />
 	}

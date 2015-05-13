@@ -13,7 +13,7 @@
 @foreach (var post in Model.Feed)
 {
 	InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
-	userPostInfo.Feed.Add(post);
+	userPostInfo.Post = post;
 	userPostInfo.IsPost = true;
 	userPostInfo.AllChildren = Model.AllChildren;
 	@Html.Partial("PostPartial", userPostInfo)

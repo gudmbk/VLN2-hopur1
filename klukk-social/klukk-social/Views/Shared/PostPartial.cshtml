@@ -10,33 +10,35 @@
 	postCommentForward.AllChildren = Model.AllChildren;
 	postCommentForward.IsPost = true;
 	postCommentForward.Feed = Model.Feed;
+	Model.Post = Model.Feed[0];
+	postCommentForward.Post = Model.Feed[0];
 	string color = "card";
-	if(Model.Feed[0].GroupId > 0){ color = "cardgroup"; }
+	if (Model.Post.GroupId > 0) { color = "cardgroup"; }
 }
 <div class="@color postpadd">
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
-				<img src='@us.GetProfileUrl(Model.Feed[0].FromUserId)' class="search imagesmall" />
-				@Html.ActionLink(@us.GetFullNameById(Model.Feed[0].FromUserId), "Profile", new { userId = Model.Feed[0].FromUserId })
+				<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+				@Html.ActionLink(Model.Post.FromUser.FullName, "Profile", new { userId = Model.Post.FromUserId })
 			</div>
 			@if (User.IsInRole("Parent"))
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
-					<img src='@us.GetProfileUrl(Model.Feed[0].ToUserId)' class="search imagesmall" />
-					@Html.ActionLink(@us.GetFullNameById(Model.Feed[0].ToUserId), "Profile", new { userId = Model.Feed[0].ToUserId })
+					<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+					@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", new { userId = Model.Post.ToUserId })
 				</div>
 			}
 		</div>
-		<div>@Html.Raw(Model.Feed[0].HtmlText)</div> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
-		<time datetime="@Model.Feed[0].Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+		<div class="post">@Html.Raw(Model.Post.HtmlText)</div> @*Þarf að breyta þessu í htmlText þegar búið er að gera parseföll*@
+		<time datetime="@Model.Post.Date.ToString()" title="@Model.Post.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 		@Html.Partial("StarReportEditPartial", postCommentForward)
 
 
 	</div>
 
-	@foreach (var comment in Model.Feed[0].Comments)
+	@foreach (var comment in Model.Post.Comments)
 	{
 		InteractionBarViewModel commentForwards = new InteractionBarViewModel();
 		commentForwards.AllChildren = Model.AllChildren;
@@ -45,19 +47,19 @@
 			<img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
 			@Html.ActionLink(@comment.PosterName, "Profile", new { userId = comment.UserId })
 			<p>@comment.Body</p>
-			<time datetime="@comment.Date.ToString()" title="@Model.Feed[0].Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
+			<time datetime="@comment.Date.ToString()" title="@Model.Post.Date.ToString()">2 minutes ago</time> @*Hér kemur javascript*@
 			@Html.Partial("StarReportEditPartial", commentForwards)
 		</div>
 
 	}
 	@if (!User.IsInRole("Parent"))
 	{
-		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { role = "form" }))
+		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "form-inline", role = "form" }))
 		{
 			<div class="postdialog">
 				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
-				<input name="comment" />
-				<input type="hidden" name="PostId" value="@Model.Feed[0].Id" />
+				<input name="comment" placeholder="Bæta við innleggi" class="form-control" />
+				<input type="hidden" name="PostId" value="@Model.Post.Id" />
 				<input type="submit" value="Deila" class="btn btn-default" />
 			</div>
 		}
