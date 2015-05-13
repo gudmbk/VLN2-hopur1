@@ -31,6 +31,7 @@
 	{
 		thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
 		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
+	    count = Model.Comment.Likes.Count;
 		id = Model.Comment.Id;
 	}
 	if (!User.IsInRole("Parent"))

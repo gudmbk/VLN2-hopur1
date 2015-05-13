@@ -15,10 +15,37 @@ namespace klukk_social.Hubs
             Clients.All.hello();
         }
 
-        public Task Like(int postId, string user)
+        public Task Like(int itemId, string user, bool type)
         {
-            var like = Savelike(postId, user);
-            return Clients.All.updateLikeCount(like);
+            if (type)
+            {
+                var like = Savelike(itemId, user);
+                return Clients.All.updateLikeCount(like);
+            }
+            else
+            {
+                var like = SaveCommentLike(itemId, user);
+                return Clients.All.updateLikeCount(like);
+            }
+
+        }
+
+        private string SaveCommentLike(int commentId, string user)
+        {
+            var postService = new PostService();
+            var item = postService.GetCommentById(commentId);
+            var liked = new CommentLikes
+            {
+                Id = 0,
+                CommentId = item.Id,
+                UserId = user,
+            };
+            postService.AddCommentLike(liked);
+            var comment = postService.GetCommentById(commentId);
+            var anom = new { id = comment.Id, count = comment.Likes.Count(), type = false };
+            
+            return JsonHelper.ToJson(anom);
+
         }
 
         private string Savelike(int postId, string user)
@@ -33,10 +60,8 @@ namespace klukk_social.Hubs
             };
             postService.AddLike(liked);
             var post = postService.GetPostById(postId);
-            var count = post.Likes.Count();
-            
-
-            return JsonHelper.ToJson(count);   
+            var anom = new {id = post.Id, count = post.Likes.Count(), type = true};
+            return JsonHelper.ToJson(anom);   
         }
     }
 }

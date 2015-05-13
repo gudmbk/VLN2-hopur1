@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
@@ -102,7 +101,6 @@ namespace klukk_social.Services
 
         public void AddLike(Likes like)
         {
-
             using (var dbContext = new ApplicationDbContext())
             {
                 var post = dbContext.Posts.Single(p => p.Id == like.PostId);
@@ -150,6 +148,29 @@ namespace klukk_social.Services
             {
                 var itemToDelete = dbContext.Comments.Single(c => c.Id == commentId);
                 dbContext.Comments.Remove(itemToDelete);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public Comment GetCommentById(int commentId)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var item = dbContext.Comments.Single(c => c.Id == commentId);
+                return item;
+            }
+        }
+
+        public void AddCommentLike(CommentLikes liked)
+        {
+            using (var dbContext = new ApplicationDbContext())
+            {
+                var comment = dbContext.Comments.Single(c => c.Id == liked.CommentId);
+                if (comment.Likes == null)
+                {
+                    comment.Likes = new List<CommentLikes>();
+                }
+                comment.Likes.Add(liked);
                 dbContext.SaveChanges();
             }
         }

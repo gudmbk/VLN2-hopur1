@@ -34,7 +34,7 @@
         var isPost = $(this).attr("data-type");
         var jsonPostId = { postId: postId }
         var toHide = $(this);
-        if(isPost == true) {
+        if(isPost) {
             $.ajax({
                 type: "POST",
                 url: "/Post/RemovePost",
@@ -72,16 +72,17 @@
 $(function () {
     var likeClient = $.connection.likeHub;
     likeClient.client.updateLikeCount = function (like) {
-        var counter = $(".like-button");
+        var counter = $("[data-id='" + like.id + "'][data-type='" + like.count + "']");
         $(counter).fadeOut(function () {
-            $(this).text(like);
+            $(this).text(like.count);
             $(this).fadeIn();
         });
     };
     $(".like-button").on("click", function () {
         var code = $(this).attr("data-id");
         var user = $(this).attr("data-user");
-        likeClient.server.like(code, user);
+        var type = $(this).attr("data-type");
+        likeClient.server.like(code, user, type);
     });
 
     $.connection.hub.start();
