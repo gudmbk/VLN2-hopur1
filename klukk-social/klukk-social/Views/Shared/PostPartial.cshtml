@@ -26,8 +26,17 @@
 			{
 				<div class="floatleft leftpaddten">
 					<span>Skrifaði á vegg --></span>
-					<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
-					@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", new { userId = Model.Post.ToUserId })
+					@if(Model.Post.GroupId > 0)
+					{
+						<img src='@Model.Post.Group.ProfilePic' class="search imagesmall" />
+						@Html.ActionLink(@Model.Post.Group.Name, "Profile", new { userId = Model.Post.ToUserId })
+					}
+					else
+					{
+						<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+						@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", new { userId = Model.Post.ToUserId })
+					}
+					
 				</div>
 			}
 		</div>
