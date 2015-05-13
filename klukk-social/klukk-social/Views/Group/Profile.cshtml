@@ -3,8 +3,9 @@
 @model GroupViewModel
 
 <div class="cardgroup postpadd">
-	<img src="/Content/Images/EmptyProfilePicture.gif" alt="Profile Picture" class="profile floatleft img-responsive" />
-	<h1 class="leftpaddten floatleft">@Model.Group.Name</h1>
+	<img src="@Model.Group.ProfilePic" alt="Profile Picture" class="profile floatleft img-responsive" />
+	<h1 class="leftpaddten floatleft block">@Model.Group.Name</h1>
+	<div class="floatleft block" >@Model.Group.Description</div>
 	<div class="clearfix"></div>
 </div>
 

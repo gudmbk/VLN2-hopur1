@@ -63,10 +63,10 @@ namespace klukk_social.Controllers
 				var listOfPosts = _groupService.GetAllGroupPostsToGroup(groupId);
 				var group = _groupService.FindById(groupId);
 				GroupViewModel groupWall = new GroupViewModel();
+				//groupWall.Request = _groupService.getGroupRequest(User.Identity.GetUserId(), groupId);
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
-				groupWall.ProfilePicUrl = group.ProfilePic;
 				return View(groupWall);
 			}
 

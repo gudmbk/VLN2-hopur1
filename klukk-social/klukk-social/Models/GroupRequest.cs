@@ -8,7 +8,7 @@ namespace klukk_social.Models
         public string FromUserId { get; set; }
         [ForeignKey("FromUserId")]
         public User FromUser { get; set; }
-        public string GroupId { get; set; }
+        public int GroupId { get; set; }
         [ForeignKey("GroupId")]
         public Group Togroup { get; set; }
     }

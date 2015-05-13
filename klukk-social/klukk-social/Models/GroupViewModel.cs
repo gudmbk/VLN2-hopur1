@@ -13,7 +13,7 @@ namespace klukk_social.Models
 		public Comment Comment { get; set; }
 		public List<User> AllChildren { get; set; }
 		public GroupRequest Request { get; set; }
-		public string ProfilePicUrl { get; set; }
+		public bool MemberOfGroup { get; set; }
 
 		public GroupViewModel()
 		{
@@ -22,6 +22,7 @@ namespace klukk_social.Models
 			Comment = new Comment();
 			AllChildren = new List<User>();
 			Request = new GroupRequest();
+			MemberOfGroup = false;
 		}
 	}
 }
