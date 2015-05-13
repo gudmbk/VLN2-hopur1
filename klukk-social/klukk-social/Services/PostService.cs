@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using klukk_social.Models;
@@ -174,6 +175,25 @@ namespace klukk_social.Services
                 comment.Likes = new List<CommentLikes>();
             }
             comment.Likes.Add(liked);
+            dbContext.SaveChanges();
+        }
+
+        public void AddReport(int itemId, string reporterId, bool isPost)
+        {
+            var dbContext = new ApplicationDbContext();
+            Post postReported = dbContext.Posts.Single(p => p.Id == itemId);
+            string fromUser = postReported.FromUserId;
+            User parent = dbContext.Users.Single(u => u.Id == fromUser);
+            ReportItem report = new ReportItem();
+            report.Id = 0;
+            report.IsPost = isPost;
+            report.ReportedById = reporterId;
+            report.ParentId = parent.ParentId;
+            report.PostItem = postReported;
+            report.CommentItem = null;
+            report.Date = DateTime.Now;
+
+            dbContext.ReportItems.Add(report);
             dbContext.SaveChanges();
         }
     }

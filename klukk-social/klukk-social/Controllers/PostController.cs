@@ -70,11 +70,14 @@ namespace klukk_social.Controllers
         }
         public ActionResult ReportPost(int itemId)
         {
-            
+            string reporterId = User.Identity.GetUserId();
+            _postService.AddReport(itemId, reporterId, true);
             return null;
         }
         public ActionResult ReportComment(int itemId)
         {
+            string reporterId = User.Identity.GetUserId();
+            _postService.AddReport(itemId, reporterId, false);
             return null;
         }
     }
