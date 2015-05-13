@@ -137,35 +137,34 @@ namespace klukk_social.Services
 
         public void RemoveComment(int commentId)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var itemToDelete = dbContext.Comments.Single(c => c.Id == commentId);
-                dbContext.Comments.Remove(itemToDelete);
-                dbContext.SaveChanges();
-            }
+            var dbContext = new ApplicationDbContext();
+
+            var itemToDelete = dbContext.Comments.Single(c => c.Id == commentId);
+            dbContext.Comments.Remove(itemToDelete);
+            dbContext.SaveChanges();
         }
 
         public Comment GetCommentById(int commentId)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var item = dbContext.Comments.Single(c => c.Id == commentId);
-                return item;
-            }
+            var dbContext = new ApplicationDbContext();
+            
+            var item = (from c in dbContext.Comments
+				where c.Id == commentId
+				select c).Include("Likes").FirstOrDefault();
+				return item;
         }
 
         public void AddCommentLike(CommentLikes liked)
         {
-            using (var dbContext = new ApplicationDbContext())
+            var dbContext = new ApplicationDbContext();
+ 
+            var comment = dbContext.Comments.Single(c => c.Id == liked.CommentId);
+            if (comment.Likes == null)
             {
-                var comment = dbContext.Comments.Single(c => c.Id == liked.CommentId);
-                if (comment.Likes == null)
-                {
-                    comment.Likes = new List<CommentLikes>();
-                }
-                comment.Likes.Add(liked);
-                dbContext.SaveChanges();
+                comment.Likes = new List<CommentLikes>();
             }
+            comment.Likes.Add(liked);
+            dbContext.SaveChanges();
         }
     }
 }

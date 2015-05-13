@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Helpers;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using ExtensionMethods;
 using klukk_social.Models;
 using Microsoft.AspNet.SignalR;
 using klukk_social.Services;
@@ -51,7 +47,6 @@ namespace klukk_social.Hubs
                 count = comment.Likes.Count(),
                 type = false
             };
-
             return anom;
 
         }
@@ -75,24 +70,6 @@ namespace klukk_social.Hubs
                 type = true
             };
             return anom;
-        }
-    }
-}
-namespace ExtensionMethods
-{
-    public static class JsonHelper
-    {
-        public static string ToJson(this object obj)
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            return serializer.Serialize(obj);
-        }
-
-        public static string ToJson(this object obj, int recursionDepth)
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            serializer.RecursionLimit = recursionDepth;
-            return serializer.Serialize(obj);
         }
     }
 }
