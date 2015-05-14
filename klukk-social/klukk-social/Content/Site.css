@@ -283,6 +283,11 @@ accept-friend {
 	border-radius: 4px;
 }
 
+.post{
+	font-size: 18px;
+	min-height: 90px;
+}
+
 .post img{
 	vertical-align: middle;
 	border-radius: 10px;

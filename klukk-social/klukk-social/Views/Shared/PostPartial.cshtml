@@ -25,7 +25,7 @@
 			@if (User.IsInRole("Parent"))
 			{
 				<div class="floatleft leftpaddten">
-					<span>Skrifaði á vegg --></span>
+					<span>Skrifaði á vegg </span><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
 					@if(Model.Post.GroupId > 0)
 					{
 						<img src='@Model.Post.Group.ProfilePic' class="search imagesmall" />
