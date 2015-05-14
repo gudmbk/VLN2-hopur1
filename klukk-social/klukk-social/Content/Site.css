@@ -6,7 +6,7 @@
 input,
 select,
 textarea {
-    max-width: 600px;
+    max-width: 580px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -176,6 +176,10 @@ body{
 }
 .span {
 	width: 100% !important;
+}
+
+.fullwidth{
+	max-width: 1500px !important;
 }
 
 .formwidth {
