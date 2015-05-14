@@ -7,7 +7,12 @@ namespace klukk_social.Services
 {
     public class GroupService
     {
-        readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
+        readonly IAppDataContext _dbContext = new ApplicationDbContext();
+
+        public GroupService(IAppDataContext context)
+        {
+            _dbContext = context ?? new ApplicationDbContext();
+        }
 
         public void CreateGroup(Group group)
         {
@@ -153,8 +158,10 @@ namespace klukk_social.Services
 			Group foundGroup = (from gr in _dbContext.Groups
 								where gr.Id == changedGroup.Id
 								select gr).FirstOrDefault();
-
-			_dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
+            foundGroup.Description = changedGroup.Description;
+            foundGroup.Name = changedGroup.Name;
+            foundGroup.ProfilePic = changedGroup.ProfilePic;
+            foundGroup.OpenGroup = changedGroup.OpenGroup;
 			_dbContext.SaveChanges();
 		}
 

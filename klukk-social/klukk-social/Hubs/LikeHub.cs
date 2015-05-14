@@ -31,7 +31,7 @@ namespace klukk_social.Hubs
 
         private Object SaveCommentLike(int commentId, string user)
         {
-            var postService = new PostService();
+            var postService = new PostService(null);
             var item = postService.GetCommentById(commentId);
             var liked = new CommentLikes
             {
@@ -53,7 +53,7 @@ namespace klukk_social.Hubs
 
         private Object Savelike(int postId, string user)
         {
-            var postService = new PostService();
+            var postService = new PostService(null);
             var item = postService.GetPostById(postId);
             var liked = new Likes
             {

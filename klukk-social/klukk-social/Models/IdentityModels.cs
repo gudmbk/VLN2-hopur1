@@ -44,25 +44,42 @@ namespace klukk_social.Models
 		}
 	}
 
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public interface IAppDataContext
+    {
+        IDbSet<User> Users { get; set; }
+        IDbSet<Post> Posts { get; set; }
+        IDbSet<Settings> Settings { get; set; }
+        IDbSet<Notification> Notifications { get; set; }
+        IDbSet<Likes> Likes { get; set; }
+        IDbSet<Group> Groups { get; set; }
+        IDbSet<GroupUsers> GroupUsers { get; set; }
+        IDbSet<GroupRequest> GroupRequests { get; set; }
+        IDbSet<Friendship> Friendships { get; set; }
+        IDbSet<FriendRequest> FriendRequests { get; set; }
+        IDbSet<Comment> Comments { get; set; }
+        IDbSet<CommentLikes> CommentLikes { get; set; }
+        IDbSet<ReportItem> ReportItem { get; set; }
+        int SaveChanges();
+    }
+    public class ApplicationDbContext : IdentityDbContext<User>, IAppDataContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Configuration.LazyLoadingEnabled = true;
         }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Settings> Settings { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Likes> Likes { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupUsers> GroupUsers { get; set; }
-		public DbSet<GroupRequest> GroupRequests { get; set; }
-        public DbSet<Friendship> Friendships { get; set; }
-        public DbSet<FriendRequest> FriendRequests { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<CommentLikes> CommentLikes { get; set; }
-        public DbSet<ReportItem> ReportItem { get; set; }
+        public IDbSet<Post> Posts { get; set; }
+        public IDbSet<Settings> Settings { get; set; }
+        public IDbSet<Notification> Notifications { get; set; }
+        public IDbSet<Likes> Likes { get; set; }
+        public IDbSet<Group> Groups { get; set; }
+        public IDbSet<GroupUsers> GroupUsers { get; set; }
+        public IDbSet<GroupRequest> GroupRequests { get; set; }
+        public IDbSet<Friendship> Friendships { get; set; }
+        public IDbSet<FriendRequest> FriendRequests { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
+        public IDbSet<CommentLikes> CommentLikes { get; set; }
+        public IDbSet<ReportItem> ReportItem { get; set; }
 
         public static ApplicationDbContext Create()
         {

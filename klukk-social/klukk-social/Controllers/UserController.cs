@@ -10,9 +10,9 @@ namespace klukk_social.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private readonly PostService _postService = new PostService();
-        private readonly UserService _userService = new UserService();
-		private readonly GroupService _groupService = new GroupService();
+        private readonly PostService _postService = new PostService(null);
+        private readonly UserService _userService = new UserService(null);
+		private readonly GroupService _groupService = new GroupService(null);
 
 
 		[Authorize(Roles = "Parent")]
