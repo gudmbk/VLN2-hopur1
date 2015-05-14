@@ -8,12 +8,10 @@ namespace klukk_social.Services
 {
     public class PostService
     {
-
+		ApplicationDbContext dbContext = new ApplicationDbContext();
         public List<Post> GetAllPostsToUser(string userId)
         {
-			var dbContext = new ApplicationDbContext();
-            
-            var listi = (from p in dbContext.Posts
+			var listi = (from p in dbContext.Posts
                 where p.ToUserId == userId
                 orderby p.Date descending
                             select p).Include("Likes").ToList();
@@ -30,22 +28,18 @@ namespace klukk_social.Services
  
         public void AddPost(Post post)
         {
-			var dbContext = new ApplicationDbContext();
 			dbContext.Posts.Add(post);
 			dbContext.SaveChanges();
         }
 
         public void AddComment(Comment comment)
         {
-			var dbContext = new ApplicationDbContext();
-                dbContext.Comments.Add(comment);
+			dbContext.Comments.Add(comment);
                 dbContext.SaveChanges();
 
         }
 		public List<Post> GetAllChildrenPosts(string parentId)
 		{
-			var dbContext = new ApplicationDbContext();
-			
 			// Load all posts my children have made
 			var authoredPosts = from post in dbContext.Posts
 								join postAuthor in dbContext.Users on post.FromUserId equals postAuthor.Id
@@ -76,8 +70,6 @@ namespace klukk_social.Services
 
         public List<Post> GetAllPostForUserFeed(string userId)
         {
-			var dbContext = new ApplicationDbContext();
-            
             var list = (from post in dbContext.Posts
                 join friend in dbContext.Friendships on post.FromUserId equals friend.FromUserId
                 where friend.ToUserId == userId
@@ -97,8 +89,6 @@ namespace klukk_social.Services
 
         public void AddLike(Likes like)
         {
-			var dbContext = new ApplicationDbContext();
-            
 			var post = dbContext.Posts.Single(p => p.Id == like.PostId);
 			if (post.Likes == null)
 			{
@@ -110,8 +100,6 @@ namespace klukk_social.Services
 
 		public Post GetPostById(int postId)
 		{
-			var dbContext = new ApplicationDbContext();
-
 			var item = (from p in dbContext.Posts
 						where p.Id == postId
 						select p).Include("Likes").FirstOrDefault();
@@ -120,8 +108,6 @@ namespace klukk_social.Services
 		}
 		public string GetToUserIdPostId(int postId)
 		{
-			var dbContext = new ApplicationDbContext();
-
 			var item = (from u in dbContext.Posts
 						where u.Id == postId
 						select u.ToUserId).FirstOrDefault();
@@ -131,8 +117,6 @@ namespace klukk_social.Services
 
         public void RemovePost(int postToDelete)
         {
-			var dbContext = new ApplicationDbContext();
-            
 			var itemToDelete = dbContext.Posts.Single(p => p.Id == postToDelete);
 			
 			var commentList = (from cmnt in dbContext.Comments
@@ -148,8 +132,6 @@ namespace klukk_social.Services
 
         public void RemoveComment(int commentId)
         {
-            var dbContext = new ApplicationDbContext();
-
             var itemToDelete = dbContext.Comments.Single(c => c.Id == commentId);
             dbContext.Comments.Remove(itemToDelete);
             dbContext.SaveChanges();
@@ -157,8 +139,6 @@ namespace klukk_social.Services
 
         public Comment GetCommentById(int commentId)
         {
-            var dbContext = new ApplicationDbContext();
-            
             var item = (from c in dbContext.Comments
 				where c.Id == commentId
 				select c).Include("Likes").FirstOrDefault();
@@ -167,8 +147,6 @@ namespace klukk_social.Services
 
         public void AddCommentLike(CommentLikes liked)
         {
-            var dbContext = new ApplicationDbContext();
- 
             var comment = dbContext.Comments.Single(c => c.Id == liked.CommentId);
             if (comment.Likes == null)
             {
@@ -180,15 +158,13 @@ namespace klukk_social.Services
 
         public void EditComment(int commentId, string body)
         {
-            var dbContext = new ApplicationDbContext();
-            var itemToChange = dbContext.Comments.Single(c => c.Id == commentId);
+			var itemToChange = dbContext.Comments.Single(c => c.Id == commentId);
             itemToChange.Body = body;
             dbContext.SaveChanges();
         }
 
         public void EditPost(int postId, string text, string htmlText)
         {
-            var dbContext = new ApplicationDbContext();
             var itemToChange = dbContext.Posts.Single(p => p.Id == postId);
             itemToChange.Text = text;
             itemToChange.HtmlText = htmlText;
@@ -197,7 +173,6 @@ namespace klukk_social.Services
 
         public void AddReportPost(int itemId, string reporterId)
         {
-            var dbContext = new ApplicationDbContext();
             Post postReported = dbContext.Posts.Single(p => p.Id == itemId);
             User poster = dbContext.Users.Single(u => u.Id == postReported.FromUserId);
             User parent = dbContext.Users.Single(u => u.Id == poster.ParentId);
@@ -216,7 +191,6 @@ namespace klukk_social.Services
 
         public void AddReportComment(int itemId, string reporterId)
         {
-            var dbContext = new ApplicationDbContext();
             Comment commentReported = dbContext.Comments.Single(c => c.Id == itemId);
             User poster = dbContext.Users.Single(u => u.Id == commentReported.UserId);
             User parent = dbContext.Users.Single(u => u.Id == poster.ParentId);
@@ -233,5 +207,10 @@ namespace klukk_social.Services
             parent.Reports.Add(report);
             dbContext.SaveChanges();
         }
+
+		public bool OnUserWall(int postId)
+		{
+			return GetPostById(postId).GroupId == null;
+		}
     }
 }

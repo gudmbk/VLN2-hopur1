@@ -14,6 +14,7 @@ namespace klukk_social.Controllers
     {
         readonly PostService _postService = new PostService();
         readonly UserService _userService = new UserService();
+		readonly GroupService _groupService = new GroupService();
 
         [HttpPost]
         public ActionResult PostStatus(FormCollection collection)
@@ -68,7 +69,11 @@ namespace klukk_social.Controllers
             if (comment.UserId != null)
             {
                 _postService.AddComment(comment);
-				return RedirectToAction("Profile", "User", new { userId = _postService.GetToUserIdPostId(postId)});
+				if (_postService.OnUserWall(postId))
+				{
+					return RedirectToAction("Profile", "User", new { userId = _postService.GetToUserIdPostId(postId) });
+				}
+				return RedirectToAction("Profile", "Group", new { groupId = _groupService.FindGroupId(postId) });
             }
             return View("Error");
         }

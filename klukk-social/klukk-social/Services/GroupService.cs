@@ -116,11 +116,11 @@ namespace klukk_social.Services
 			dbContext.SaveChanges();
 		}
 
-		public bool IsUserMember(string userId)
+		public bool IsUserMember(int groupId, string userId)
 		{
 			var dbContext = new ApplicationDbContext();
 			var request = (from user in dbContext.GroupUsers
-						   where user.UserId == userId
+						   where user.UserId == userId && user.GroupId == groupId
 						   select user).FirstOrDefault();
 			return request != null;
 		}
@@ -158,6 +158,14 @@ namespace klukk_social.Services
 			//foundGroup = changedGroup;
 			dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
 			dbContext.SaveChanges();
+		}
+
+		public int FindGroupId(int postId)
+		{
+			Post group = (from p in dbContext.Posts
+						 where p.Id == postId
+						 select p).FirstOrDefault();
+			return group.GroupId.Value;
 		}
 	}
 }

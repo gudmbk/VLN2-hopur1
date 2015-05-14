@@ -72,7 +72,7 @@ namespace klukk_social.Controllers
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
-				groupWall.MemberOfGroup = _groupService.IsUserMember(User.Identity.GetUserId());
+				groupWall.MemberOfGroup = _groupService.IsUserMember(groupId.Value, User.Identity.GetUserId());
 				return View(groupWall);
 			}
 
@@ -94,7 +94,7 @@ namespace klukk_social.Controllers
 			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-			post.ToUserId = null; // Get ekki tekið út
+			post.ToUserId = User.Identity.GetUserId(); ; // Get ekki tekið út
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);
