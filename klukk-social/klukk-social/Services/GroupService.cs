@@ -96,12 +96,12 @@ namespace klukk_social.Services
 			return request;
 		}
 
-		public void DeleteGroupRequest(GroupRequest groupRequest)
+		public void DeleteGroupRequest(int requestId)
 		{
 			var dbContext = new ApplicationDbContext();
 
 			var toDelete = (from gr in dbContext.GroupRequests
-							where gr.GroupId == groupRequest.GroupId || gr.FromUserId == groupRequest.FromUserId
+							where gr.Id == requestId
 							select gr).FirstOrDefault();
 
 			dbContext.GroupRequests.Remove(toDelete);
@@ -173,6 +173,23 @@ namespace klukk_social.Services
 									select r).FirstOrDefault();
 			_dbContext.GroupRequests.Remove(request);
 			_dbContext.SaveChanges();
+		}
+
+		public List<GroupRequest> GetAllRequests(string userId)
+		{
+			return (from grReq in _dbContext.GroupRequests
+						join grp in _dbContext.Groups
+						on grReq.GroupId equals grp.Id
+						where grp.UserId == userId
+						//select grReq).Include("Groups").ToList();
+						select grReq).ToList();
+		}
+
+		public string GetRequestUserId(int requestId)
+		{
+			return (from reqId in _dbContext.GroupRequests
+					where reqId.Id == requestId
+					select reqId.FromUserId).FirstOrDefault();
 		}
 	}
 }

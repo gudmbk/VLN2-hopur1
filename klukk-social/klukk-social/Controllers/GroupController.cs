@@ -187,5 +187,34 @@ namespace klukk_social.Controllers
 
 			return RedirectToAction("ParentGroups", "Group");
 		}
+
+		public ActionResult GrantAccessToGroup(int? requestId)
+		{
+			if (requestId.HasValue)
+			{
+				GroupUsers newUser = new GroupUsers();
+				newUser.GroupId = requestId.Value;
+				newUser.UserId = _groupService.GetRequestUserId(requestId.Value);
+				_groupService.AcceptGroupRequest(newUser);
+				_groupService.DeleteGroupRequest(requestId.Value);
+				return RedirectToAction("Reports", "User");
+			}
+
+			return RedirectToAction("Reports", "User");
+		}
+
+		public ActionResult RefuseAccessToGroup(int? requestId)
+		{
+			if (requestId.HasValue)
+			{
+				_groupService.DeleteGroupRequest(requestId.Value);
+				return RedirectToAction("Reports", "User");
+			}
+
+			return RedirectToAction("Reports", "User");
+		}
+
+		
+		
     }
 }

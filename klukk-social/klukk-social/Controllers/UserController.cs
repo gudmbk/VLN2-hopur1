@@ -178,10 +178,14 @@ namespace klukk_social.Controllers
         }
 
         [Authorize(Roles = "Parent")]
-        public ActionResult Reports(string userId)
+        public ActionResult Reports()
         {
-            User parent = _userService.FindById(userId);
-            return View(parent);
+            User parent = _userService.FindById(User.Identity.GetUserId());
+			List<GroupRequest> groupRequests = _groupService.GetAllRequests(User.Identity.GetUserId());
+			ReportModelView reports = new ReportModelView();
+			reports.Parent = parent;
+			reports.GroupRequests = groupRequests;
+			return View(reports);
         }
     }
 }

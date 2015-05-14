@@ -1,32 +1,50 @@
-﻿@model klukk_social.Models.User
+﻿@model klukk_social.Models.ReportModelView
 
 @{
-    ViewBag.Title = "Tilkynningar";
+	ViewBag.Title = "Tilkynningar";
 }
 
 <h2 class="card postpadd">Tilkynningarnar mínar</h2>
-<div id="reports">
-    @foreach (var report in Model.Reports)
+
+@if (Model.GroupRequests.Count != 0)
 {
-	<div class="report-item card postpadd">
-		@if (report.IsPost)
-		{
-			<img src='@report.PostItem.FromUser.ProfilePic' class="search imagesmall"/>
-			<p>@report.PostItem.PosterName</p>
-			<p>@report.PostItem.HtmlText</p>
-			<p>@report.PostItem.Date</p>
-		}
-		else
-		{
-			<img src='@report.CommentItem.User.ProfilePic' class="search imagesmall"/>
-			<p>@report.CommentItem.PosterName</p>
-			<p>@report.CommentItem.Body</p>
-			<p>@report.CommentItem.Date</p>
-		}
-		<div>
-			<button class="report-cancel btn btn-default" data-id="@report.Id">Hunsa</button>
-			<button class="report-delete btn btn-default btn-danger" data-id="@report.Id">Eyða innleggi</button>
+	var i = 0;
+	<h4 class="card postpadd">Aðgangsbeiðnir í grúbbur</h4>
+	foreach (var groupRequest in Model.GroupRequests)
+	{
+		<div class="cardgroup searchcard searchpadd">
+			<h4> FULLNAME biður um aðgang að</h4>
+			<h4>.Togroup.Name</h4>
+			@Html.ActionLink("Neita aðgang", "RefuseAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+			@Html.ActionLink("Opna á aðgang", "GrantAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-success btn-block whitepace" })
+			
 		</div>
-	</div>
+		i++;
+	}
 }
+
+<div id="reports">
+	@foreach (var report in Model.Parent.Reports)
+	{
+		<div class="report-item card postpadd">
+			@if (report.IsPost)
+			{
+				<img src='@report.PostItem.FromUser.ProfilePic' class="search imagesmall" />
+				<p>@report.PostItem.PosterName</p>
+				<p>@report.PostItem.HtmlText</p>
+				<p>@report.PostItem.Date</p>
+			}
+			else
+			{
+				<img src='@report.CommentItem.User.ProfilePic' class="search imagesmall" />
+				<p>@report.CommentItem.PosterName</p>
+				<p>@report.CommentItem.Body</p>
+				<p>@report.CommentItem.Date</p>
+			}
+			<div>
+				<button class="report-cancel btn btn-default" data-id="@report.Id">Hunsa</button>
+				<button class="report-delete btn btn-default btn-danger" data-id="@report.Id">Eyða innleggi</button>
+			</div>
+		</div>
+	}
 </div>
