@@ -1,0 +1,24 @@
+﻿@using klukk_social.Models
+@using Microsoft.AspNet.Identity
+@model GroupViewModel
+
+<h2 class="card postpadd">Grúbburnar mínar</h2>
+
+@foreach (var group in Model.GroupList)
+{
+	<div class="cardgroup searchcard searchpadd">
+		<a href='@Url.Action("GroupSettings", "Group", new { groupId = group.Id }, null)'>
+			<img src='@group.ProfilePic' class="search" />
+		</a>
+		@Html.ActionLink(group.Name, "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		@if (!group.OpenGroup)
+		{
+			@Html.ActionLink("Læst Grúbba", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+		}
+		else
+		{
+			@Html.ActionLink("Opin Grúbba", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		}
+		@*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
+	</div>
+}

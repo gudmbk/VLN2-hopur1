@@ -8,6 +8,8 @@ namespace klukk_social.Services
 {
     public class GroupService
     {
+		ApplicationDbContext dbContext = new ApplicationDbContext();
+
         public void CreateGroup(Group group)
         {
 			var dbContext = new ApplicationDbContext();
@@ -24,7 +26,15 @@ namespace klukk_social.Services
 							  where gl.UserId == userID
 							  select g).ToList();
 			return groups;
+		}
 
+		public List<Group> GetAllParentGroups(string userID)
+		{
+			var dbContext = new ApplicationDbContext();
+			var groups = (from g in dbContext.Groups
+						  where g.UserId == userID
+						  select g).ToList();
+			return groups;
 		}
 		
 		//FindById(groupId)
@@ -136,6 +146,17 @@ namespace klukk_social.Services
 						   select user).FirstOrDefault();
 
 			dbContext.GroupUsers.Remove(request);
+			dbContext.SaveChanges();
+		}
+
+		public void UpdateGroup(Group changedGroup)
+		{
+			var grerg = (from gr in dbContext.Groups
+					 where gr.Id == changedGroup.Id
+						 select gr).FirstOrDefault();
+
+			grerg = changedGroup;
+			dbContext.Entry(grerg).CurrentValues.SetValues(changedGroup);
 			dbContext.SaveChanges();
 		}
 	}

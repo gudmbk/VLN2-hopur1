@@ -52,9 +52,12 @@ namespace klukk_social.Controllers
 			return View(bag);
 		}
 
-		public ActionResult OwnedGroups()
+		public ActionResult ParentGroups()
 		{
-			return View();
+			GroupService _groupService = new GroupService();
+			GroupViewModel bag = new GroupViewModel();
+			bag.GroupList = _groupService.GetAllParentGroups(User.Identity.GetUserId());
+			return View(bag);
 		}
 
 		[Authorize(Roles = "Child")]
@@ -91,7 +94,7 @@ namespace klukk_social.Controllers
 			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-			post.ToUserId = User.Identity.GetUserId(); // Get ekki tekið út
+			post.ToUserId = null; // Get ekki tekið út
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);
@@ -134,6 +137,41 @@ namespace klukk_social.Controllers
 			}
 
 			return RedirectToAction("index", "Group");
+		}
+
+		public ActionResult GroupSettings(int? groupId)
+		{
+			if (groupId.HasValue)
+			{
+				GroupViewModel group = new GroupViewModel();
+				group.Group = _groupService.FindById(groupId.Value);
+				return View(group);
+			}
+
+			return RedirectToAction("ParentGroups", "Group");
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Parent")]
+		public ActionResult ChangeGroup(FormCollection collection)
+		{
+			if (String.IsNullOrEmpty(collection["Name"]) || String.IsNullOrEmpty(collection["groupid"]))
+			{
+				return RedirectToAction("CreateGroup", "Group");
+			}
+			Group newGroup = _groupService.FindById(Convert.ToInt32(collection["GroupId"]));
+			newGroup.Description = collection["description"];
+			newGroup.Name = collection["name"];
+			if (!String.IsNullOrEmpty(collection["opengroup"]))
+			{
+				newGroup.OpenGroup = true;
+			}
+			if (!String.IsNullOrEmpty(collection["profilepicurl"]))
+			{
+				newGroup.ProfilePic = collection["profilepicurl"];
+			}
+			_groupService.UpdateGroup(newGroup);
+			return View();
 		}
     }
 }

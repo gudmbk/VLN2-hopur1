@@ -1,0 +1,27 @@
+﻿@using klukk_social.Models
+@model GroupViewModel
+@{
+	string check = "";
+	if (Model.Group.OpenGroup)
+	{
+		 check = "checked";
+	}
+}
+
+<h2 class="card postpadd">Breita hóp</h2>
+@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @class="card postpadd"}))
+{
+	<input type="hidden" name="groupid" value="@Model.Group.Id"/>
+	<label for="name">Nafn grúppu: </label>
+	<br />
+	<input type="text" name="name" id="name" class="" value="@Model.Group.Name" />
+	<br />
+	<label for="description">Lýsing: </label>
+	<br />
+	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér...">@Model.Group.Description</textarea>
+	<br />
+	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="" value="@Model.Group.ProfilePic"/>
+	<label for="opengroup">Opinn hópur </label>
+	<input type="checkbox" name="opengroup" id="opengroup" value="true" @check />
+	<input type="submit" value="Breita" class="btn btn-default" />
+}

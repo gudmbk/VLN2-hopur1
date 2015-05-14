@@ -178,8 +178,9 @@ body{
 .span {
 	width: 100% !important;
 }
+
 .formwidth {
-	max-width:900px;
+	max-width: 910px;
 }
 .inline {
 	display: inline;
