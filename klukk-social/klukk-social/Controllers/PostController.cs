@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Net.Mime;
+using System.Text;
 using System.Web.Mvc;
+using System.Web.UI;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -15,8 +16,20 @@ namespace klukk_social.Controllers
         readonly UserService _userService = new UserService();
 
         [HttpPost]
-        public ActionResult PostStatus(FormCollection collection)
+        public ActionResult PostStatus(Post post)
         {
+            post.HtmlText = Helpers.ParseText(post.Text);
+            post.FromUserId = User.Identity.GetUserId();
+            post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
+            post.GroupId = 0;
+            _postService.AddPost(post);
+            InteractionBarViewModel model = new InteractionBarViewModel();
+            model.IsPost = true;
+            model.Feed.Add(post);
+            model.Person = _userService.FindById(post.FromUserId);
+            var postHtml = Helpers.RenderViewToString(this.ControllerContext, "PostPartial", model);
+            return Json(postHtml, JsonRequestBehavior.AllowGet);
+            /*
             Post post = new Post();
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
@@ -35,6 +48,7 @@ namespace klukk_social.Controllers
             }
             
             return View("Error");
+            */
         }
 
         public ActionResult PostComment(FormCollection collection)
@@ -84,40 +98,18 @@ namespace klukk_social.Controllers
             return null;
         }
 
-        public ActionResult EditPost(int itemId)
+        public ActionResult EditPost(int itemId, string newPost)
         {
-            Post postToEdit = _postService.GetPostById(itemId);
-            var anom = new
-            {
-                id = postToEdit.Id,
-                text = postToEdit.Text
-            };
-            
-            
-            return Json(anom, JsonRequestBehavior.AllowGet);
-            //_postService.EditPost(changedItem);
+            string htmlText = Helpers.ParseText(newPost);
+            _postService.EditPost(itemId, newPost, htmlText);
 
+            return Json(htmlText, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult EditComment(int itemId)
+        public ActionResult EditComment(int itemId, string newPost)
         {
-            //_postService.EditComment(changedItem);
+            _postService.EditComment(itemId, newPost);
 
-            return null;
+            return Json(newPost, JsonRequestBehavior.AllowGet);
         }
-        /*
-        public string RenderRazorViewToString(string viewName, object model)
-        {
-            ViewData.Model = model;
-            using (var sw = new StringWriter())
-            {
-                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext,
-                                                                         viewName);
-                var viewContext = new ViewContext(ControllerContext, viewResult.View,
-                                             ViewData, TempData, sw);
-                viewResult.View.Render(viewContext, sw);
-                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
-                return sw.GetStringBuilder().ToString();
-            }
-        }*/
     }
 }

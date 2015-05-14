@@ -28,6 +28,19 @@
             error: function (data) { console.log(data) }
         });
     });
+
+    $('post-status').on('submit', 'form', function () {
+        var theForm = $(this);
+        $.ajax({
+            type: "POST",
+            url: "/Post/PostStatus",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: theForm.serialize(),
+            success: function () { alert("WORK WORK") },
+            error: function (data) { console.log(data) }
+        });
+    });
     
     $(".delete-post").click(function () {
         var itemId = $(this).attr("data-id");
@@ -60,18 +73,26 @@
     $(".edit-post").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var anom = $(this).parents(".post-box").find("p").text();
-        $(this).parents(".post-box").find(".post").html('<textarea class="form-control" id="edit-box" name="status-text" ></textarea>' +
-				'<button class="" name="cancel" type="submit">Cancel</button>' +
-                '<button class="edit-save" data-id="' + itemId + '" data-type="' + isPost + '" name="edit-save">Done Editing</button>');
-        $("#edit-box").val(anom.text);
+        var post = $(this).parents(".post-box").find("p");
+        var value = post.text();
+        post.hide();
+        $(this).parents(".post-box").find(".edit-container").html('<textarea class="form-control" id="edit-box" name="status-text" ></textarea>' +
+				'<button class="edit-cancel" >Hætta við</button>' +
+                '<button class="edit-save" data-id="' + itemId + '" data-type="' + isPost + '">Breyta</button>');
+        document.getElementById("edit-box").value = value;
     });
 
-    $(".edit-save").click(function () {
-        alert("yolo");
+    $(".postpadd").on("click", ".edit-cancel", function () {
+        var eb = document.getElementById("edit-box");
+        $(eb).closest(".post-box").find("p").show();
+        $(eb).closest(".edit-container").html("");
+    });
+
+    $(".postpadd").on("click", ".edit-save", function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var jsonPostId = { itemId: itemId }
+        var newPost = document.getElementById("edit-box").value;
+        var jsonPostId = { itemId: itemId, newPost: newPost }
         if (isPost === "true") {
             $.ajax({
                 type: "POST",
@@ -79,8 +100,11 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonPostId),
-                success: function () {
-                    alert("yolo success");
+                success: function (result) {
+                    var eb = document.getElementById("edit-box");
+                    $(eb).closest(".post-box").find("p").text(result);
+                    $(eb).closest(".post-box").find("p").show();
+                    $(eb).closest(".edit-container").html("");
                 },
                 error: function (data) { console.log(data) }
             });
@@ -91,7 +115,12 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonPostId),
-                success: function () { alert("CommentVirkar") },
+                success: function(result) {
+                    var eb = document.getElementById("edit-box");
+                    $(eb).closest(".post-box").find("p").text(result);
+                    $(eb).closest(".post-box").find("p").show();
+                    $(eb).closest(".edit-container").html("");
+                },
                 error: function (data) { console.log(data) }
             });
         }
@@ -132,7 +161,7 @@ $(function () {
             $(this).fadeIn();
             $(this).parent().blur(); //remove focus af takka
             if (like.count < 2) {
-                $(this).parent().addClass("btn-warning-on"); //gerir 
+                $(this).parent().addClass("btn-warning-on");
             }
         });
     };

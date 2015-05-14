@@ -45,6 +45,7 @@
             <div class="post">
                 <p>@Html.Raw(Model.Post.HtmlText)</p>
             </div>
+            <div class="edit-container"></div>
             <div>
                 <time datetime="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">2 minutes ago</time> @*Hér kemur javascript*@
                 @Html.Partial("StarReportEditPartial", postCommentForward)
@@ -64,6 +65,7 @@
                 <div class="post">
                     <p>@Html.Raw(comment.Body)</p>
                 </div>
+                <div class="edit-container"></div>
                 <div>
                     <time datetime="@comment.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">2 minutes ago</time> @*Hér kemur javascript*@
                     @Html.Partial("StarReportEditPartial", commentForwards)

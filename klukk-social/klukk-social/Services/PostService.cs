@@ -178,16 +178,21 @@ namespace klukk_social.Services
             dbContext.SaveChanges();
         }
 
-        public void EditComment(Comment changedItem)
+        public void EditComment(int commentId, string body)
         {
             var dbContext = new ApplicationDbContext();
-            var itemToChange = dbContext.Comments.Single(c => c.Id == changedItem.Id);
+            var itemToChange = dbContext.Comments.Single(c => c.Id == commentId);
+            itemToChange.Body = body;
+            dbContext.SaveChanges();
         }
 
-        public void EditPost(Post changedItem)
+        public void EditPost(int postId, string text, string htmlText)
         {
             var dbContext = new ApplicationDbContext();
-            var itemToChange = dbContext.Posts.Single(p => p.Id == changedItem.Id);
+            var itemToChange = dbContext.Posts.Single(p => p.Id == postId);
+            itemToChange.Text = text;
+            itemToChange.HtmlText = htmlText;
+            dbContext.SaveChanges();
         }
 
         public void AddReportPost(int itemId, string reporterId)
