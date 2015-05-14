@@ -22,11 +22,11 @@ else
 				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 				
 				@*@Html.LabelFor(m => m.Email, new { @class = "text-white" })*@
-				@Html.TextBoxFor(m => m.UserName, new { @class = "form-control ", placeholder = "Enter email / Username" })
+				@Html.TextBoxFor(m => m.UserName, new { @class = "form-control fullwidth", placeholder = "Enter email / Username" })
 				@Html.ValidationMessageFor(m => m.UserName, "")
 
 				@*@Html.LabelFor(m => m.Password, new { @class = "text-white" })*@
-				@Html.PasswordFor(m => m.Password, new { @class = "form-control topmargin", placeholder = "Password" })
+				@Html.PasswordFor(m => m.Password, new { @class = "form-control topmargin fullwidth", placeholder = "Password" })
 				@Html.ValidationMessageFor(m => m.Password, "")
 
 				<input type="submit" value="Log in" class="btn btn-default topmargin" />
