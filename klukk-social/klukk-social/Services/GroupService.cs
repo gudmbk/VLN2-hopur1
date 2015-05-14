@@ -155,7 +155,6 @@ namespace klukk_social.Services
 								where gr.Id == changedGroup.Id
 								select gr).FirstOrDefault();
 
-			//foundGroup = changedGroup;
 			dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
 			dbContext.SaveChanges();
 		}
@@ -166,6 +165,15 @@ namespace klukk_social.Services
 						 where p.Id == postId
 						 select p).FirstOrDefault();
 			return group.GroupId.Value;
+		}
+
+		public void DeleteGroupRequest(int p, string userId)
+		{
+			GroupRequest request = (from r in dbContext.GroupRequests
+									where r.GroupId == p && r.FromUserId == userId
+									select r).FirstOrDefault();
+			dbContext.GroupRequests.Remove(request);
+			dbContext.SaveChanges();
 		}
 	}
 }

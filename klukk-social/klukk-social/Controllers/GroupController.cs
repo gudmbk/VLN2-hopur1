@@ -104,14 +104,27 @@ namespace klukk_social.Controllers
 			return View("Error");
 		}
 
-		[HttpPost]
-		public ActionResult SendGroupRequest(GroupRequest json)
+		public ActionResult SendGroupRequest(int? groupId)
 		{
-			GroupRequest groupRequest = new GroupRequest();
-			groupRequest.FromUserId = User.Identity.GetUserId();
-			groupRequest.GroupId = json.GroupId;
-			_groupService.SendGroupRequest(groupRequest);
-			return null;
+			if (groupId.HasValue)
+			{
+				GroupRequest groupRequest = new GroupRequest();
+				groupRequest.FromUserId = User.Identity.GetUserId();
+				groupRequest.GroupId = groupId.Value;
+				_groupService.SendGroupRequest(groupRequest);
+				return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
+			}
+			return RedirectToAction("index", "Group");
+		}
+
+		public ActionResult DeleteGroupRequest(int? groupId)
+		{
+			if (groupId.HasValue)
+			{
+				_groupService.DeleteGroupRequest(groupId.Value, User.Identity.GetUserId());
+				return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
+			}
+			return RedirectToAction("index", "Group");
 		}
 
 		public ActionResult JoinOpenGroup(int? groupId)
