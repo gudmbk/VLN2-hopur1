@@ -6,9 +6,9 @@
 
 
 @{
-	UserService us = new UserService();
 	InteractionBarViewModel postCommentForward = new InteractionBarViewModel();
 	postCommentForward.AllChildren = Model.AllChildren;
+	postCommentForward.Person = Model.Person;
 	postCommentForward.IsPost = true;
 	postCommentForward.Feed = Model.Feed;
 	Model.Post = Model.Feed[0];
@@ -16,75 +16,77 @@
 	string color = "card";
 	if (Model.Post.GroupId > 0) { color = "cardgroup"; }
 }
-<div class="@color postpadd">
+<div class="@color postpadd post-body">
 	<div class="postdialog">
-	    <div class="floatleft takeallwidth">
-	        <div class="floatleft">
-	            <img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall"/>
-	            @Html.ActionLink(Model.Post.FromUser.FullName, "Profile", "User", new {userId = Model.Post.FromUserId}, null)
-	        </div>
-	        @if (User.IsInRole("Parent"))
-	        {
-	            <div class="floatleft leftpaddten">
-	                <span>Skrifaði á vegg </span><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-	                @if (Model.Post.GroupId > 0)
-	                {
-	                    <img src='@Model.Post.Group.ProfilePic' class="search imagesmall"/>
-	                    @Html.ActionLink(@Model.Post.Group.Name, "Profile", "User", new {userId = Model.Post.ToUserId}, null)
-	                }
-	                else
-	                {
-	                    <img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall"/>
-	                    @Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", "User", new {userId = Model.Post.ToUserId}, null)
-	                }
-	            </div>
-	        }
-	    </div>
-        <div class ="post-box">
-            <div class="post post-body">
-                <p>@Html.Raw(Model.Post.HtmlText)</p>
-                <input type="hidden" value="@Model.Post.Text" />
-            </div>
+		<div class="floatleft takeallwidth">
+			<div class="floatleft">
+				<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+				@Html.ActionLink(Model.Post.FromUser.FullName, "Profile", "User", new { userId = Model.Post.FromUserId }, null)
+			</div>
+			@if (User.IsInRole("Parent"))
+			{
+				<div class="floatleft leftpaddten">
+					<span>Skrifaði á vegg </span><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+					@if (Model.Post.GroupId > 0)
+					{
+						<img src='@Model.Post.Group.ProfilePic' class="search imagesmall" />
+						@Html.ActionLink(@Model.Post.Group.Name, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
+					}
+					else
+					{
+						<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+						@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
+					}
+				</div>
+			}
+		</div>
+		<div class="post-box">
+			<div class="post post-body">
+				<p>@Html.Raw(Model.Post.HtmlText)</p>
+				<input type="hidden" value="@Model.Post.Text" />
+			</div>
 			<div class="edit-container"></div>
-            <div>
-                <time datetime="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
-                @Html.Partial("StarReportEditPartial", postCommentForward)
-            </div>
-        </div>
+			<div>
+				<time datetime="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
+				@Html.Partial("StarReportEditPartial", postCommentForward)
+			</div>
+		</div>
 	</div>
-
 	@foreach (var comment in Model.Post.Comments)
-    {
-        InteractionBarViewModel commentForwards = new InteractionBarViewModel();
-        commentForwards.AllChildren = Model.AllChildren;
-        commentForwards.Comment = comment;
-        <div class="commentdialog">
-            <img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
-            @Html.ActionLink(@comment.PosterName, "Profile", "User", new { userId = comment.UserId }, null)
-            <div class="post-box">
-                <div class="post-body">
-                    <p>@Html.Raw(comment.Body)</p>
-                    <input type="hidden" value="@comment.Body"/>
-                </div>
-                <div class="edit-container"></div>
-                <div>
-                    <time datetime="@comment.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
-                    @Html.Partial("StarReportEditPartial", commentForwards)
-                </div>
-            </div>
-        </div>
-    }
+	{
+		InteractionBarViewModel commentForwards = new InteractionBarViewModel();
+		commentForwards.AllChildren = Model.AllChildren;
+		commentForwards.Comment = comment;
+		<div class="commentdialog">
+			<img src='@comment.User.ProfilePic' class="search imagesmall" />
+			@Html.ActionLink(@comment.PosterName, "Profile", "User", new { userId = comment.UserId }, null)
+			<div class="post-box">
+				<div class="post-body">
+					<p>@Html.Raw(comment.Body)</p>
+					<input type="hidden" value="@comment.Body" />
+				</div>
+				<div class="edit-container"></div>
+				<div>
+					<time datetime="@comment.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
+					@Html.Partial("StarReportEditPartial", commentForwards)
+				</div>
+			</div>
+		</div>
+	}
+
 	@if (!User.IsInRole("Parent"))
 	{
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "form-inline", role = "form" }))
 		{
 			<div class="postdialog">
-				<img src='@us.GetProfileUrl(User.Identity.GetUserId())' class="search imagesmall" />
+				<img src='@Model.CurrentUser.ProfilePic' class="search imagesmall" />
 				<input name="comment" placeholder="Bæta við innleggi" class="form-control" />
 				<input type="hidden" name="PostId" value="@Model.Post.Id" />
-				<input type="submit" value="Deila" class="btn btn-default" />
+				<input type="submit" value="Deila" class="btn btn-default bottommargin" />
 			</div>
 		}
 	}
-
 </div>
+
+
+

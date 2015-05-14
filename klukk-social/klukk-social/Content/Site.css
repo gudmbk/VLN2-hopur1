@@ -215,7 +215,7 @@ body{
 }
 
 .postdialog {
-	padding: 5px;
+	padding: 5px 5px 0px 5px;
 	margin-bottom: 5px;
 	border-radius: 5px;
 	background-color: #e7f3ff;
@@ -232,9 +232,9 @@ body{
 
 .commentdialog {
 	border-radius: 5px;
-	padding: 5px 5px 5px 20px;
+	padding: 5px 5px 5px 5px;
 	margin: 5px 10px 5px 10px;
-	background-color: lightblue;
+	background-color: #B2E4E5;
 	color: black;
 }
 
@@ -289,7 +289,10 @@ accept-friend {
 
 .post {
 	font-size: 18px;
-	min-height: 90px;
+}
+
+.post-body{
+	font-size: 18px;
 }
 
 .post img {
@@ -347,7 +350,10 @@ accept-friend {
 }
 
 .topmargin{
-	margin-top:6px;
+	margin-top: 6px;
+}
+.bottommargin{
+	margin-bottom: 5px;
 }
 
 .login{
