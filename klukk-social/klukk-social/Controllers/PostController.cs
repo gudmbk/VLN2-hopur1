@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Web.Mvc;
+using System.Web.UI;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -14,7 +17,18 @@ namespace klukk_social.Controllers
 
         [HttpPost]
         public ActionResult PostStatus(FormCollection collection)
-        {
+        {/*
+            post.HtmlText = Helpers.ParseText(post.Text);
+            post.FromUserId = User.Identity.GetUserId();
+            post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
+            _postService.AddPost(post);
+            InteractionBarViewModel model = new InteractionBarViewModel();
+            model.IsPost = true;
+            model.Feed.Add(post);
+            model.Post = post;
+            var postHtml = Helpers.RenderViewToString(this.ControllerContext, "PostPartial", model);
+            return Json(postHtml, JsonRequestBehavior.AllowGet);
+            */
             Post post = new Post();
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
@@ -33,6 +47,7 @@ namespace klukk_social.Controllers
             }
             
             return View("Error");
+            
         }
 
         public ActionResult PostComment(FormCollection collection)
@@ -82,17 +97,18 @@ namespace klukk_social.Controllers
             return null;
         }
 
-        public ActionResult EditPost(int itemId, bool isPost)
+        public ActionResult EditPost(int itemId, string newPost)
         {
-            //_postService.EditPost(changedItem);
+            string htmlText = Helpers.ParseText(newPost);
+            _postService.EditPost(itemId, newPost, htmlText);
 
-            return null;
+            return Json(htmlText, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult EditComment(int itemId, bool isPost)
+        public ActionResult EditComment(int itemId, string newPost)
         {
-            //_postService.EditComment(changedItem);
+            _postService.EditComment(itemId, newPost);
 
-            return null;
+            return Json(newPost, JsonRequestBehavior.AllowGet);
         }
     }
 }

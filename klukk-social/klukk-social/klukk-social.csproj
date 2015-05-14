@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201505132203413_setup.Designer.cs">
       <DependentUpon>201505132203413_setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505140505534_set.cs" />
+    <Compile Include="Migrations\201505140505534_set.Designer.cs">
+      <DependentUpon>201505140505534_set.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -313,6 +317,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505132203413_setup.resx">
       <DependentUpon>201505132203413_setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505140505534_set.resx">
+      <DependentUpon>201505140505534_set.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

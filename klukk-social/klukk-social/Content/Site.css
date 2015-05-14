@@ -147,26 +147,26 @@ body{
 	border-radius: 5px;
 }
 
-.takeallwidth{
+.takeallwidth {
 	width:100%;
 }
 
-.floatleft{
+.floatleft {
 	float: left;
 }
-.postpadd{
+.postpadd {
 	padding:5px;
 }
 
-.leftpaddten{
+.leftpaddten {
 	padding-left:10px;
 }
 
-.searchpadd{
+.searchpadd {
 	padding: 5px;
 }
 
-.imagesmall{
+.imagesmall {
 	border-radius: 5px;
 	height: 50px;
 	width: 50px;
@@ -178,20 +178,21 @@ body{
 .span {
 	width: 100% !important;
 }
-.formwidth{
-	max-width:910px;
+
+.formwidth {
+	max-width: 910px;
 }
-.inline{
+.inline {
 	display: inline;
 }
-.block{
+.block {
 	display: inline-block;
 }
-.whitepace{
+.whitepace {
 	white-space: normal;
 }
 
-.white{
+.white {
 	color:white !important;
 }
 
