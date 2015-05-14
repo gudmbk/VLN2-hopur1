@@ -1,0 +1,30 @@
+﻿@model klukk_social.Models.User
+
+@{
+    ViewBag.Title = "Tilkynningar";
+}
+
+<h2>Tilkynningarnar mínar</h2>
+<div id="reports">
+    @foreach (var report in Model.Reports)
+    {
+        <div class="report-item">
+            @if (report.IsPost)
+            {
+            <p>@report.PostItem.PosterName</p>
+            <p>@report.PostItem.HtmlText</p>
+            <p>@report.PostItem.Date</p>
+            }
+            else
+            {
+            <p>@report.CommentItem.PosterName</p>
+            <p>@report.CommentItem.Body</p>
+            <p>@report.CommentItem.Date</p>
+            }
+            <div>
+                <button class="report-cancel" data-id="@report.Id">Hunsa</button>
+                <button class="report-delete" data-id="@report.Id">Eyða innleggi</button>
+            </div>
+        </div>
+    }
+</div>

@@ -306,6 +306,7 @@
     <Content Include="Views\Group\PostGroupPartial.cshtml" />
     <Content Include="Views\Group\ParentGroups.cshtml" />
     <Content Include="Views\Group\GroupSettings.cshtml" />
+    <None Include="Views\User\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

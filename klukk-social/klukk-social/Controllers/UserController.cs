@@ -175,5 +175,12 @@ namespace klukk_social.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Parent")]
+        public ActionResult Reports(string userId)
+        {
+            User parent = _userService.FindById(userId);
+            return View(parent);
+        }
     }
 }
