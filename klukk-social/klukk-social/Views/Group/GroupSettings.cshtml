@@ -12,7 +12,7 @@
 @using (Html.BeginForm("GroupSettings", "Group", FormMethod.Post, new { @class="card postpadd"}))
 {
 	<input type="hidden" name="groupid" value="@Model.Group.Id"/>
-	<label for="name">Nafn grúppu: </label>
+	<label for="name">Nafn hóps: </label>
 	<input type="text" name="name" id="name" class="form-control span formwidth" value="@Model.Group.Name" />
 	<label for="description" class="topmargin">Lýsing: </label>
 	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..." class="form-control span formwidth">@Model.Group.Description</textarea>
