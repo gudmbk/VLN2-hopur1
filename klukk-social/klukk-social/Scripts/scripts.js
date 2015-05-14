@@ -74,7 +74,7 @@
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
         var post = $(this).parents(".post-box").find("input");
-        var value = post.text();
+        var value = post.val();
         post.hide();
         $(this).parents(".post-box").find(".edit-container").html('<textarea class="form-control" id="edit-box" name="status-text" ></textarea>' +
 				'<button class="edit-cancel" >Hætta við</button>' +
@@ -102,7 +102,7 @@
                 data: JSON.stringify(jsonPostId),
                 success: function (result) {
                     var eb = document.getElementById("edit-box");
-                    $(eb).closest(".post-box").find("p").text(result);
+                    $(eb).closest(".post-box").find("p").html(result);
                     $(eb).closest(".post-box").find("p").show();
                     $(eb).closest(".edit-container").html("");
                 },
@@ -172,7 +172,7 @@ $(function () {
         likeClient.server.like(code, user, type);
     });
 
-    $.connection.hub.start().Wait();
+    $.connection.hub.start();
 
 });
 
