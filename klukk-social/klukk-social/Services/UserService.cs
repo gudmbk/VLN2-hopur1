@@ -18,6 +18,14 @@ namespace klukk_social.Services
 
 		}
 
+	    public User GetParentByUserId(string childId)
+	    {
+	        var dbContext = new ApplicationDbContext();
+	        var user = dbContext.Users.Single(u => u.Id == childId);
+	        var parent = dbContext.Users.Single(u => u.Id == user.ParentId);
+	        return parent;
+	    }
+
 		public List<User> Search(string prefix)
 		{
 			var dbContext = new ApplicationDbContext();
@@ -173,5 +181,15 @@ namespace klukk_social.Services
 			switched.ToUserId = friends.FromUserId;
 			return switched;
 		}
+
+	    public string GetEmailOfCommenter(int itemId)
+	    {
+	        throw new System.NotImplementedException();
+	    }
+
+	    public string GetEmailOfPoster(int itemId)
+	    {
+	        throw new System.NotImplementedException();
+	    }
 	}
 }
