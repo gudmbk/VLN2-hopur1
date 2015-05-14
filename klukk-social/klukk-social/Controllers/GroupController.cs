@@ -9,9 +9,9 @@ namespace klukk_social.Controllers
 {
     public class GroupController : Controller
     {
-		GroupService _groupService = new GroupService();
-		UserService _userService = new UserService();
-		PostService _postService = new PostService();
+        readonly GroupService _groupService = new GroupService();
+        readonly UserService _userService = new UserService();
+        readonly PostService _postService = new PostService();
 
 		[Authorize(Roles = "Parent")]
         public ActionResult CreateGroup()
@@ -46,7 +46,6 @@ namespace klukk_social.Controllers
 		
 		public ActionResult Index()
 		{
-			GroupService _groupService = new GroupService();
 			GroupViewModel bag = new GroupViewModel();
 			bag.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
 			return View(bag);
@@ -54,7 +53,6 @@ namespace klukk_social.Controllers
 
 		public ActionResult ParentGroups()
 		{
-			GroupService _groupService = new GroupService();
 			GroupViewModel bag = new GroupViewModel();
 			bag.GroupList = _groupService.GetAllParentGroups(User.Identity.GetUserId());
 			return View(bag);
@@ -68,7 +66,7 @@ namespace klukk_social.Controllers
 				var listOfPosts = _groupService.GetAllGroupPostsToGroup(groupId);
 				var group = _groupService.FindById(groupId);
 				GroupViewModel groupWall = new GroupViewModel();
-				groupWall.Request = _groupService.getGroupRequest(User.Identity.GetUserId(), groupId);
+				groupWall.Request = _groupService.GetGroupRequest(User.Identity.GetUserId(), groupId);
 				groupWall.Feed = new List<Post>();
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
@@ -94,7 +92,7 @@ namespace klukk_social.Controllers
 			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-			post.ToUserId = User.Identity.GetUserId(); ; // Get ekki tekið út
+			post.ToUserId = User.Identity.GetUserId(); // Get ekki tekið út
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);

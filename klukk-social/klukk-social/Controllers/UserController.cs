@@ -4,7 +4,6 @@ using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Web.Security;
 
 namespace klukk_social.Controllers
 {
@@ -22,12 +21,12 @@ namespace klukk_social.Controllers
 			var userId = User.Identity.GetUserId();
 			var listOfPosts = _postService.GetAllChildrenPosts(userId);
 			var user = _userService.FindById(userId);
-			var ListOfParentsChildren = _userService.GetAllChildren(userId);
+			var listOfParentsChildren = _userService.GetAllChildren(userId);
 			UserViewModel profile = new UserViewModel();
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
-			profile.AllChildren = ListOfParentsChildren;
+			profile.AllChildren = listOfParentsChildren;
 			return View(profile);
 		}
 
@@ -154,7 +153,7 @@ namespace klukk_social.Controllers
 		public ActionResult DeleteCurrentUser() // WARNING
 		{
 			//skrifa?
-			return View();
+			return null;
 		}
 		
         [ChildActionOnly]
@@ -173,7 +172,7 @@ namespace klukk_social.Controllers
 
         public ActionResult GoToChild()
         {
-            return View();
+            return null;
         }
 
         [Authorize(Roles = "Parent")]

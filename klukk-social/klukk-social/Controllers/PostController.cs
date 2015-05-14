@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Web.Mvc;
-using System.Web.UI;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
@@ -91,6 +88,12 @@ namespace klukk_social.Controllers
         public ActionResult ReportItem(int itemId, bool isPost)
         {
             string reporterId = User.Identity.GetUserId();
+            if (User.IsInRole("Parent"))
+            {
+                var user = _userService.FindById(reporterId);
+                string message = "Another parent reported a post made by you child on Klukk, please take a moment to view the post here. http://localhost:5080/User/Reports?userId=" + user.Id;
+                Helpers.LogMessage(message, user.Email);
+            }
             if (isPost)
             {
                 _postService.AddReportPost(itemId, reporterId);
@@ -99,6 +102,19 @@ namespace klukk_social.Controllers
             {
                 _postService.AddReportComment(itemId, reporterId);
             }
+
+            return null;
+        }
+
+        public ActionResult IgnoreReport(int reportId)
+        {
+            _postService.DeleteReport(reportId);
+            return null;
+        }
+
+        public ActionResult DeleteReportedItem(int reportId)
+        {
+            _postService.DeleteReportedItem(reportId);
             return null;
         }
 
@@ -109,6 +125,7 @@ namespace klukk_social.Controllers
 
             return Json(htmlText, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult EditComment(int itemId, string newPost)
         {
             _postService.EditComment(itemId, newPost);

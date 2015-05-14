@@ -1,14 +1,13 @@
 ﻿using klukk_social.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Common;
 using System.Data.Entity;
 
 namespace klukk_social.Services
 {
     public class GroupService
     {
-		ApplicationDbContext dbContext = new ApplicationDbContext();
+        readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         public void CreateGroup(Group group)
         {
@@ -17,22 +16,22 @@ namespace klukk_social.Services
 			dbContext.SaveChanges();
         }
 
-		public List<Group> GetAllGroups(string userID)
+		public List<Group> GetAllGroups(string userId)
 		{
 			var dbContext = new ApplicationDbContext();
 			var groups = (from g in dbContext.Groups
 							  join gl in dbContext.GroupUsers
 							  on g.Id equals gl.GroupId
-							  where gl.UserId == userID
+							  where gl.UserId == userId
 							  select g).ToList();
 			return groups;
 		}
 
-		public List<Group> GetAllParentGroups(string userID)
+		public List<Group> GetAllParentGroups(string userId)
 		{
 			var dbContext = new ApplicationDbContext();
 			var groups = (from g in dbContext.Groups
-						  where g.UserId == userID
+						  where g.UserId == userId
 						  select g).ToList();
 			return groups;
 		}
@@ -87,7 +86,7 @@ namespace klukk_social.Services
 
 		}
 
-		public GroupRequest getGroupRequest(string userId, int? groupId)
+		public GroupRequest GetGroupRequest(string userId, int? groupId)
 		{
 			var dbContext = new ApplicationDbContext();
 
@@ -151,17 +150,17 @@ namespace klukk_social.Services
 
 		public void UpdateGroup(Group changedGroup)
 		{
-			Group foundGroup = (from gr in dbContext.Groups
+			Group foundGroup = (from gr in _dbContext.Groups
 								where gr.Id == changedGroup.Id
 								select gr).FirstOrDefault();
 
-			dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
-			dbContext.SaveChanges();
+			_dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
+			_dbContext.SaveChanges();
 		}
 
 		public int FindGroupId(int postId)
 		{
-			Post group = (from p in dbContext.Posts
+			Post group = (from p in _dbContext.Posts
 						 where p.Id == postId
 						 select p).FirstOrDefault();
 			return group.GroupId.Value;
@@ -169,11 +168,11 @@ namespace klukk_social.Services
 
 		public void DeleteGroupRequest(int p, string userId)
 		{
-			GroupRequest request = (from r in dbContext.GroupRequests
+			GroupRequest request = (from r in _dbContext.GroupRequests
 									where r.GroupId == p && r.FromUserId == userId
 									select r).FirstOrDefault();
-			dbContext.GroupRequests.Remove(request);
-			dbContext.SaveChanges();
+			_dbContext.GroupRequests.Remove(request);
+			_dbContext.SaveChanges();
 		}
 	}
 }

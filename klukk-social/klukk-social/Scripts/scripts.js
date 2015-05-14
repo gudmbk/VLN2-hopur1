@@ -14,6 +14,42 @@
         });
     });
 
+    $("#reports").on("click", ".report-cancel", function () {
+        var reportId = $(this).attr("data-id");
+        var json = { reportId: reportId }
+        var toHide = $(this).closest(".report-item");
+        $.ajax({
+            type: "POST",
+            url: "/Post/IgnoreReport",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(json),
+            success: function() {
+                alert("test");
+                $(toHide).hide();
+            },
+            error: function (data) { console.log(data) }
+        });
+    });
+
+    $("#reports").on("click", ".report-delete", function () {
+        var reportId = $(this).attr("data-id");
+        var json = { reportId: reportId }
+        var toHide = $(this).closest(".report-item");
+        $.ajax({
+            type: "POST",
+            url: "/Post/DeleteReportedItem",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(json),
+            success: function () {
+                alert("test");
+                $(toHide).hide();
+            },
+            error: function (data) { console.log(data) }
+        });
+    });
+
     $(".accept-friend").click(function () {
         var fromUser = $(this).val();
         var json = { Id: 0, ToUserId: "", FromUserId: fromUser }

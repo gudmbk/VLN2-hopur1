@@ -1,12 +1,31 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace klukk_social.Services
 {
     public static class Helpers
-    {
+    {            
+        public static void LogMessage(string message, string contactMail)
+        {
+            string mailSubject = ConfigurationManager.AppSettings["ReportSubject"];
+
+            using (MailMessage email = new MailMessage())
+            {
+
+                email.To.Add(contactMail);
+                email.Subject = mailSubject;
+                email.Body = message;
+                using (SmtpClient client = new SmtpClient())
+                {
+                    client.EnableSsl = true;
+                    client.Send(email);
+                }
+            }
+        }
         public static string ToFriendlyDateString(this DateTime date)
         {
             TimeSpan lengthOfTime = DateTime.Now.Subtract(date);
