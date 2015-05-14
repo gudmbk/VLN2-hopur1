@@ -1,18 +1,17 @@
 ﻿
 
 <h2 class="card postpadd">Stofna hóp</h2>
-@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @class="card postpadd"}))
+@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @class = "card postpadd" }))
 {
-    <label for="name">Nafn grúppu: </label>
+	<label for="name">Nafn grúppu: </label>
+	<input type="text" name="name" id="name" class="form-control span formwidth" />
+	<label for="description" class="postpadd">Lýsing: </label>
+	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..." class="form-control span formwidth"></textarea>
+	<label for="name" class="postpadd">Til þess að hafa mynd á hópnum þá setur þú inn url á myndina hér</label>
+	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="form-control span formwidth" />
 	<br/>
-	<input type="text" name="name" id="name" class="" />
-	<br/>
-    <label for="description">Lýsing: </label>
-	<br/>
-    <textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..."></textarea>
-	<br/>
-	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="" />
-	<label for="opengroup">Opinn hópur </label>
-    <input type="checkbox" name="opengroup" id="opengroup" value="true"/>
-	<input type="submit" value="Stofna" class="btn btn-default" />
+	<input type="submit" value="Stofna" class="btn btn-default postpadd" />
+	<label for="opengroup" class="postpadd">Opinn hópur </label>
+	<input type="checkbox" name="opengroup" id="opengroup" value="true" class="postpadd"/>
+	
 }
