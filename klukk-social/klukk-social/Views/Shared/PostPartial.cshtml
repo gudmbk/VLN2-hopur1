@@ -42,7 +42,7 @@
 	        }
 	    </div>
         <div class ="post-box">
-            <div class="post">
+            <div class="post post-body">
                 <p>@Html.Raw(Model.Post.HtmlText)</p>
             </div>
             <div class="edit-container"></div>
@@ -62,7 +62,7 @@
             <img src='@us.GetProfileUrl(comment.UserId)' class="search imagesmall" />
             @Html.ActionLink(@comment.PosterName, "Profile", "User", new { userId = comment.UserId }, null)
             <div class="post-box">
-                <div class="post">
+                <div class="post-body">
                     <p>@Html.Raw(comment.Body)</p>
                 </div>
                 <div class="edit-container"></div>

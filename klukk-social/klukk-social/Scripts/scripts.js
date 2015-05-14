@@ -172,7 +172,7 @@ $(function () {
         likeClient.server.like(code, user, type);
     });
 
-    $.connection.hub.start();
+    $.connection.hub.start().Wait();
 
 });
 
