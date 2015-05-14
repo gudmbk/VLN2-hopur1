@@ -8,7 +8,7 @@ namespace klukk_social.Services
 {
     public class PostService
     {
-        readonly IAppDataContext _dbContext = new ApplicationDbContext();
+        readonly IAppDataContext _dbContext;
 
         public PostService(IAppDataContext context)
         {

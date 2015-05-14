@@ -7,7 +7,7 @@ namespace klukk_social.Services
 {
 	public class UserService
 	{
-        readonly IAppDataContext _dbContext = new ApplicationDbContext();
+        readonly IAppDataContext _dbContext;
 
         public UserService(IAppDataContext context)
         {
