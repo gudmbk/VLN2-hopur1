@@ -47,7 +47,7 @@
             </div>
 			<div class="edit-container"></div>
             <div>
-                <time datetime="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">2 minutes ago</time> @*Hér kemur javascript*@
+                <time datetime="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
                 @Html.Partial("StarReportEditPartial", postCommentForward)
             </div>
         </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="edit-container"></div>
                 <div>
-                    <time datetime="@comment.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">2 minutes ago</time> @*Hér kemur javascript*@
+                    <time datetime="@comment.Date.ToString(CultureInfo.CurrentCulture)" title="@Model.Post.Date.ToString(CultureInfo.CurrentCulture)">@Model.Post.Date.ToFriendlyDateString()</time> @*Hér kemur javascript*@
                     @Html.Partial("StarReportEditPartial", commentForwards)
                 </div>
             </div>

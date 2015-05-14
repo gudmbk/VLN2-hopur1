@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
@@ -6,6 +7,18 @@ namespace klukk_social.Services
 {
     public static class Helpers
     {
+        public static string ToFriendlyDateString(this DateTime Date)
+        {
+            TimeSpan lengthOfTime = DateTime.Now.Subtract(Date);
+            if (lengthOfTime.Minutes == 0)
+                return "Fyrir minna en mínútu";
+            else if (lengthOfTime.Hours == 0)
+                return "Fyrir " + lengthOfTime.Minutes + " mínútum";
+            else if (lengthOfTime.Days == 0)
+                return "Fyrir " + lengthOfTime.Hours + " tímum";
+            else
+                return "Fyrir " + lengthOfTime.Days + " dögum";
+        }
         public static string ParseText(string input)
         {
             string output = input;
