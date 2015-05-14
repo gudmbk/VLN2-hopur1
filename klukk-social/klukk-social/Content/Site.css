@@ -9,12 +9,6 @@
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
 .footer{
 	position: absolute;
 	bottom: 20px;
@@ -57,7 +51,6 @@ body{
 	color: white;
 	font-size: 100px;
 }
-
 
 .sidebar {
 	float:left;
@@ -335,4 +328,19 @@ accept-friend {
 	color: #fff;
 	background-color: #d9534f;
 	border-color: #d43f3a;
+}
+
+.checkbox{
+	display: inline;
+	vertical-align: middle;
+	margin-left: 5px !important;
+}
+
+.topmargin{
+	margin-top:6px;
+}
+
+.login{
+	max-width: 800px;
+	border-radius: 30px;
 }

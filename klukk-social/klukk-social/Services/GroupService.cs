@@ -151,12 +151,12 @@ namespace klukk_social.Services
 
 		public void UpdateGroup(Group changedGroup)
 		{
-			var grerg = (from gr in dbContext.Groups
-					 where gr.Id == changedGroup.Id
-						 select gr).FirstOrDefault();
+			Group foundGroup = (from gr in dbContext.Groups
+								where gr.Id == changedGroup.Id
+								select gr).FirstOrDefault();
 
-			grerg = changedGroup;
-			dbContext.Entry(grerg).CurrentValues.SetValues(changedGroup);
+			//foundGroup = changedGroup;
+			dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
 			dbContext.SaveChanges();
 		}
 	}

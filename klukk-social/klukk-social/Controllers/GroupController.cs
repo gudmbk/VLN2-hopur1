@@ -153,7 +153,7 @@ namespace klukk_social.Controllers
 
 		[HttpPost]
 		[Authorize(Roles = "Parent")]
-		public ActionResult ChangeGroup(FormCollection collection)
+		public ActionResult GroupSettings(FormCollection collection)
 		{
 			if (String.IsNullOrEmpty(collection["Name"]) || String.IsNullOrEmpty(collection["groupid"]))
 			{
@@ -171,7 +171,8 @@ namespace klukk_social.Controllers
 				newGroup.ProfilePic = collection["profilepicurl"];
 			}
 			_groupService.UpdateGroup(newGroup);
-			return View();
+
+			return RedirectToAction("ParentGroups", "Group");
 		}
     }
 }

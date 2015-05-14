@@ -12,38 +12,31 @@
 <body class="splashpagebackground">
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
-			</div>
-			<div class="navbar-collapse collapse">
-
-				@Html.Partial("_LoginPartial", new LoginViewModel())
-			</div>
+			<div class="navbar-header"></div>
+			@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
 		</div>
 	</div>
-
-<div class="container body-content">
-@RenderBody()
-<hr class="footer" />
-    <footer class="footer">
-            <div class="footercontainer ">
-                <span>@Html.ActionLink("Terms", "Terms")</span>
-                <span>| @Html.ActionLink("Why it is safe", "WhySafe")</span>
-                <span>| @Html.ActionLink("For parents", "ForPar")</span>
-                <span>| @Html.ActionLink("Report bug", "Rep")</span>
-            </div>
-            <div class="footertext">
-                <span>Mail: <a href="#">Info@klukk.is</a></span>
-                    <span>Telephone: <a href="#">00354XXXX-XXX</a>.</span>
-                    <span>&copy; @DateTime.Now.Year - KLUKK</span>
-            </div>
-    </footer>
-</div>
+	</div>
+	<div class="container body-content login">
+		@RenderBody()
+		<div class="card postpadd">
+			@Html.Partial("_LoginPartial", new LoginViewModel())
+		</div>
+		<hr class="footer" />
+		<footer class="footer">
+			<div class="footercontainer ">
+				<span>@Html.ActionLink("Terms", "Terms")</span>
+				<span>| @Html.ActionLink("Why it is safe", "WhySafe")</span>
+				<span>| @Html.ActionLink("For parents", "ForPar")</span>
+				<span>| @Html.ActionLink("Report bug", "Rep")</span>
+			</div>
+			<div class="footertext">
+				<span>Mail: <a href="#">Info@klukk.is</a></span>
+				<span>Telephone: <a href="#">00354XXXX-XXX</a>.</span>
+				<span>&copy; @DateTime.Now.Year - KLUKK</span>
+			</div>
+		</footer>
+	</div>
 
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
