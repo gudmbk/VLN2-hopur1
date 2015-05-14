@@ -301,9 +301,10 @@
     <Content Include="Views\User\FriendsList.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
-    <Content Include="Views\Group\OwnedGroups.cshtml" />
     <Content Include="Views\Group\Profile.cshtml" />
     <Content Include="Views\Group\PostGroupPartial.cshtml" />
+    <Content Include="Views\Group\ParentGroups.cshtml" />
+    <Content Include="Views\Group\GroupSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
