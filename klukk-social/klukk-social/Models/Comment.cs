@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace klukk_social.Models
 {
@@ -11,6 +12,8 @@ namespace klukk_social.Models
         public int Id { get; set; }
         public int PostId { get; set; }
         public string UserId { get; set; }
+		[ForeignKey("UserId")]
+		public virtual User User { get; set; }
         public string PosterName { get; set; }
         public string Body { get; set; }
         public DateTime Date { get; set; }

@@ -4,27 +4,29 @@
     ViewBag.Title = "Tilkynningar";
 }
 
-<h2>Tilkynningarnar mínar</h2>
+<h2 class="card postpadd">Tilkynningarnar mínar</h2>
 <div id="reports">
     @foreach (var report in Model.Reports)
-    {
-        <div class="report-item">
-            @if (report.IsPost)
-            {
-            <p>@report.PostItem.PosterName</p>
-            <p>@report.PostItem.HtmlText</p>
-            <p>@report.PostItem.Date</p>
-            }
-            else
-            {
-            <p>@report.CommentItem.PosterName</p>
-            <p>@report.CommentItem.Body</p>
-            <p>@report.CommentItem.Date</p>
-            }
-            <div>
-                <button class="report-cancel" data-id="@report.Id">Hunsa</button>
-                <button class="report-delete" data-id="@report.Id">Eyða innleggi</button>
-            </div>
-        </div>
-    }
+{
+	<div class="report-item card postpadd">
+		@if (report.IsPost)
+		{
+			<img src='@report.PostItem.FromUser.ProfilePic' class="search imagesmall"/>
+			<p>@report.PostItem.PosterName</p>
+			<p>@report.PostItem.HtmlText</p>
+			<p>@report.PostItem.Date</p>
+		}
+		else
+		{
+			<img src='@report.CommentItem.User.ProfilePic' class="search imagesmall"/>
+			<p>@report.CommentItem.PosterName</p>
+			<p>@report.CommentItem.Body</p>
+			<p>@report.CommentItem.Date</p>
+		}
+		<div>
+			<button class="report-cancel btn btn-default" data-id="@report.Id">Hunsa</button>
+			<button class="report-delete btn btn-default btn-danger" data-id="@report.Id">Eyða innleggi</button>
+		</div>
+	</div>
+}
 </div>
