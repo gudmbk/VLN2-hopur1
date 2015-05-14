@@ -284,21 +284,55 @@ accept-friend {
 	border-radius: 4px;
 }
 
-.post{
+.post {
 	font-size: 18px;
-	min-height: 60px;
+	min-height: 90px;
 }
 
-.post img{
+.post img {
 	vertical-align: middle;
 	border-radius: 10px;
 	width: 100%;
 	display: block;
 	margin: 10px 0px 10px 0px;
 }
-.post iframe{
+.post iframe {
 	vertical-align: middle;
 	width: 100%;
 	display: block;
 	margin: 10px 0px 10px 0px;
+}
+
+.edit-container {
+	z-index:1002;
+}
+
+.edit-container textarea {
+	max-width: 100%;
+	font-size: 18px;
+}
+
+.edit-container textarea {
+	max-width: 100%;
+	font-size: 18px;
+	margin: 5px 0px;
+}
+.edit-container button {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	color: #fff;
+	background-color: #d9534f;
+	border-color: #d43f3a;
 }
