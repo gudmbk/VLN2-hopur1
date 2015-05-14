@@ -7,7 +7,12 @@ namespace klukk_social.Services
 {
     public class GroupService
     {
-        readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
+        readonly IAppDataContext _dbContext;
+
+        public GroupService(IAppDataContext context)
+        {
+            _dbContext = context ?? new ApplicationDbContext();
+        }
 
         public void CreateGroup(Group group)
         {
@@ -96,12 +101,12 @@ namespace klukk_social.Services
 			return request;
 		}
 
-		public void DeleteGroupRequest(GroupRequest groupRequest)
+		public void DeleteGroupRequest(int requestId)
 		{
 			var dbContext = new ApplicationDbContext();
 
 			var toDelete = (from gr in dbContext.GroupRequests
-							where gr.GroupId == groupRequest.GroupId || gr.FromUserId == groupRequest.FromUserId
+							where gr.Id == requestId
 							select gr).FirstOrDefault();
 
 			dbContext.GroupRequests.Remove(toDelete);
@@ -153,9 +158,14 @@ namespace klukk_social.Services
 			Group foundGroup = (from gr in _dbContext.Groups
 								where gr.Id == changedGroup.Id
 								select gr).FirstOrDefault();
-
-			_dbContext.Entry(foundGroup).CurrentValues.SetValues(changedGroup);
-			_dbContext.SaveChanges();
+		    if (foundGroup != null)
+		    {
+		        foundGroup.Description = changedGroup.Description;
+		        foundGroup.Name = changedGroup.Name;
+		        foundGroup.ProfilePic = changedGroup.ProfilePic;
+		        foundGroup.OpenGroup = changedGroup.OpenGroup;
+		    }
+		    _dbContext.SaveChanges();
 		}
 
 		public int FindGroupId(int postId)
@@ -173,6 +183,30 @@ namespace klukk_social.Services
 									select r).FirstOrDefault();
 			_dbContext.GroupRequests.Remove(request);
 			_dbContext.SaveChanges();
+		}
+
+		public List<GroupRequest> GetAllRequests(string userId)
+		{
+			return (from grReq in _dbContext.GroupRequests
+						join grp in _dbContext.Groups
+						on grReq.GroupId equals grp.Id
+						where grp.UserId == userId
+						//select grReq).Include("Groups").ToList();
+						select grReq).ToList();
+		}
+
+		public string GetRequestUserId(int requestId)
+		{
+			return (from reqId in _dbContext.GroupRequests
+					where reqId.Id == requestId
+					select reqId.FromUserId).FirstOrDefault();
+		}
+
+		internal int GetGroupRequestGroupId(int? requestId)
+		{
+			return (from reqId in _dbContext.GroupRequests
+					where reqId.Id == requestId
+					select reqId.GroupId).FirstOrDefault();
 		}
 	}
 }

@@ -8,7 +8,13 @@ namespace klukk_social.Services
 {
     public class PostService
     {
-        readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
+        readonly IAppDataContext _dbContext;
+
+        public PostService(IAppDataContext context)
+        {
+            _dbContext = context ?? new ApplicationDbContext();
+        }
+
         public List<Post> GetAllPostsToUser(string userId)
         {
 			var listi = (from p in _dbContext.Posts

@@ -9,9 +9,9 @@ namespace klukk_social.Controllers
 {
     public class GroupController : Controller
     {
-        readonly GroupService _groupService = new GroupService();
-        readonly UserService _userService = new UserService();
-        readonly PostService _postService = new PostService();
+        readonly GroupService _groupService = new GroupService(null);
+        readonly UserService _userService = new UserService(null);
+        readonly PostService _postService = new PostService(null);
 
 		[Authorize(Roles = "Parent")]
         public ActionResult CreateGroup()
@@ -187,5 +187,34 @@ namespace klukk_social.Controllers
 
 			return RedirectToAction("ParentGroups", "Group");
 		}
+
+		public ActionResult GrantAccessToGroup(int? requestId)
+		{
+			if (requestId.HasValue)
+			{
+				GroupUsers newUser = new GroupUsers();
+				newUser.UserId = _groupService.GetRequestUserId(requestId.Value);
+				newUser.GroupId = _groupService.GetGroupRequestGroupId(requestId);
+				_groupService.AcceptGroupRequest(newUser);
+				_groupService.DeleteGroupRequest(requestId.Value);
+				return RedirectToAction("Reports", "User");
+			}
+
+			return RedirectToAction("Reports", "User");
+		}
+
+		public ActionResult RefuseAccessToGroup(int? requestId)
+		{
+			if (requestId.HasValue)
+			{
+				_groupService.DeleteGroupRequest(requestId.Value);
+				return RedirectToAction("Reports", "User");
+			}
+
+			return RedirectToAction("Reports", "User");
+		}
+
+		
+		
     }
 }

@@ -9,9 +9,9 @@ namespace klukk_social.Controllers
     [Authorize]
     public class PostController : Controller
     {
-        readonly PostService _postService = new PostService();
-        readonly UserService _userService = new UserService();
-		readonly GroupService _groupService = new GroupService();
+        readonly PostService _postService = new PostService(null);
+        readonly UserService _userService = new UserService(null);
+		readonly GroupService _groupService = new GroupService(null);
 
         [HttpPost]
         public ActionResult PostStatus(FormCollection collection)
