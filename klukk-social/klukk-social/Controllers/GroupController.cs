@@ -193,8 +193,8 @@ namespace klukk_social.Controllers
 			if (requestId.HasValue)
 			{
 				GroupUsers newUser = new GroupUsers();
-				newUser.GroupId = requestId.Value;
 				newUser.UserId = _groupService.GetRequestUserId(requestId.Value);
+				newUser.GroupId = _groupService.GetGroupRequestGroupId(requestId);
 				_groupService.AcceptGroupRequest(newUser);
 				_groupService.DeleteGroupRequest(requestId.Value);
 				return RedirectToAction("Reports", "User");

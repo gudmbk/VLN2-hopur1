@@ -191,5 +191,12 @@ namespace klukk_social.Services
 					where reqId.Id == requestId
 					select reqId.FromUserId).FirstOrDefault();
 		}
+
+		internal int GetGroupRequestGroupId(int? requestId)
+		{
+			return (from reqId in _dbContext.GroupRequests
+					where reqId.Id == requestId
+					select reqId.GroupId).FirstOrDefault();
+		}
 	}
 }
