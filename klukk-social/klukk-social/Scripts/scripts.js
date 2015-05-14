@@ -28,7 +28,7 @@
             error: function (data) { console.log(data) }
         });
     });
-
+/*
     $('post-status').on('submit', 'form', function () {
         var theForm = $(this);
         $.ajax({
@@ -41,7 +41,7 @@
             error: function (data) { console.log(data) }
         });
     });
-    
+*/
     $(".delete-post").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
@@ -54,7 +54,7 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonObject),
-                success: function() { toHide.parent().parent().hide() },
+                success: function () { toHide.closest(".postpadd").hide() },
                 error: function(data) { console.log(data) }
             });
         } else {
@@ -64,7 +64,7 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonObject),
-                success: function () { toHide.parent().hide() },
+                success: function () { toHide.closest(".commentdialog").hide() },
                 error: function (data) { console.log(data) }
             });
         }

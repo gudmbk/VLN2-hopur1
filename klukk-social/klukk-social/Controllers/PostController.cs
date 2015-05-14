@@ -16,20 +16,19 @@ namespace klukk_social.Controllers
         readonly UserService _userService = new UserService();
 
         [HttpPost]
-        public ActionResult PostStatus(Post post)
-        {
+        public ActionResult PostStatus(FormCollection collection)
+        {/*
             post.HtmlText = Helpers.ParseText(post.Text);
             post.FromUserId = User.Identity.GetUserId();
             post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-            post.GroupId = 0;
             _postService.AddPost(post);
             InteractionBarViewModel model = new InteractionBarViewModel();
             model.IsPost = true;
             model.Feed.Add(post);
-            model.Person = _userService.FindById(post.FromUserId);
+            model.Post = post;
             var postHtml = Helpers.RenderViewToString(this.ControllerContext, "PostPartial", model);
             return Json(postHtml, JsonRequestBehavior.AllowGet);
-            /*
+            */
             Post post = new Post();
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
@@ -48,7 +47,7 @@ namespace klukk_social.Controllers
             }
             
             return View("Error");
-            */
+            
         }
 
         public ActionResult PostComment(FormCollection collection)

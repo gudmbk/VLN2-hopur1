@@ -31,7 +31,7 @@ namespace klukk_social.Models
             Id = 0;
             FromUserId = String.Empty;
             ToUserId = String.Empty;
-            GroupId = 0;
+            GroupId = null;
             PhotoUrl = String.Empty;
             VideoUrl = String.Empty;
             PosterName = String.Empty;
