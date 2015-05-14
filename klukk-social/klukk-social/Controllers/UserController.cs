@@ -41,6 +41,7 @@ namespace klukk_social.Controllers
 			profile.Feed = new List<Post>();
 			profile.Feed.AddRange(listOfPosts);
 			profile.Person = user;
+			profile.CurrentUser = _userService.FindById(User.Identity.GetUserId());
 			return View(profile);
 		}
 
@@ -60,6 +61,7 @@ namespace klukk_social.Controllers
             profile.Feed = new List<Post>();
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
+			profile.CurrentUser = _userService.FindById(User.Identity.GetUserId());
             return View(profile);
         }
 

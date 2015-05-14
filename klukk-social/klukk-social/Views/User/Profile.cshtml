@@ -18,6 +18,7 @@
 		InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
 		userPostInfo.Feed.Add(post);
 		userPostInfo.IsPost = true;
+		userPostInfo.CurrentUser = Model.CurrentUser;
 		@Html.Partial("PostPartial", userPostInfo)
 	}
 }
