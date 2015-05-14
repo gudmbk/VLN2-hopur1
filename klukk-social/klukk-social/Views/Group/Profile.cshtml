@@ -26,6 +26,7 @@
 		InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
 		userPostInfo.Feed.Add(post);
 		userPostInfo.IsPost = true;
+		userPostInfo.CurrentUser = Model.CurrentUser;
 		@Html.Partial("PostPartial", userPostInfo)
 	}
 }
@@ -42,4 +43,3 @@ else
 		@*<button type="button" value="@Model.Group.Id" class="btn btn-danger btn-block del-friend-req">Eyða aðgangsbeiðni</button>//eftir að útfæra jquery*@
 	}
 }
-@*(Model.Request.ToUserId == Model.Person.Id)*@

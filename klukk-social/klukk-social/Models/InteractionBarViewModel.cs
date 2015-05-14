@@ -7,6 +7,7 @@ namespace klukk_social.Models
     public class InteractionBarViewModel
     {
 		public User Person { get; set; }
+		public User CurrentUser { get; set; }
 		public List<Post> Feed { get; set; }
 		public Post Post { get; set; }
 		public Comment Comment { get; set; }
@@ -21,6 +22,7 @@ namespace klukk_social.Models
 			Post = new Post();
 			Comment = new Comment();
 			AllChildren = new List<User>();
+			CurrentUser = new User();
 		}
     }
 }

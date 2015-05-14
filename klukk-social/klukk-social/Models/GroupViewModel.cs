@@ -14,6 +14,7 @@ namespace klukk_social.Models
 		public List<User> AllChildren { get; set; }
 		public GroupRequest Request { get; set; }
 		public bool MemberOfGroup { get; set; }
+		public User CurrentUser { get; set; }
 
 		public GroupViewModel()
 		{
@@ -23,6 +24,7 @@ namespace klukk_social.Models
 			AllChildren = new List<User>();
 			Request = new GroupRequest();
 			MemberOfGroup = false;
+			CurrentUser = new User();
 		}
 	}
 }

@@ -9,5 +9,6 @@
 	userPostInfo.Feed.Add(post);
 	userPostInfo.Post = post;
 	userPostInfo.IsPost = true;
+	userPostInfo.CurrentUser = Model.CurrentUser;
 	@Html.Partial("PostPartial", userPostInfo)
 }

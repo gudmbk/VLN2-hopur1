@@ -71,6 +71,8 @@ namespace klukk_social.Controllers
 				groupWall.Feed.AddRange(listOfPosts);
 				groupWall.Group = group;
 				groupWall.MemberOfGroup = _groupService.IsUserMember(groupId.Value, User.Identity.GetUserId());
+				groupWall.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
+				groupWall.CurrentUser = _userService.FindById(User.Identity.GetUserId());
 				return View(groupWall);
 			}
 
