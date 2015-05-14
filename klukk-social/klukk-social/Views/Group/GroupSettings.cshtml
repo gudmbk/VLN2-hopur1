@@ -9,19 +9,17 @@
 }
 
 <h2 class="card postpadd">Breita hóp</h2>
-@using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { @class="card postpadd"}))
+@using (Html.BeginForm("GroupSettings", "Group", FormMethod.Post, new { @class="card postpadd"}))
 {
 	<input type="hidden" name="groupid" value="@Model.Group.Id"/>
 	<label for="name">Nafn grúppu: </label>
-	<br />
-	<input type="text" name="name" id="name" class="" value="@Model.Group.Name" />
-	<br />
-	<label for="description">Lýsing: </label>
-	<br />
-	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér...">@Model.Group.Description</textarea>
-	<br />
-	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="" value="@Model.Group.ProfilePic"/>
+	<input type="text" name="name" id="name" class="form-control span formwidth" value="@Model.Group.Name" />
+	<label for="description" class="topmargin">Lýsing: </label>
+	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..." class="form-control span formwidth">@Model.Group.Description</textarea>
+	<label for="name" class="topmargin">Til þess að hafa mynd á hópnum þá setur þú inn url á myndina hér</label>
+	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="form-control span formwidth" value="@Model.Group.ProfilePic" />
+	<input type="submit" value="Breita" class="btn btn-default topmargin" />
 	<label for="opengroup">Opinn hópur </label>
-	<input type="checkbox" name="opengroup" id="opengroup" value="true" @check />
-	<input type="submit" value="Breita" class="btn btn-default" />
+	<input type="checkbox" name="opengroup" id="opengroup" value="true" class="checkbox" @check />
+
 }
