@@ -7,9 +7,9 @@ namespace klukk_social.Services
 {
     public static class Helpers
     {
-        public static string ToFriendlyDateString(this DateTime Date)
+        public static string ToFriendlyDateString(this DateTime date)
         {
-            TimeSpan lengthOfTime = DateTime.Now.Subtract(Date);
+            TimeSpan lengthOfTime = DateTime.Now.Subtract(date);
             if (lengthOfTime.Minutes == 0)
                 return "Fyrir minna en mínútu";
             else if (lengthOfTime.Hours == 0)
@@ -31,7 +31,8 @@ namespace klukk_social.Services
             foreach (Match match in mactches)
             {
                 var youTubeId = Regex.Match(input, @"(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&amp;]v=)|youtu\.be\/)([^""&amp;?\/ ]{11})").Groups[1].Value;
-                output = output.Replace(match.Value, "<iframe width='480' height='390' src='http://www.youtube.com/embed/" + youTubeId + "'  frameborder='0' allowfullscreen></iframe>");            }
+                output = output.Replace(match.Value, "<iframe width='480' height='390' src='http://www.youtube.com/embed/" + youTubeId + "'  frameborder='0' allowfullscreen></iframe>");
+            }
             foreach (Match match in imgMactches)
             {
                 output = output.Replace(match.Value, "<img src='" + match.Value + "' alt='No image to display' />");

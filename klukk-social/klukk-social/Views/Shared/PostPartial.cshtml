@@ -44,6 +44,7 @@
         <div class ="post-box">
             <div class="post post-body">
                 <p>@Html.Raw(Model.Post.HtmlText)</p>
+                <input type="hidden" value="@Model.Post.Text" />
             </div>
 			<div class="edit-container"></div>
             <div>
@@ -64,6 +65,7 @@
             <div class="post-box">
                 <div class="post-body">
                     <p>@Html.Raw(comment.Body)</p>
+                    <input type="hidden" value="@comment.Body"/>
                 </div>
                 <div class="edit-container"></div>
                 <div>

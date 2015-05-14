@@ -73,7 +73,7 @@
     $(".edit-post").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var post = $(this).parents(".post-box").find("p");
+        var post = $(this).parents(".post-box").find("input");
         var value = post.text();
         post.hide();
         $(this).parents(".post-box").find(".edit-container").html('<textarea class="form-control" id="edit-box" name="status-text" ></textarea>' +
