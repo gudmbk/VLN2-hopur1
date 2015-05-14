@@ -9,9 +9,9 @@ namespace klukk_social.Controllers
 {
     public class GroupController : Controller
     {
-        readonly GroupService _groupService = new GroupService();
-        readonly UserService _userService = new UserService();
-        readonly PostService _postService = new PostService();
+        readonly GroupService _groupService = new GroupService(null);
+        readonly UserService _userService = new UserService(null);
+        readonly PostService _postService = new PostService(null);
 
 		[Authorize(Roles = "Parent")]
         public ActionResult CreateGroup()

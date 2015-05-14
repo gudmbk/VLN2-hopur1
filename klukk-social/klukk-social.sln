@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "klukk-social", "klukk-social\klukk-social.csproj", "{ABDCD774-8192-4259-B922-7DCF576FFFF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "klukk-social.Tests", "klukk-social.Tests\klukk-social.Tests.csproj", "{8FC1653F-4A9A-4F43-84E0-7B6932E27F11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ABDCD774-8192-4259-B922-7DCF576FFFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABDCD774-8192-4259-B922-7DCF576FFFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABDCD774-8192-4259-B922-7DCF576FFFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC1653F-4A9A-4F43-84E0-7B6932E27F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC1653F-4A9A-4F43-84E0-7B6932E27F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC1653F-4A9A-4F43-84E0-7B6932E27F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC1653F-4A9A-4F43-84E0-7B6932E27F11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
