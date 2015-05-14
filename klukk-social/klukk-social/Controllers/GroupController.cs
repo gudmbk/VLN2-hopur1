@@ -47,7 +47,7 @@ namespace klukk_social.Controllers
 		public ActionResult Index()
 		{
 			GroupViewModel bag = new GroupViewModel();
-			bag.CurrentUser = _userService.FindById(User.Identity.GetUserId());
+			bag.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
 			return View(bag);
 		}
 
