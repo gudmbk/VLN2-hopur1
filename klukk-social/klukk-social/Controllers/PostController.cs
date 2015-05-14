@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Net.Mime;
 using System.Web.Mvc;
 using klukk_social.Models;
 using klukk_social.Services;
@@ -82,17 +84,40 @@ namespace klukk_social.Controllers
             return null;
         }
 
-        public ActionResult EditPost(int itemId, bool isPost)
+        public ActionResult EditPost(int itemId)
         {
+            Post postToEdit = _postService.GetPostById(itemId);
+            var anom = new
+            {
+                id = postToEdit.Id,
+                text = postToEdit.Text
+            };
+            
+            
+            return Json(anom, JsonRequestBehavior.AllowGet);
             //_postService.EditPost(changedItem);
 
-            return null;
         }
-        public ActionResult EditComment(int itemId, bool isPost)
+        public ActionResult EditComment(int itemId)
         {
             //_postService.EditComment(changedItem);
 
             return null;
         }
+        /*
+        public string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext,
+                                                                         viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View,
+                                             ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
+        }*/
     }
 }

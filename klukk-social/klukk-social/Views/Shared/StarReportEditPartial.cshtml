@@ -1,54 +1,53 @@
 ﻿@using Microsoft.AspNet.Identity
 @model klukk_social.Models.InteractionBarViewModel
+    @{
+        bool thisChildsPost;
+        bool parentOwnsThisChild;
+        int count = 0;
+        int id;
 
-@{
-	bool thisChildsPost;
-	bool parentOwnsThisChild;
-    int count = 0;
-    int id;
-
-	string childsParent = "";
-	foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
-	{
-		if (Model.IsPost && child.Id == Model.Post.FromUserId)
-		{
-			childsParent = child.ParentId;
-		}
-		else if(!Model.IsPost && child.Id == Model.Comment.UserId)
-		{
-			childsParent = child.ParentId;
-		}
-	}
-	if (Model.IsPost)
-	{
-		thisChildsPost = Model.Post.FromUserId == User.Identity.GetUserId();
-		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
-		count = Model.Post.Likes.Count;
-		id = Model.Post.Id;
-	}
-	else
-	{
-		thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
-		parentOwnsThisChild = childsParent == User.Identity.GetUserId();
-	    count = Model.Comment.Likes.Count;
-		id = Model.Comment.Id;
-	}
-	if (!User.IsInRole("Parent"))
-	{
-		string warningOn = "";
-		if(count > 0) 
-		{
-			warningOn = "btn-warning-on";
-		}
-		<button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button @warningOn" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true">@count</span></button>
+        string childsParent = "";
+        foreach (var child in Model.AllChildren) //Logic for the parent to see posts from his kids
+        {
+            if (Model.IsPost && child.Id == Model.Post.FromUserId)
+            {
+                childsParent = child.ParentId;
+            }
+            else if (!Model.IsPost && child.Id == Model.Comment.UserId)
+            {
+                childsParent = child.ParentId;
+            }
+        }
+        if (Model.IsPost)
+        {
+            thisChildsPost = Model.Post.FromUserId == User.Identity.GetUserId();
+            parentOwnsThisChild = childsParent == User.Identity.GetUserId();
+            count = Model.Post.Likes.Count;
+            id = Model.Post.Id;
+        }
+        else
+        {
+            thisChildsPost = Model.Comment.UserId == User.Identity.GetUserId();
+            parentOwnsThisChild = childsParent == User.Identity.GetUserId();
+            count = Model.Comment.Likes.Count;
+            id = Model.Comment.Id;
+        }
+        if (!User.IsInRole("Parent"))
+        {
+            string warningOn = "";
+            if (count > 0)
+            {
+                warningOn = "btn-warning-on";
+            }
+            <button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" data-user="@User.Identity.GetUserId()" class="btn btn-default btn-xs like-button @warningOn" title="Klikkaðu til að gefa stjörnu!"><span class="glyphicon glyphicon-star like-count" aria-hidden="true">@count</span></button>
+        }
+        if (thisChildsPost || parentOwnsThisChild)
+        {
+            <button type="button" class="btn btn-default btn-xs btn-info edit-post" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id"><span class="glyphicon glyphicon-comment edit-count" aria-hidden="true"></span> Edit</button>
+            <button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" class="btn btn-default btn-xs btn-danger delete-post"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
+        }
+        else
+        {
+            <button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" class="btn btn-default btn-xs btn-danger report-status"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
+        }
     }
-    if (thisChildsPost || parentOwnsThisChild)
-    {
-        <button type="button" class="btn btn-default btn-xs btn-info edit-post" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id"><span class="glyphicon glyphicon-comment edit-count" aria-hidden="true"></span> Edit</button>
-        <button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" class="btn btn-default btn-xs btn-danger delete-post"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete</button>
-    }
-    else
-    {
-        <button type="button" data-type="@Model.IsPost.ToString().ToLower()" data-id="@id" class="btn btn-default btn-xs btn-danger report-status"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Report</button>
-    }
-}

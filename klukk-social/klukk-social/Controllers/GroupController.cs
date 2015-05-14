@@ -84,7 +84,7 @@ namespace klukk_social.Controllers
 			string text = collection["status"];
 			if (String.IsNullOrEmpty(text))
 			{
-				return RedirectToAction("Profile", "Groups", new { groupId = post.GroupId });
+				return RedirectToAction("Profile", "Group", new { groupId = post.GroupId });
 			}
 			post.Text = text;
 			post.HtmlText = Helpers.ParseText(text);

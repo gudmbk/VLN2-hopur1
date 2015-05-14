@@ -58,10 +58,20 @@
     });
 
     $(".edit-post").click(function () {
-        var postId = $(this).attr("data-id");
+        var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
-        var jsonPostId = { postId: postId, isPost: isPost }
-        var toHide = $(this);
+        var anom = $(this).parents(".post-box").find("p").text();
+        $(this).parents(".post-box").find(".post").html('<textarea class="form-control" id="edit-box" name="status-text" ></textarea>' +
+				'<button class="" name="cancel" type="submit">Cancel</button>' +
+                '<button class="edit-save" data-id="' + itemId + '" data-type="' + isPost + '" name="edit-save">Done Editing</button>');
+        $("#edit-box").val(anom.text);
+    });
+
+    $(".edit-save").click(function () {
+        alert("yolo");
+        var itemId = $(this).attr("data-id");
+        var isPost = $(this).attr("data-type");
+        var jsonPostId = { itemId: itemId }
         if (isPost === "true") {
             $.ajax({
                 type: "POST",
@@ -69,7 +79,9 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonPostId),
-                success: function () { alert("POSTVIRKAR") },
+                success: function () {
+                    alert("yolo success");
+                },
                 error: function (data) { console.log(data) }
             });
         } else {
@@ -84,6 +96,7 @@
             });
         }
     });
+
     $(".report-status").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
