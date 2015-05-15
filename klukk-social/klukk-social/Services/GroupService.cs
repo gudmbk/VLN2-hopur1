@@ -84,7 +84,7 @@ namespace klukk_social.Services
 		public GroupRequest GetGroupRequest(string userId, int? groupId)
 		{
             var request = (from gr in _dbContext.GroupRequests
-						   where gr.FromUserId == userId || gr.GroupId == groupId
+						   where gr.FromUserId == userId && gr.GroupId == groupId
 						   select gr).FirstOrDefault();
 			return request;
 		}

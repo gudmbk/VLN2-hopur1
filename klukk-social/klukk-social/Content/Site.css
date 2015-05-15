@@ -21,7 +21,6 @@ textarea {
 	color: white;
 }
 
-
 body{
 	text-align: justify;
 	background-size: cover;
@@ -30,7 +29,7 @@ body{
 }
 
 .friendbuttonsize{
-	max-width: 80px;
+	max-width: 120px;
 	float: right;
 	position: relative;
 	top: -23px;

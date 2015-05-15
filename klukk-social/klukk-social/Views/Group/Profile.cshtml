@@ -6,19 +6,18 @@
 	<h1 class="leftpaddten floatleft block groupheader">@Model.Group.Name</h1>
 	<span>@Model.Group.Description</span>
 	<div class="clearfix"></div>
-
+	@if (Model.MemberOfGroup)
+	{
+		@Html.ActionLink("Hætta í hóp", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace btn-xs friendbuttonsize" })
+	}
+	else if (Model.Group.OpenGroup)
+	{
+		@Html.ActionLink("Bæta við mína hópa", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace btn-xs friendbuttonsize" })
+	}
 </div>
 
 @if (Model.MemberOfGroup || Model.Group.OpenGroup) //request group access
 {
-	if (Model.MemberOfGroup)
-	{
-		@Html.ActionLink("Hætta í hóp", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
-	}
-	else
-	{
-		@Html.ActionLink("Bæta við í hópinn minn", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
-	}
 	@Html.Partial("PostGroupPartial", new Post(@Model.Group.Id))
 
 	foreach (var post in Model.Feed)

@@ -31,7 +31,7 @@
 			<img src='@group.Group.ProfilePic' class="search" />
 		</a>
 		@Html.ActionLink(group.Group.Name, "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
-		@if (!group.IsMember) 
+		@if (group.IsMember) 
 		{
 			@Html.ActionLink("Meðlimur", "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 		}
