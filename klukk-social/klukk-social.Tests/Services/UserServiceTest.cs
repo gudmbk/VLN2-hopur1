@@ -5,7 +5,7 @@ using klukk_social.Services;
 namespace klukk_social.Tests.Services
 {
     [TestClass]
-    public class FriendServiceTest
+    public class UserServiceTest
     {
         private UserService _service;
 
