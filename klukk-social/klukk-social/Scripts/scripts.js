@@ -24,7 +24,10 @@
             traditional: true,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(json),
-            success: function () { toHide.hide(); },
+            success: function() {
+                toHide.hide();
+                $("#friend-content").hide();
+            },
             error: function (data) { console.log(data) }
         });
     });
