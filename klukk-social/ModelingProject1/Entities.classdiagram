@@ -7807,80 +7807,6 @@
             </appliedStereotypesInternal>
             <elementDefinition Id="4b6d1a5c-074c-4c96-b09e-d9c867091d55" />
           </operation>
-          <operation Id="9b526ea2-5fc3-4fa9-b861-37f04adf7da1" name="GenerateUserIdentityAsync" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <referencesInternal>
-              <reference Id="598e3212-721e-4e65-a5dd-396fc29b1ba0" handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social.Models Type%3DUser Member%3D(Name%3DGenerateUserIdentityAsync OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fpackages%2FMicrosoft.AspNet.Identity.Core.2.0.0%2Flib%2Fnet45%2FMicrosoft.AspNet.Identity.Core.dll Namespace%3DMicrosoft.AspNet.Identity Type%3D(Name%3DUserManager GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social.Models Type%3DUser)]))])" tag="ViewCode">
-                <elementDefinition Id="51e56c15-ec46-4732-9e1b-13ec91fb05de" />
-              </reference>
-            </referencesInternal>
-            <appliedStereotypesInternal>
-              <stereotypeInstance Id="f10ff776-8139-404b-b335-825d467dd443" name="method" profile="CSharpProfile">
-                <elementDefinition Id="d79546a5-e37d-45d3-bf9e-7628b3d45535" />
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="63c50de9-ad76-4633-8e37-80973eedf6a7">
-                    <propertyInstance Id="31a20155-8ec7-4165-862e-009e9445eb2e" name="ClrAttributes">
-                      <elementDefinition Id="04ba345e-1743-4d38-9419-e047c26a3643" />
-                    </propertyInstance>
-                    <elementDefinition Id="0e7901d4-487f-4aa4-b853-9e92baa28c91" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="2de01a13-ee18-4f60-9fed-d64cc3b42b15">
-                    <propertyInstance Id="a34d872b-2a9b-417d-98b3-92c5305e28a9" name="IsPartial" value="false">
-                      <elementDefinition Id="b9d3d386-387a-4f7b-a207-73a48ef61041" />
-                    </propertyInstance>
-                    <elementDefinition Id="7972c4d3-aea6-4ef1-ad07-fa3d1d3945b8" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="fdd6218c-b01c-44ef-a9b1-2de7ff0fe810">
-                    <propertyInstance Id="c5a21e29-7c90-4c7b-b11c-6db5c890d65c" name="IsUnsafe" value="false">
-                      <elementDefinition Id="24b04829-cd29-496a-87f4-8473b12e8897" />
-                    </propertyInstance>
-                    <elementDefinition Id="c14dae2e-15d6-4cbe-981b-576815de4f7d" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="fd9767b5-d503-4483-afd2-c5a8cb7d6236">
-                    <propertyInstance Id="2481bd3b-44d9-4a77-942d-4d5c40e620c9" name="Inheritance" value="none">
-                      <elementDefinition Id="2b0d8f12-45cb-4964-b407-9e114cefc0bd" />
-                    </propertyInstance>
-                    <elementDefinition Id="4dee7bd5-1f2c-43a9-a35f-c66542c976e3" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="27cf0605-7f8c-4541-b0cc-ab26795551c4">
-                    <propertyInstance Id="153c4aad-0442-4b09-b2de-77a9e1fbffa9" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="8c4e1210-9819-4c69-8506-2778e4d0f066" />
-                    </propertyInstance>
-                    <elementDefinition Id="819b3128-4b65-4650-8ae1-3bbe4837cafb" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="df811e34-fe17-45b9-9475-33a253f5b52c">
-                    <propertyInstance Id="a48ed96a-bb6a-4cca-a4f3-b5950e518444" name="params" value="false">
-                      <elementDefinition Id="450c7cc2-af95-4df1-990e-9f9839e2ab52" />
-                    </propertyInstance>
-                    <elementDefinition Id="abec3bfd-8af4-4345-8e42-752a2079d0b0" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <elementDefinition Id="0c956384-ae36-4dd0-85e8-38f6713a5530" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="db5c083f-9480-40ed-9fd0-df0ce1240187" direction="Return">
-                  <elementDefinition Id="80c20fcb-5c82-4b84-b4c8-2b0c71b11d94" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="10b6b61c-51cb-4ce4-9718-7f5975dbe3e7" LastKnownName="Task&lt;ClaimsIdentity‎&gt;" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="fa738c67-c79e-491a-946a-5f734a41c911" name="manager" direction="In">
-                  <referencesInternal>
-                    <reference Id="261ea636-91a9-42db-b5d5-1a90a5646395" handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social.Models Type%3DUser Member%3D(Name%3DGenerateUserIdentityAsync OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fpackages%2FMicrosoft.AspNet.Identity.Core.2.0.0%2Flib%2Fnet45%2FMicrosoft.AspNet.Identity.Core.dll Namespace%3DMicrosoft.AspNet.Identity Type%3D(Name%3DUserManager GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social.Models Type%3DUser)]))]) ParameterIdentifier%3Dmanager" tag="ViewCode">
-                      <elementDefinition Id="5469a771-c69d-4317-b140-73e8cf9c34b9" />
-                    </reference>
-                  </referencesInternal>
-                  <elementDefinition Id="cdf8ac43-669e-4e25-9636-4c2efe19bc79" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="a71e736c-2f1b-4f8e-b532-63b8a81dd44b" LastKnownName="UserManager&lt;User‎&gt;" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="80131c67-caa8-4c08-bcb2-50b99f140d45" name="GetFullName" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
               <reference Id="825fa483-7338-486d-be1d-8c9c2c29681e" handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social.Models Type%3DUser Member%3DGetFullName" tag="ViewCode">
@@ -8014,16 +7940,6 @@
     <packageHasNamedElement>
       <referencedType Id="476fbe70-bc2b-4966-97f6-08d20da3a3cd" name="ICollection&lt;ReportItem‎&gt;" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::System::Collections::Generic::ICollection&lt;ReportItem‎&gt;">
         <elementDefinition Id="fa6d34e4-bc16-4e07-9c13-a1d3b7137a4b" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="10b6b61c-51cb-4ce4-9718-7f5975dbe3e7" name="Task&lt;ClaimsIdentity‎&gt;" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::System::Threading::Tasks::Task&lt;ClaimsIdentity‎&gt;">
-        <elementDefinition Id="c6ceb9e9-9697-4c43-aeb3-f275ff3e599b" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="a71e736c-2f1b-4f8e-b532-63b8a81dd44b" name="UserManager&lt;User‎&gt;" isAbstract="false" isLeaf="false" cachedFullName="ModelingProject1::Microsoft::AspNet::Identity::UserManager&lt;User‎&gt;">
-        <elementDefinition Id="963e8017-331b-415d-bc06-7d91b9ef2d1b" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
