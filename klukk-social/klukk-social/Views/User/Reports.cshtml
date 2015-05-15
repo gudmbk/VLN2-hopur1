@@ -9,7 +9,7 @@
 @if (Model.GroupRequests.Count != 0)
 {
 	var i = 0;
-	<h4 class="card postpadd">Aðgangsbeiðnir í grúbbur</h4>
+	<h4 class="card postpadd">Aðgangsbeiðnir í hópa</h4>
 	foreach (var groupRequest in Model.GroupRequests)
 	{
 		
@@ -17,7 +17,7 @@
 			<span>
 				<img src='@groupRequest.Togroup.ProfilePic' class="search imagesmall" />
 				<img src='@groupRequest.FromUser.ProfilePic' class="search imagesmall" />
-				<span>@groupRequest.FromUser.FirstName biður um aðgang að grúbbuni </span>
+				<span>@groupRequest.FromUser.FirstName biður um aðgang að hópnum </span>
 				<span>@groupRequest.Togroup.Name</span>
 			</span>
 			<span>
