@@ -1,3 +1,7 @@
-﻿@{
+﻿@using klukk_social.Models
+@{
     ViewBag.Title = "KLUKK";
 }
+<div class="card postpadd">
+	@Html.Partial("_LoginPartial", new LoginViewModel())
+</div>

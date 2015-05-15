@@ -13,9 +13,6 @@
 	<div class="container body-content login">
 		@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "maintitle" })
 		@RenderBody()
-		<div class="card postpadd">
-			@Html.Partial("_LoginPartial", new LoginViewModel())
-		</div>
 		<hr class="footer" />
 		<footer class="footer">
 			<div class="footercontainer ">
