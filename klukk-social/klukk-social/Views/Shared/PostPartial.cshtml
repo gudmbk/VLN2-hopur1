@@ -62,7 +62,7 @@
 			@Html.ActionLink(@comment.PosterName, "Profile", "User", new { userId = comment.UserId }, null)
 			<div class="post-box">
 				<div class="post-body">
-					<p>@Html.Raw(comment.Body)</p>
+					<p>@comment.Body</p>
 					<input type="hidden" value="@comment.Body" />
 				</div>
 				<div class="edit-container"></div>

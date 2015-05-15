@@ -37,7 +37,7 @@
 				<img src='@report.PostItem.FromUser.ProfilePic' class="search imagesmall" />
 				<span>@report.PostItem.PosterName</span>
 				<div class="tilkynning">
-					<p>@report.PostItem.HtmlText</p>
+					<p>@Html.Raw(report.PostItem.HtmlText)</p>
 					<p>@report.PostItem.Date</p>
 				</div>
 			}

@@ -14,6 +14,21 @@
         });
     });
 
+    $(".del-friend-req").click(function () {
+        var userToAdd = $(this).val();
+        var json = { Id: 0, ToUserId: userToAdd, FromUserId: "" }
+        var toHide = $(this);
+        $.ajax({
+            type: "POST",
+            url: "/User/CancelFriendRequest",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(json),
+            success: function () { toHide.hide(); },
+            error: function (data) { console.log(data) }
+        });
+    });
+
     $("#reports").on("click", ".report-cancel", function () {
         var reportId = $(this).attr("data-id");
         var json = { reportId: reportId }

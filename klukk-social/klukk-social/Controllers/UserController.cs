@@ -70,7 +70,17 @@ namespace klukk_social.Controllers
             string prefix = searchBar["user-input"];
             List<User> users = _userService.Search(prefix);
 			List<Group> groups = _groupService.Search(prefix);
-			return View(new SearchViewModel(groups, users));
+            var model = new SearchViewModel(groups, users);
+            var me = User.Identity.GetUserId();
+            foreach (var user in users)
+            {
+                model.IsFriend.Add(_userService.FriendChecker(user.Id, me));
+            }
+            foreach (var group in groups)
+            {
+                model.IsMember.Add(_groupService.IsUserMember(group.Id, me));
+            }
+			return View(model);
         }
  
         [HttpPost]
@@ -94,6 +104,14 @@ namespace klukk_social.Controllers
             accept.ToUserId = User.Identity.GetUserId();
             _userService.MakeFriends(friends);
             _userService.DeleteFriendRequest(accept);
+
+            return null;
+        }
+
+        public ActionResult CancelFriendRequest(FriendRequest cancel)
+        {
+            cancel.FromUserId = User.Identity.GetUserId();
+            _userService.DeleteFriendRequest(cancel);
 
             return null;
         }
