@@ -12,12 +12,18 @@
 	<h4 class="card postpadd">Aðgangsbeiðnir í grúbbur</h4>
 	foreach (var groupRequest in Model.GroupRequests)
 	{
-		<div class="cardgroup searchcard searchpadd">
-			<h4> FULLNAME biður um aðgang að</h4>
-			<h4>.Togroup.Name</h4>
-			@Html.ActionLink("Neita aðgang", "RefuseAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-danger btn-block whitepace" })
-			@Html.ActionLink("Opna á aðgang", "GrantAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-success btn-block whitepace" })
-			
+		
+		<div class="cardgroup searchpadd">
+			<span>
+				<img src='@groupRequest.Togroup.ProfilePic' class="search imagesmall" />
+				<img src='@groupRequest.FromUser.ProfilePic' class="search imagesmall" />
+				<span>@groupRequest.FromUser.FirstName biður um aðgang að grúbbuni </span>
+				<span>@groupRequest.Togroup.Name</span>
+			</span>
+			<span>
+				@Html.ActionLink("Opna á aðgang", "GrantAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-success whitepace" })
+				@Html.ActionLink("Neita aðgang", "RefuseAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-danger whitepace" })
+			</span>
 		</div>
 		i++;
 	}

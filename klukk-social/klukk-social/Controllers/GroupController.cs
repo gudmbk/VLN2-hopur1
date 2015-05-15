@@ -179,6 +179,10 @@ namespace klukk_social.Controllers
 			{
 				newGroup.OpenGroup = true;
 			}
+			else
+			{
+				newGroup.OpenGroup = false;
+			}
 			if (!String.IsNullOrEmpty(collection["profilepicurl"]))
 			{
 				newGroup.ProfilePic = collection["profilepicurl"];

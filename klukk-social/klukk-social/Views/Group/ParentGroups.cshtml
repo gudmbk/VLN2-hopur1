@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 @model GroupViewModel
 
-<h2 class="card postpadd">Grúbburnar mínar</h2>
+<h2 class="card postpadd">Hóparnir mínir</h2>
 
 @foreach (var group in Model.GroupList)
 {
@@ -13,11 +13,11 @@
 		@Html.ActionLink(group.Name, "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 		@if (!group.OpenGroup)
 		{
-			@Html.ActionLink("Læst Grúbba", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+			@Html.ActionLink("Læstur hópur", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
 		}
 		else
 		{
-			@Html.ActionLink("Opin Grúbba", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+			@Html.ActionLink("Opinn hópur", "GroupSettings", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 		}
 		@*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
 	</div>
