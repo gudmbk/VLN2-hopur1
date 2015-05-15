@@ -8,7 +8,12 @@ using System.Web.Mvc;
 namespace klukk_social.Services
 {
     public static class Helpers
-    {            
+    {
+        /// <summary>
+        /// Sends a given message as an email to a given email address
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="contactMail"></param>
         public static void LogMessage(string message, string contactMail)
         {
             string mailSubject = ConfigurationManager.AppSettings["ReportSubject"];
@@ -26,6 +31,11 @@ namespace klukk_social.Services
                 }
             }
         }
+        /// <summary>
+        /// Takes a datetime and returns a string saying how long it has been since
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string ToFriendlyDateString(this DateTime date)
         {
             TimeSpan lengthOfTime = DateTime.Now.Subtract(date);
@@ -38,6 +48,11 @@ namespace klukk_social.Services
             else
                 return "Fyrir " + lengthOfTime.Days + " dögum";
         }
+        /// <summary>
+        /// Used for parsing text for youTube and image links and embedding the links it finds
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string ParseText(string input)
         {
             string output = input;

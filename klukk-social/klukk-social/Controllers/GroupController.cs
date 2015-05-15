@@ -135,7 +135,7 @@ namespace klukk_social.Controllers
 				newUser.GroupId = groupId.Value;
 				newUser.UserId = User.Identity.GetUserId();
 				_groupService.AcceptGroupRequest(newUser);
-				return RedirectToAction("Profile", "Group", new { groupId = groupId });
+				return RedirectToAction("Profile", "Group", new { groupId });
 			}
 
 			return RedirectToAction("index", "Group");
@@ -146,7 +146,7 @@ namespace klukk_social.Controllers
 			if (groupId.HasValue)
 			{
 				_groupService.LeaveGroup(User.Identity.GetUserId(), groupId.Value);
-				return RedirectToAction("Profile", "Group", new { groupId = groupId });
+				return RedirectToAction("Profile", "Group", new { groupId });
 			}
 
 			return RedirectToAction("index", "Group");
@@ -217,8 +217,5 @@ namespace klukk_social.Controllers
 
 			return RedirectToAction("Reports", "User");
 		}
-
-		
-		
     }
 }

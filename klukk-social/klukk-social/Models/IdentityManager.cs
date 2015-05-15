@@ -65,13 +65,6 @@ namespace klukk_social.Models
 				um.RemoveFromRole(userId, r.Name);
 			}
 		}
-        /*
-		public void RemoverUser(string userId, string roleName)
-		{
-			var um = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
-			var result = um.RemoveFromRole<User>(userId, roleName);
-		}
-        */
 
 		public IList<string> GetUserRoles(string userId)
 		{

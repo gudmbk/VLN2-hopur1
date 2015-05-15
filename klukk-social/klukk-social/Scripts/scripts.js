@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $(".friend-req").click(function() {
+    $("#friend-content").on("click", ".friend-req", function () {
         var userToAdd = $(this).val();
         var json = {Id: 0, ToUserId: userToAdd, FromUserId: ""}
         var toHide = $(this);
@@ -26,7 +26,8 @@
             data: JSON.stringify(json),
             success: function() {
                 toHide.hide();
-                $("#friend-content").hide();
+                //$("#friend-content").hide();
+                $("#friend-content").html('<button type="button" value="' + friendId + '" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>')
             },
             error: function (data) { console.log(data) }
         });

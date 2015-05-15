@@ -153,6 +153,7 @@ namespace klukk_social.Services
 						 where p.Id == postId
 						 select p).FirstOrDefault();
 		    // ReSharper disable once PossibleNullReferenceException
+		    // ReSharper disable once PossibleInvalidOperationException
 		    return group.GroupId.Value;
 		}
 

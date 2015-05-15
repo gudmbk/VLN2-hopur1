@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using klukk.Tests;
 using klukk_social.Models;
 
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web.DynamicData;
 using klukk_social.Models;
 
 namespace klukk_social.Services
