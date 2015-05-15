@@ -113,8 +113,7 @@ namespace klukk_social.Services
 		    {
 		        item.Comments = (from c in _dbContext.Comments
 		            where c.PostId == postId
-		            select c).Include("CommentLikes").ToList();
-		        
+		            select c).Include("Likes").ToList();
 		    }
             return item;
 		}
