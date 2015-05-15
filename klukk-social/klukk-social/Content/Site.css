@@ -29,6 +29,13 @@ body{
 	background-position: center;
 }
 
+.friendbuttonsize{
+	max-width: 80px;
+	float: right;
+	position: relative;
+	top: -23px;
+}
+
 .title{
 	font-family: 'Arial Black';
 	margin-left: 30px;
