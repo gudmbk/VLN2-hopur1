@@ -79,8 +79,7 @@ namespace klukk_social.Tests.Services
             const string user1 = "dabs";
             const string user2 = "gummi";
 
-            // Note: Should test if a given user is 
-            // a member in a given group in our test data.
+            // Note: Should get all groups the parent owns and no other
 
             // Act:
             var result1 = _service.GetAllParentGroups(user1);

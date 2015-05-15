@@ -9,27 +9,33 @@
 	<div class="clearfix"></div>
 </div>
 
-@if(Model.Friends || Model.Person.Id == User.Identity.GetUserId())
+@if (ViewBag.isFriend)
 {
-    @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
-
-    foreach (var post in Model.Feed)
-	{
-		InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
-		userPostInfo.Feed.Add(post);
-		userPostInfo.IsPost = true;
-		userPostInfo.CurrentUser = Model.CurrentUser;
-		@Html.Partial("PostPartial", userPostInfo)
-	}
+    <button type="button" value="@Model.Person.Id" class="btn btn-danger btn-block unfriend">Eyða vin</button>
 }
-else
-{
-    if (Model.Request == null)
+<div id="friend-content">
+    @if (Model.Friends || Model.Person.Id == User.Identity.GetUserId())
     {
-		<button type="button" value="@Model.Person.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>
-	}
-	else if (Model.Request.ToUserId == Model.Person.Id)
-	{
-		<button type="button" value="@Model.Person.Id" class="btn btn-danger btn-block del-friend-req">Eyða vinabeiðni</button>
+        @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
+
+        foreach (var post in Model.Feed)
+        {
+            InteractionBarViewModel userPostInfo = new InteractionBarViewModel();
+            userPostInfo.Feed.Add(post);
+            userPostInfo.IsPost = true;
+            userPostInfo.CurrentUser = Model.CurrentUser;
+            @Html.Partial("PostPartial", userPostInfo)
+        }
     }
-}
+    else
+    {
+        if (Model.Request == null)
+        {
+            <button type="button" value="@Model.Person.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>
+        }
+        else if (Model.Request.ToUserId == Model.Person.Id)
+        {
+            <button type="button" value="@Model.Person.Id" class="btn btn-danger btn-block del-friend-req">Eyða vinabeiðni</button>
+        }
+    }
+</div>

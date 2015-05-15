@@ -57,8 +57,6 @@ namespace klukk_social.Tests.Services
         {
             // Arrange:
             const string body = "Text New Comment";
-            // Note: no user with this username has an entry
-            // in our test data.
 
             // Act:
             _service.EditComment(1, body);
@@ -75,9 +73,6 @@ namespace klukk_social.Tests.Services
             const string user1 = "dabs";
             const string user2 = "tommi";
             const string user3 = "gummi";
-
-            // Note: no user with this username has an entry
-            // in our test data.
 
             // Act:
             var posts = _service.GetAllPostsToUser(user1);
@@ -98,7 +93,7 @@ namespace klukk_social.Tests.Services
             const string user2 = "dabs";
             const string user3 = "noone";
 
-            // Note: no user with this username has an entry
+            // Note: no user with the username noone has an entry
             // in our test data.
 
             // Act:
@@ -120,8 +115,8 @@ namespace klukk_social.Tests.Services
             const string user2 = "tommi";
             const string user3 = "gummi";
 
-            // Note: no user with this username has an entry
-            // in our test data.
+            // Note: User does not get his own posts in his feed
+            // Note: This is not getting posts for activity feed og parents so gummi should get no posts
 
             // Act:
             var posts = _service.GetAllPostForUserFeed(user1);
@@ -129,8 +124,8 @@ namespace klukk_social.Tests.Services
             var posts3 = _service.GetAllPostForUserFeed(user3);
 
             // Assert:
-            Assert.AreEqual(2, posts.Count); // 'a notandi ad fa sin eigin post a feed?
-            Assert.AreEqual(1, posts2.Count);
+            Assert.AreEqual(1, posts.Count); 
+            Assert.AreEqual(2, posts2.Count);
             Assert.AreNotEqual(1, posts3.Count);
         }
         [TestMethod]
@@ -140,9 +135,6 @@ namespace klukk_social.Tests.Services
             const int post = 1;
             const int post2 = 2;
             const int post3 = 3;
-
-            // Note: no user with this username has an entry
-            // in our test data.
 
             // Act:
             var posts = _service.GetPostById(post);
