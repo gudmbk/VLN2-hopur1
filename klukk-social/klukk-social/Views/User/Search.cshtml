@@ -4,7 +4,6 @@
 
 @{
     ViewBag.Title = "Search";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="card searchpadd">Search</h2>
@@ -16,8 +15,6 @@
             <img src='@user.ProfilePic' class="search"/>
         </a>
         @Html.ActionLink(user.FirstName, "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block whitepace" })
-        @*@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new {userId = user.Id}, new {@class = "btn btn-success btn-block friend-req"})*@
-        @*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
     </div>
 }
 @foreach (var group in Model.Groups)
@@ -39,6 +36,5 @@
 	</div>
 }
 <div class="searchcard"></div> @*Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
-<div class="searchcard"></div>
 <div class="searchcard"></div>
 <div class="searchcard"></div>
