@@ -71,6 +71,7 @@ namespace klukk_social.Controllers
             List<User> users = _userService.Search(prefix);
 			List<Group> groups = _groupService.Search(prefix);
             var model = new SearchViewModel(groups, users);
+            /*
             var me = User.Identity.GetUserId();
             foreach (var user in users)
             {
@@ -79,7 +80,7 @@ namespace klukk_social.Controllers
             foreach (var group in groups)
             {
                 model.IsMember.Add(_groupService.IsUserMember(group.Id, me));
-            }
+            }*/
 			return View(model);
         }
  

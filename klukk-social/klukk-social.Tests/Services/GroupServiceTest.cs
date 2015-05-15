@@ -14,6 +14,16 @@ namespace klukk_social.Tests.Services
         {
             var mockDb = new MockDataContext();
 
+            // Groups
+            var g1 = new Group { Id = 1, UserId = "dabs" };
+            mockDb.Groups.Add(g1);
+            var g2 = new Group { Id = 1, UserId = "gummi" };
+            mockDb.Groups.Add(g2);
+            var g3 = new Group { Id = 1, UserId = "dabs" };
+            mockDb.Groups.Add(g3);
+            var g4 = new Group { Id = 1, UserId = "dabs" };
+            mockDb.Groups.Add(g4);
+
             // GroupUsers
             var gu1 = new GroupUsers { Id = 1, GroupId = 1, UserId = "gummi" };
             mockDb.GroupUsers.Add(gu1);
@@ -62,6 +72,25 @@ namespace klukk_social.Tests.Services
             Assert.IsFalse(result8);
             Assert.IsTrue(result9);
         }
+        [TestMethod]
+        public void TestGetAllGroupsForParent()
+        {
+            // Arrange:
+            const string user1 = "dabs";
+            const string user2 = "gummi";
 
+            // Note: Should test if a given user is 
+            // a member in a given group in our test data.
+
+            // Act:
+            var result1 = _service.GetAllParentGroups(user1);
+            var result2 = _service.GetAllParentGroups(user2);
+
+
+            // Assert:
+            Assert.AreEqual(result1.Count, 3);
+            Assert.AreEqual(result2.Count, 1);
+
+        }
     }
 }
