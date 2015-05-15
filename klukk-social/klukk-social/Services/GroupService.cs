@@ -188,5 +188,29 @@ namespace klukk_social.Services
 					where reqId.Id == requestId
 					select reqId.GroupId).FirstOrDefault();
 		}
+
+		public List<GroupWithMembership> SearchGroupsWithMemership(string prefix, string currUser)
+		{
+			List<GroupWithMembership> returnlist = new List<GroupWithMembership>();
+
+			var groups = (from g in _dbContext.Groups
+						where g.Name.Contains(prefix)
+						orderby g.Name
+						select g).ToList();
+
+			foreach (var group1 in groups)
+			{
+				var inGroup = (from groupUser in _dbContext.GroupUsers
+								  where groupUser.GroupId == group1.Id && groupUser.UserId == currUser
+								  select groupUser).FirstOrDefault();
+
+				GroupWithMembership gwm = new GroupWithMembership();
+				gwm.IsMember = inGroup != null;
+				gwm.Group = group1;
+				returnlist.Add(gwm);
+			}
+
+			return returnlist;
+		}
 	}
 }

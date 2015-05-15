@@ -68,19 +68,11 @@ namespace klukk_social.Controllers
         public ActionResult Search(FormCollection searchBar)
         {
             string prefix = searchBar["user-input"];
-            List<User> users = _userService.Search(prefix);
-			List<Group> groups = _groupService.Search(prefix);
+			var me = User.Identity.GetUserId();
+			List<UserWithFriendship> users = _userService.SearchUsersWithFriendship(prefix, me);
+			List<GroupWithMembership> groups = _groupService.SearchGroupsWithMemership(prefix, me);
             var model = new SearchViewModel(groups, users);
-            /*
-            var me = User.Identity.GetUserId();
-            foreach (var user in users)
-            {
-                model.IsFriend.Add(_userService.FriendChecker(user.Id, me));
-            }
-            foreach (var group in groups)
-            {
-                model.IsMember.Add(_groupService.IsUserMember(group.Id, me));
-            }*/
+
 			return View(model);
         }
  

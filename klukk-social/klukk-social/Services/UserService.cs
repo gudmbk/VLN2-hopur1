@@ -161,5 +161,29 @@ namespace klukk_social.Services
 			switched.ToUserId = friends.FromUserId;
 			return switched;
 		}
+
+		public List<UserWithFriendship> SearchUsersWithFriendship(string prefix, string currUser)
+		{
+			List<UserWithFriendship> returnlist = new List<UserWithFriendship>();
+
+			var users = (from u in _dbContext.Users
+						where u.FullName.Contains(prefix) && u.ParentId != null
+						orderby u.FullName
+						select u).ToList();
+			
+			foreach (var user in users)
+			{
+				var areFriends = (from friendshp in _dbContext.Friendships
+								  where friendshp.FromUserId == currUser && friendshp.ToUserId == user.Id
+								  select friendshp).FirstOrDefault();
+				
+				UserWithFriendship uwf = new UserWithFriendship();
+				uwf.IsFriends = areFriends != null;
+				uwf.User = user;
+				returnlist.Add(uwf);
+			}
+
+			return returnlist;
+		}
 	}
 }

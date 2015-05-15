@@ -3,22 +3,31 @@ using System.Security.Policy;
 
 namespace klukk_social.Models
 {
+	public class GroupWithMembership
+	{
+		public Group Group { get; set; }
+		public bool IsMember { get; set; } 
+	}
+
+	public class UserWithFriendship
+	{
+		public User User { get; set; }
+		public bool IsFriends { get; set; }
+	}
+
 	public class SearchViewModel
 	{
-		public List<Group> Groups { get; set; }
-        //public List<bool> IsMember { get; set; } 
-		public List<User> Users { get; set; }
-        //public List<bool> IsFriend { get; set; } 
+		public List<GroupWithMembership> Groups { get; set; }
+ 		public List<UserWithFriendship> Users { get; set; }
 
 		public SearchViewModel()
 		{
-			Groups = new List<Group>();
-			Users = new List<User>();
-           // IsMember = new List<bool>();
-           // IsFriend = new List<bool>();
+			Groups = new List<GroupWithMembership>();
+			Users = new List<UserWithFriendship>();
+           
 		}
-		
-		public SearchViewModel(List<Group> groups, List<User> users)
+
+		public SearchViewModel(List<GroupWithMembership> groups, List<UserWithFriendship> users)
 		{
 			Groups = groups;
 			Users = users;
