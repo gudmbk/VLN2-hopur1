@@ -1,9 +1,9 @@
 ﻿@model klukk_social.Models.CreateChildViewModel
 @{
-    ViewBag.Title = "Hér Stofnar þú aðgang fyrir barn";
+    ViewBag.Title = "Hér stofnar þú aðgang fyrir barn";
 }
 
-<h2 class="card searchpadd">@ViewBag.Title.</h2>
+<h2 class="card searchpadd">@ViewBag.Title</h2>
 <div class="card postpadd">
 	@using (Html.BeginForm("CreateChild", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 	{

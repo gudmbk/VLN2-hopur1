@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using klukk_social.Models;
+using klukk_social.Services;
 
 namespace klukk_social.Controllers
 {
@@ -13,6 +14,7 @@ namespace klukk_social.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+		readonly UserService _userService = new UserService(null);
 
         public AccountController()
         {
@@ -37,10 +39,17 @@ namespace klukk_social.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+		public ActionResult Login(string userId)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+			LoginViewModel bag = new LoginViewModel();
+
+			if (!String.IsNullOrEmpty(userId))
+			{
+				bag.UserName = _userService.FindById(userId).UserName;
+			}
+			
+
+            return View(bag);
         }
 
         //

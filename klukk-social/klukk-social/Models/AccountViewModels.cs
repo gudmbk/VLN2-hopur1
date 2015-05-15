@@ -89,6 +89,7 @@ namespace klukk_social.Models
 		[Display(Name = "Fornafn")]
 		public string First { get; set; }
 
+		[Display(Name = "Millinafn")]
 		public string Middle { get; set; }
 
 		[Required(ErrorMessage = "Það þarf að skrá inn eftirnafn")]
