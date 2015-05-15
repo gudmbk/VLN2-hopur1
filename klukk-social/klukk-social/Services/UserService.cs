@@ -33,8 +33,8 @@ namespace klukk_social.Services
 		public List<User> Search(string prefix)
 		{
             var user = (from u in _dbContext.Users
-						where u.FirstName.Contains(prefix) && u.ParentId != null
-						orderby u.FirstName
+						where u.FullName.Contains(prefix) && u.ParentId != null
+						orderby u.FullName
 						select u).ToList();
 			return user;
 		}
