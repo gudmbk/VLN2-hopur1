@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="4f5e5324-fe73-4fbf-99ff-8628ad1a5b0e"
+  name="klukk_social"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="4995b5f0-1c1c-4cac-9f8a-ed61a7cdd4c6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3Dklukk_social"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="bcc453c2-5799-42b8-95d9-b1ba52fecce1">
+      <profileInstance
+        Id="3248ddd7-5730-4245-b4a1-5851fe2554ed"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1843f52b-fea6-43d8-89b4-7e67e791116b"
+        LastKnownName="Controllers"
+        LastKnownLocation="Package1_1506.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0e63c799-4b20-444b-9746-0ee55ddeb346"
+        LastKnownName="Services"
+        LastKnownLocation="Package5_1506.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="45b5bcb1-55c0-4cd6-b72b-e44e7aa8bb33"
+        LastKnownName="Models"
+        LastKnownLocation="Package6_1506.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f184812c-cbcf-4407-b968-1f3597e13363"
+        name="ApplicationUserManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="72e95fee-e5ec-49a0-8d43-6dafb4c3d983"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FGummi%2FDocuments%2FVLN2%2FVLN2-hopur1%2Fklukk-social%2Fklukk-social%2Fbin%2Fklukk-social.dll Namespace%3Dklukk_social Type%3DApplicationUserManager"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="20c21600-4105-47de-a948-546101a31f9d"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d7e9dfd5-4eb8-4949-a56a-fa9b2aa80356">
+                <propertyInstance
+                  Id="c16c7149-0152-48e0-a7fa-0f93bbbb315c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a7c361da-342e-419d-b811-9a69b6cd8a0d">
+                <propertyInstance
+                  Id="04def312-bfae-431e-8e16-e486b563c42a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c571ca95-43d0-4108-b4f7-0c543165c3b2">
+                <propertyInstance
+                  Id="1b3e7bbd-cf84-40f4-8bd3-11d75e75e506"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="40be94aa-d074-4117-860d-2a268908069d">
+                <propertyInstance
+                  Id="59256cf1-a79e-4949-be25-1959b5dd6a9a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="16ec95ad-aef9-4a64-b9df-39d35fa6ba53">
+                <propertyInstance
+                  Id="4bc21781-51b0-493c-a973-24819a572cab"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="b09c8cb8-2bbd-4ad9-b4fb-62aa94334b43"
+            isSubstitutable="false">
+            <classMoniker
+              Id="963e8017-331b-415d-bc06-7d91b9ef2d1b"
+              LastKnownName="UserManager&lt;User‎&gt;"
+              LastKnownLocation="Package11_1506.uml" />
+          </generalization>
+          <generalization
+            Id="652575fd-128d-4869-a5bd-15c086d11163"
+            isSubstitutable="false">
+            <classMoniker
+              Id="17dced56-146c-4b4f-b6d6-caf4bdf10914"
+              LastKnownName="UserManager"
+              LastKnownLocation="Package11_1506.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
