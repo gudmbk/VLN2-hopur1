@@ -4,8 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="card postpadd">Vinabeiðnir</h2>
-
+@if (Model.FriendRequests.Count() > 0)
+{
+	<h2 class="card postpadd">Vinabeiðnir</h2>
+}
 @foreach (var fr in Model.FriendRequests)
 {
         <div class="card searchcard searchpadd">
