@@ -1,5 +1,4 @@
 ﻿@using klukk_social.Models
-@using Microsoft.AspNet.Identity
 @model GroupViewModel
 
 <div class="cardgroup postpadd">
@@ -36,11 +35,9 @@ else
 	if (Model.Request == null)
 	{
 		@Html.ActionLink("Sækja um aðgang", "SendGroupRequest", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
-		@*<button type="button" value="@Model.Group.Id" class="btn btn-success btn-block friend-req">Sækja um Aðgang</button>*@
 	}
 	else 
 	{
 		@Html.ActionLink("Eyða aðgangsbeiðni", "DeleteGroupRequest", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
-		@*<button type="button" value="@Model.Group.Id" class="btn btn-danger btn-block del-friend-req">Eyða aðgangsbeiðni</button>//eftir að útfæra jquery*@
 	}
 }

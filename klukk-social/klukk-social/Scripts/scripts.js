@@ -26,8 +26,7 @@
             data: JSON.stringify(json),
             success: function() {
                 toHide.hide();
-                //$("#friend-content").hide();
-                $("#friend-content").html('<button type="button" value="' + friendId + '" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>')
+                $("#friend-content").html('<button type="button" value="' + friendId + '" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>');
             },
             error: function (data) { console.log(data) }
         });
@@ -59,7 +58,6 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(json),
             success: function() {
-                alert("test");
                 $(toHide).hide();
             },
             error: function (data) { console.log(data) }
@@ -77,7 +75,6 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(json),
             success: function () {
-                alert("test");
                 $(toHide).hide();
             },
             error: function (data) { console.log(data) }
@@ -98,20 +95,7 @@
             error: function (data) { console.log(data) }
         });
     });
-/*
-    $('post-status').on('submit', 'form', function () {
-        var theForm = $(this);
-        $.ajax({
-            type: "POST",
-            url: "/Post/PostStatus",
-            traditional: true,
-            contentType: 'application/json; charset=utf-8',
-            data: theForm.serialize(),
-            success: function () { alert("WORK WORK") },
-            error: function (data) { console.log(data) }
-        });
-    });
-*/
+
     $(".delete-post").click(function () {
         var itemId = $(this).attr("data-id");
         var isPost = $(this).attr("data-type");
@@ -206,7 +190,7 @@
                 traditional: true,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(jsonObject),
-                success: function () { alert("virkarPost") },
+                success: function () { },
                 error: function (data) { console.log(data) }
             });
     });
