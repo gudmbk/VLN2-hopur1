@@ -8,24 +8,23 @@
 
 @if (Model.GroupRequests.Count != 0)
 {
-	var i = 0;
-	<h4 class="card postpadd">Aðgangsbeiðnir í grúbbur</h4>
+	<h4 class="cardgroup postpadd">Aðgangsbeiðnir í hópa</h4>
+
 	foreach (var groupRequest in Model.GroupRequests)
 	{
-		
+
 		<div class="cardgroup searchpadd">
 			<span>
-				<img src='@groupRequest.Togroup.ProfilePic' class="search imagesmall" />
-				<img src='@groupRequest.FromUser.ProfilePic' class="search imagesmall" />
-				<span>@groupRequest.FromUser.FirstName biður um aðgang að grúbbuni </span>
+				<img src='@groupRequest.FromUser.ProfilePic' class="search imagesmall bottommargin" />
+				<span>@groupRequest.FromUser.FirstName biður um aðgang að hópnum: </span>
 				<span>@groupRequest.Togroup.Name</span>
+				<img src='@groupRequest.Togroup.ProfilePic' class="search imagesmall bottommargin" />
 			</span>
 			<span>
 				@Html.ActionLink("Opna á aðgang", "GrantAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-success whitepace" })
 				@Html.ActionLink("Neita aðgang", "RefuseAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-danger whitepace" })
 			</span>
 		</div>
-		i++;
 	}
 }
 
@@ -36,16 +35,20 @@
 			@if (report.IsPost)
 			{
 				<img src='@report.PostItem.FromUser.ProfilePic' class="search imagesmall" />
-				<p>@report.PostItem.PosterName</p>
-				<p>@report.PostItem.HtmlText</p>
-				<p>@report.PostItem.Date</p>
+				<span>@report.PostItem.PosterName</span>
+				<div class="tilkynning">
+					<p>@report.PostItem.HtmlText</p>
+					<p>@report.PostItem.Date</p>
+				</div>
 			}
 			else
 			{
 				<img src='@report.CommentItem.User.ProfilePic' class="search imagesmall" />
-				<p>@report.CommentItem.PosterName</p>
+				<span>@report.CommentItem.PosterName</span>
+			<div class="tilkynning">
 				<p>@report.CommentItem.Body</p>
 				<p>@report.CommentItem.Date</p>
+			</div>
 			}
 			<div>
 				<button class="report-cancel btn btn-default" data-id="@report.Id">Hunsa</button>

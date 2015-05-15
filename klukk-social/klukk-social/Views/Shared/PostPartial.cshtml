@@ -4,7 +4,6 @@
 @using klukk_social.Models
 @model InteractionBarViewModel
 
-
 @{
 	InteractionBarViewModel postCommentForward = new InteractionBarViewModel();
 	postCommentForward.AllChildren = Model.AllChildren;
@@ -16,6 +15,7 @@
 	string color = "card";
 	if (Model.Post.GroupId > 0) { color = "cardgroup"; }
 }
+
 <div class="@color postpadd post-body">
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
@@ -79,10 +79,10 @@
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "form-inline", role = "form" }))
 		{
 			<div class="postdialog">
-				<img src='@Model.CurrentUser.ProfilePic' class="search imagesmall bottommargin" />
+				<img src='@Model.CurrentUser.ProfilePic' class="search imagesmall" />
 				<input name="comment" placeholder="Bæta við innleggi" class="form-control" />
 				<input type="hidden" name="PostId" value="@Model.Post.Id" />
-				<input type="submit" value="Deila" class="btn btn-default bottommargin" />
+				<input type="submit" value="Deila" class="btn btn-default" />
 			</div>
 		}
 	}

@@ -214,7 +214,7 @@ body{
 }
 
 .postdialog {
-	padding: 5px 5px 0px 5px;
+	padding: 5px 5px 5px 5px;
 	margin-bottom: 5px;
 	border-radius: 5px;
 	background-color: #e7f3ff;
@@ -298,7 +298,6 @@ accept-friend {
 	vertical-align: middle;
 	border-radius: 10px;
 	width: 100%;
-	display: block;
 	margin: 10px 0px 10px 0px;
 }
 .post iframe {
@@ -358,4 +357,16 @@ accept-friend {
 .login{
 	max-width: 800px;
 	border-radius: 30px;
+}
+
+.tilkynning{
+	border-radius: 5px;
+	background-color: white;
+	margin: 5px 0px;
+	padding: 5px;
+	color: black;
+}
+
+.groupheader{
+	width: calc(100% - 300px);
 }

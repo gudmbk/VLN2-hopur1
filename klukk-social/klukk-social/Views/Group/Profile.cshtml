@@ -4,8 +4,8 @@
 
 <div class="cardgroup postpadd">
 	<img src="@Model.Group.ProfilePic" alt="Profile Picture" class="profile floatleft img-responsive" />
-	<h1 class="leftpaddten floatleft block">@Model.Group.Name</h1>
-	<div class="floatleft block" >@Model.Group.Description</div>
+	<h1 class="leftpaddten floatleft block groupheader">@Model.Group.Name</h1>
+	<span>@Model.Group.Description</span>
 	<div class="clearfix"></div>
 </div>
 
@@ -13,11 +13,11 @@
 {
 	if (Model.MemberOfGroup)
 	{
-		@Html.ActionLink("Hætta í grúbbu", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+		@Html.ActionLink("Hætta í hóp", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
 	}
 	else
 	{
-		@Html.ActionLink("Bæta við í grúbburnar mínar", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		@Html.ActionLink("Bæta við í hópinn minn", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 	}
 	@Html.Partial("PostGroupPartial", new Post(@Model.Group.Id))
 
