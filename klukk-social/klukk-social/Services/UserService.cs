@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.DynamicData;
 using klukk_social.Models;
 
 namespace klukk_social.Services
@@ -161,5 +162,18 @@ namespace klukk_social.Services
 			switched.ToUserId = friends.FromUserId;
 			return switched;
 		}
+
+	    public void RemoveFriendship(string userId, string friendId)
+	    {
+	        var fs1 = (from fs in _dbContext.Friendships
+	            where fs.FromUserId == friendId && fs.ToUserId == userId
+	            select fs).FirstOrDefault();
+            var fs2 = (from fs in _dbContext.Friendships
+                       where fs.FromUserId == userId && fs.ToUserId == friendId
+                       select fs).FirstOrDefault();
+	        _dbContext.Friendships.Remove(fs1);
+            _dbContext.Friendships.Remove(fs2);
+	        _dbContext.SaveChanges();
+	    }
 	}
 }

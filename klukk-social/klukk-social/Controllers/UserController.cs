@@ -62,6 +62,8 @@ namespace klukk_social.Controllers
             profile.Feed.AddRange(listOfPosts);
             profile.Person = user;
 			profile.CurrentUser = _userService.FindById(User.Identity.GetUserId());
+            bool isFriend = _userService.FriendChecker(User.Identity.GetUserId(), user.Id);
+            ViewBag.isFriend = isFriend;
             return View(profile);
         }
 
@@ -205,6 +207,12 @@ namespace klukk_social.Controllers
 			reports.Parent = parent;
 			reports.GroupRequests = groupRequests;
 			return View(reports);
+        }
+
+        public ActionResult DeleteFriend(string friendId)
+        {
+            _userService.RemoveFriendship(User.Identity.GetUserId(), friendId);
+            return null;
         }
     }
 }

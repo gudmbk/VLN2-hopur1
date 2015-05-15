@@ -14,6 +14,21 @@
         });
     });
 
+    $(".unfriend").click(function () {
+        var friendId = $(this).val();
+        var json = { friendId: friendId }
+        var toHide = $(this);
+        $.ajax({
+            type: "POST",
+            url: "/User/DeleteFriend",
+            traditional: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(json),
+            success: function () { toHide.hide(); },
+            error: function (data) { console.log(data) }
+        });
+    });
+
     $(".del-friend-req").click(function () {
         var userToAdd = $(this).val();
         var json = { Id: 0, ToUserId: userToAdd, FromUserId: "" }

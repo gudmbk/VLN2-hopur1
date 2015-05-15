@@ -9,6 +9,10 @@
 	<div class="clearfix"></div>
 </div>
 
+@if (ViewBag.isFriend)
+{
+    <button type="button" value="@Model.Person.Id" class="btn btn-danger btn-block unfriend">Eyða vin</button>
+}
 @if(Model.Friends || Model.Person.Id == User.Identity.GetUserId())
 {
     @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
