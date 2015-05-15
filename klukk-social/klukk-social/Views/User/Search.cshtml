@@ -13,7 +13,7 @@
         <a href='@Url.Action("Profile", "User", new {userId = user.User.Id}, null)'>
             <img src='@user.User.ProfilePic' class="search"/>
         </a>
-        @Html.ActionLink(user.User.FirstName, "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace" })
+        @Html.ActionLink(user.User.FirstName, "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace", Title=@user.User.FullName })
 		@if(user.IsFriends)
 		{
 			@Html.ActionLink("Vinur", "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace" })

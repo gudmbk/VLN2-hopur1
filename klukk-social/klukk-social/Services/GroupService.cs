@@ -14,12 +14,21 @@ namespace klukk_social.Services
             _dbContext = context ?? new ApplicationDbContext();
         }
 
+		/// <summary>
+		/// Adds a Group to the database
+		/// </summary>
+		/// <param name="group"></param>
         public void CreateGroup(Group group)
         {
             _dbContext.Groups.Add(group);
             _dbContext.SaveChanges();
         }
-
+		
+		/// <summary>
+		/// Fetches all groups for the given userId
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <returns></returns>
 		public List<Group> GetAllGroups(string userId)
 		{
             var groups = (from g in _dbContext.Groups
@@ -30,6 +39,11 @@ namespace klukk_social.Services
 			return groups;
 		}
 
+		/// <summary>
+		/// Returnes all groups owned by userId(Parent)
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <returns></returns>
 		public List<Group> GetAllParentGroups(string userId)
 		{
             var groups = (from g in _dbContext.Groups
@@ -38,7 +52,11 @@ namespace klukk_social.Services
 			return groups;
 		}
 		
-		//FindById(groupId)
+		/// <summary>
+		/// Finds a Group by its groupId
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns></returns>
 		public Group FindById(int ?groupId)
 		{
             var group = (from g in _dbContext.Groups
@@ -47,6 +65,11 @@ namespace klukk_social.Services
 			return group;
 		}
 		
+		/// <summary>
+		/// Returns a list of Posts belonging to a group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <returns></returns>
 		public List<Post> GetAllGroupPostsToGroup(int? groupId)
         {
             var listi = (from p in _dbContext.Posts
@@ -65,30 +88,34 @@ namespace klukk_social.Services
             
         }
 
-		public List<Group> Search(string prefix)
-		{
-            var group = (from g in _dbContext.Groups
-						where g.Name.Contains(prefix)
-						orderby g.Name
-						select g).ToList();
-			return group;
-		}
-
+		/// <summary>
+		/// Adds a group request to the database
+		/// </summary>
+		/// <param name="groupRequest"></param>
 		public void SendGroupRequest(GroupRequest groupRequest)
 		{
             _dbContext.GroupRequests.Add(groupRequest);
             _dbContext.SaveChanges();
-
 		}
 
+		/// <summary>
+		/// Fetches a group request form the database
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <param name="groupId"></param>
+		/// <returns></returns>
 		public GroupRequest GetGroupRequest(string userId, int? groupId)
 		{
-            var request = (from gr in _dbContext.GroupRequests
+			var request = (from gr in _dbContext.GroupRequests
 						   where gr.FromUserId == userId && gr.GroupId == groupId
 						   select gr).FirstOrDefault();
 			return request;
 		}
 
+		/// <summary>
+		/// Deletes a group request
+		/// </summary>
+		/// <param name="requestId"></param>
 		public void DeleteGroupRequest(int requestId)
 		{
             var toDelete = (from gr in _dbContext.GroupRequests
@@ -99,12 +126,22 @@ namespace klukk_social.Services
             _dbContext.SaveChanges();
 		}
 
+		/// <summary>
+		/// Adds a user to the GroupUsers table
+		/// </summary>
+		/// <param name="groupUsers"></param>
 		public void AcceptGroupRequest(GroupUsers groupUsers)
 		{
             _dbContext.GroupUsers.Add(groupUsers);
             _dbContext.SaveChanges();
 		}
 
+		/// <summary>
+		/// Checks whether or not a user is a member of a specific group
+		/// </summary>
+		/// <param name="groupId"></param>
+		/// <param name="userId"></param>
+		/// <returns></returns>
 		public bool IsUserMember(int groupId, string userId)
 		{
             var request = (from user in _dbContext.GroupUsers
@@ -113,15 +150,11 @@ namespace klukk_social.Services
 			return request != null;
 		}
 
-		public GroupUsers FindGroupUserById(string userId, int? groupId)
-		{
-		    if (!groupId.HasValue) return null;
-            var request = (from user in _dbContext.GroupUsers
-		        where user.UserId == userId
-		        select user).FirstOrDefault();
-		    return request;
-		}
-
+		/// <summary>
+		/// Deletes the refenance to the user from the GroupsUsers table
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <param name="groupId"></param>
 		public void LeaveGroup(string userId, int groupId)
 		{
             var request = (from user in _dbContext.GroupUsers
@@ -132,6 +165,10 @@ namespace klukk_social.Services
             _dbContext.SaveChanges();
 		}
 
+		/// <summary>
+		/// Replaces current group data by input data
+		/// </summary>
+		/// <param name="changedGroup"></param>
 		public void UpdateGroup(Group changedGroup)
 		{
             var foundGroup = (from gr in _dbContext.Groups
@@ -147,6 +184,11 @@ namespace klukk_social.Services
 		    _dbContext.SaveChanges();
 		}
         
+		/// <summary>
+		/// Returns the groupId the postId belongs to
+		/// </summary>
+		/// <param name="postId"></param>
+		/// <returns></returns>
 		public int FindGroupId(int postId)
 		{
 			var group = (from p in _dbContext.Posts
@@ -157,6 +199,11 @@ namespace klukk_social.Services
 		    return group.GroupId.Value;
 		}
 
+		/// <summary>
+		/// Deletes group request from table
+		/// </summary>
+		/// <param name="p"></param>
+		/// <param name="userId"></param>
 		public void DeleteGroupRequest(int p, string userId)
 		{
             var request = (from r in _dbContext.GroupRequests
@@ -166,6 +213,11 @@ namespace klukk_social.Services
 			_dbContext.SaveChanges();
 		}
 
+		/// <summary>
+		/// Returns all requests made my a user
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <returns></returns>
 		public List<GroupRequest> GetAllRequests(string userId)
 		{
 			return (from grReq in _dbContext.GroupRequests
@@ -176,6 +228,11 @@ namespace klukk_social.Services
 						select grReq).ToList();
 		}
 
+		/// <summary>
+		/// Returns the userId of the user that made the group request
+		/// </summary>
+		/// <param name="requestId"></param>
+		/// <returns></returns>
 		public string GetRequestUserId(int requestId)
 		{
 			return (from reqId in _dbContext.GroupRequests
@@ -183,6 +240,11 @@ namespace klukk_social.Services
 					select reqId.FromUserId).FirstOrDefault();
 		}
 
+		/// <summary>
+		/// Returns the group-request-Id by the request-Id
+		/// </summary>
+		/// <param name="requestId"></param>
+		/// <returns></returns>
 		public int GetGroupRequestGroupId(int? requestId)
 		{
 			return (from reqId in _dbContext.GroupRequests
@@ -190,6 +252,12 @@ namespace klukk_social.Services
 					select reqId.GroupId).FirstOrDefault();
 		}
 
+		/// <summary>
+		/// Creates a list of "GroupWithMembership" which stores every group a user is in and wether he is a member of that group
+		/// </summary>
+		/// <param name="prefix"></param>
+		/// <param name="currUser"></param>
+		/// <returns></returns>
 		public List<GroupWithMembership> SearchGroupsWithMemership(string prefix, string currUser)
 		{
 			List<GroupWithMembership> returnlist = new List<GroupWithMembership>();

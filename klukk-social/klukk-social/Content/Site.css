@@ -50,7 +50,6 @@ body {
 
 .maintitle {
 	font-family: 'Arial Black';
-	margin-left: 50px;
 	margin-right: 30px;
 	font-weight: bold;
 	color: #fff;
@@ -276,10 +275,7 @@ body {
 
 .fixtextinfootercontent {
     text-align: justify;
-    width: 40%;
-    position:absolute;
-    right: 70%;
-    left:9%;
+    width: 600px;
 }
 
 .btn-warning-on {
