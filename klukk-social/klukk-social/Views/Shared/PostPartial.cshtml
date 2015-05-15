@@ -20,7 +20,7 @@
 	<div class="postdialog">
 		<div class="floatleft takeallwidth">
 			<div class="floatleft">
-				<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+				<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall bottommargin" />
 				@Html.ActionLink(Model.Post.FromUser.FullName, "Profile", "User", new { userId = Model.Post.FromUserId }, null)
 			</div>
 			@if (User.IsInRole("Parent"))
@@ -29,12 +29,12 @@
 					<span>Skrifaði á vegg </span><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
 					@if (Model.Post.GroupId > 0)
 					{
-						<img src='@Model.Post.Group.ProfilePic' class="search imagesmall" />
+						<img src='@Model.Post.Group.ProfilePic' class="search imagesmall bottommargin" />
 						@Html.ActionLink(@Model.Post.Group.Name, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
 					}
 					else
 					{
-						<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall" />
+						<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall bottommargin" />
 						@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
 					}
 				</div>
@@ -58,7 +58,7 @@
 		commentForwards.AllChildren = Model.AllChildren;
 		commentForwards.Comment = comment;
 		<div class="commentdialog">
-			<img src='@comment.User.ProfilePic' class="search imagesmall" />
+			<img src='@comment.User.ProfilePic' class="search imagesmall bottommargin" />
 			@Html.ActionLink(@comment.PosterName, "Profile", "User", new { userId = comment.UserId }, null)
 			<div class="post-box">
 				<div class="post-body">
@@ -79,7 +79,7 @@
 		using (Html.BeginForm("PostComment", "Post", FormMethod.Post, new { @class = "form-inline", role = "form" }))
 		{
 			<div class="postdialog">
-				<img src='@Model.CurrentUser.ProfilePic' class="search imagesmall" />
+				<img src='@Model.CurrentUser.ProfilePic' class="search imagesmall bottommargin" />
 				<input name="comment" placeholder="Bæta við innleggi" class="form-control" />
 				<input type="hidden" name="PostId" value="@Model.Post.Id" />
 				<input type="submit" value="Deila" class="btn btn-default bottommargin" />
@@ -87,6 +87,3 @@
 		}
 	}
 </div>
-
-
-

@@ -174,31 +174,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\LikeHub.cs" />
-    <Compile Include="Migrations\201505132014567_solo.cs" />
-    <Compile Include="Migrations\201505132014567_solo.designer.cs">
-      <DependentUpon>201505132014567_solo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505132016565_solo2.cs" />
-    <Compile Include="Migrations\201505132016565_solo2.designer.cs">
-      <DependentUpon>201505132016565_solo2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505132136484_groups2.cs" />
-    <Compile Include="Migrations\201505132136484_groups2.designer.cs">
-      <DependentUpon>201505132136484_groups2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505132203413_setup.cs" />
-    <Compile Include="Migrations\201505132203413_setup.designer.cs">
-      <DependentUpon>201505132203413_setup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505140505534_set.cs" />
-    <Compile Include="Migrations\201505140505534_set.designer.cs">
-      <DependentUpon>201505140505534_set.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505141711448_groups.cs" />
-    <Compile Include="Migrations\201505141711448_groups.designer.cs">
-      <DependentUpon>201505141711448_groups.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\GroupRequest.cs" />
@@ -328,30 +303,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505132014567_solo.resx">
-      <DependentUpon>201505132014567_solo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505132016565_solo2.resx">
-      <DependentUpon>201505132016565_solo2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505132136484_groups2.resx">
-      <DependentUpon>201505132136484_groups2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505132203413_setup.resx">
-      <DependentUpon>201505132203413_setup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505140505534_set.resx">
-      <DependentUpon>201505140505534_set.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505141711448_groups.resx">
-      <DependentUpon>201505141711448_groups.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
