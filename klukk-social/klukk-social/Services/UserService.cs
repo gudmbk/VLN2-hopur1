@@ -67,7 +67,6 @@ namespace klukk_social.Services
 		{
             _dbContext.FriendRequests.Add(friendRequest);
             _dbContext.SaveChanges();
-
 		}
 
 		public string GetParentId(string childId)
@@ -75,7 +74,6 @@ namespace klukk_social.Services
             return (from user in _dbContext.Users
 					where user.Id == childId
 					select user.ParentId).FirstOrDefault();
-
 		}
 
 		public bool IsParentsChild(string parent, string childId)
@@ -163,15 +161,5 @@ namespace klukk_social.Services
 			switched.ToUserId = friends.FromUserId;
 			return switched;
 		}
-
-	    public string GetEmailOfCommenter(int itemId)
-	    {
-	        throw new System.NotImplementedException();
-	    }
-
-	    public string GetEmailOfPoster(int itemId)
-	    {
-	        throw new System.NotImplementedException();
-	    }
 	}
 }

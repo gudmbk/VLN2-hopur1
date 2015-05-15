@@ -154,3 +154,4 @@ namespace klukk_social.Models
             : base(typeof(DateTime), DateTime.Now.AddYears(-13).ToShortDateString(), DateTime.Now.AddYears(-6).ToShortDateString()) { }
     }
 }
+
