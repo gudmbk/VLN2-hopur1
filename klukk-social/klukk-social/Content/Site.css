@@ -24,7 +24,6 @@ textarea {
 
 body{
 	text-align: justify;
-	
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
@@ -40,6 +39,17 @@ body{
 	text-shadow: rgb(3, 3, 3) 2px 0px 6px;
 	text-decoration: none;
 	float: left;
+}
+
+.maintitle{
+	font-family: 'Arial Black';
+	margin-left: 50px;
+	margin-right: 30px;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	font-size: 70px;
+	text-shadow: rgb(3, 3, 3) 2px 0px 6px;
+	text-decoration: none;
 }
 
 .splashpagebackground{
@@ -175,6 +185,7 @@ body{
 }
 .span {
 	width: 100% !important;
+	min-width: 80px;
 }
 
 .fullwidth{
@@ -183,6 +194,7 @@ body{
 
 .formwidth {
 	max-width: 910px;
+
 }
 .inline {
 	display: inline;

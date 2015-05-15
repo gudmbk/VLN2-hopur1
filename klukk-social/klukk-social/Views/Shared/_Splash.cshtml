@@ -10,14 +10,8 @@
 
 </head>
 <body class="splashpagebackground">
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header"></div>
-			@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
-		</div>
-	</div>
-	</div>
 	<div class="container body-content login">
+		@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "maintitle" })
 		@RenderBody()
 		<div class="card postpadd">
 			@Html.Partial("_LoginPartial", new LoginViewModel())
