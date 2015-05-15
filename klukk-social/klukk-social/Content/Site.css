@@ -72,7 +72,6 @@ body {
 .topbar a {
 	color: white;
 	font-size: 100px;
-	width: 160px;
 }
 
 .sidebar {
@@ -104,6 +103,10 @@ body {
 	object-position: center;
 }
 
+.sidebar button{
+	width: 160px;
+}
+
 .sidebar a {
 	margin: 5px 0px 5px 0px;
 	border-radius: 5px;
@@ -113,6 +116,7 @@ body {
 	background-color: white;
 	padding: 5px;
 	text-align: right;
+	width: 160px;
 }
 
 .contentarea {
