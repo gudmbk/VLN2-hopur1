@@ -8,12 +8,8 @@
 
 @if (Model.GroupRequests.Count != 0)
 {
-	var i = 0;
-<<<<<<< HEAD
 	<h4 class="cardgroup postpadd">Aðgangsbeiðnir í hópa</h4>
-=======
-	<h4 class="card postpadd">Aðgangsbeiðnir í hópa</h4>
->>>>>>> origin/master
+
 	foreach (var groupRequest in Model.GroupRequests)
 	{
 
@@ -29,7 +25,6 @@
 				@Html.ActionLink("Neita aðgang", "RefuseAccessToGroup", "Group", new { requestId = groupRequest.Id }, new { @class = "btn btn-danger whitepace" })
 			</span>
 		</div>
-		i++;
 	}
 }
 

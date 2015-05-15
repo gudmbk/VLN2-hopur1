@@ -365,5 +365,8 @@ accept-friend {
 	margin: 5px 0px;
 	padding: 5px;
 	color: black;
+}
 
+.groupheader{
+	width: calc(100% - 300px);
 }
