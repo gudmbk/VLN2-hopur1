@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using klukk_social.Services;
 
 namespace klukk_social.Models
 {
@@ -113,6 +114,7 @@ namespace klukk_social.Models
 		public string ConfirmPassword { get; set; }
 		
 		[Required]
+        [CustomValidation(typeof(DateAttribute), "Barn verður að vera á aldrinum 6 til 13 ára")]
 		[Display(Name = "Afmælisdagur")]
 		public DateTime BirthDay { get; set; }
 
@@ -145,5 +147,10 @@ namespace klukk_social.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    }
+    public class DateAttribute : RangeAttribute
+    {
+        public DateAttribute()
+            : base(typeof(DateTime), DateTime.Now.AddYears(-13).ToShortDateString(), DateTime.Now.AddYears(-6).ToShortDateString()) { }
     }
 }

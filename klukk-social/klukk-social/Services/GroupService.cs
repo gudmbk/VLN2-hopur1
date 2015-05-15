@@ -173,6 +173,7 @@ namespace klukk_social.Services
 			Post group = (from p in _dbContext.Posts
 						 where p.Id == postId
 						 select p).FirstOrDefault();
+		    // ReSharper disable once PossibleNullReferenceException
 			return group.GroupId.Value;
 		}
 
