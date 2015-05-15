@@ -9,13 +9,16 @@
 @if (Model.GroupRequests.Count != 0)
 {
 	var i = 0;
+<<<<<<< HEAD
 	<h4 class="cardgroup postpadd">Aðgangsbeiðnir í hópa</h4>
+=======
+	<h4 class="card postpadd">Aðgangsbeiðnir í hópa</h4>
+>>>>>>> origin/master
 	foreach (var groupRequest in Model.GroupRequests)
 	{
 
 		<div class="cardgroup searchpadd">
 			<span>
-				
 				<img src='@groupRequest.FromUser.ProfilePic' class="search imagesmall bottommargin" />
 				<span>@groupRequest.FromUser.FirstName biður um aðgang að hópnum: </span>
 				<span>@groupRequest.Togroup.Name</span>

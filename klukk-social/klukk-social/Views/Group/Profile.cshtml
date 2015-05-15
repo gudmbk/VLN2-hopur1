@@ -13,11 +13,11 @@
 {
 	if (Model.MemberOfGroup)
 	{
-		@Html.ActionLink("Hætta í grúbbu", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+		@Html.ActionLink("Hætta í hóp", "LeaveOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
 	}
 	else
 	{
-		@Html.ActionLink("Bæta við í grúbburnar mínar", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+		@Html.ActionLink("Bæta við í hópinn minn", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 	}
 	@Html.Partial("PostGroupPartial", new Post(@Model.Group.Id))
 
