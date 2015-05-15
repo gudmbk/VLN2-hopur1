@@ -109,6 +109,9 @@ namespace klukk_social.Services
 			var item = (from p in _dbContext.Posts
 						where p.Id == postId
 						select p).Include("Likes").FirstOrDefault();
+		    item.Comments = (from c in _dbContext.Comments
+		        where c.PostId == postId
+		        select c).Include("CommentLikes").ToList();
 			return item;
 
 		}

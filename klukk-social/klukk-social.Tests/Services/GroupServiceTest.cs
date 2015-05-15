@@ -13,45 +13,17 @@ namespace klukk_social.Tests.Services
         public void Initialize()
         {
             var mockDb = new MockDataContext();
-            var gu1 = new GroupUsers
-            {
-                Id = 1,
-                GroupId = 1,
-                UserId = "gummi"
 
-            };
+            // GroupUsers
+            var gu1 = new GroupUsers { Id = 1, GroupId = 1, UserId = "gummi" };
             mockDb.GroupUsers.Add(gu1);
-            var gu2 = new GroupUsers
-            {
-                Id = 2,
-                GroupId = 2,
-                UserId = "dabs"
-
-            };
+            var gu2 = new GroupUsers { Id = 2, GroupId = 2, UserId = "dabs" };
             mockDb.GroupUsers.Add(gu2);
-            var gu3 = new GroupUsers
-            {
-                Id = 3,
-                GroupId = 1,
-                UserId = "dabs"
-
-            };
+            var gu3 = new GroupUsers { Id = 3, GroupId = 1, UserId = "dabs" };
             mockDb.GroupUsers.Add(gu3);
-            var gu4 = new GroupUsers
-            {
-                Id = 4,
-                GroupId = 3,
-                UserId = "gauja"
-
-            };
+            var gu4 = new GroupUsers { Id = 4, GroupId = 3, UserId = "gauja" };
             mockDb.GroupUsers.Add(gu4);
-            var gu5 = new GroupUsers
-            {
-                Id = 5,
-                GroupId = 1,
-                UserId = "gauja"
-
-            };
+            var gu5 = new GroupUsers { Id = 5, GroupId = 1, UserId = "gauja" };
             mockDb.GroupUsers.Add(gu5);
 
             _service = new GroupService(mockDb);

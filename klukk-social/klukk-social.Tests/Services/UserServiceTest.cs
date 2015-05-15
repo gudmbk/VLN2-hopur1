@@ -13,54 +13,22 @@ namespace klukk_social.Tests.Services
         public void Initialize()
         {
             var mockDb = new MockDataContext();
-            var f1 = new Friendship
-            {
-                Id = 1,
-                FromUserId = "dabs",
-                ToUserId = "gummi"
-            };
+
+            // Friendships
+            var f1 = new Friendship { Id = 1, FromUserId = "dabs", ToUserId = "gummi" };
             mockDb.Friendships.Add(f1);
-
-            var f2 = new Friendship
-            {
-                Id = 2,
-                FromUserId = "gummi",
-                ToUserId = "dabs"
-            };
+            var f2 = new Friendship { Id = 2, FromUserId = "gummi", ToUserId = "dabs" };
             mockDb.Friendships.Add(f2);
-            var f3 = new Friendship
-            {
-                Id = 3,
-                FromUserId = "gummi",
-                ToUserId = "tommi"
-                
-            };
+            var f3 = new Friendship { Id = 3, FromUserId = "gummi", ToUserId = "tommi" };
             mockDb.Friendships.Add(f3);
-            var f4 = new Friendship
-            {
-                Id = 4,
-                FromUserId = "tommi",
-                ToUserId = "gummi"
-
-            };
+            var f4 = new Friendship { Id = 4, FromUserId = "tommi", ToUserId = "gummi" };
             mockDb.Friendships.Add(f4);
-            var f5 = new Friendship
-            {
-                Id = 5,
-                FromUserId = "dabs",
-                ToUserId = "gauja"
-
-            };
+            var f5 = new Friendship { Id = 5, FromUserId = "dabs", ToUserId = "gauja" };
             mockDb.Friendships.Add(f5);
-            var f6 = new Friendship
-            {
-                Id = 6,
-                FromUserId = "gauja",
-                ToUserId = "dabs"
-
-            };
+            var f6 = new Friendship { Id = 6, FromUserId = "gauja", ToUserId = "dabs" };
             mockDb.Friendships.Add(f6);
 
+            // Users
             var u1 = new User
             {
                 Id = "gauja",
