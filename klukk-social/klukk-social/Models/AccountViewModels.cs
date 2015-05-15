@@ -53,24 +53,24 @@ namespace klukk_social.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "Aðalnafn")]
+		[Required(ErrorMessage = "Það þarf að skrá inn fornafn")]
+		[Display(Name = "Fornafn")]
         public string First { get; set; }
 
 
         [Display(Name = "Millinafn")]
         public string Middle { get; set; }
 
-        [Required]
-        [Display(Name = "Eftirnafn")]
+		[Required(ErrorMessage = "Það þarf að skrá inn eftirnafn")]
+		[Display(Name = "Eftirnafn")]
         public string Last { get; set; }
 
-        [Required]
+		[Required(ErrorMessage = "Það þarf að gefa upp tölvupóstfang")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+		[Required(ErrorMessage = "Það þarf að velja lykilorð")]
         [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} stafir að lengd", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Lykilorð")]
@@ -85,23 +85,21 @@ namespace klukk_social.Models
 	}
 	public class CreateChildViewModel
 	{
-		[Required]
-		[Display(Name = "Aðalnafn")]
+		[Required(ErrorMessage = "Það þarf að skrá inn fornafn")]
+		[Display(Name = "Fornafn")]
 		public string First { get; set; }
 
-
-		[Display(Name = "Millinafn")]
 		public string Middle { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Það þarf að skrá inn eftirnafn")]
 		[Display(Name = "Eftirnafn")]
 		public string Last { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Það þarf að velja notendanafn")]
 		[Display(Name = "Notendanafn")]
 		public string UserName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Það þarf að velja lykilorð")]
         [StringLength(100, ErrorMessage = "Lykilorðið {0} þarf að vera amk {2} stafir að lengd", MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Lykilorð")]
@@ -111,8 +109,8 @@ namespace klukk_social.Models
 		[Display(Name = "Staðfesta lykilorð")]
         [Compare("Password", ErrorMessage = "Nýtt lykilorð passar ekki við staðfesingarlykilorðið")]
 		public string ConfirmPassword { get; set; }
-		
-		[Required]
+
+		[Required(ErrorMessage = "Það þarf að skrá inn afmælisdag barns")]
 		[Display(Name = "Afmælisdagur")]
 		public DateTime BirthDay { get; set; }
 

@@ -19,6 +19,7 @@ textarea {
 	position: absolute;
 	bottom: 20px;
 	color: white;
+	z-index: 2;
 }
 
 body {
@@ -228,6 +229,7 @@ body {
 	bottom:30px;
 	height:30px;
 	width:100%;
+	z-index: 2;
 }
 .footertext {
 	position:fixed;
@@ -384,4 +386,19 @@ body {
 	max-width: 600px;
 	border-radius: 10px;
 	padding: 10px;
+}
+
+.afterspace{
+	margin-bottom: 200px;
+}
+
+.whitefrotpage{
+	z-index: 1;
+	background-color: #574061;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 450px;
+	height: 70px;
+	border-top-right-radius: 30px;
 }

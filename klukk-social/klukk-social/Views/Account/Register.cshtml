@@ -3,9 +3,9 @@
     ViewBag.Title = "Nýskrá foreldra";
 }
 
-<h2 class="card postpadd">@ViewBag.Title.</h2>
+<h2 class="card postpadd">@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal afterspace", role = "form" }))
 {
 	@Html.AntiForgeryToken()
 	<h4 class="card postpadd">Nýskráning á börnum fer framm inn á síðu foreldris</h4>
@@ -50,7 +50,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" class="btn btn-default" value="Register" />
+				<input type="submit" class="btn btn-default" value="Nýskrá" />
 			</div>
 		</div>
 	</div>
