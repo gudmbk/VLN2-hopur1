@@ -12,9 +12,7 @@ namespace klukk_social.Tests.Services
         [TestInitialize]
         public void Initialize()
         {
-            // Set up our mock database. In this case,
-            // we only have to worry about one table
-            // with 3 records:
+
             var mockDb = new MockDataContext();
             var f1 = new Comment
             {
@@ -24,12 +22,6 @@ namespace klukk_social.Tests.Services
 
             };
             mockDb.Comments.Add(f1);
-
-            // Note: you only have to add data necessary for this
-            // particular service (FriendService) to run properly.
-            // There will be more tables in your DB, but you only
-            // need to provide the data for the methods you are
-            // actually testing here.
 
             _service = new PostService(mockDb);
         }

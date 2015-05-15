@@ -16,16 +16,14 @@ namespace klukk_social.Services
 
         public void CreateGroup(Group group)
         {
-			var dbContext = new ApplicationDbContext();
-			dbContext.Groups.Add(group);
-			dbContext.SaveChanges();
+            _dbContext.Groups.Add(group);
+            _dbContext.SaveChanges();
         }
 
 		public List<Group> GetAllGroups(string userId)
 		{
-			var dbContext = new ApplicationDbContext();
-			var groups = (from g in dbContext.Groups
-							  join gl in dbContext.GroupUsers
+            var groups = (from g in _dbContext.Groups
+                          join gl in _dbContext.GroupUsers
 							  on g.Id equals gl.GroupId
 							  where gl.UserId == userId
 							  select g).ToList();
@@ -34,8 +32,7 @@ namespace klukk_social.Services
 
 		public List<Group> GetAllParentGroups(string userId)
 		{
-			var dbContext = new ApplicationDbContext();
-			var groups = (from g in dbContext.Groups
+            var groups = (from g in _dbContext.Groups
 						  where g.UserId == userId
 						  select g).ToList();
 			return groups;
@@ -44,9 +41,7 @@ namespace klukk_social.Services
 		//FindById(groupId)
 		public Group FindById(int ?groupId)
 		{
-			var dbContext = new ApplicationDbContext();
-			
-			var group = (from g in dbContext.Groups
+            var group = (from g in _dbContext.Groups
 						 where g.Id == groupId
 						 select g).FirstOrDefault();
 			return group;
@@ -54,16 +49,14 @@ namespace klukk_social.Services
 		
 		public List<Post> GetAllGroupPostsToGroup(int? groupId)
         {
-			var dbContext = new ApplicationDbContext();
-            
-			var listi = (from p in dbContext.Posts
+            var listi = (from p in _dbContext.Posts
 			    where p.GroupId == groupId
 			    orderby p.Date descending
 						 select p).Include("Likes").ToList();
 			
 			foreach (var item in listi)
 			{
-			    item.Comments = (from comment in dbContext.Comments
+                item.Comments = (from comment in _dbContext.Comments
 			        where comment.PostId == item.Id
 			        orderby comment.Date ascending
 			        select comment).ToList();
@@ -74,8 +67,7 @@ namespace klukk_social.Services
 
 		public List<Group> Search(string prefix)
 		{
-			var dbContext = new ApplicationDbContext();
-			var group = (from g in dbContext.Groups
+            var group = (from g in _dbContext.Groups
 						where g.Name.Contains(prefix)
 						orderby g.Name
 						select g).ToList();
@@ -84,18 +76,14 @@ namespace klukk_social.Services
 
 		public void SendGroupRequest(GroupRequest groupRequest)
 		{
-			var dbContext = new ApplicationDbContext();
-
-			dbContext.GroupRequests.Add(groupRequest);
-			dbContext.SaveChanges();
+            _dbContext.GroupRequests.Add(groupRequest);
+            _dbContext.SaveChanges();
 
 		}
 
 		public GroupRequest GetGroupRequest(string userId, int? groupId)
 		{
-			var dbContext = new ApplicationDbContext();
-
-			var request = (from gr in dbContext.GroupRequests
+            var request = (from gr in _dbContext.GroupRequests
 						   where gr.FromUserId == userId || gr.GroupId == groupId
 						   select gr).FirstOrDefault();
 			return request;
@@ -103,27 +91,23 @@ namespace klukk_social.Services
 
 		public void DeleteGroupRequest(int requestId)
 		{
-			var dbContext = new ApplicationDbContext();
-
-			var toDelete = (from gr in dbContext.GroupRequests
+            var toDelete = (from gr in _dbContext.GroupRequests
 							where gr.Id == requestId
 							select gr).FirstOrDefault();
 
-			dbContext.GroupRequests.Remove(toDelete);
-			dbContext.SaveChanges();
+            _dbContext.GroupRequests.Remove(toDelete);
+            _dbContext.SaveChanges();
 		}
 
 		public void AcceptGroupRequest(GroupUsers groupUsers)
 		{
-			var dbContext = new ApplicationDbContext();
-			dbContext.GroupUsers.Add(groupUsers);
-			dbContext.SaveChanges();
+            _dbContext.GroupUsers.Add(groupUsers);
+            _dbContext.SaveChanges();
 		}
 
 		public bool IsUserMember(int groupId, string userId)
 		{
-			var dbContext = new ApplicationDbContext();
-			var request = (from user in dbContext.GroupUsers
+            var request = (from user in _dbContext.GroupUsers
 						   where user.UserId == userId && user.GroupId == groupId
 						   select user).FirstOrDefault();
 			return request != null;
@@ -131,31 +115,26 @@ namespace klukk_social.Services
 
 		public GroupUsers FindGroupUserById(string userId, int? groupId)
 		{
-			if (groupId.HasValue)
-			{
-				var dbContext = new ApplicationDbContext();
-				var request = (from user in dbContext.GroupUsers
-							   where user.UserId == userId
-							   select user).FirstOrDefault();
-				return request;
-			}
-			return null;
+		    if (!groupId.HasValue) return null;
+            var request = (from user in _dbContext.GroupUsers
+		        where user.UserId == userId
+		        select user).FirstOrDefault();
+		    return request;
 		}
 
 		public void LeaveGroup(string userId, int groupId)
 		{
-			var dbContext = new ApplicationDbContext();
-			var request = (from user in dbContext.GroupUsers
+            var request = (from user in _dbContext.GroupUsers
 						   where user.UserId == userId
 						   select user).FirstOrDefault();
 
-			dbContext.GroupUsers.Remove(request);
-			dbContext.SaveChanges();
+            _dbContext.GroupUsers.Remove(request);
+            _dbContext.SaveChanges();
 		}
 
 		public void UpdateGroup(Group changedGroup)
 		{
-			Group foundGroup = (from gr in _dbContext.Groups
+            var foundGroup = (from gr in _dbContext.Groups
 								where gr.Id == changedGroup.Id
 								select gr).FirstOrDefault();
 		    if (foundGroup != null)
@@ -167,19 +146,19 @@ namespace klukk_social.Services
 		    }
 		    _dbContext.SaveChanges();
 		}
-
+        
 		public int FindGroupId(int postId)
 		{
-			Post group = (from p in _dbContext.Posts
+			var group = (from p in _dbContext.Posts
 						 where p.Id == postId
 						 select p).FirstOrDefault();
 		    // ReSharper disable once PossibleNullReferenceException
-			return group.GroupId.Value;
+		    return group.GroupId.Value;
 		}
 
 		public void DeleteGroupRequest(int p, string userId)
 		{
-			GroupRequest request = (from r in _dbContext.GroupRequests
+            var request = (from r in _dbContext.GroupRequests
 									where r.GroupId == p && r.FromUserId == userId
 									select r).FirstOrDefault();
 			_dbContext.GroupRequests.Remove(request);
@@ -203,7 +182,7 @@ namespace klukk_social.Services
 					select reqId.FromUserId).FirstOrDefault();
 		}
 
-		internal int GetGroupRequestGroupId(int? requestId)
+		public int GetGroupRequestGroupId(int? requestId)
 		{
 			return (from reqId in _dbContext.GroupRequests
 					where reqId.Id == requestId
