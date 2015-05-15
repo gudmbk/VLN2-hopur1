@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal afterspace", role = "form" }))
 {
 	@Html.AntiForgeryToken()
-	<h4 class="card postpadd">Nýskráning á börnum fer framm inn á síðu foreldris</h4>
+	<h4 class="card postpadd">Nýskráning á börnum fer fram inn á síðu foreldra</h4>
 
 	<div class="card postpadd">
 		@Html.ValidationSummary("", new { @class = "text-danger" })
