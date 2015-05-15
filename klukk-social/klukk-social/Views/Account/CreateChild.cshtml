@@ -8,7 +8,7 @@
 	@using (Html.BeginForm("CreateChild", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 	{
 		@Html.AntiForgeryToken()
-		<h4 class="card searchpadd">Fylltu inn í reitina, upplýsingarnar um barnið.</h4>
+		<h4 class="card searchpadd">Fylltu inn í reitina, upplýsingarnar um barnið</h4>
 		<div class="card postpadd">
 			@Html.ValidationSummary("", new { @class = "text-danger" })
 			<div class="form-group">
