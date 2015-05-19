@@ -12,7 +12,7 @@ namespace klukk_social.Models
         public virtual User FromUser { get; set; }
 		public string ToUserId { get; set; }
         [ForeignKey("ToUserId")]
-        public User ToUser { get; set; }
+        public  virtual User ToUser { get; set; }
 		public string PosterName { get; set; }
         public int? GroupId { get; set; }
 		[ForeignKey("GroupId")]

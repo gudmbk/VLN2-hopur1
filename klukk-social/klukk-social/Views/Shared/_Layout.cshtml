@@ -7,7 +7,6 @@
 	<title>KLUKK - fyrir klukkaða krakka</title>
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body class="rockymountainsatdaytime">
 
@@ -22,7 +21,7 @@
 				@Html.ActionLink("KLUKK", "Index", "Home", new { area = "" }, new { @class = "title" })
 			</div>
 			<div class="navbar-collapse collapse">
-				@using (Html.BeginForm("Search", "User", FormMethod.Post, new { @class = "navbar-form navbar-left", role = "search" }))
+				@using (Html.BeginForm("SearchButton", "User", FormMethod.Post, new { @class = "navbar-form navbar-left", role = "search" }))
 				{
 					<div class="form-group">
 						<input type="text" name="user-input" class="form-control" placeholder="Leita">

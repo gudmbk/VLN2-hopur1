@@ -67,17 +67,64 @@ namespace klukk_social.Controllers
             return View(profile);
         }
 
-        public ActionResult Search(FormCollection searchBar)
+        public ActionResult SearchButton(FormCollection searchBar)
         {
             string prefix = searchBar["user-input"];
+			return RedirectToAction("Search", "User", new { prefix = prefix } );
+        }
+
+		public ActionResult Search(string prefix)
+		{
+			if (prefix == null)
+			{
+				prefix = "";
+			}
 			var me = User.Identity.GetUserId();
 			List<UserWithFriendship> users = _userService.SearchUsersWithFriendship(prefix, me);
 			List<GroupWithMembership> groups = _groupService.SearchGroupsWithMemership(prefix, me);
-            var model = new SearchViewModel(groups, users);
+			var model = new SearchViewModel(groups, users, prefix);
+
 
 			return View(model);
-        }
- 
+		}
+
+		public ActionResult SendFriendRequest(string newFriendId, string searchString)
+		{
+			if (newFriendId == null)
+			{
+				return View();
+			}
+			FriendRequest friendRequest = new FriendRequest();
+			friendRequest.FromUserId = User.Identity.GetUserId();
+			friendRequest.ToUserId = newFriendId;
+			_userService.SendFriendRequest(friendRequest);
+			return RedirectToAction("Search", "User", new { prefix = searchString });
+		}
+
+		public ActionResult CancelFriendRequestFromSearch(string newFriendId, string searchString)
+		{
+			FriendRequest friendRequest = new FriendRequest();
+			friendRequest.FromUserId = User.Identity.GetUserId();
+			friendRequest.ToUserId = newFriendId;
+			_userService.DeleteFriendRequest(friendRequest);
+			return RedirectToAction("Search", "User", new { prefix = searchString });
+		}
+
+		public ActionResult acceptFriendRequestFromSearch(string newFriendId, string searchString)
+		{
+			FriendRequest accept = _userService.GetFriendRequest(newFriendId, User.Identity.GetUserId());
+			Friendship friends = new Friendship
+			{
+				FromUserId = accept.FromUserId,
+				ToUserId = User.Identity.GetUserId(),
+			};
+			accept.ToUserId = User.Identity.GetUserId();
+			_userService.MakeFriends(friends);
+			_userService.DeleteFriendRequest(accept);
+
+			return RedirectToAction("Search", "User", new { prefix = searchString });
+		}
+
         [HttpPost]
         public ActionResult SendFriendRequest(FriendRequest json)
         {

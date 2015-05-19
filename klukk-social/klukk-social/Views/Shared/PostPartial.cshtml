@@ -33,8 +33,8 @@
 					}
 					else
 					{
-						<img src='@Model.Post.FromUser.ProfilePic' class="search imagesmall bottommargin" />
-						@Html.ActionLink(@Model.Post.FromUser.FullName, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
+						<img src='@Model.Post.ToUser.ProfilePic' class="search imagesmall bottommargin" />
+						@Html.ActionLink(@Model.Post.ToUser.FullName, "Profile", "User", new { userId = Model.Post.ToUserId }, null)
 					}
 				</div>
 			}

@@ -94,7 +94,7 @@ namespace klukk_social.Controllers
 			post.FromUserId = User.Identity.GetUserId();
 			post.GroupId = Convert.ToInt32(collection["GroupId"]);
 			post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
-			post.ToUserId = User.Identity.GetUserId(); // Get ekki tekið út
+			post.ToUserId = null; // Get ekki tekið út
 			if (post.FromUserId != null)
 			{
 				_postService.AddPost(post);

@@ -18,9 +18,17 @@
 		{
 			@Html.ActionLink("Vinur", "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace" })
 		}
+		else if(user.HasUnansweredRequest)
+		{
+			@Html.ActionLink("Samþykkja vinabeiðni", "acceptFriendRequestFromSearch", new { newFriendId = user.User.Id, searchString = Model.searchString }, new { @class = "btn btn-success btn-block whitepace" })
+		}
+		else if(user.HasSentRequest)
+		{
+			@Html.ActionLink("Eyða vinabeiðni", "CancelFriendRequestFromSearch", new { newFriendId = user.User.Id, searchString = Model.searchString }, new { @class = "btn btn-danger btn-block whitepace" })
+		}
 		else
 		{
-			@Html.ActionLink("Ekki vinur", "Profile", new { userId = user.User.Id }, new { @class = "btn btn-warning btn-block whitepace" })
+			@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new { newFriendId = user.User.Id, searchString = Model.searchString }, new { @class = "btn btn-warning btn-block whitepace" })
 		}
     </div>
 }

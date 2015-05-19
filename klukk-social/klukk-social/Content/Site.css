@@ -302,7 +302,11 @@ body {
 .post img {
 	vertical-align: middle;
 	border-radius: 10px;
-	width: 100%;
+    display: block;
+    max-width:100%;
+    max-height:1500px;
+    width: auto;
+    height: auto;
 	margin: 10px 0px 10px 0px;
 }
 .post iframe {

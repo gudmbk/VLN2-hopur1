@@ -167,7 +167,7 @@ namespace klukk_social.Services
 			List<UserWithFriendship> returnlist = new List<UserWithFriendship>();
 
 			var users = (from u in _dbContext.Users
-						where u.FullName.Contains(prefix) && u.ParentId != null
+						where u.FullName.Contains(prefix) && u.ParentId != null && u.Id != currUser
 						orderby u.FullName
 						select u).ToList();
 			
@@ -179,6 +179,20 @@ namespace klukk_social.Services
 				
 				UserWithFriendship uwf = new UserWithFriendship();
 				uwf.IsFriends = areFriends != null;
+				if (!uwf.IsFriends)
+				{
+					var requestSent = (from request in _dbContext.FriendRequests
+									   where request.FromUserId == currUser && request.ToUserId == user.Id
+									   select request).FirstOrDefault();
+					uwf.HasSentRequest = requestSent != null;
+					if (!uwf.HasSentRequest)
+					{
+						var requestRecieved = (from request in _dbContext.FriendRequests
+											   where request.ToUserId == currUser && request.FromUserId == user.Id
+											   select request).FirstOrDefault();
+						uwf.HasUnansweredRequest = requestRecieved != null;
+					}
+				}
 				uwf.User = user;
 				returnlist.Add(uwf);
 			}
