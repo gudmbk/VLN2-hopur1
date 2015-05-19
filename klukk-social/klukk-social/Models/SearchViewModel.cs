@@ -5,7 +5,8 @@ namespace klukk_social.Models
 	public class GroupWithMembership
 	{
 		public Group Group { get; set; }
-		public bool IsMember { get; set; } 
+		public bool IsMember { get; set; }
+		public bool AskedForAccess { get; set; }
 	}
 
 	public class UserWithFriendship

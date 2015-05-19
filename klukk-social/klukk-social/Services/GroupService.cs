@@ -158,7 +158,7 @@ namespace klukk_social.Services
 		public void LeaveGroup(string userId, int groupId)
 		{
             var request = (from user in _dbContext.GroupUsers
-						   where user.UserId == userId
+						   where user.UserId == userId && user.GroupId == groupId
 						   select user).FirstOrDefault();
 
             _dbContext.GroupUsers.Remove(request);
@@ -276,6 +276,13 @@ namespace klukk_social.Services
 				GroupWithMembership gwm = new GroupWithMembership();
 				gwm.IsMember = inGroup != null;
 				gwm.Group = group1;
+				if (!gwm.IsMember)
+				{
+					var request = (from r in _dbContext.GroupRequests
+								   where r.FromUserId == currUser && r.GroupId == group1.Id
+								   select r).FirstOrDefault();
+					gwm.AskedForAccess = request != null;
+				}
 				returnlist.Add(gwm);
 			}
 

@@ -137,6 +137,7 @@ body {
 }
 
 .search {
+	color: white;
 	border-radius: 5px;
 	height: 205px;
 	width: 205px;
@@ -146,6 +147,7 @@ body {
 }
 
 .searchcard {
+	font-size: 20px;
 	display: inline-block;
 	width: 215px;
 	margin-right:0px;

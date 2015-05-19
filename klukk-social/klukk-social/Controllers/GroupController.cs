@@ -104,7 +104,7 @@ namespace klukk_social.Controllers
 			return View("Error");
 		}
 
-		public ActionResult SendGroupRequest(int? groupId)
+		public ActionResult SendGroupRequest(int? groupId, string searchString, string fromSearch)
 		{
 			if (groupId.HasValue)
 			{
@@ -112,9 +112,33 @@ namespace klukk_social.Controllers
 				groupRequest.FromUserId = User.Identity.GetUserId();
 				groupRequest.GroupId = groupId.Value;
 				_groupService.SendGroupRequest(groupRequest);
+				
+			}
+			if(fromSearch == null)
+			{
 				return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
 			}
-			return RedirectToAction("index", "Group");
+			return RedirectToAction("Search", "User", new { prefix = searchString });
+		}
+
+		//public ActionResult SendGroupRequestFromSearch(int? groupId, string searchString)
+		//{
+		//	if (groupId.HasValue)
+		//	{
+		//		GroupRequest groupRequest = new GroupRequest();
+		//		groupRequest.FromUserId = User.Identity.GetUserId();
+		//		groupRequest.GroupId = groupId.Value;
+		//		_groupService.SendGroupRequest(groupRequest);
+		//	}
+		//	return RedirectToAction("Search", "User", new { prefix = searchString });
+		//}
+		public ActionResult DeleteGroupRequestFromSearch(int? groupId, string searchString)
+		{
+			if (groupId.HasValue)
+			{
+				_groupService.DeleteGroupRequest(groupId.Value, User.Identity.GetUserId());
+			}
+			return RedirectToAction("Search", "User", new { prefix = searchString });
 		}
 
 		public ActionResult DeleteGroupRequest(int? groupId)
@@ -127,7 +151,7 @@ namespace klukk_social.Controllers
 			return RedirectToAction("index", "Group");
 		}
 
-		public ActionResult JoinOpenGroup(int? groupId)
+		public ActionResult JoinOpenGroup(int? groupId, string searchString, string fromSearch)
 		{
 			if (groupId.HasValue)
 			{
@@ -135,10 +159,14 @@ namespace klukk_social.Controllers
 				newUser.GroupId = groupId.Value;
 				newUser.UserId = User.Identity.GetUserId();
 				_groupService.AcceptGroupRequest(newUser);
+			}
+
+			if (fromSearch == null)
+			{
 				return RedirectToAction("Profile", "Group", new { groupId });
 			}
 
-			return RedirectToAction("index", "Group");
+			return RedirectToAction("Search", "User", new { prefix = searchString });
 		}
 
 		public ActionResult LeaveOpenGroup(int? groupId)

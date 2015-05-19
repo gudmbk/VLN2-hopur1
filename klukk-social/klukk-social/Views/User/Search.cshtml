@@ -10,10 +10,10 @@
 @foreach (var user in Model.Users)
 {
     <div class="card searchcard searchpadd">
+		@Html.ActionLink(user.User.FirstName, "Profile", new { userId = user.User.Id }, new { @class = "card", Title = @user.User.FullName })
         <a href='@Url.Action("Profile", "User", new {userId = user.User.Id}, null)'>
             <img src='@user.User.ProfilePic' class="search"/>
         </a>
-        @Html.ActionLink(user.User.FirstName, "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace", Title=@user.User.FullName })
 		@if(user.IsFriends)
 		{
 			@Html.ActionLink("Vinur", "Profile", new { userId = user.User.Id }, new { @class = "btn btn-success btn-block whitepace" })
@@ -35,21 +35,25 @@
 @foreach (var group in Model.Groups)
 {
 	<div class="cardgroup searchcard searchpadd">
+		@Html.ActionLink(group.Group.Name, "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "cardgroup" })
 		<a href='@Url.Action("Profile", "Group", new { groupId = group.Group.Id }, null)'>
 			<img src='@group.Group.ProfilePic' class="search" />
 		</a>
-		@Html.ActionLink(group.Group.Name, "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
 		@if (group.IsMember) 
 		{
-			@Html.ActionLink("Meðlimur", "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-success btn-block whitepace" })
+			@Html.ActionLink("Meðlimur", "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-success btn-block whitepace", Title = "Opna síðu" })
+		}
+		else if(group.AskedForAccess)
+		{
+			@Html.ActionLink("Búið að sæja um", "DeleteGroupRequestFromSearch", "Group", new { groupId = group.Group.Id, searchString = Model.searchString }, new { @class = "btn btn-danger btn-block whitepace", Title = "Hætta við umsókn" })
 		}
 		else if(!group.Group.OpenGroup)
 		{
-			@Html.ActionLink("Læstur hópur", "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
+			@Html.ActionLink("Læstur hópur", "SendGroupRequest", "Group", new { groupId = group.Group.Id, searchString = Model.searchString, fromSearch = "yes" }, new { @class = "btn btn-warning btn-block whitepace", Title = "Sækja um aðgang að hóp" })
 		}
 		else
 		{
-			@Html.ActionLink("Opinn hópur", "Profile", "Group", new { groupId = group.Group.Id }, new { @class = "btn btn-warning btn-block whitepace" })
+			@Html.ActionLink("Opinn hópur", "JoinOpenGroup", "Group", new { groupId = group.Group.Id, searchString = Model.searchString, fromSearch = "yes" }, new { @class = "btn btn-warning btn-block whitepace", Title = "Bæta við mína hópa" })
 		}
 		@*<button type="button" value="@user.Id" class="btn btn-success btn-block friend-req">Senda vinabeiðni</button>*@
 	</div>
