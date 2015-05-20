@@ -1,24 +1,16 @@
 ﻿@using klukk_social.Models
-@model GroupViewModel
+@model SmallCardModel
+
+@{
+	ViewBag.Title = "Hópar";
+	ViewBag.ReturnUrl = Model.searchString;
+}
 
 <h2 class="card postpadd">Hóparnir mínir</h2>
 
-@foreach (var group in Model.GroupList)
+@foreach (var group in Model.Groups)
 {
-	<div class="cardgroup searchcard searchpadd">
-		<a href='@Url.Action("Profile", "Group", new { groupId = group.Id }, null)'>
-			<img src='@group.ProfilePic' class="search" />
-		</a>
-		@Html.ActionLink(group.Name, "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
-		@if (!group.OpenGroup)
-		{
-			@Html.ActionLink("Læstur hópur", "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-danger btn-block whitepace" })
-		}
-		else
-		{
-			@Html.ActionLink("Opinn hópur", "Profile", "Group", new { groupId = group.Id }, new { @class = "btn btn-success btn-block whitepace" })
-		}
-	</div>
+	@Html.Partial("SmallGroupCard", group);
 }
 <div class="searchcard"></div> @*Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
 <div class="searchcard"></div>

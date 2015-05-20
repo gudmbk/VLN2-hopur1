@@ -9,17 +9,25 @@
 }
 
 <h2 class="card postpadd">Breita hóp</h2>
-@using (Html.BeginForm("GroupSettings", "Group", FormMethod.Post, new { @class="card postpadd"}))
+@using (Html.BeginForm("GroupSettings", "Group", FormMethod.Post, new { @class="card postpadd", role = "form" }))
 {
-	<input type="hidden" name="groupid" value="@Model.Group.Id"/>
+	@Html.HiddenFor(m => m.Group.Id)	
+	@Html.ValidationSummary("", new { @class = "card" })
 	<label for="name">Nafn hóps: </label>
-	<input type="text" name="name" id="name" class="form-control span formwidth" value="@Model.Group.Name" />
+	
+	@Html.TextBoxFor(m => m.Group.Name, new { @class = "form-control span formwidth" })
 	<label for="description" class="topmargin">Lýsing: </label>
-	<textarea name="description" id="description" rows="4" cols="50" placeholder="Skráðu lýsingu hér..." class="form-control span formwidth">@Model.Group.Description</textarea>
-	<label for="name" class="topmargin">Til þess að hafa mynd á hópnum þá setur þú inn url á myndina hér</label>
-	<input type="text" name="profilepicurl" id="profilepicurl" placeholder="Url á mynd" class="form-control span formwidth" value="@Model.Group.ProfilePic" />
-	<input type="submit" value="Breita" class="btn btn-default topmargin" />
-	<label for="opengroup">Opinn hópur </label>
-	<input type="checkbox" name="opengroup" id="opengroup" value="true" class="checkbox" @check />
 
+	@Html.TextAreaFor(m => m.Group.Description, 4, 50, new { @class = "form-control span formwidth", @placeholder="Skráðu lýsingu hér..." })
+	<label for="name" class="topmargin">Til þess að hafa mynd á hópnum þá setur þú inn url á myndina hér</label>
+	
+	@Html.TextBoxFor(m => m.Group.ProfilePic, new { @class = "form-control span formwidth", placeholder = "Url á mynd" })
+	<input type="submit" value="Breita" class="btn btn-default topmargin" />
+	
+	<label for="opengroup">Opinn hópur </label>
+	@Html.CheckBoxFor(m => m.Group.OpenGroup, new { @class = "checkbox"})
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }

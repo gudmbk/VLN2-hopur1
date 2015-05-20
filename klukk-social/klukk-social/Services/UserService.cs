@@ -177,8 +177,7 @@ namespace klukk_social.Services
 								  where friendshp.FromUserId == currUser && friendshp.ToUserId == user.Id
 								  select friendshp).FirstOrDefault();
 				
-				UserWithFriendship uwf = new UserWithFriendship();
-				uwf.IsFriends = areFriends != null;
+				UserWithFriendship uwf = new UserWithFriendship(user, areFriends != null);
 				if (!uwf.IsFriends)
 				{
 					var requestSent = (from request in _dbContext.FriendRequests
@@ -213,5 +212,68 @@ namespace klukk_social.Services
 	        _dbContext.SaveChanges();
 	    }
 
+
+		public List<UserWithFriendship> GetFriendsForCard(string currUser)
+		{
+			List<UserWithFriendship> returnlist = new List<UserWithFriendship>();
+
+			var friends = (from f in _dbContext.Friendships
+						 join u in _dbContext.Users
+						 on f.ToUserId equals u.Id
+						 where f.FromUserId == currUser && f.ToUserId != currUser
+						 orderby u.FullName
+						 select u).ToList();
+
+			foreach (var user in friends)
+			{
+				UserWithFriendship uwf = new UserWithFriendship(user, true);
+				uwf.HasUnansweredRequest = false;
+				uwf.HasSentRequest = false;
+				returnlist.Add(uwf);
+			}
+			return returnlist;
+		}
+
+		public List<UserWithFriendship> GetRequestsForCard(string currUser)
+		{
+			List<UserWithFriendship> returnlist = new List<UserWithFriendship>();
+
+			var recivedRequests = (from f in _dbContext.FriendRequests
+								   join u in _dbContext.Users
+								   on f.FromUserId equals u.Id
+								   where f.ToUserId == currUser
+								   orderby u.FullName
+								   select u).ToList();
+
+			foreach (var user in recivedRequests)
+			{
+				UserWithFriendship uwf = new UserWithFriendship(user, false);
+				uwf.HasUnansweredRequest = true;
+				uwf.HasSentRequest = false;
+				returnlist.Add(uwf);
+			}
+			return returnlist;
+		}
+
+		public List<UserWithFriendship> GetUnansweredRequestsForCard(string currUser)
+		{
+			List<UserWithFriendship> returnlist = new List<UserWithFriendship>();
+
+			var requests = (from u in _dbContext.Users
+							join f in _dbContext.FriendRequests
+							on u.Id equals f.ToUserId
+							where f.FromUserId == currUser
+							orderby u.FullName
+							select u).ToList();
+
+			foreach (var user in requests)
+			{
+				UserWithFriendship uwf = new UserWithFriendship(user, false);
+				uwf.HasUnansweredRequest = false;
+				uwf.HasSentRequest = true;
+				returnlist.Add(uwf);
+			}
+			return returnlist;
+		}
 	}
 }

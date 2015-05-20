@@ -1,0 +1,28 @@
+﻿@model klukk_social.Models.GroupWithMembership
+
+<div class="cardgroup searchcard searchpadd">
+	@Html.ActionLink(Model.Group.Name, "Profile", "Group", new { groupId = Model.Group.Id }, new { @class = "cardgroup" })
+	<a href='@Url.Action("Profile", "Group", new { groupId = Model.Group.Id }, null)'>
+		<img src='@Model.Group.ProfilePic' class="search" />
+	</a>
+	@if (User.IsInRole("Parent"))
+	{
+		@Html.ActionLink("Foreldrar fá ekki aðgang", "ParentHome", "User", new { @class = "btn btn-danger btn-block whitepace", Title = "Skráðu þig inn sem barn til þess að opna hópin" })
+	}
+	else if (Model.IsMember)
+	{
+		@Html.ActionLink("Meðlimur", "Profile", "Group", new { groupId = Model.Group.Id }, new { @class = "btn btn-success btn-block whitepace", Title = "Opna síðu" })
+	}
+	else if (Model.AskedForAccess)
+	{
+		@Html.ActionLink("Búið að sæja um", "DeleteGroupRequest", "Group", new { groupId = Model.Group.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-danger btn-block whitepace", Title = "Hætta við umsókn" })
+	}
+	else if (!Model.Group.OpenGroup)
+	{
+		@Html.ActionLink("Læstur hópur", "SendGroupRequest", "Group", new { groupId = Model.Group.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-warning btn-block whitepace", Title = "Sækja um aðgang að hóp" })
+	}
+	else
+	{
+		@Html.ActionLink("Opinn hópur", "JoinOpenGroup", "Group", new { groupId = Model.Group.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-warning btn-block whitepace", Title = "Bæta við mína hópa" })
+	}
+</div> 

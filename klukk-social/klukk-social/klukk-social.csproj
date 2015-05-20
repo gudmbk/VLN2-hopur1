@@ -189,7 +189,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\ReportItem.cs" />
     <Compile Include="Models\ReportModelView.cs" />
-    <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\SmallCardModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\InteractionBarViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -297,6 +297,8 @@
     <Content Include="Views\Group\PostGroupPartial.cshtml" />
     <Content Include="Views\Group\ParentGroups.cshtml" />
     <Content Include="Views\Group\GroupSettings.cshtml" />
+    <Content Include="Views\Shared\SmallProfileCard.cshtml" />
+    <Content Include="Views\Shared\SmallGroupCard.cshtml" />
     <None Include="Views\User\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>

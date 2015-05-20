@@ -15,22 +15,30 @@ namespace klukk_social.Models
 		public bool IsFriends { get; set; }
 		public bool HasSentRequest { get; set; }
 		public bool HasUnansweredRequest { get; set; }
+
+		public UserWithFriendship(User user, bool isFriends)
+		{
+			User = user;
+			IsFriends = isFriends;
+			HasSentRequest = false;
+			HasUnansweredRequest = false;
+		}
 	}
 
-	public class SearchViewModel
+	public class SmallCardModel
 	{
 		public List<GroupWithMembership> Groups { get; set; }
  		public List<UserWithFriendship> Users { get; set; }
 		public string searchString { get; set; }
 
-		public SearchViewModel()
+		public SmallCardModel()
 		{
 			Groups = new List<GroupWithMembership>();
 			Users = new List<UserWithFriendship>();
 			searchString = "";
 		}
 
-		public SearchViewModel(List<GroupWithMembership> groups, List<UserWithFriendship> users, string search)
+		public SmallCardModel(List<GroupWithMembership> groups, List<UserWithFriendship> users, string search)
 		{
 			Groups = groups;
 			Users = users;

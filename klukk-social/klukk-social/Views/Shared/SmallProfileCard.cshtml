@@ -1,0 +1,29 @@
+﻿@model klukk_social.Models.UserWithFriendship 
+
+<div class="card searchcard searchpadd">
+	@Html.ActionLink(Model.User.FirstName, "Profile", new { userId = Model.User.Id }, new { @class = "card", Title = @Model.User.FullName })
+	<a href='@Url.Action("Profile", "User", new {userId = Model.User.Id}, null)'>
+		<img src='@Model.User.ProfilePic' class="search" />
+	</a>
+	@if (User.IsInRole("Parent"))
+	{
+		@Html.ActionLink("Foreldrar fá ekki aðgang", "ParentHome", "User", new { @class = "btn btn-danger btn-block whitepace", Title = "Skráðu þig inn sem barn til þess að eiga við aðrna" })
+
+	}
+	else if (Model.IsFriends)
+	{
+		@Html.ActionLink("Vinur", "Profile", new { userId = Model.User.Id }, new { @class = "btn btn-success btn-block whitepace" })
+	}
+	else if (Model.HasUnansweredRequest)
+	{
+		@Html.ActionLink("Samþykkja vinabeiðni", "acceptFriendRequestFromSearch", new { newFriendId = Model.User.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-success btn-block whitepace" })
+	}
+	else if (Model.HasSentRequest)
+	{
+		@Html.ActionLink("Eyða vinabeiðni", "CancelFriendRequestFromSearch", new { newFriendId = Model.User.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-danger btn-block whitepace" })
+	}
+	else
+	{
+		@Html.ActionLink("Senda vinabeiðni", "SendFriendRequest", new { newFriendId = Model.User.Id, ViewBag.ReturnUrl, ViewBag.Title }, new { @class = "btn btn-warning btn-block whitepace" })
+	}
+</div> 

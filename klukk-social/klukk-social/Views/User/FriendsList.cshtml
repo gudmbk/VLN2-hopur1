@@ -1,35 +1,36 @@
 ﻿@model klukk_social.Models.FriendsViewModel
+@using klukk_social.Models
+
 @{
-    ViewBag.Title = "FriendsList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Vinir";
 }
 
-@if (Model.FriendRequests.Count() > 0)
+@if (Model.Requests.Count() > 0)
 {
 	<h2 class="card postpadd">Vinabeiðnir</h2>
 }
-@foreach (var fr in Model.FriendRequests)
+
+@foreach (var user in Model.Requests)
 {
-        <div class="card searchcard searchpadd">
-            <a href='@Url.Action("Profile", "User", new {userId = fr.Id}, null)'>
-                <img src='@fr.ProfilePic' class="search"/>
-            </a>
-            @Html.ActionLink(fr.FirstName, "Profile", new { userId = fr.Id }, new { @class = "btn btn-success btn-block" })
-            <button type="button" value="@fr.Id" class="btn btn-success btn-block accept-friend">Samþykkja</button>
-        </div>
+	@Html.Partial("SmallProfileCard", user);
 }
 
 <h2 class="card postpadd">Vinir</h2>
 
 @foreach (var user in Model.Friends)
 {
-    <div class="card searchcard searchpadd">
-        <a href='@Url.Action("Profile", "User", new {userId = user.Id}, null)'>
-            <img src='@user.ProfilePic' class="search" />
-        </a>
-        @Html.ActionLink(user.FirstName, "Profile", new { userId = user.Id }, new { @class = "btn btn-success btn-block" })
-    </div>
+	@Html.Partial("SmallProfileCard", user);
 }
+
+@if (Model.UnasweredRequests.Count() > 0)
+{
+	<h2 class="card postpadd">Vinabeiðnir sem bíða svari</h2>
+}
+@foreach (var user in Model.UnasweredRequests)
+{
+	@Html.Partial("SmallProfileCard", user);
+}
+
 <div class="searchcard"></div> @*Hakk, Lagar staðsetningu leitarniðurstaða með ósýnilegum spjöldum*@
 <div class="searchcard"></div>
 <div class="searchcard"></div>

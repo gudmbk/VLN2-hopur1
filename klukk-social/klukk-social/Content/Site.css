@@ -148,6 +148,7 @@ body {
 
 .searchcard {
 	font-size: 20px;
+	text-align: center;
 	display: inline-block;
 	width: 215px;
 	margin-right:0px;

@@ -82,13 +82,13 @@ namespace klukk_social.Controllers
 			var me = User.Identity.GetUserId();
 			List<UserWithFriendship> users = _userService.SearchUsersWithFriendship(prefix, me);
 			List<GroupWithMembership> groups = _groupService.SearchGroupsWithMemership(prefix, me);
-			var model = new SearchViewModel(groups, users, prefix);
+			var model = new SmallCardModel(groups, users, prefix);
 
 
 			return View(model);
 		}
 
-		public ActionResult SendFriendRequest(string newFriendId, string searchString)
+		public ActionResult SendFriendRequest(string newFriendId, string ReturnUrl, string Title)
 		{
 			if (newFriendId == null)
 			{
@@ -98,19 +98,36 @@ namespace klukk_social.Controllers
 			friendRequest.FromUserId = User.Identity.GetUserId();
 			friendRequest.ToUserId = newFriendId;
 			_userService.SendFriendRequest(friendRequest);
-			return RedirectToAction("Search", "User", new { prefix = searchString });
+			if (Title == "Leit")
+			{
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
+			}
+			else if (Title == "Vinir")
+			{
+				return RedirectToAction("FriendsList", "User");
+			}
+			return RedirectToAction("ChildHome", "User");
 		}
 
-		public ActionResult CancelFriendRequestFromSearch(string newFriendId, string searchString)
+		public ActionResult CancelFriendRequestFromSearch(string newFriendId, string ReturnUrl, string Title)
 		{
 			FriendRequest friendRequest = new FriendRequest();
 			friendRequest.FromUserId = User.Identity.GetUserId();
 			friendRequest.ToUserId = newFriendId;
 			_userService.DeleteFriendRequest(friendRequest);
-			return RedirectToAction("Search", "User", new { prefix = searchString });
+
+			if (Title == "Leit")
+			{
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
+			}
+			else if (Title == "Vinir")
+			{
+				return RedirectToAction("FriendsList", "User");
+			}
+			return RedirectToAction("ChildHome", "User");
 		}
 
-		public ActionResult acceptFriendRequestFromSearch(string newFriendId, string searchString)
+		public ActionResult acceptFriendRequestFromSearch(string newFriendId, string ReturnUrl, string Title)
 		{
 			FriendRequest accept = _userService.GetFriendRequest(newFriendId, User.Identity.GetUserId());
 			Friendship friends = new Friendship
@@ -122,7 +139,15 @@ namespace klukk_social.Controllers
 			_userService.MakeFriends(friends);
 			_userService.DeleteFriendRequest(accept);
 
-			return RedirectToAction("Search", "User", new { prefix = searchString });
+			if (Title == "Leit")
+			{
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
+			}
+			else if (Title == "Vinir")
+			{
+				return RedirectToAction("FriendsList", "User");
+			}
+			return RedirectToAction("ChildHome", "User");
 		}
 
         [HttpPost]
@@ -203,13 +228,12 @@ namespace klukk_social.Controllers
 		public ActionResult FriendsList()
 		{
 		    var userId = User.Identity.GetUserId();
-		    var friendRequests = _userService.GetFriendRequest(userId);
-		    var friends = _userService.GetFriends(userId);
-            FriendsViewModel list = new FriendsViewModel();
-            list.Friends.AddRange(friends);
-            list.FriendRequests.AddRange(friendRequests);
-            
-		    return View(list);
+			FriendsViewModel allFriends = new FriendsViewModel();
+			allFriends.Friends = _userService.GetFriendsForCard(userId);
+			allFriends.Requests = _userService.GetRequestsForCard(userId);
+			allFriends.UnasweredRequests = _userService.GetUnansweredRequestsForCard(userId);
+
+			return View(allFriends);
 		}
 
 		public ActionResult DeleteCurrentUser() // WARNING

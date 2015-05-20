@@ -46,9 +46,11 @@ namespace klukk_social.Controllers
 		
 		public ActionResult Index()
 		{
-			GroupViewModel bag = new GroupViewModel();
-			bag.GroupList = _groupService.GetAllGroups(User.Identity.GetUserId());
-			return View(bag);
+			var me = User.Identity.GetUserId();
+			List<GroupWithMembership> groups = _groupService.SearchGroupsOfUser(me);
+			var model = new SmallCardModel(groups, null, me);
+
+			return View(model);
 		}
 
 		public ActionResult ParentGroups()
@@ -77,7 +79,6 @@ namespace klukk_social.Controllers
 			}
 
 			return RedirectToAction("Index", "Group");
-			
 		}
 
 		[HttpPost]
@@ -104,7 +105,7 @@ namespace klukk_social.Controllers
 			return View("Error");
 		}
 
-		public ActionResult SendGroupRequest(int? groupId, string searchString, string fromSearch)
+		public ActionResult SendGroupRequest(int? groupId, string ReturnUrl, string Title)
 		{
 			if (groupId.HasValue)
 			{
@@ -114,44 +115,34 @@ namespace klukk_social.Controllers
 				_groupService.SendGroupRequest(groupRequest);
 				
 			}
-			if(fromSearch == null)
+			if(Title == "Leit")
 			{
-				return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
 			}
-			return RedirectToAction("Search", "User", new { prefix = searchString });
+			else if(Title == "Hópar"){
+				return RedirectToAction("FriendsList", "User");
+			}
+			return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
 		}
 
-		//public ActionResult SendGroupRequestFromSearch(int? groupId, string searchString)
-		//{
-		//	if (groupId.HasValue)
-		//	{
-		//		GroupRequest groupRequest = new GroupRequest();
-		//		groupRequest.FromUserId = User.Identity.GetUserId();
-		//		groupRequest.GroupId = groupId.Value;
-		//		_groupService.SendGroupRequest(groupRequest);
-		//	}
-		//	return RedirectToAction("Search", "User", new { prefix = searchString });
-		//}
-		public ActionResult DeleteGroupRequestFromSearch(int? groupId, string searchString)
+		public ActionResult DeleteGroupRequest(int? groupId, string ReturnUrl, string Title)
 		{
 			if (groupId.HasValue)
 			{
 				_groupService.DeleteGroupRequest(groupId.Value, User.Identity.GetUserId());
 			}
-			return RedirectToAction("Search", "User", new { prefix = searchString });
-		}
-
-		public ActionResult DeleteGroupRequest(int? groupId)
-		{
-			if (groupId.HasValue)
+			if (Title == "Leit")
 			{
-				_groupService.DeleteGroupRequest(groupId.Value, User.Identity.GetUserId());
-				return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
 			}
-			return RedirectToAction("index", "Group");
+			else if (Title == "Hópar")
+			{
+				return RedirectToAction("Index", "Group");
+			}
+			return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
 		}
 
-		public ActionResult JoinOpenGroup(int? groupId, string searchString, string fromSearch)
+		public ActionResult JoinOpenGroup(int? groupId, string ReturnUrl, string Title)
 		{
 			if (groupId.HasValue)
 			{
@@ -161,12 +152,15 @@ namespace klukk_social.Controllers
 				_groupService.AcceptGroupRequest(newUser);
 			}
 
-			if (fromSearch == null)
+			if (Title == "Leit")
 			{
-				return RedirectToAction("Profile", "Group", new { groupId });
+				return RedirectToAction("Search", "User", new { prefix = ReturnUrl });
 			}
-
-			return RedirectToAction("Search", "User", new { prefix = searchString });
+			else if (Title == "Hópar")
+			{
+				return RedirectToAction("FriendsList", "User");
+			}
+			return RedirectToAction("Profile", "Group", new { groupId = groupId.Value });
 		}
 
 		public ActionResult LeaveOpenGroup(int? groupId)
@@ -194,30 +188,23 @@ namespace klukk_social.Controllers
 
 		[HttpPost]
 		[Authorize(Roles = "Parent")]
-		public ActionResult GroupSettings(FormCollection collection)
+		public ActionResult GroupSettings(GroupViewModel model)
 		{
-			if (String.IsNullOrEmpty(collection["Name"]) || String.IsNullOrEmpty(collection["groupid"]))
+			if (ModelState.IsValid)
 			{
-				return RedirectToAction("CreateGroup", "Group");
+				Group newGroup = _groupService.FindById(model.Group.Id);
+				newGroup.Description = model.Group.Description;
+				newGroup.Name = model.Group.Name;
+				newGroup.OpenGroup = model.Group.OpenGroup;
+				if (model.Group.ProfilePic != null)
+				{
+					newGroup.ProfilePic = model.Group.ProfilePic;
+				}
+				_groupService.UpdateGroup(newGroup);
+				
+				return RedirectToAction("ParentGroups", "Group");
 			}
-			Group newGroup = _groupService.FindById(Convert.ToInt32(collection["GroupId"]));
-			newGroup.Description = collection["description"];
-			newGroup.Name = collection["name"];
-			if (!String.IsNullOrEmpty(collection["opengroup"]))
-			{
-				newGroup.OpenGroup = true;
-			}
-			else
-			{
-				newGroup.OpenGroup = false;
-			}
-			if (!String.IsNullOrEmpty(collection["profilepicurl"]))
-			{
-				newGroup.ProfilePic = collection["profilepicurl"];
-			}
-			_groupService.UpdateGroup(newGroup);
-
-			return RedirectToAction("ParentGroups", "Group");
+			return View(model);
 		}
 
 		public ActionResult GrantAccessToGroup(int? requestId)

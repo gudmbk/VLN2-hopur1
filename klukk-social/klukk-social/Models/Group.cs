@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace klukk_social.Models
@@ -9,6 +10,8 @@ namespace klukk_social.Models
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
+		[Required]
+		[StringLength(12, ErrorMessage = "Nafnið þarf að vera á bilinu 3 til 12 stafir", MinimumLength = 3)]
         public string Name { get; set; }
         public bool OpenGroup { get; set; }
         public string Description { get; set; }
