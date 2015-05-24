@@ -296,6 +296,7 @@ body {
 .picture-dialog img{
     max-width: 100%;
     display:block;
+    max-height: 100px;
 }
 
 .namedialog {

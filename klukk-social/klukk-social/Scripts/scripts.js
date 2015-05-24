@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
 
+    $(window).on('resize', ResizePictureForScreenHeight);
+
+    ResizePictureForScreenHeight();
+
+    $('.picture-dialog img').css('max-height', $(window).height() - 110 );
+
     jQuery('.tabs .tab-links a').on('click', function (e) {
         
         var currentAttrValue = jQuery(this).attr('href');
@@ -220,6 +226,12 @@
 		$(this).andSelf().removeClass('btn-warning');
 	});
 });
+
+function ResizePictureForScreenHeight (){
+    $('.picture-dialog img').css('max-height', $(window).height() - 100 );
+}
+
+
 
 $(function () {
     var likeClient = $.connection.likeHub;
