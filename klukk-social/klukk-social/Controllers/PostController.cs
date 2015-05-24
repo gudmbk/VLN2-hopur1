@@ -3,6 +3,15 @@ using System.Web.Mvc;
 using klukk_social.Models;
 using klukk_social.Services;
 using Microsoft.AspNet.Identity;
+using System.Web;
+using System.Drawing;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace klukk_social.Controllers
 {
@@ -12,6 +21,7 @@ namespace klukk_social.Controllers
         readonly PostService _postService = new PostService(null);
         readonly UserService _userService = new UserService(null);
 		readonly GroupService _groupService = new GroupService(null);
+        HelperController _helper = new HelperController();
 
         [HttpPost]
         public ActionResult PostStatus(FormCollection collection)
@@ -27,6 +37,9 @@ namespace klukk_social.Controllers
             var postHtml = Helpers.RenderViewToString(this.ControllerContext, "PostPartial", model);
             return Json(postHtml, JsonRequestBehavior.AllowGet);
             */
+
+            
+            
             Post post = new Post();
             string text = collection["status"];
             if (String.IsNullOrEmpty(text))
@@ -131,6 +144,50 @@ namespace klukk_social.Controllers
             _postService.EditComment(itemId, newPost);
 
             return Json(newPost, JsonRequestBehavior.AllowGet);
+        }
+
+		[HttpPost]
+        public ActionResult PostPicture(FormCollection collection)
+        {
+			var file = Request.Files["file"];
+			if (file != null && file.ContentLength > 0)
+			{
+				Post post = new Post();
+				post.FromUserId = User.Identity.GetUserId();
+				if (post.FromUserId != null)
+				{
+					post.ToUserId = collection["toUserId"];
+					post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
+					_postService.AddPost(post);
+					string url = _helper.UploadPicture(file, post.Id.ToString(), "post", new Size(1024, 768));
+					_postService.AddPicUrl(post.Id, url);
+					return RedirectToAction("Profile", "User", new { userId = post.ToUserId });
+				}
+			}
+
+
+
+            return View("Error");
+        }
+
+		[HttpPost]
+        public ActionResult PostVideo(FormCollection collection)
+        {
+			string link = collection["link"];
+
+			string frame = Helpers.ParseText(link);
+			Post post = new Post();
+			post.FromUserId = User.Identity.GetUserId();
+			post.ToUserId = collection["toUserId"];
+			post.HtmlText = frame;
+			post.VideoUrl = frame;
+			post.Text = link;
+			if (post.ToUserId != null)
+			{
+				_postService.AddPost(post);
+				return RedirectToAction("Profile", "User", new { userId = post.ToUserId });
+			}
+			return View("Error");
         }
     }
 }

@@ -2,6 +2,9 @@
 @using Microsoft.AspNet.Identity
 @model UserViewModel
 
+@{
+    ViewBag.pageType = "profile";
+}
 
 <div class="card postpadd">
 	<img src="@Model.Person.ProfilePic" alt="Profile Picture" class="profile floatleft img-responsive" />

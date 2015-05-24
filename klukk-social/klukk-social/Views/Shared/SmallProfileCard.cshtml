@@ -1,7 +1,7 @@
 ﻿@model klukk_social.Models.UserWithFriendship 
 
 <div class="card searchcard searchpadd">
-	@Html.ActionLink(Model.User.FirstName, "Profile", new { userId = Model.User.Id }, new { @class = "card", Title = @Model.User.FullName })
+	@Html.ActionLink(Model.User.FirstName, "Profile", new { userId = Model.User.Id }, new { @class = "white", Title = @Model.User.FullName })
 	<a href='@Url.Action("Profile", "User", new {userId = Model.User.Id}, null)'>
 		<img src='@Model.User.ProfilePic' class="search" />
 	</a>

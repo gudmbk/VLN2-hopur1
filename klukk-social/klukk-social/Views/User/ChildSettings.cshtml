@@ -6,10 +6,20 @@
 
 <h2 class="card postpadd">Stillingar</h2>
 <p class="card postpadd">Breyta mynd </p>
+
+@using (Html.BeginForm("ChangeProfilePicture", "User", FormMethod.Post, new { @class = "comment-form", enctype = "multipart/form-data" }))
+{
+    <div class="postdialog form-inline">
+        <input type="file" name="file" id="file" class="btn btn-default btn-file form-one-button" />
+        <input type="submit" value="Setja" class="btn btn-default btn-file" />
+    </div>
+}
+    
+
 @using (Html.BeginForm("ChildSettings", "User", FormMethod.Post, new { @class = "comment-form", role = "form" }))
 {
-	<div class="postdialog form-inline">
-		<input type="text" name="picURL" placeholder="Url á nýja prófíl mynd" class="form-control"/>
-		<input type="submit" value="Setja" class="btn btn-default" />
-	</div>
+    <div class="postdialog form-inline">
+        <input type="text" name="picURL" placeholder="Url á nýja prófíl mynd" class="form-control form-one-button" />
+        <input type="submit" value="Setja" class="btn btn-default" />
+    </div>
 }

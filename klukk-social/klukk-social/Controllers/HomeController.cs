@@ -4,6 +4,10 @@ namespace klukk_social.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult TestView()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
 			if (User.IsInRole("Parent"))

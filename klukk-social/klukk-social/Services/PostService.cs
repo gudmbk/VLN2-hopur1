@@ -254,5 +254,14 @@ namespace klukk_social.Services
 			_dbContext.ReportItem.Remove(itemToRemove);
 			_dbContext.SaveChanges();
 		}
+
+		public void AddPicUrl(int postId, string url)
+		{
+			Post currPost = GetPostById(postId);
+			currPost.Text = url;
+			currPost.HtmlText = "<img src='" + url +"' alt='No image to display' />";
+			currPost.PhotoUrl = url;
+			_dbContext.SaveChanges();
+		}
 	}
 }

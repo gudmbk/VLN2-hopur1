@@ -1,11 +1,44 @@
 ﻿@using klukk_social.Models
 @model Post
-<div class="card postpadd post-status">
-    @using (Html.BeginForm("PostStatus", "Post", new { @class = "postdialog" }))
-    {
-        <textarea class="form-control span formwidth" rows="4" name="status" placeholder="Hvað viltu segja okkur?"></textarea>
-        <input type="hidden" name="toUserId" value="@Model.ToUserId" />
-        <input type="hidden" name="PosterName" value="@Model.PosterName" />
-		<input type="submit" value="Deila" class="btn btn-default topmargin bottommargin" />
-	}
+<div class="card postpadd post-status post-image">
+    <div class="tabs standard">
+        <ul class="tab-links">
+            <li class="active"><a href="#tab1"><span class="tab-color glyphicon glyphicon-comment" id="logIcon"><span class="tab-text">Texti</span></span></a></li>
+            <li class=""><a href="#tab2"><span class="tab-color glyphicon glyphicon-picture" id="logIcon"><span class="tab-text">Mynd</span></span></a></li>
+            <li class=""><a href="#tab3"><span class="tab-color glyphicon glyphicon-play" id="logIcon"><span class="tab-text">Video</span></span></a></li>
+        </ul>
+		<div class="tab-content namedialog">
+			<div id="tab1" class="tab active " style="display: block;">
+				@using (Html.BeginForm("PostStatus", "Post", new { @class = "", enctype = "multipart/form-data" }))
+				{
+					<input type="hidden" name="toUserId" value="@Model.ToUserId" />
+					<input type="hidden" name="PosterName" value="@Model.PosterName" />
+					<textarea class="form-control span formwidth" rows="4" name="status" placeholder="Hvað viltu segja okkur?"></textarea>
+					<input type="submit" value="Deila" class="btn btn-default topmargin" />
+				}
+			</div>
+			<div id="tab2" class="tab" style="display: none;">
+				@using (Html.BeginForm("PostPicture", "Post", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
+				{
+					<input type="hidden" name="toUserId" value="@Model.ToUserId" />
+					<input type="hidden" name="PosterName" value="@Model.PosterName" />
+					<input type="file" name="file" id="file" class="form-one-button" />
+					<input type="submit" value="Deila mynd" class="btn btn-default btn-file" />
+				}
+			</div>
+
+			<div id="tab3" class="tab" style="display: none;">
+				@using (Html.BeginForm("PostVideo", "Post", new { @class = "namedialog", enctype = "multipart/form-data" }))
+				{
+					<input type="hidden" name="toUserId" value="@Model.ToUserId" />
+					<input type="hidden" name="PosterName" value="@Model.PosterName" />
+					<input name="link" placeholder="Linkur á YouTube video" class="form-control form-inline form-one-button" />
+					<input type="submit" value="Deila video" class="btn btn-default" />
+				}
+			</div>
+
+		</div>
+
+    </div>
 </div>
+

@@ -1,7 +1,7 @@
 ﻿@model klukk_social.Models.GroupWithMembership
 
 <div class="cardgroup searchcard searchpadd">
-	@Html.ActionLink(Model.Group.Name, "Profile", "Group", new { groupId = Model.Group.Id }, new { @class = "cardgroup" })
+	@Html.ActionLink(Model.Group.Name, "Profile", "Group", new { groupId = Model.Group.Id }, new { @class = "white" })
 	<a href='@Url.Action("Profile", "Group", new { groupId = Model.Group.Id }, null)'>
 		<img src='@Model.Group.ProfilePic' class="search" />
 	</a>

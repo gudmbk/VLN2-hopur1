@@ -1,6 +1,10 @@
 ﻿@using klukk_social.Models
 @model UserViewModel
 
+@{ 
+    ViewBag.pageType = "feed";
+}
+
 @Html.Partial("PostStatusPartial", new Post(@Model.Person.Id, @Model.Person.FullName))
 
 @foreach (var post in Model.Feed)
