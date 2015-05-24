@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace klukk_social.Controllers
 {
@@ -12,8 +13,10 @@ namespace klukk_social.Controllers
         readonly GroupService _groupService = new GroupService(null);
         readonly UserService _userService = new UserService(null);
         readonly PostService _postService = new PostService(null);
+        HelperController _helper = new HelperController();
 
-		[Authorize(Roles = "Parent")]
+
+        [Authorize(Roles = "Parent")]
         public ActionResult CreateGroup()
         {
             return View();
@@ -232,5 +235,48 @@ namespace klukk_social.Controllers
 
 			return RedirectToAction("Reports", "User");
 		}
+
+        [HttpPost]
+        public ActionResult PostPicture(FormCollection collection)
+        {
+            var file = Request.Files["file"];
+            if (file != null && file.ContentLength > 0)
+            {
+                Post post = new Post();
+                post.ToUserId = null;
+                post.FromUserId = User.Identity.GetUserId();
+                if (post.FromUserId != null)
+                {
+                    post.GroupId = Convert.ToInt32(collection["GroupId"]);
+                    post.PosterName = _userService.GetFullNameById(User.Identity.GetUserId());
+                    _postService.AddPost(post);
+                    string url = _helper.UploadPicture(file, post.Id.ToString(), "post", new Size(1024, 768));
+                    _postService.AddPicUrl(post.Id, url);
+                    return RedirectToAction("Profile", "Group", new { groupId = post.GroupId });
+                }
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public ActionResult PostVideo(FormCollection collection)
+        {
+            string link = collection["link"];
+
+            string frame = Helpers.ParseText(link);
+            Post post = new Post();
+            post.ToUserId = null;
+            post.FromUserId = User.Identity.GetUserId();
+            post.GroupId = Convert.ToInt32(collection["GroupId"]);
+            post.HtmlText = frame;
+            post.VideoUrl = frame;
+            post.Text = link;
+            if (post.GroupId != null)
+            {
+                _postService.AddPost(post);
+                return RedirectToAction("Profile", "Group", new { groupId = post.GroupId });
+            }
+            return View("Error");
+        }
     }
 }
